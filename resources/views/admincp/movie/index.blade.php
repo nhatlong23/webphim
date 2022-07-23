@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12">
+            <div class="col-md-14">
                 <a href="{{ route('movie.create') }}" class="btn btn-primary">Thêm phim</a>
                 <table class="table" id="tablemovie">
                     <thead>
@@ -21,6 +21,7 @@
                             <th scope="col">Movie_hot</th>
                             <th scope="col">Định Danh</th>
                             <th scope="col">Phụ Đề</th>
+                            <th scope="col">Ngày Cập Nhật</th>
                             <th scope="col">Manage</th>
                         </tr>
                     </thead>
@@ -70,6 +71,7 @@
                                         Thuyết Minh
                                     @endif
                                 </td>
+                                <td>{{ $cate->date_update }}</td>
                                 <td>
                                     {!! Form::open([
                                         'method' => 'DELETE',

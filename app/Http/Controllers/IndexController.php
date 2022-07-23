@@ -14,7 +14,7 @@ class IndexController extends Controller
 {
     public function home()
     {
-        $movie_hot = Movie::where('movie_hot', 1)->where('status', 1)->get();
+        $movie_hot = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('date_update','DESC')->get();
         $category = Category::orderby('position', 'ASC')->where('status', 1)->get();
         $genre = Genre::orderby('id', 'DESC')->get();
         $country = Country::orderby('id', 'DESC')->get();
@@ -27,7 +27,7 @@ class IndexController extends Controller
         $genre = Genre::orderby('id', 'DESC')->get();
         $country = Country::orderby('id', 'DESC')->get();
         $cate_slug = Category::where('slug', $slug)->first();
-        $movie = Movie::where('category_id', $cate_slug->id)->paginate(40);
+        $movie = Movie::where('category_id', $cate_slug->id)->orderBy('date_update','DESC')->paginate(40);
         return view('pages.category', compact('category', 'genre', 'country', 'cate_slug', 'movie'));
     }
     public function genre($slug)
@@ -36,7 +36,7 @@ class IndexController extends Controller
         $genre = Genre::orderby('id', 'DESC')->get();
         $country = Country::orderby('id', 'DESC')->get();
         $genre_slug = Genre::where('slug', $slug)->first();
-        $movie = Movie::where('genre_id', $genre_slug->id)->paginate(40);
+        $movie = Movie::where('genre_id', $genre_slug->id)->orderBy('date_update','DESC')->paginate(40);
         return view('pages.genre', compact('category', 'genre', 'country', 'genre_slug', 'movie'));
     }
     public function country($slug)
@@ -45,7 +45,7 @@ class IndexController extends Controller
         $genre = Genre::orderby('id', 'DESC')->get();
         $country = Country::orderby('id', 'DESC')->get();
         $country_slug = Country::where('slug', $slug)->first();
-        $movie = Movie::where('country_id', $country_slug->id)->paginate(40);
+        $movie = Movie::where('country_id', $country_slug->id)->orderBy('date_update','DESC')->paginate(40);
         return view('pages.country', compact('category', 'genre', 'country', 'country_slug', 'movie'));
     }
     public function movie($slug)
