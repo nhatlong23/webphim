@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-14">
+            <div class="col-md-12">
                 <a href="{{ route('movie.create') }}" class="btn btn-primary">Thêm phim</a>
                 <table class="table" id="tablemovie">
                     <thead>
@@ -22,6 +22,7 @@
                             <th scope="col">Định Danh</th>
                             <th scope="col">Phụ Đề</th>
                             <th scope="col">Ngày Cập Nhật</th>
+                            <th scope="col">Năm Phim</th>
                             <th scope="col">Manage</th>
                         </tr>
                     </thead>
@@ -72,6 +73,12 @@
                                     @endif
                                 </td>
                                 <td>{{ $cate->date_update }}</td>
+                                <td>
+                                    {!! Form::selectYear('year', '2006', '2022', isset($cate->year) ? $cate->year : '', [
+                                        'class' => 'select-year',
+                                        'id' => $cate->id,
+                                    ]) !!}
+                                </td>
                                 <td>
                                     {!! Form::open([
                                         'method' => 'DELETE',

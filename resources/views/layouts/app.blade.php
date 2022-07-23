@@ -107,6 +107,25 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
     <script type="text/javascript">
+        $('.select-year').change(function() {
+            var year = $(this).find(':selected').val();
+            var id_phim = $(this).attr('id');
+
+            $.ajax({
+                url: "{{ url('/update-year-phim') }}",
+                method: "GET",
+                data: {
+                    year: year,
+                    id_phim: id_phim
+                },
+                success: function() {
+                    alert('Thay đổi năm phim ' + year + ' thành công ');
+                }
+
+            });
+        })
+    </script>
+    <script type="text/javascript">
         $(document).ready(function() {
             $('#tablemovie').DataTable();
         });

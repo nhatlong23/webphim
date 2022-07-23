@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Country;
 use App\Models\Genre;
 use Carbon\Carbon;
+
 class MovieController extends Controller
 {
     /**
@@ -21,6 +22,14 @@ class MovieController extends Controller
         return view('admincp.movie.index', compact('list'));
     }
 
+
+    public function update_year(Request $request)
+    {
+        $data = $request->all();
+        $movie = Movie::find($data['id_phim']);
+        $movie->year = $data['year'];
+        $movie->save();
+    }
     /**
      * Show the form for creating a new resource.
      *
