@@ -20,6 +20,7 @@
                             <th scope="col">Country</th>
                             <th scope="col">Movie_hot</th>
                             <th scope="col">Định Danh</th>
+                            <th scope="col">Phụ Đề</th>
                             <th scope="col">Manage</th>
                         </tr>
                     </thead>
@@ -60,6 +61,13 @@
                                         Cam
                                     @else
                                         FullHD
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($cate->sub_movie == 0)
+                                        VietSub
+                                    @elseif ($cate->sub_movie == 1)
+                                        Thuyết Minh
                                     @endif
                                 </td>
                                 <td>

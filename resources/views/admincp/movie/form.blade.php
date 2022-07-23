@@ -86,12 +86,18 @@
                             {!! Form::label('resolution', 'Định Dạng', []) !!}
                             {!! Form::select(
                                 'resolution',
-                                ['0' => 'HD', '1' => 'SD', '2' => 'HDCam','3'=>'Cam','4'=>'FullHD'],
+                                ['0' => 'HD', '1' => 'SD', '2' => 'HDCam', '3' => 'Cam', '4' => 'FullHD'],
                                 isset($movie) ? $movie->resolution : '',
                                 [
                                     'class' => 'form-control',
                                 ],
                             ) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('sub_movie', 'Phụ Đề', []) !!}
+                            {!! Form::select('sub_movie', ['0' => 'VietSub', '1' => 'Thuyết minh'], isset($movie) ? $movie->sub_movie : '', [
+                                'class' => 'form-control',
+                            ]) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('image', 'Image', []) !!}

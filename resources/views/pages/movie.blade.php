@@ -60,7 +60,13 @@
                                             @else
                                                 FullHD
                                             @endif
-                                        </span><span class="episode">Vietsub</span></li>
+                                        </span><span class="episode">
+                                            @if ($movie->sub_movie == 0)
+                                                VietSub
+                                            @elseif ($movie->sub_movie == 1)
+                                                Thuyết Minh
+                                            @endif
+                                        </span></li>
                                     <li class="list-info-group-item"><span>Điểm IMDb</span> : <span
                                             class="imdb">7.2</span></li>
                                     <li class="list-info-group-item"><span>Thời lượng</span> : 133 Phút</li>
@@ -126,7 +132,13 @@
                                                 src="{{ asset('uploads/movie/' . $hot->image) }}"
                                                 alt="{{ $hot->title }}" title="{{ $hot->title }}"></figure>
                                         <span class="status">HD</span><span class="episode"><i class="fa fa-play"
-                                                aria-hidden="true"></i>Vietsub</span>
+                                                aria-hidden="true"></i>
+                                            @if ($movie->sub_movie == 0)
+                                                VietSub
+                                            @elseif ($movie->sub_movie == 1)
+                                                Thuyết Minh
+                                            @endif
+                                        </span>
                                         <div class="icon_overlay"></div>
                                         <div class="halim-post-title-box">
                                             <div class="halim-post-title ">
