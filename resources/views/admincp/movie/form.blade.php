@@ -29,6 +29,13 @@
                             ]) !!}
                         </div>
                         <div class="form-group">
+                            {!! Form::label('duration_movie', 'Duration', []) !!}
+                            {!! Form::text('duration_movie', isset($movie) ? $movie->duration_movie : '', [
+                                'class' => 'form-control',
+                                'placeholder' => 'Nhập vào dữ liệu...',
+                            ]) !!}
+                        </div>
+                        <div class="form-group">
                             {!! Form::label('name_en', 'NameEN', []) !!}
                             {!! Form::text('name_en', isset($movie) ? $movie->name_en : '', [
                                 'class' => 'form-control',

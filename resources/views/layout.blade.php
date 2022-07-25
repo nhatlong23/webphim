@@ -16,9 +16,9 @@
         type="image/x-icon" />
     <meta name="revisit-after" content="1 days" />
     <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
-    <title>Phim hay 2021 - Xem phim hay nhất</title>
+    <title>Phim hay 2022 - Xem phim hay nhất</title>
     <meta name="description"
-        content="Phim hay 2021 - Xem phim hay nhất, xem phim online miễn phí, phim hot , phim nhanh" />
+        content="Phim hay 2022 - Xem phim hay nhất, xem phim online miễn phí, phim hot , phim nhanh" />
     <link rel="canonical" href="">
     <link rel="next" href="" />
     <meta property="og:locale" content="vi_VN" />
@@ -26,7 +26,7 @@
     <meta property="og:description"
         content="Phim hay 2020 - Xem phim hay nhất, phim hay trung quốc, hàn quốc, việt nam, mỹ, hong kong , chiếu rạp" />
     <meta property="og:url" content="" />
-    <meta property="og:site_name" content="Phim hay 2021- Xem phim hay nhất" />
+    <meta property="og:site_name" content="Phim hay 2022- Xem phim hay nhất" />
     <meta property="og:image" content="" />
     <meta property="og:image:width" content="300" />
     <meta property="og:image:height" content="55" />
@@ -125,9 +125,10 @@
                                 <a title="Năm" href="#" data-toggle="dropdown" class="dropdown-toggle"
                                     aria-haspopup="true">Năm <span class="caret"></span></a>
                                 <ul role="menu" class=" dropdown-menu">
-                                    <li><a title="Phim 2020" href="danhmuc.php">Phim 2020</a></li>
-                                    <li><a title="Năm 2019" href="danhmuc.php">Năm 2019</a></li>
-                                    <li><a title="Năm 2018" href="danhmuc.php">Năm 2018</a></li>
+                                    @for ($year = 2006; $year <= 2022; $year++)
+                                        <li><a title="{{ $year }}"
+                                                href="{{ url('year/' . $year) }}">{{ $year }}</a></li>
+                                    @endfor
                                 </ul>
                             </li>
                             <li class="mega dropdown">
@@ -182,7 +183,7 @@
                     <div class="footer-logo">
                         <img class="img-responsive"
                             src="https://img.favpng.com/9/23/19/movie-logo-png-favpng-nRr1DmYq3SNYSLN8571CHQTEG.jpg"
-                            alt="Phim hay 2021- Xem phim hay nhất" />
+                            alt="Phim hay 2022- Xem phim hay nhất" />
                     </div>
                     Liên hệ QC: <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
                         data-cfemail="e5958d8c888d849ccb868aa58288848c89cb868a88">[email&#160;protected]</a>

@@ -5,8 +5,17 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">
-                        <div class="yoast_breadcrumb hidden-xs"><span><span><a href="">{{ $genre_slug->title }}</a> »
-                                    <span class="breadcrumb_last" aria-current="page">2020</span></span></span></div>
+                        <div class="yoast_breadcrumb hidden-xs">
+                            <span>
+                                <span>Phim thuộc năm »
+                                    @for ($year_beard = 2006; $year_beard <= 2022; $year_beard++)
+                                    <span class="breadcrumb_last" aria-current="page"><a title="{{ $year_beard }}"
+                                            href="{{ url('year/' . $year_beard) }}">{{ $year_beard }}</a>
+                                    </span> »
+                                    @endfor
+                                </span>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -17,13 +26,13 @@
         <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
             <section>
                 <div class="section-bar clearfix">
-                    <h1 class="section-title"><span>{{ $genre_slug->title }}</span></h1>
+                    <h1 class="section-title"><span>Năm : {{ $year }}</span></h1>
                 </div>
                 <div class="halim_box">
                     @foreach ($movie as $key => $mov)
                         <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
                             <div class="halim-item">
-                                <a class="halim-thumb" href="{{ route('movie', $mov->slug) }}">
+                                <a class="halim-thumb" href="">
                                     <figure><img class="lazy img-responsive"
                                             src="{{ asset('uploads/movie/' . $mov->image) }}" alt=""
                                             title="{{ $mov->title }}">
@@ -62,6 +71,13 @@
                 <div class="clearfix"></div>
                 <div class="text-center">
                     <ul class='page-numbers'>
+                        {{-- <li><span aria-current="page" class="page-numbers current">1</span></li>
+                        <li><a class="page-numbers" href="">2</a></li>
+                        <li><a class="page-numbers" href="">3</a></li>
+                        <li><span class="page-numbers dots">&hellip;</span></li>
+                        <li><a class="page-numbers" href="">55</a></li>
+                        <li><a class="next page-numbers" href=""><i class="hl-down-open rotate-right"></i></a>
+                        </li> --}}
                         {!! $movie->links('pagination::bootstrap-4') !!}
                     </ul>
                 </div>

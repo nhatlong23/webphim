@@ -69,7 +69,7 @@
                                         </span></li>
                                     <li class="list-info-group-item"><span>Điểm IMDb</span> : <span
                                             class="imdb">7.2</span></li>
-                                    <li class="list-info-group-item"><span>Thời lượng</span> : 133 Phút</li>
+                                    <li class="list-info-group-item"><span>Thời lượng</span> : {{ $movie->duration_movie }}</li>
                                     <li class="list-info-group-item"><span>Thể loại</span> : <a
                                             href="{{ route('category', $movie->category->slug) }}"
                                             rel="category tag">{{ $movie->category->title }}</a>
