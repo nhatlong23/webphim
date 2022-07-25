@@ -23,7 +23,7 @@
                     @foreach ($movie as $key => $mov)
                         <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
                             <div class="halim-item">
-                                <a class="halim-thumb" href="">
+                                <a class="halim-thumb" href="{{ route('movie', $mov->slug) }}">
                                     <figure><img class="lazy img-responsive"
                                             src="{{ asset('uploads/movie/' . $mov->image) }}" alt=""
                                             title="{{ $mov->title }}">

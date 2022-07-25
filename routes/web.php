@@ -28,6 +28,7 @@ Route::get('/phim/{slug}', [IndexController::class, 'movie'])->name('movie');
 Route::get('/xem-phim', [IndexController::class, 'watch'])->name('watch');
 Route::get('/episode', [IndexController::class, 'episode'])->name('episode');
 Route::get('/year/{year}', [IndexController::class, 'year']);
+Route::get('/tag/{tag}', [IndexController::class, 'tag']);
 
 Auth::routes();
 

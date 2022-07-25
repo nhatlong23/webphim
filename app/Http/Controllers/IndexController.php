@@ -39,6 +39,15 @@ class IndexController extends Controller
         $movie = Movie::where('year', $year)->orderBy('date_update','DESC')->paginate(40);
         return view('pages.year', compact('category', 'genre', 'country', 'year', 'movie'));
     }
+    public function tag($tag)
+    {
+        $category = Category::orderby('position', 'ASC')->where('status', 1)->get();
+        $genre = Genre::orderby('id', 'DESC')->get();
+        $country = Country::orderby('id', 'DESC')->get();
+        $tag = $tag;
+        $movie = Movie::where('tags_movie', 'LIKE', '%' .$tag. '%')->orderBy('date_update','DESC')->paginate(40);
+        return view('pages.tag', compact('category', 'genre', 'country', 'tag', 'movie'));
+    }
     public function genre($slug)
     {
         $category = Category::orderby('position', 'ASC')->where('status', 1)->get();

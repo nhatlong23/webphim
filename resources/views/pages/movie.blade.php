@@ -69,7 +69,8 @@
                                         </span></li>
                                     <li class="list-info-group-item"><span>Điểm IMDb</span> : <span
                                             class="imdb">7.2</span></li>
-                                    <li class="list-info-group-item"><span>Thời lượng</span> : {{ $movie->duration_movie }}</li>
+                                    <li class="list-info-group-item"><span>Thời lượng</span> : {{ $movie->duration_movie }}
+                                    </li>
                                     <li class="list-info-group-item"><span>Thể loại</span> : <a
                                             href="{{ route('category', $movie->category->slug) }}"
                                             rel="category tag">{{ $movie->category->title }}</a>
@@ -112,6 +113,27 @@
                         <div class="video-item halim-entry-box">
                             <article id="post-38424" class="item-content">
                                 {{ $movie->description }}
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="section-bar clearfix">
+                        <h2 class="section-title"><span style="color:#cebb14">tags</span></h2>
+                    </div>
+                    <div class="entry-content htmlwrap clearfix">
+                        <div class="video-item halim-entry-box">
+                            <article id="post-38424" class="item-content">
+                                @if ($movie->tags_movie != null)
+                                    @php
+                                        $tags_movie = [];
+                                        $tags_movie = explode(',', $movie->tags_movie);
+                                    @endphp
+                                    @foreach ($tags_movie as $key => $tag)
+                                        <a href="{{ url('tag/' . $tag) }}">{{$tag}}</a>
+                                    @endforeach
+                                @else
+                                    {{ $movie->tags_movie }}
+                                @endif
                             </article>
                         </div>
                     </div>

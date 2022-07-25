@@ -13,6 +13,7 @@
                             <th scope="col">Name_EN</th>
                             <th scope="col">Image</th>
                             <th scope="col">Duration</th>
+                            <th scope="col">Tags</th>
                             {{-- <th scope="col">Description</th> --}}
                             <th scope="col">Slug</th>
                             <th scope="col">Active/Inactive</th>
@@ -35,6 +36,7 @@
                                 <td>{{ $cate->name_en }}</td>
                                 <td><img src="{{ asset('uploads/movie/' . $cate->image) }}" width="65"></td>
                                 <td>{{ $cate->duration_movie }}</td>
+                                <td>{{ $cate->tags_movie }}</td>
                                 {{-- <td>{{ $cate->description }}</td> --}}
                                 <td>{{ $cate->slug }}</td>
                                 <td>

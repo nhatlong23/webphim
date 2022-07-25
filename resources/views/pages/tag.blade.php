@@ -5,17 +5,9 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">
-                        <div class="yoast_breadcrumb hidden-xs">
-                            <span>
-                                <span>Phim thuộc năm »
-                                    @for ($year_beard = 2006; $year_beard <= 2022; $year_beard++)
-                                    <span class="breadcrumb_last" aria-current="page"><a title="{{ $year_beard }}"
-                                            href="{{ url('year/' . $year_beard) }}">{{ $year_beard }}</a>
-                                    </span> »
-                                    @endfor
-                                </span>
-                            </span>
-                        </div>
+                        <div class="yoast_breadcrumb hidden-xs"><span><span><a href="">Phim theo tags</a> »
+                                    <span class="breadcrumb_last"
+                                        aria-current="page">{{ $tag }}}</span></span></span></div>
                     </div>
                 </div>
             </div>
@@ -26,7 +18,7 @@
         <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
             <section>
                 <div class="section-bar clearfix">
-                    <h1 class="section-title"><span>Năm : {{ $year }}</span></h1>
+                    <h1 class="section-title"><span>Tags : {{ $tag }}</span></h1>
                 </div>
                 <div class="halim_box">
                     @foreach ($movie as $key => $mov)

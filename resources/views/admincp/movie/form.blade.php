@@ -60,6 +60,14 @@
                             ]) !!}
                         </div>
                         <div class="form-group">
+                            {!! Form::label('tags_movie', 'Tags_movie', []) !!}
+                            {!! Form::textarea('tags_movie', isset($movie) ? $movie->tags_movie : '', [
+                                'style' => 'resize:none',
+                                'class' => 'form-control',
+                                'placeholder' => 'Nhập vào dữ liệu...',
+                            ]) !!}
+                        </div>
+                        <div class="form-group">
                             {!! Form::label('status', 'Status', []) !!}
                             {!! Form::select('status', ['1' => 'Hiển thị', '0' => 'Không'], isset($movie) ? $movie->status : '', [
                                 'class' => 'form-control',
