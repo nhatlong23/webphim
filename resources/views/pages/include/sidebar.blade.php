@@ -51,49 +51,38 @@
         <div class="section-bar clearfix">
             <div class="section-title">
                 <span>Top Views</span>
-                <ul class="halim-popular-tab" role="tablist">
-                    <li role="presentation" class="active">
-                        <a class="ajax-tab" role="tab" data-toggle="tab" data-showpost="10"
-                            data-type="today">Day</a>
-                    </li>
-                    <li role="presentation">
-                        <a class="ajax-tab" role="tab" data-toggle="tab" data-showpost="10"
-                            data-type="week">Week</a>
-                    </li>
-                    <li role="presentation">
-                        <a class="ajax-tab" role="tab" data-toggle="tab" data-showpost="10"
-                            data-type="month">Month</a>
-                    </li>
-                    <li role="presentation">
-                        <a class="ajax-tab" role="tab" data-toggle="tab" data-showpost="10" data-type="all">All</a>
-                    </li>
-                </ul>
+
+
             </div>
         </div>
         <section class="tab-content">
-            <div role="tabpanel" class="tab-pane active halim-ajax-popular-post">
-                <div class="halim-ajax-popular-post-loading hidden"></div>
-                <div id="halim-ajax-popular-post" class="popular-post">
-                    <div class="item post-37176">
-                        <a href="chitiet.php" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ">
-                            <div class="item-link">
-                                <img src="https://pdp.edu.vn/wp-content/uploads/2021/07/hinh-anh-spider-man-nguoi-nhen-dep-ngau-nhat.jpg"
-                                    class="lazy post-thumb" alt="CHỊ MƯỜI BA: BA NGÀY SINH TỬ"
-                                    title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ" />
-                                <span class="is_trailer">Trailer</span>
-                            </div>
-                            <p class="title">CHỊ MƯỜI BA: BA NGÀY SINH TỬ</p>
-                        </a>
-                        <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
-                        <div style="float: left;">
-                            <span class="user-rate-image post-large-rate stars-large-vang"
-                                style="display: block;/* width: 100%; */">
-                                <span style="width: 0%"></span>
-                            </span>
-                        </div>
-                    </div>
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-day-tab" data-toggle="pill" href="#day" role="tab"
+                        aria-controls="pills-day" aria-selected="true">Day</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-week-tab" data-toggle="pill" href="#week" role="tab"
+                        aria-controls="pills-week" aria-selected="false">Week</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-month-tab" data-toggle="pill" href="#month" role="tab"
+                        aria-controls="pills-month" aria-selected="false">Month</a>
+                </li>
+                {{-- <li class="nav-item">
+                    <a class="nav-link" id="pills-all-tab" data-toggle="pill" href="#all" role="tab"
+                        aria-controls="pills-contact" aria-selected="false">All</a>
+                </li> --}}
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="day" role="tabpanel" aria-labelledby="pills-day-tab">
+                    ...</div>
+                <div class="tab-pane fade" id="week" role="tabpanel" aria-labelledby="pills-week-tab">...
+                </div>
+                <div class="tab-pane fade" id="month" role="tabpanel" aria-labelledby="pills-month-tab">...
                 </div>
             </div>
+
         </section>
         <div class="clearfix"></div>
     </div>

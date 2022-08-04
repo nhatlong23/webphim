@@ -125,6 +125,33 @@
             });
         })
     </script>
+
+    <script type="text/javascript">
+        $('.select-topview').change(function() {
+            var topview = $(this).find(':selected').val();
+            var id_phim = $(this).attr('id');
+
+            if(topview == 0){
+                var text = 'Ngày';
+            }else if(topview == 1){
+                var text = 'Tuần';
+            }else{
+                var text = 'Tháng';
+            }
+            $.ajax({
+                url: "{{ url('/update-topview-phim') }}",
+                method: "GET",
+                data: {
+                    topview: topview,
+                    id_phim: id_phim
+                },
+                success: function() {
+                    alert('Thay đổi phim theo topview ' + text + ' thành công ');
+                }
+
+            });
+        })
+    </script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#tablemovie').DataTable();

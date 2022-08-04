@@ -25,6 +25,7 @@
                             <th scope="col">Phụ Đề</th>
                             <th scope="col">Ngày Cập Nhật</th>
                             <th scope="col">Năm Phim</th>
+                            <th scope="col">Top Views</th>
                             <th scope="col">Manage</th>
                         </tr>
                     </thead>
@@ -82,6 +83,17 @@
                                         'class' => 'select-year',
                                         'id' => $cate->id,
                                     ]) !!}
+                                </td>
+                                <td>
+                                    {!! Form::select(
+                                        'topview',
+                                        ['0' => 'Ngày', '1' => 'Tuần', '2' => 'Tháng'],
+                                        isset($cate->topview) ? $cate->topview : '',
+                                        [
+                                            'class' => 'select-topview',
+                                            'id' => $cate->id,
+                                        ],
+                                    ) !!}
                                 </td>
                                 <td>
                                     {!! Form::open([
