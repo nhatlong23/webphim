@@ -129,7 +129,7 @@
                                         $tags_movie = explode(',', $movie->tags_movie);
                                     @endphp
                                     @foreach ($tags_movie as $key => $tag)
-                                        <a href="{{ url('tag/' . $tag) }}">{{$tag}}</a>
+                                        <a href="{{ url('tag/' . $tag) }}">{{ $tag }}</a>
                                     @endforeach
                                 @else
                                     {{ $movie->tags_movie }}
@@ -207,6 +207,7 @@
                 </div>
             </section>
         </main>
-        <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4"></aside>
+        {{-- SideBar --}}
+        @include('pages.include.sidebar')
     </div>
 @endsection
