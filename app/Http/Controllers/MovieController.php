@@ -59,8 +59,12 @@ class MovieController extends Controller
                 $text = 'SD';
             } elseif ($mov->resolution == 2) {
                 $text = 'HDCam';
-            } else {
+            } elseif ($mov->resolution == 3) {
                 $text = 'Cam';
+            } elseif ($mov->resolution == 4) {
+                $text = 'FullHD';
+            } else {
+                $text = 'Trailer';
             }
             $output = '<div class="item post-37176">
             <a href=" ' . url('movie/' . $mov->slug) . ' " title="' . $mov->title . '">
@@ -108,6 +112,7 @@ class MovieController extends Controller
         $data = $request->all();
         $movie = new Movie();
         $movie->title = $data['title'];
+        $movie->trailer = $data['trailer'];
         $movie->duration_movie = $data['duration_movie'];
         $movie->tags_movie = $data['tags_movie'];
         $movie->resolution = $data['resolution'];
@@ -177,6 +182,7 @@ class MovieController extends Controller
 
         $movie = Movie::find($id);
         $movie->title = $data['title'];
+        $movie->trailer = $data['trailer'];
         $movie->duration_movie = $data['duration_movie'];
         $movie->tags_movie = $data['tags_movie'];
         $movie->resolution = $data['resolution'];

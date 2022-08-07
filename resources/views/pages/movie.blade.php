@@ -57,22 +57,28 @@
                                                 HDCam
                                             @elseif ($movie->resolution == 3)
                                                 Cam
-                                            @else
+                                            @elseif ($movie->resolution == 4)
                                                 FullHD
+                                            @else
+                                                Trailer
                                             @endif
-                                        </span><span class="episode">
-                                            @if ($movie->sub_movie == 0)
-                                                VietSub
-                                                @if ($movie->season != 0)
-                                                    - Season {{ $movie->season }}
+                                        </span>
+                                        @if ($movie->resolution != 5)
+                                            <span class="episode">
+                                                @if ($movie->sub_movie == 0)
+                                                    VietSub
+                                                    @if ($movie->season != 0)
+                                                        - Season {{ $movie->season }}
+                                                    @endif
+                                                @elseif ($movie->sub_movie == 1)
+                                                    Thuyết Minh
+                                                    @if ($movie->season != 0)
+                                                        - Season {{ $movie->season }}
+                                                    @endif
                                                 @endif
-                                            @elseif ($movie->sub_movie == 1)
-                                                Thuyết Minh
-                                                @if ($movie->season != 0)
-                                                    - Season {{ $movie->season }}
-                                                @endif
-                                            @endif
-                                        </span></li>
+                                            </span>
+                                        @endif
+                                    </li>
                                     <li class="list-info-group-item"><span>Điểm IMDb</span> : <span
                                             class="imdb">7.2</span></li>
                                     <li class="list-info-group-item"><span>Thời lượng</span> : {{ $movie->duration_movie }}
@@ -124,6 +130,22 @@
                     </div>
 
                     <div class="section-bar clearfix">
+                        <h2 class="section-title"><span style="color:#fbf29c">Trailer</span></h2>
+                    </div>
+                    <div class="entry-content htmlwrap clearfix">
+                        <div class="video-item halim-entry-box">
+                            <article id="post-38424" class="item-content">
+                                <iframe width="100%" height="400"
+                                    src="https://www.youtube-nocookie.com/embed/{{ $movie->trailer }}"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </article>
+                        </div>
+                    </div>
+
+
+                    <div class="section-bar clearfix">
                         <h2 class="section-title"><span style="color:#cebb14">tags</span></h2>
                     </div>
                     <div class="entry-content htmlwrap clearfix">
@@ -143,6 +165,7 @@
                             </article>
                         </div>
                     </div>
+
                 </div>
             </section>
             <section class="related-movies">

@@ -68,8 +68,10 @@
                                         HDCam
                                     @elseif ($cate->resolution == 3)
                                         Cam
-                                    @else
+                                    @elseif ($cate->resolution == 4)
                                         FullHD
+                                    @else
+                                        Trailer
                                     @endif
                                 </td>
                                 <td>
