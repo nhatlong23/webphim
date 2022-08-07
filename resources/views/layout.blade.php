@@ -197,6 +197,44 @@
     <script type='text/javascript' src='{{ asset('js/owl.carousel.min.js?ver=5.7.2') }}' id='carousel-js'></script>
     <script type='text/javascript' src='{{ asset('js/halimtheme-core.min.js?ver=1626273138') }}' id='halim-init-js'>
     </script>
+
+    <script type="text/javascript">
+        // $(document).ready(function() {
+        //     $.ajax({
+        //         url: "{{ url('/filter-topview-default') }}",
+        //         method: "GET",
+        //         success: function(data) {
+        //             $('#show0').html(data);
+        //         }
+        //     });
+        // })
+
+
+        $('.filter-sidebar').click(function() {
+            var href = $(this).attr('href');
+            var _token = $('input[name="_token"]').val();
+
+            if (href == '#ngay') {
+                var value = 0;
+            } else if (href == '#tuan') {
+                var value = 1;
+            } else {
+                var value = 2;
+            }
+            $.ajax({
+                url: "{{ url('/filter-topview-phim') }}",
+                method: "POST",
+                data: {
+                    value: value,
+                    _token: _token
+                },
+                success: function(data) {
+                    $('#show' + value).html(data);
+                }
+            });
+        })
+    </script>
+
     <script>
         jQuery(document).ready(function($) {
             var owl = $('#halim_related_movies-2');

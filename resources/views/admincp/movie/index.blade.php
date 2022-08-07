@@ -14,7 +14,7 @@
                             <th scope="col">Image</th>
                             <th scope="col">Duration</th>
                             <th scope="col">Tags</th>
-                            {{-- <th scope="col">Description</th> --}}
+                            <th scope="col">Description</th>
                             <th scope="col">Slug</th>
                             <th scope="col">Active/Inactive</th>
                             <th scope="col">Category</th>
@@ -24,8 +24,10 @@
                             <th scope="col">Định Danh</th>
                             <th scope="col">Phụ Đề</th>
                             <th scope="col">Ngày Cập Nhật</th>
+                            <th scope="col">Ngày Tạo</th>
                             <th scope="col">Năm Phim</th>
                             <th scope="col">Top Views</th>
+                            <th scope="col">Season</th>
                             <th scope="col">Manage</th>
                         </tr>
                     </thead>
@@ -37,8 +39,8 @@
                                 <td>{{ $cate->name_en }}</td>
                                 <td><img src="{{ asset('uploads/movie/' . $cate->image) }}" width="65"></td>
                                 <td>{{ $cate->duration_movie }}</td>
-                                <td>{{ $cate->tags_movie }}</td>
-                                {{-- <td>{{ $cate->description }}</td> --}}
+                                <td>{{ substr($cate->tags_movie, 0, 10) }}</td>
+                                <td>{{ substr($cate->description, 0, 10) }}</td>
                                 <td>{{ $cate->slug }}</td>
                                 <td>
                                     @if ($cate->status)
@@ -78,22 +80,38 @@
                                     @endif
                                 </td>
                                 <td>{{ $cate->date_update }}</td>
+                                <td>{{ $cate->date_created }}</td>
                                 <td>
-                                    {!! Form::selectYear('year', '2006', '2022', isset($cate->year) ? $cate->year : '', [
-                                        'class' => 'select-year',
-                                        'id' => $cate->id,
-                                    ]) !!}
+                                    <form method="POST">
+                                        @csrf
+                                        {!! Form::selectYear('year', '2006', '2022', isset($cate->year) ? $cate->year : '', [
+                                            'class' => 'select-year',
+                                            'id' => $cate->id,
+                                        ]) !!}
+                                    </form>
                                 </td>
                                 <td>
-                                    {!! Form::select(
-                                        'topview',
-                                        ['0' => 'Ngày', '1' => 'Tuần', '2' => 'Tháng'],
-                                        isset($cate->topview) ? $cate->topview : '',
-                                        [
-                                            'class' => 'select-topview',
+                                    <form method="POST">
+                                        @csrf
+                                        {!! Form::select(
+                                            'topview',
+                                            ['0' => 'Ngày', '1' => 'Tuần', '2' => 'Tháng'],
+                                            isset($cate->topview) ? $cate->topview : '',
+                                            [
+                                                'class' => 'select-topview',
+                                                'id' => $cate->id,
+                                            ],
+                                        ) !!}
+                                    </form>
+                                </td>
+                                <td>
+                                    <form method="POST">
+                                        @csrf
+                                        {!! Form::selectRange('season', '0', '20', isset($cate->season) ? $cate->season : '', [
+                                            'class' => 'select-season',
                                             'id' => $cate->id,
-                                        ],
-                                    ) !!}
+                                        ]) !!}
+                                    </form>
                                 </td>
                                 <td>
                                     {!! Form::open([

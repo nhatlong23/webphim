@@ -110,13 +110,15 @@
         $('.select-year').change(function() {
             var year = $(this).find(':selected').val();
             var id_phim = $(this).attr('id');
+            var _token = $('input[name="_token"]').val();
 
             $.ajax({
                 url: "{{ url('/update-year-phim') }}",
-                method: "GET",
+                method: "POST",
                 data: {
                     year: year,
-                    id_phim: id_phim
+                    id_phim: id_phim,
+                    _token: _token
                 },
                 success: function() {
                     alert('Thay đổi năm phim ' + year + ' thành công ');
@@ -127,23 +129,47 @@
     </script>
 
     <script type="text/javascript">
+        $('.select-season').change(function() {
+            var season = $(this).find(':selected').val();
+            var id_phim = $(this).attr('id');
+            var _token = $('input[name="_token"]').val();
+
+            $.ajax({
+                url: "{{ url('/update-season-phim') }}",
+                method: "POST",
+                data: {
+                    season: season,
+                    id_phim: id_phim,
+                    _token: _token
+                },
+                success: function() {
+                    alert('Thay đổi season ' + season + ' thành công ');
+                }
+
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
         $('.select-topview').change(function() {
             var topview = $(this).find(':selected').val();
             var id_phim = $(this).attr('id');
+            var _token = $('input[name="_token"]').val();
 
-            if(topview == 0){
+            if (topview == 0) {
                 var text = 'Ngày';
-            }else if(topview == 1){
+            } else if (topview == 1) {
                 var text = 'Tuần';
-            }else{
+            } else {
                 var text = 'Tháng';
             }
             $.ajax({
                 url: "{{ url('/update-topview-phim') }}",
-                method: "GET",
+                method: "POST",
                 data: {
                     topview: topview,
-                    id_phim: id_phim
+                    id_phim: id_phim,
+                    _token: _token
                 },
                 success: function() {
                     alert('Thay đổi phim theo topview ' + text + ' thành công ');

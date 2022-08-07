@@ -63,8 +63,14 @@
                                         </span><span class="episode">
                                             @if ($movie->sub_movie == 0)
                                                 VietSub
+                                                @if ($movie->season != 0)
+                                                    - Season {{ $movie->season }}
+                                                @endif
                                             @elseif ($movie->sub_movie == 1)
                                                 Thuyết Minh
+                                                @if ($movie->season != 0)
+                                                    - Season {{ $movie->season }}
+                                                @endif
                                             @endif
                                         </span></li>
                                     <li class="list-info-group-item"><span>Điểm IMDb</span> : <span

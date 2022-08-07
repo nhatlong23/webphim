@@ -29,7 +29,7 @@
                         </div>
                         <div class="form-group">
                             {!! Form::label('slug', 'Slug', []) !!}
-                            {!! Form::text('slug', isset($category) ? $category->slug : '', [
+                            {!! Form::text('slug', isset($country) ? $country->slug : '', [
                                 'class' => 'form-control',
                                 'placeholder' => 'Nhập vào dữ liệu...',
                                 'id' => 'convert_slug',

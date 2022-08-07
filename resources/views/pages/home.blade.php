@@ -36,8 +36,14 @@
                                         </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
                                             @if ($hot->sub_movie == 0)
                                                 VietSub
+                                                @if ($hot->season != 0)
+                                                    - Season {{ $hot->season }}
+                                                @endif
                                             @elseif ($hot->sub_movie == 1)
                                                 Thuyết Minh
+                                                @if ($hot->season != 0)
+                                                    - Season {{ $hot->season }}
+                                                @endif
                                             @endif
                                         </span>
                                         <div class="icon_overlay"></div>
@@ -83,11 +89,18 @@
                                                 @else
                                                     FullHD
                                                 @endif
-                                            </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
                                                 @if ($mov->sub_movie == 0)
                                                     VietSub
+                                                    @if ($mov->season != 0)
+                                                        - Season {{ $mov->season }}
+                                                    @endif
                                                 @elseif ($mov->sub_movie == 1)
                                                     Thuyết Minh
+                                                    @if ($mov->season != 0)
+                                                        - Season {{ $mov->season }}
+                                                    @endif
                                                 @endif
                                             </span>
                                             <div class="icon_overlay"></div>
@@ -106,6 +119,55 @@
                     <div class="clearfix"></div>
                 @endforeach
             </main>
+            <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4">
+                <div id="halim_tab_popular_videos-widget-7" class="widget halim_tab_popular_videos-widget">
+                    <div class="section-bar clearfix">
+                        <div class="section-title">
+                            <span>Phim hot</span>
+                        </div>
+                    </div>
+                    <section class="tab-content">
+                        <div role="tabpanel" class="tab-pane active halim-ajax-popular-post">
+                            <div class="halim-ajax-popular-post-loading hidden"></div>
+                            <div id="halim-ajax-popular-post" class="popular-post">
+                                @foreach ($movie_hot_sidebar as $key => $mov_hot)
+                                    <div class="item post-37176">
+                                        <a href="{{ route('movie', $mov_hot->slug) }}" title="{{ $mov_hot->title }}">
+                                            <div class="item-link">
+                                                <img src="{{ asset('uploads/movie/' . $mov_hot->image) }}"
+                                                    class="lazy post-thumb" alt="{{ $mov_hot->title }}"
+                                                    title="{{ $mov_hot->title }}" />
+                                                <span class="is_trailer">
+                                                    @if ($mov_hot->resolution == 0)
+                                                        HD
+                                                    @elseif ($mov_hot->resolution == 1)
+                                                        SD
+                                                    @elseif ($mov_hot->resolution == 2)
+                                                        HDCam
+                                                    @elseif ($mov_hot->resolution == 3)
+                                                        Cam
+                                                    @else
+                                                        FullHD
+                                                    @endif
+                                                </span>
+                                            </div>
+                                            <p class="title">{{ $mov_hot->title }}</p>
+                                        </a>
+                                        <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
+                                        <div style="float: left;">
+                                            <span class="user-rate-image post-large-rate stars-large-vang"
+                                                style="display: block;/* width: 100%; */">
+                                                <span style="width: 0%"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </section>
+                    <div class="clearfix"></div>
+                </div>
+            </aside>
             {{-- SideBar --}}
             @include('pages.include.sidebar')
         </div>
