@@ -63,16 +63,26 @@
                 <div class="col-md-5 col-sm-6 halim-search-form hidden-xs">
                     <div class="header-nav">
                         <div class="col-xs-12">
-                            <form id="search-form-pc" name="halimForm" role="search" action="" method="GET">
-                                <div class="form-group">
-                                    <div class="input-group col-xs-12">
-                                        <input id="search" type="text" name="s" class="form-control"
-                                            placeholder="Tìm kiếm..." autocomplete="off" required>
-                                        <i class="animate-spin hl-spin4 hidden"></i>
-                                    </div>
+                            <style type="text/css">
+                                ul#result {
+                                    position: absolute;
+                                    z-index: 9999;
+                                    background: #1b2d3c;
+                                    width: 94%;
+                                    padding: 10px;
+                                    margin: 1px;
+                                }
+                            </style>
+                            <div class="form-group form-timkiem">
+                                <div class="input-group col-xs-12">
+                                    <form action="{{route('search')}}" method="GET">
+                                        <input id="timkiem" name="search" type="text" class="form-control"
+                                            placeholder="Tìm kiếm..." autocomplete="off">
+                                        <button class="btn btn-primary" >Tìm kiếm</button>
+                                    </form>
                                 </div>
-                            </form>
-                            <ul class="ui-autocomplete ajax-results hidden"></ul>
+                            </div>
+                            <ul class="list-group" id="result" style="display: none;"></ul>
                         </div>
                     </div>
                 </div>
@@ -195,8 +205,47 @@
 
     <script type='text/javascript' src='{{ asset('js/bootstrap.min.js?ver=5.7.2') }}' id='bootstrap-js'></script>
     <script type='text/javascript' src='{{ asset('js/owl.carousel.min.js?ver=5.7.2') }}' id='carousel-js'></script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v14.0&appId=957633844825401&autoLogAppEvents=1"
+        nonce="ta2FIfDg"></script>
     <script type='text/javascript' src='{{ asset('js/halimtheme-core.min.js?ver=1626273138') }}' id='halim-init-js'>
     </script>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('#timkiem').keyup(function() {
+                $('#result').html('');
+                var search = $('#timkiem').val();
+                if (search != '') {
+                    var expression = new RegExp(search, "i");
+                    $.getJSON('json/movies.json', function(data) {
+                        $.each(data, function(key, value) {
+                            if (value.title.search(expression) != -1) {
+                                $('#result').css('display', 'inherit');
+                                $('#result').append(
+                                    '<li class="list-group-item" style="cursor: pointer"> <img height="40" width="40" src="uploads/movie/' +
+                                    value.image + '">' + value.title + ' </li>');
+                            }
+                        });
+                    });
+                } else {
+                    $('#result').css('display', 'none');
+                }
+            })
+            $('#result').on('click', 'li', function() {
+                var click_text = $(this).text().split('|');
+                $('#timkiem').val($.trim(click_text[0]));
+                $('#result').html('');
+                $('#result').css('display', 'none');
+            });
+        })
+    </script>
+
+
 
     <script type="text/javascript">
         // $(document).ready(function() {

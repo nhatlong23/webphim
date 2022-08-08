@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\Country;
 use App\Models\Genre;
 use Carbon\Carbon;
+use File;
+use Storage;
 
 class MovieController extends Controller
 {
@@ -19,6 +21,15 @@ class MovieController extends Controller
     public function index()
     {
         $list = Movie::with('category', 'genre', 'country')->orderby('id', 'DESC')->get();
+
+        $path = public_path() . "/json/";
+        if (!is_dir($path)) {
+            mkdir($path, 0777, true);
+        }
+        File::put($path . 'movies.json', json_encode($list));
+
+
+
         return view('admincp.movie.index', compact('list'));
     }
 
