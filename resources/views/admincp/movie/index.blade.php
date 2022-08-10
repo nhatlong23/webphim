@@ -50,7 +50,11 @@
                                     @endif
                                 </td>
                                 <td>{{ $cate->category->title }}</td>
-                                <td>{{ $cate->genre->title }}</td>
+                                <td>
+                                    @foreach ($cate->movie_genre as $gen)
+                                        <span class="badge badge-danger">{{ $gen->title }}</span>
+                                    @endforeach
+                                </td>
                                 <td>{{ $cate->country->title }}</td>
                                 <td>
                                     @if ($cate->movie_hot == 0)

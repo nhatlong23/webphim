@@ -8,6 +8,7 @@ use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Movie;
 use App\Models\Episode;
+use App\Models\Movie_Genre;
 use DB;
 
 class IndexController extends Controller
@@ -75,8 +76,14 @@ class IndexController extends Controller
         $genre = Genre::orderby('id', 'DESC')->where('status', 1)->get();
         $country = Country::orderby('id', 'DESC')->where('status', 1)->get();
         $genre_slug = Genre::where('slug', $slug)->first();
+        //nhieu the loai
+        $movie_genre = Movie_Genre::where('genre_id', $genre_slug->id)->get();
+        $many_genre = [];
+        foreach ($movie_genre as $key => $movi) {
+            $many_genre[] = $movi->movie_id;
+        }
         $movie_hot_sidebar = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('date_update', 'DESC')->take('15')->get();
-        $movie = Movie::where('genre_id', $genre_slug->id)->where('status', 1)->orderBy('date_update', 'DESC')->paginate(40);
+        $movie = Movie::whereIn('id', $many_genre)->where('status', 1)->orderBy('date_update', 'DESC')->paginate(40);
         return view('pages.genre', compact('category', 'genre', 'country', 'genre_slug', 'movie', 'movie_hot_sidebar'));
     }
     public function country($slug)
@@ -94,7 +101,7 @@ class IndexController extends Controller
         $category = Category::orderby('position', 'ASC')->where('status', 1)->get();
         $genre = Genre::orderby('id', 'DESC')->where('status', 1)->get();
         $country = Country::orderby('id', 'DESC')->where('status', 1)->get();
-        $movie = Movie::with('category', 'genre', 'country')->where('slug', $slug)->where('status', 1)->first();
+        $movie = Movie::with('category', 'genre', 'country', 'movie_genre')->where('slug', $slug)->where('status', 1)->first();
         $movie_hot_sidebar = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('date_update', 'DESC')->take('15')->get();
         $related = Movie::with('category', 'genre', 'country')->where('category_id', $movie->category->id)
             ->orderBy(DB::raw('RAND()'))->whereNotIn('slug', [$slug])->get();

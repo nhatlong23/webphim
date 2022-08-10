@@ -87,9 +87,12 @@
                                             href="{{ route('category', $movie->category->slug) }}"
                                             rel="category tag">{{ $movie->category->title }}</a>
                                     </li>
-                                    <li class="list-info-group-item"><span>Danh Mục</span> : <a
-                                            href="{{ route('genre', $movie->genre->slug) }}"
-                                            rel="category tag">{{ $movie->genre->title }}</a>
+                                    <li class="list-info-group-item"><span>Danh Mục</span> :
+                                        @foreach ($movie->movie_genre as $gen)
+                                            <a href="{{ route('genre', $gen->slug) }}" rel="category tag">
+                                                {{ $gen->title }}
+                                            </a>
+                                        @endforeach
                                     </li>
                                     <li class="list-info-group-item"><span>Quốc gia</span> : <a
                                             href="{{ route('country', $movie->country->slug) }}"
@@ -150,8 +153,8 @@
                                 $current_url = Request::url();
                             @endphp
                             <article id="post-38424" class="item-content">
-                                <div class="fb-comments" data-href="{{$current_url}}"
-                                    data-width="100%" data-numposts="10"></div>
+                                <div class="fb-comments" data-href="{{ $current_url }}" data-width="100%"
+                                    data-numposts="10"></div>
                             </article>
                         </div>
                     </div>
