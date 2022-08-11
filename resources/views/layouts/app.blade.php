@@ -107,6 +107,25 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
     <script type="text/javascript">
+        $('.select-movie').change(function() {
+            var id = $(this).val();
+            // var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url: "{{ route('select-movie') }}",
+                method: "GET",
+                data: {
+                    id: id
+                    // _token: _token
+                },
+                success: function(data) {
+                    $('#show_movie').html(data);
+                }
+
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
         $('.select-year').change(function() {
             var year = $(this).find(':selected').val();
             var id_phim = $(this).attr('id');

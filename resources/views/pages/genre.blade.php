@@ -44,12 +44,12 @@
                                         @endif
                                     </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
                                         @if ($mov->sub_movie == 0)
-                                            VietSub
+                                            VietSub - Tập 1/{{ $mov->episodes }}
                                             @if ($mov->season != 0)
                                                 - Season {{ $mov->season }}
                                             @endif
                                         @elseif ($mov->sub_movie == 1)
-                                            Thuyết Minh
+                                            Thuyết Minh - Tập 1/{{ $mov->episodes }}
                                             @if ($mov->season != 0)
                                                 - Season {{ $mov->season }}
                                             @endif

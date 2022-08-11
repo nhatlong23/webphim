@@ -35,12 +35,21 @@
                             <div class="movie-poster col-md-3">
                                 <img class="movie-thumb" src="{{ asset('uploads/movie/' . $movie->image) }}"
                                     alt="{{ $movie->title }}">
-                                <div class="bwa-content">
-                                    <div class="loader"></div>
-                                    <a href="{{ route('watch') }}" class="bwac-btn">
-                                        <i class="fa fa-play"></i>
-                                    </a>
-                                </div>
+                                @if ($movie->resolution != 5)
+                                    @if ($episode_current_list_count > 0)
+                                        <div class="bwa-content">
+                                            <div class="loader"></div>
+                                            <a href="{{ url('xem-phim/' . $movie->slug . '/tap-' . $episode_tapdau->episode) }}"
+                                                class="bwac-btn">
+                                                <i class="fa fa-play"></i>
+                                            </a>
+                                        </div>
+                                    @endif
+                                @else
+                                    <a href="#watch_trailer" style="display: block;"
+                                        class="btn btn-primary watch_trailer">Xem Trailer</a>
+                                @endif
+
                             </div>
                             <div class="film-poster col-md-9">
                                 <h1 class="movie-title title-1"
@@ -81,8 +90,47 @@
                                     </li>
                                     <li class="list-info-group-item"><span>Điểm IMDb</span> : <span
                                             class="imdb">7.2</span></li>
-                                    <li class="list-info-group-item"><span>Thời lượng</span> : {{ $movie->duration_movie }}
-                                    </li>
+                                    @if ($movie->resolution != 5)
+                                        <li class="list-info-group-item"><span>Thời lượng</span> :
+                                            {{ $movie->duration_movie }}
+                                        </li>
+                                    @else
+                                        <li class="list-info-group-item"><span>Thời lượng</span> : Đang cập nhật
+                                    @endif
+
+                                    @if ($movie->resolution != 5)
+                                        <li class="list-info-group-item"><span>Tập phim mới nhất</span> :
+                                            @if ($episode_current_list_count > 0)
+                                                @if ($movie->thuocphim == 'phimbo')
+                                                    @foreach ($episode as $key => $ep)
+                                                        <a href="{{ url('xem-phim/' . $ep->movie->slug . '/tap-' . $ep->episode) }}"
+                                                            rel="tag">{{ $ep->episode }}</a>
+                                                    @endforeach
+                                                @elseif ($movie->thuocphim == 'phimle')
+                                                    @foreach ($episode as $key => $ep_le)
+                                                        <a href="{{ url('xem-phim/' . $movie->slug . '/tap-' . $ep_le->episode) }}"
+                                                            rel="tag">{{ $ep_le->episode }}</a>
+                                                    @endforeach
+                                                @endif
+                                            @else
+                                                Đang cập nhật
+                                            @endif
+                                        </li>
+                                    @endif
+                                    @if ($movie->resolution != 5)
+                                        <li class="list-info-group-item"><span>Tập phim</span> :
+                                            @if ($movie->thuocphim == 'phimbo')
+                                                {{ $episode_current_list_count }}/{{ $movie->episodes }} -
+                                                @if ($episode_current_list_count == $movie->episodes)
+                                                    Hoàn Thành
+                                                @else
+                                                    Đang cập nhật
+                                                @endif
+                                            @else
+                                                Phim Lẻ
+                                            @endif
+                                        </li>
+                                    @endif
                                     <li class="list-info-group-item"><span>Thể loại</span> : <a
                                             href="{{ route('category', $movie->category->slug) }}"
                                             rel="category tag">{{ $movie->category->title }}</a>
@@ -137,7 +185,7 @@
                     </div>
                     <div class="entry-content htmlwrap clearfix">
                         <div class="video-item halim-entry-box">
-                            <article id="post-38424" class="item-content">
+                            <article id="watch_trailer" class="item-content">
                                 <iframe width="100%" height="400"
                                     src="https://www.youtube-nocookie.com/embed/{{ $movie->trailer }}"
                                     title="YouTube video player" frameborder="0"

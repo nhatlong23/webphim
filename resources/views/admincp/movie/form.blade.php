@@ -29,6 +29,13 @@
                             ]) !!}
                         </div>
                         <div class="form-group">
+                            {!! Form::label('episodes', 'Episodes', []) !!}
+                            {!! Form::text('episodes', isset($movie) ? $movie->episodes : '', [
+                                'class' => 'form-control',
+                                'placeholder' => 'Nhập vào dữ liệu...',
+                            ]) !!}
+                        </div>
+                        <div class="form-group">
                             {!! Form::label('duration_movie', 'Duration', []) !!}
                             {!! Form::text('duration_movie', isset($movie) ? $movie->duration_movie : '', [
                                 'class' => 'form-control',
@@ -85,6 +92,17 @@
                             {!! Form::select('category_id', $category, isset($movie) ? $movie->category_id : '', [
                                 'class' => 'form-control',
                             ]) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('thuocphim', 'Thuộc thể loại phim', []) !!}
+                            {!! Form::select(
+                                'thuocphim',
+                                ['phimle' => 'Phim Lẻ', 'phimbo' => 'Phim Bộ'],
+                                isset($movie) ? $movie->thuocphim : '',
+                                [
+                                    'class' => 'form-control',
+                                ],
+                            ) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('country', 'Country', []) !!}

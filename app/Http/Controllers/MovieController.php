@@ -8,6 +8,7 @@ use App\Models\Movie_Genre;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\Genre;
+use App\Models\Episode;
 use Carbon\Carbon;
 use File;
 use Storage;
@@ -127,6 +128,7 @@ class MovieController extends Controller
         $movie->title = $data['title'];
         $movie->trailer = $data['trailer'];
         $movie->duration_movie = $data['duration_movie'];
+        $movie->episodes = $data['episodes'];
         $movie->tags_movie = $data['tags_movie'];
         $movie->resolution = $data['resolution'];
         $movie->sub_movie = $data['sub_movie'];
@@ -136,6 +138,7 @@ class MovieController extends Controller
         $movie->description = $data['description'];
         $movie->status = $data['status'];
         $movie->category_id = $data['category_id'];
+        $movie->thuocphim = $data['thuocphim'];
         // $movie->genre_id = $data['genre_id'];
         $movie->country_id = $data['country_id'];
         $movie->date_update = Carbon::now('Asia/Ho_Chi_Minh');
@@ -206,6 +209,7 @@ class MovieController extends Controller
         $movie->title = $data['title'];
         $movie->trailer = $data['trailer'];
         $movie->duration_movie = $data['duration_movie'];
+        $movie->episodes = $data['episodes'];
         $movie->tags_movie = $data['tags_movie'];
         $movie->resolution = $data['resolution'];
         $movie->sub_movie = $data['sub_movie'];
@@ -215,6 +219,7 @@ class MovieController extends Controller
         $movie->description = $data['description'];
         $movie->status = $data['status'];
         $movie->category_id = $data['category_id'];
+        $movie->thuocphim = $data['thuocphim'];
         // $movie->genre_id = $data['genre_id'];
         $movie->country_id = $data['country_id'];
         $movie->date_update = Carbon::now('Asia/Ho_Chi_Minh');
@@ -257,6 +262,8 @@ class MovieController extends Controller
         }
         //xoa nhieu the loai
         Movie_Genre::whereIn('movie_id', [$movie->id])->delete();
+        //xoa tap phim
+        Episode::whereIn('movie_id', [$movie->id])->delete();
         $movie->delete();
         return redirect()->back();
     }

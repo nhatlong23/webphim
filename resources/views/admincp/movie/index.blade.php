@@ -13,11 +13,13 @@
                             <th scope="col">Name_EN</th>
                             <th scope="col">Image</th>
                             <th scope="col">Duration</th>
+                            <th scope="col">Episodes</th>
                             <th scope="col">Tags</th>
                             <th scope="col">Description</th>
                             <th scope="col">Slug</th>
                             <th scope="col">Active/Inactive</th>
                             <th scope="col">Category</th>
+                            <th scope="col">Thuộc phim</th>
                             <th scope="col">Genre</th>
                             <th scope="col">Country</th>
                             <th scope="col">Movie_hot</th>
@@ -35,58 +37,66 @@
                         @foreach ($list as $key => $cate)
                             <tr>
                                 <th scope="row">{{ $key }}</th>
-                                <td>{{ $cate->title }}</td>
-                                <td>{{ $cate->name_en }}</td>
+                                <td><span class="badge badge-success">{{ $cate->title }}</span></td>
+                                <td><span class="badge badge-dark">{{ $cate->name_en }}</span></td>
                                 <td><img src="{{ asset('uploads/movie/' . $cate->image) }}" width="65"></td>
-                                <td>{{ $cate->duration_movie }}</td>
+                                <td><span class="badge badge-primary">{{ $cate->duration_movie }}</span></td>
+                                <td><span class="badge badge-success">{{ $cate->episodes }}</span></td>
                                 <td>{{ substr($cate->tags_movie, 0, 10) }}</td>
                                 <td>{{ substr($cate->description, 0, 10) }}</td>
                                 <td>{{ $cate->slug }}</td>
                                 <td>
                                     @if ($cate->status)
-                                        Hiển thị
+                                        <span class="badge badge-primary">Hiển thị</span>
                                     @else
-                                        Không Hiển thị
+                                        <span class="badge badge-secondary">Không Hiển thị</span>
                                     @endif
                                 </td>
-                                <td>{{ $cate->category->title }}</td>
+                                <td><span class="badge badge-primary">{{ $cate->category->title }}</span></td>
+                                <td>
+                                    @if ($cate->thuocphim == 'phimle')
+                                        <span class="badge badge-primary"> Phim Lẻ</span>
+                                    @else
+                                        <span class="badge badge-secondary">Phim Bộ</span>
+                                    @endif
+                                </td>
                                 <td>
                                     @foreach ($cate->movie_genre as $gen)
                                         <span class="badge badge-danger">{{ $gen->title }}</span>
                                     @endforeach
                                 </td>
-                                <td>{{ $cate->country->title }}</td>
+                                <td><span class="badge badge-success">{{ $cate->country->title }}</span></td>
                                 <td>
                                     @if ($cate->movie_hot == 0)
-                                        Không Hot
+                                        <span class="badge badge-danger">Không Hot</span>
                                     @else
-                                        Hot
+                                        <span class="badge badge-warning">Hot</span>
                                     @endif
                                 </td>
                                 <td>
                                     @if ($cate->resolution == 0)
-                                        HD
+                                        <span class="badge badge-primary">HD</span>
                                     @elseif ($cate->resolution == 1)
-                                        SD
+                                        <span class="badge badge-secondary">SD</span>
                                     @elseif ($cate->resolution == 2)
-                                        HDCam
+                                        <span class="badge badge-success">HDCam</span>
                                     @elseif ($cate->resolution == 3)
-                                        Cam
+                                        <span class="badge badge-danger">Cam</span>
                                     @elseif ($cate->resolution == 4)
-                                        FullHD
+                                        <span class="badge badge-warning">FullHD</span>
                                     @else
-                                        Trailer
+                                        <span class="badge badge-info">Trailer</span>
                                     @endif
                                 </td>
                                 <td>
                                     @if ($cate->sub_movie == 0)
-                                        VietSub
+                                        <span class="badge badge-dark">VietSub</span>
                                     @elseif ($cate->sub_movie == 1)
-                                        Thuyết Minh
+                                        <span class="badge badge-dark">Thuyết Minh</span>
                                     @endif
                                 </td>
-                                <td>{{ $cate->date_update }}</td>
-                                <td>{{ $cate->date_created }}</td>
+                                <td><span class="badge badge-info">{{ $cate->date_update }}</span></td>
+                                <td><span class="badge badge-info">{{ $cate->date_created }}</span></td>
                                 <td>
                                     <form method="POST">
                                         @csrf

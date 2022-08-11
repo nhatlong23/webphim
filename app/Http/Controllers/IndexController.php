@@ -105,14 +105,37 @@ class IndexController extends Controller
         $movie_hot_sidebar = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('date_update', 'DESC')->take('15')->get();
         $related = Movie::with('category', 'genre', 'country')->where('category_id', $movie->category->id)
             ->orderBy(DB::raw('RAND()'))->whereNotIn('slug', [$slug])->get();
-        return view('pages.movie', compact('category', 'genre', 'country', 'movie', 'related', 'movie_hot_sidebar'));
+        //lấy 3 tập gần nhất
+        $episode = Episode::with('movie')->where('movie_id', $movie->id)->orderBy('episode', 'DESC')->take(3)->get();
+        //lấy tập đầu
+        $episode_tapdau = Episode::with('movie')->where('movie_id', $movie->id)->orderBy('episode', 'ASC')->take(1)->first();
+        //lấy tổng tập phim đã thêm
+        $episode_current_list = Episode::with('movie')->where('movie_id', $movie->id)->get();
+        $episode_current_list_count = $episode_current_list->count();
+
+        return view('pages.movie', compact('category', 'genre', 'country', 'movie', 'related', 'movie_hot_sidebar', 'episode', 'episode_tapdau', 'episode_current_list_count'));
     }
-    public function watch()
+    public function watch($slug, $tap)
     {
+
+
         $category = Category::orderby('position', 'ASC')->where('status', 1)->get();
         $genre = Genre::orderby('id', 'DESC')->where('status', 1)->get();
         $country = Country::orderby('id', 'DESC')->where('status', 1)->get();
-        return view('pages.watch', compact('category', 'genre', 'country'));
+        $movie = Movie::with('category', 'genre', 'country', 'movie_genre', 'episode')->where('slug', $slug)->where('status', 1)->first();
+        $movie_hot_sidebar = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('date_update', 'DESC')->take('15')->get();
+        $related = Movie::with('category', 'genre', 'country')->where('category_id', $movie->category->id)
+            ->orderBy(DB::raw('RAND()'))->whereNotIn('slug', [$slug])->get();
+        if (isset($tap)) {
+            $tapphim = $tap;
+            $tapphim = substr($tap, 4, 20);
+            $episode = Episode::where('movie_id', $movie->id)->where('episode', $tapphim)->first();
+        } else {
+            $tapphim = 1;
+            $episode = Episode::where('movie_id', $movie->id)->where('episode', $tapphim)->first();
+        }
+        // return response()->json($movie);
+        return view('pages.watch', compact('category', 'genre', 'country', 'movie', 'movie_hot_sidebar', 'related', 'episode', 'tapphim'));
     }
     public function episode()
     {

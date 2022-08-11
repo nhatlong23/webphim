@@ -22,9 +22,9 @@
     <link rel="canonical" href="">
     <link rel="next" href="" />
     <meta property="og:locale" content="vi_VN" />
-    <meta property="og:title" content="Phim hay 2020 - Xem phim hay nhất" />
+    <meta property="og:title" content="Phim hay 2022 - Xem phim hay nhất" />
     <meta property="og:description"
-        content="Phim hay 2020 - Xem phim hay nhất, phim hay trung quốc, hàn quốc, việt nam, mỹ, hong kong , chiếu rạp" />
+        content="Phim hay 2022 - Xem phim hay nhất, phim hay trung quốc, hàn quốc, việt nam, mỹ, hong kong , chiếu rạp" />
     <meta property="og:url" content="" />
     <meta property="og:site_name" content="Phim hay 2022- Xem phim hay nhất" />
     <meta property="og:image" content="" />
@@ -75,10 +75,10 @@
                             </style>
                             <div class="form-group form-timkiem">
                                 <div class="input-group col-xs-12">
-                                    <form action="{{route('search')}}" method="GET">
+                                    <form action="{{ route('search') }}" method="GET">
                                         <input id="timkiem" name="search" type="text" class="form-control"
                                             placeholder="Tìm kiếm..." autocomplete="off">
-                                        <button class="btn btn-primary" >Tìm kiếm</button>
+                                        <button class="btn btn-primary">Tìm kiếm</button>
                                     </form>
                                 </div>
                             </div>
@@ -212,7 +212,15 @@
     <script type='text/javascript' src='{{ asset('js/halimtheme-core.min.js?ver=1626273138') }}' id='halim-init-js'>
     </script>
 
-
+    <script style="text/javascript">
+        $(".watch_trailer").click(function(e) {
+            e.preventDefault();
+            var aid = $(this).attr("href");
+            $('html, body').animate({
+                scrollTop: $(aid).offset().top
+            }, 'slow');
+        })
+    </script>
 
     <script type="text/javascript">
         $(document).ready(function() {
