@@ -33,9 +33,12 @@
                     </div>
 
                     <div class="button-watch">
+                        @php
+                            $current_url = Request::url();
+                        @endphp
                         <ul class="halim-social-plugin col-xs-4 hidden-xs">
-                            <li class="fb-like" data-href="" data-layout="button_count" data-action="like"
-                                data-size="small" data-show-faces="true" data-share="true"></li>
+                            <li class="fb-like" data-href="{{ $current_url }}" data-width="" data-layout="standard"
+                                data-action="like" data-size="small" data-share="true"></li>
                         </ul>
                         <ul class="col-xs-12 col-md-8">
                             <div id="autonext" class="btn-cs autonext">

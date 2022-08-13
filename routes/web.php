@@ -29,7 +29,10 @@ Route::get('/xem-phim/{slug}/{tap}', [IndexController::class, 'watch']);
 Route::get('/so-tap', [IndexController::class, 'episode'])->name('so-tap');
 Route::get('/year/{year}', [IndexController::class, 'year']);
 Route::get('/tag/{tag}', [IndexController::class, 'tag']);
+Route::get('/director/{director}', [IndexController::class, 'director']);
+Route::get('/cast-movie/{cast_movie}', [IndexController::class, 'cast_movie']);
 Route::get('/search', [IndexController::class, 'search'])->name('search');
+Route::post('/filter-topview-phim', [MovieController::class, 'filter_topview']);
 
 Auth::routes();
 
@@ -46,5 +49,4 @@ Route::get('select-movie', [EpisodeController::class, 'select_movie'])->name('se
 Route::resource('movie', MovieController::class);
 Route::post('/update-year-phim', [MovieController::class, 'update_year']);
 Route::post('/update-topview-phim', [MovieController::class, 'update_topview']);
-Route::post('/filter-topview-phim', [MovieController::class, 'filter_topview']);
 Route::post('/update-season-phim', [MovieController::class, 'update_season']);

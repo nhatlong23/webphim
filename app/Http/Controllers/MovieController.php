@@ -63,7 +63,7 @@ class MovieController extends Controller
     public function filter_topview(Request $request)
     {
         $data = $request->all();
-        $movie = Movie::where('topview', $data['value'])->orderBy('date_update', 'DESC')->take(20)->get();
+        $movie = Movie::where('topview', $data['value'])->orderBy('date_update', 'DESC')->take(10)->get();
         $output = '';
         foreach ($movie as $key => $mov) {
             if ($mov->resolution == 0) {
@@ -80,7 +80,7 @@ class MovieController extends Controller
                 $text = 'Trailer';
             }
             $output = '<div class="item post-37176">
-            <a href=" ' . url('movie/' . $mov->slug) . ' " title="' . $mov->title . '">
+            <a href=" ' . url('/phim/' . $mov->slug) . ' " title="' . $mov->title . '">
                 <div class="item-link">
                     <img src="' . url('uploads/movie/' . $mov->image) . '"
                         class="lazy post-thumb" alt="' . $mov->title . '"
@@ -128,11 +128,14 @@ class MovieController extends Controller
         $movie->title = $data['title'];
         $movie->trailer = $data['trailer'];
         $movie->duration_movie = $data['duration_movie'];
+        $movie->director = $data['director'];
+        $movie->cast_movie = $data['cast_movie'];
         $movie->episodes = $data['episodes'];
         $movie->tags_movie = $data['tags_movie'];
         $movie->resolution = $data['resolution'];
         $movie->sub_movie = $data['sub_movie'];
         $movie->name_en = $data['name_en'];
+        $movie->score_imdb = $data['score_imdb'];
         $movie->movie_hot = $data['movie_hot'];
         $movie->slug = $data['slug'];
         $movie->description = $data['description'];
@@ -209,11 +212,14 @@ class MovieController extends Controller
         $movie->title = $data['title'];
         $movie->trailer = $data['trailer'];
         $movie->duration_movie = $data['duration_movie'];
+        $movie->director = $data['director'];
+        $movie->cast_movie = $data['cast_movie'];
         $movie->episodes = $data['episodes'];
         $movie->tags_movie = $data['tags_movie'];
         $movie->resolution = $data['resolution'];
         $movie->sub_movie = $data['sub_movie'];
         $movie->name_en = $data['name_en'];
+        $movie->score_imdb = $data['score_imdb'];
         $movie->movie_hot = $data['movie_hot'];
         $movie->slug = $data['slug'];
         $movie->description = $data['description'];

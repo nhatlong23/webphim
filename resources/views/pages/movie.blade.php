@@ -88,54 +88,67 @@
                                             </span>
                                         @endif
                                     </li>
-                                    <li class="list-info-group-item"><span>Điểm IMDb</span> : <span
-                                            class="imdb">7.2</span></li>
+                                    @if (isset($movie->score_imdb))
+                                        <li class="list-info-group-item">
+                                            <span>Điểm IMDb</span> : <span class="imdb">{{ $movie->score_imdb }}</span>
+                                        </li>
+                                    @endif
                                     @if ($movie->resolution != 5)
                                         <li class="list-info-group-item"><span>Thời lượng</span> :
-                                            {{ $movie->duration_movie }}
-                                        </li>
-                                    @else
-                                        <li class="list-info-group-item"><span>Thời lượng</span> : Đang cập nhật
-                                    @endif
-
-                                    @if ($movie->resolution != 5)
-                                        <li class="list-info-group-item"><span>Tập phim mới nhất</span> :
-                                            @if ($episode_current_list_count > 0)
-                                                @if ($movie->thuocphim == 'phimbo')
-                                                    @foreach ($episode as $key => $ep)
-                                                        <a href="{{ url('xem-phim/' . $ep->movie->slug . '/tap-' . $ep->episode) }}"
-                                                            rel="tag">{{ $ep->episode }}</a>
-                                                    @endforeach
-                                                @elseif ($movie->thuocphim == 'phimle')
-                                                    @foreach ($episode as $key => $ep_le)
-                                                        <a href="{{ url('xem-phim/' . $movie->slug . '/tap-' . $ep_le->episode) }}"
-                                                            rel="tag">{{ $ep_le->episode }}</a>
-                                                    @endforeach
-                                                @endif
+                                            @if ($movie->thuocphim == 'phimle')
+                                                {{ $movie->duration_movie }}
                                             @else
-                                                Đang cập nhật
+                                                {{ $movie->episodes }} tập
                                             @endif
                                         </li>
+                                    @else
+                                        <li class="list-info-group-item"><span>Thời lượng</span> : Phim sắp chiếu
                                     @endif
-                                    @if ($movie->resolution != 5)
-                                        <li class="list-info-group-item"><span>Tập phim</span> :
-                                            @if ($movie->thuocphim == 'phimbo')
-                                                {{ $episode_current_list_count }}/{{ $movie->episodes }} -
-                                                @if ($episode_current_list_count == $movie->episodes)
-                                                    Hoàn Thành
+
+                                    @if ($movie->thuocphim == 'phimbo')
+                                        @if ($movie->resolution != 5)
+                                            <li class="list-info-group-item"><span>Tập phim mới nhất</span> :
+                                                @if ($episode_current_list_count > 0)
+                                                    @if ($movie->thuocphim == 'phimbo')
+                                                        @foreach ($episode as $key => $ep)
+                                                            <a href="{{ url('xem-phim/' . $ep->movie->slug . '/tap-' . $ep->episode) }}"
+                                                                rel="tag">Tập {{ $ep->episode }}</a>
+                                                        @endforeach
+                                                    @elseif ($movie->thuocphim == 'phimle')
+                                                        @foreach ($episode as $key => $ep_le)
+                                                            <a href="{{ url('xem-phim/' . $movie->slug . '/tap-' . $ep_le->episode) }}"
+                                                                rel="tag">{{ $ep_le->episode }}</a>
+                                                        @endforeach
+                                                    @endif
                                                 @else
                                                     Đang cập nhật
                                                 @endif
-                                            @else
-                                                Phim Lẻ
-                                            @endif
-                                        </li>
+                                            </li>
+                                        @endif
+                                    @else
                                     @endif
-                                    <li class="list-info-group-item"><span>Thể loại</span> : <a
+                                    @if ($movie->thuocphim == 'phimbo')
+                                        @if ($movie->resolution != 5)
+                                            <li class="list-info-group-item"><span>Tập phim</span> :
+                                                @if ($movie->thuocphim == 'phimbo')
+                                                    {{ $episode_current_list_count }}/{{ $movie->episodes }} -
+                                                    @if ($episode_current_list_count == $movie->episodes)
+                                                        Hoàn Thành
+                                                    @else
+                                                        Đang cập nhật
+                                                    @endif
+                                                @else
+                                                    Phim Lẻ
+                                                @endif
+                                            </li>
+                                        @endif
+                                    @else
+                                    @endif
+                                    <li class="list-info-group-item"><span>Danh mục</span> : <a
                                             href="{{ route('category', $movie->category->slug) }}"
                                             rel="category tag">{{ $movie->category->title }}</a>
                                     </li>
-                                    <li class="list-info-group-item"><span>Danh Mục</span> :
+                                    <li class="list-info-group-item"><span>Thể loại</span> :
                                         @foreach ($movie->movie_genre as $gen)
                                             <a href="{{ route('genre', $gen->slug) }}" rel="category tag">
                                                 {{ $gen->title }}
@@ -145,21 +158,46 @@
                                     <li class="list-info-group-item"><span>Quốc gia</span> : <a
                                             href="{{ route('country', $movie->country->slug) }}"
                                             rel="tag">{{ $movie->country->title }}</a></li>
-                                    <li class="list-info-group-item"><span>Đạo diễn</span> : <a class="director"
-                                            rel="nofollow" href="https://phimhay.co/dao-dien/cate-shortland"
-                                            title="Cate Shortland">Cate Shortland</a></li>
+                                    <li class="list-info-group-item">
+                                        <span>
+                                            Đạo diễn
+                                        </span> :
+                                        <a class="director" rel="nofollow" title="{{ $movie->director }}">
+                                            @if (isset($movie->director))
+                                                @if ($movie->director != null)
+                                                    @php
+                                                        $director = [];
+                                                        $director = explode(',', $movie->director);
+                                                    @endphp
+                                                    @foreach ($director as $key => $director)
+                                                        <a
+                                                            href="{{ url('director/' . $director) }}">{{ $director }},</a>
+                                                    @endforeach
+                                                @endif
+                                            @else
+                                                Đang cập nhật
+                                            @endif
+                                        </a>
+                                    </li>
                                     <li class="list-info-group-item last-item"
                                         style="-overflow: hidden;-display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-flex: 1;-webkit-box-orient: vertical;">
-                                        <span>Diễn viên</span> : <a href="" rel="nofollow" title="C.C. Smiff">C.C.
-                                            Smiff</a>, <a href="" rel="nofollow" title="David Harbour">David
-                                            Harbour</a>, <a href="" rel="nofollow" title="Erin Jameson">Erin
-                                            Jameson</a>, <a href="" rel="nofollow" title="Ever Anderson">Ever
-                                            Anderson</a>, <a href="" rel="nofollow" title="Florence Pugh">Florence
-                                            Pugh</a>, <a href="" rel="nofollow" title="Lewis Young">Lewis Young</a>,
-                                        <a href="" rel="nofollow" title="Liani Samuel">Liani Samuel</a>, <a
-                                            href="" rel="nofollow" title="Michelle Lee">Michelle Lee</a>, <a
-                                            href="" rel="nofollow" title="Nanna Blondell">Nanna Blondell</a>, <a
-                                            href="" rel="nofollow" title="O-T Fagbenle">O-T Fagbenle</a>
+                                        <span>Diễn viên</span> :
+                                        <a class="director" rel="nofollow" title="{{ $movie->cast_movie }}">
+                                            @if (isset($movie->cast_movie))
+                                                @if ($movie->cast_movie != null)
+                                                    @php
+                                                        $cast_movie = [];
+                                                        $cast_movie = explode(',', $movie->cast_movie);
+                                                    @endphp
+                                                    @foreach ($cast_movie as $key => $cast_movie)
+                                                        <a
+                                                            href="{{ url('cast-movie/' . $cast_movie) }}">{{ $cast_movie }},</a>
+                                                    @endforeach
+                                                @endif
+                                            @else
+                                                Đang cập nhật
+                                            @endif
+                                        </a>
                                     </li>
                                 </ul>
                                 <div class="movie-trailer hidden"></div>
@@ -170,7 +208,8 @@
                     <div id="halim_trailer"></div>
                     <div class="clearfix"></div>
                     <div class="section-bar clearfix">
-                        <h2 class="section-title"><span style="color:#ffed4d">Nội dung phim</span></h2>
+                        <h2 class="section-title"><span style="color:#ffed4d">Nội dung phim {{ $movie->title }}</span>
+                        </h2>
                     </div>
                     <div class="entry-content htmlwrap clearfix">
                         <div class="video-item halim-entry-box">
@@ -181,7 +220,9 @@
                     </div>
 
                     <div class="section-bar clearfix">
-                        <h2 class="section-title"><span style="color:#fbf29c">Trailer</span></h2>
+                        <h2 class="section-title"><span style="color:#fbf29c">Trailer phim {{ $movie->title }}
+                                - {{ $movie->name_en }}</span>
+                        </h2>
                     </div>
                     <div class="entry-content htmlwrap clearfix">
                         <div class="video-item halim-entry-box">
@@ -195,14 +236,17 @@
                         </div>
                     </div>
 
+                    <div class="section-bar clearfix">
+                        <h2 class="section-title"><span style="color:#fbf29c">Bình Luận</span></h2>
+                    </div>
                     <div class="entry-content htmlwrap clearfix">
                         <div class="video-item halim-entry-box">
                             @php
                                 $current_url = Request::url();
                             @endphp
-                            <article id="post-38424" class="item-content">
+                            <article id="post-38424" class="cmt" style="background: antiquewhite;">
                                 <div class="fb-comments" data-href="{{ $current_url }}" data-width="100%"
-                                    data-numposts="10"></div>
+                                    data-numposts="10" data-colorscheme="dark"></div>
                             </article>
                         </div>
                     </div>
@@ -221,7 +265,7 @@
                                         <a href="{{ url('tag/' . $tag) }}">{{ $tag }}</a>
                                     @endforeach
                                 @else
-                                    {{ $movie->tags_movie }}
+                                    {{ $movie->description }}
                                 @endif
                             </article>
                         </div>

@@ -23,7 +23,7 @@
                             {!! Form::label('title', 'Title', []) !!}
                             {!! Form::text('title', isset($movie) ? $movie->title : '', [
                                 'class' => 'form-control',
-                                'placeholder' => 'Nhập vào dữ liệu...',
+                                'placeholder' => 'Nhập tên phim...',
                                 'id' => 'slug',
                                 'onkeyup' => 'ChangeToSlug()',
                             ]) !!}
@@ -32,36 +32,56 @@
                             {!! Form::label('episodes', 'Episodes', []) !!}
                             {!! Form::text('episodes', isset($movie) ? $movie->episodes : '', [
                                 'class' => 'form-control',
-                                'placeholder' => 'Nhập vào dữ liệu...',
+                                'placeholder' => 'Nhập tập phim...',
                             ]) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('duration_movie', 'Duration', []) !!}
                             {!! Form::text('duration_movie', isset($movie) ? $movie->duration_movie : '', [
                                 'class' => 'form-control',
-                                'placeholder' => 'Nhập vào dữ liệu...',
+                                'placeholder' => 'Nhập thời lượng phim...',
+                            ]) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('director', 'Director', []) !!}
+                            {!! Form::text('director', isset($movie) ? $movie->director : '', [
+                                'class' => 'form-control',
+                                'placeholder' => 'Nhập tên đạo diễn...',
+                            ]) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('cast_movie', 'Cast_movie', []) !!}
+                            {!! Form::text('cast_movie', isset($movie) ? $movie->cast_movie : '', [
+                                'class' => 'form-control',
+                                'placeholder' => 'Nhập tên diễn viên...',
                             ]) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('name_en', 'NameEN', []) !!}
                             {!! Form::text('name_en', isset($movie) ? $movie->name_en : '', [
                                 'class' => 'form-control',
-                                'placeholder' => 'Nhập vào dữ liệu...',
+                                'placeholder' => 'Nhập tên english phim...',
                             ]) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('trailer', 'Trailer', []) !!}
                             {!! Form::text('trailer', isset($movie) ? $movie->trailer : '', [
                                 'class' => 'form-control',
-                                'placeholder' => 'Nhập vào dữ liệu...',
+                                'placeholder' => 'Nhập trailer phim...',
                             ]) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('slug', 'Slug', []) !!}
                             {!! Form::text('slug', isset($movie) ? $movie->slug : '', [
                                 'class' => 'form-control',
-                                'placeholder' => 'Nhập vào dữ liệu...',
                                 'id' => 'convert_slug',
+                            ]) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('score_imdb', 'Score_imdb', []) !!}
+                            {!! Form::text('score_imdb', isset($movie) ? $movie->score_imdb : '', [
+                                'class' => 'form-control',
+                                'placeholder' => 'Nhập điểm cho phim...',
                             ]) !!}
                         </div>
                         <div class="form-group">
@@ -69,7 +89,7 @@
                             {!! Form::textarea('description', isset($movie) ? $movie->description : '', [
                                 'style' => 'resize:none',
                                 'class' => 'form-control',
-                                'placeholder' => 'Nhập vào dữ liệu...',
+                                'placeholder' => 'Nhập mô tả phim...',
                                 'id' => 'description',
                             ]) !!}
                         </div>
@@ -78,7 +98,7 @@
                             {!! Form::textarea('tags_movie', isset($movie) ? $movie->tags_movie : '', [
                                 'style' => 'resize:none',
                                 'class' => 'form-control',
-                                'placeholder' => 'Nhập vào dữ liệu...',
+                                'placeholder' => 'Nhập tags phim...',
                             ]) !!}
                         </div>
                         <div class="form-group">

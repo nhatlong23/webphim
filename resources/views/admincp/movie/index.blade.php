@@ -11,8 +11,11 @@
                             <th scope="col">#</th>
                             <th scope="col">Title</th>
                             <th scope="col">Name_EN</th>
+                            <th scope="col">Score_imdb</th>
                             <th scope="col">Image</th>
                             <th scope="col">Duration</th>
+                            <th scope="col">Director</th>
+                            <th scope="col">Cast_movie</th>
                             <th scope="col">Episodes</th>
                             <th scope="col">Tags</th>
                             <th scope="col">Description</th>
@@ -39,8 +42,11 @@
                                 <th scope="row">{{ $key }}</th>
                                 <td><span class="badge badge-success">{{ $cate->title }}</span></td>
                                 <td><span class="badge badge-dark">{{ $cate->name_en }}</span></td>
+                                <td><span class="badge badge-secondary">{{ $cate->score_imdb }}</span></td>
                                 <td><img src="{{ asset('uploads/movie/' . $cate->image) }}" width="65"></td>
                                 <td><span class="badge badge-primary">{{ $cate->duration_movie }}</span></td>
+                                <td><span class="badge badge-secondary">{{ $cate->director }}</span></td>
+                                <td><span class="badge badge-danger">{{ $cate->cast_movie }}</span></td>
                                 <td><span class="badge badge-success">{{ $cate->episodes }}</span></td>
                                 <td>{{ substr($cate->tags_movie, 0, 10) }}</td>
                                 <td>{{ substr($cate->description, 0, 10) }}</td>

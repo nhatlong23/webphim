@@ -70,6 +70,34 @@ class IndexController extends Controller
         $movie = Movie::where('tags_movie', 'LIKE', '%' . $tag . '%')->where('status', 1)->orderBy('date_update', 'DESC')->paginate(40);
         return view('pages.tag', compact('category', 'genre', 'country', 'tag', 'movie', 'movie_hot_sidebar'));
     }
+
+
+    public function director($director)
+    {
+        $category = Category::orderby('position', 'ASC')->where('status', 1)->get();
+        $genre = Genre::orderby('id', 'DESC')->where('status', 1)->get();
+        $country = Country::orderby('id', 'DESC')->where('status', 1)->get();
+        $director = $director;
+        $movie_hot_sidebar = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('date_update', 'DESC')->take('15')->get();
+        $movie = Movie::where('director', 'LIKE', '%' . $director . '%')->where('status', 1)->orderBy('date_update', 'DESC')->paginate(40);
+        return view('pages.director', compact('category', 'genre', 'country', 'director', 'movie', 'movie_hot_sidebar'));
+    }
+
+
+
+
+    public function cast_movie($cast_movie)
+    {
+        $category = Category::orderby('position', 'ASC')->where('status', 1)->get();
+        $genre = Genre::orderby('id', 'DESC')->where('status', 1)->get();
+        $country = Country::orderby('id', 'DESC')->where('status', 1)->get();
+        $cast_movie = $cast_movie;
+        $movie_hot_sidebar = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('date_update', 'DESC')->take('15')->get();
+        $movie = Movie::where('cast_movie', 'LIKE', '%' . $cast_movie . '%')->where('status', 1)->orderBy('date_update', 'DESC')->paginate(40);
+        return view('pages.cast', compact('category', 'genre', 'country', 'cast_movie', 'movie', 'movie_hot_sidebar'));
+    }
+
+
     public function genre($slug)
     {
         $category = Category::orderby('position', 'ASC')->where('status', 1)->get();

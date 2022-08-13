@@ -7,8 +7,9 @@
                     <div class="col-xs-6">
                         <div class="yoast_breadcrumb hidden-xs">
                             <span>
-                                <span><a href="">Phim theo tags</a> »
-                                    <span class="breadcrumb_last" aria-current="page">{{ $tag }}</span>
+                                <span>
+                                    <a>Phim có diễn viên</a> :
+                                    <span class="breadcrumb_last" aria-current="page">{{ $cast_movie }}</span>
                                 </span>
                             </span>
                         </div>
@@ -22,7 +23,15 @@
         <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
             <section>
                 <div class="section-bar clearfix">
-                    <h1 class="section-title"><span>Tags : {{ $tag }}</span></h1>
+                    <h1 class="section-title">
+                        <span style="font-size:x-small;font-weight: lighter;">Phim có diễn viên : {{ $cast_movie }} mới
+                            nhất ,Tổng hợp danh sách
+                            Phim có diễn viên: {{ $cast_movie }} hay được web cập nhật liên tục.Tải Phim có diễn viên:
+                            {{ $cast_movie }} năm 2022, Xem Phim có diễn viên: {{ $cast_movie }} vietsub, thuyết minh
+                            mới
+                            nhất, Tổng hợp Phim có diễn viên: {{ $cast_movie }} hay nhất
+                        </span>
+                    </h1>
                 </div>
                 <div class="halim_box">
                     @foreach ($movie as $key => $mov)
