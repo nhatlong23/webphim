@@ -98,7 +98,7 @@
                                             @if ($movie->thuocphim == 'phimle')
                                                 {{ $movie->duration_movie }}
                                             @else
-                                                {{ $movie->episodes }} tập
+                                                {{ $movie->episodes }} tập - {{ $movie->duration_movie }}
                                             @endif
                                         </li>
                                     @else
@@ -110,9 +110,9 @@
                                             <li class="list-info-group-item"><span>Tập phim mới nhất</span> :
                                                 @if ($episode_current_list_count > 0)
                                                     @if ($movie->thuocphim == 'phimbo')
-                                                        @foreach ($episode as $key => $ep)
-                                                            <a href="{{ url('xem-phim/' . $ep->movie->slug . '/tap-' . $ep->episode) }}"
-                                                                rel="tag">Tập {{ $ep->episode }}</a>
+                                                        @foreach ($episode as $key => $ep_bo)
+                                                            <a href="{{ url('xem-phim/' . $ep_bo->movie->slug . '/tap-' . $ep_bo->episode) }}"
+                                                                rel="tag">Tập {{ $ep_bo->episode }}</a>
                                                         @endforeach
                                                     @elseif ($movie->thuocphim == 'phimle')
                                                         @foreach ($episode as $key => $ep_le)
@@ -144,14 +144,15 @@
                                         @endif
                                     @else
                                     @endif
-                                    <li class="list-info-group-item"><span>Danh mục</span> : <a
-                                            href="{{ route('category', $movie->category->slug) }}"
-                                            rel="category tag">{{ $movie->category->title }}</a>
-                                    </li>
                                     <li class="list-info-group-item"><span>Thể loại</span> :
                                         @foreach ($movie->movie_genre as $gen)
                                             <a href="{{ route('genre', $gen->slug) }}" rel="category tag">
-                                                {{ $gen->title }}
+                                                {{ $gen->title }},
+                                            </a>
+                                        @endforeach
+                                        @foreach ($movie->movie_category as $cate)
+                                            <a href="{{ route('category', $cate->slug) }}" rel="category tag">
+                                                {{ $cate->title }},
                                             </a>
                                         @endforeach
                                     </li>
@@ -167,11 +168,11 @@
                                                 @if ($movie->director != null)
                                                     @php
                                                         $director = [];
-                                                        $director = explode(',', $movie->director);
+                                                        $director = explode(', ', $movie->director);
                                                     @endphp
                                                     @foreach ($director as $key => $director)
                                                         <a
-                                                            href="{{ url('director/' . $director) }}">{{ $director }},</a>
+                                                            href="{{ url('director/' . $director) }}">{{ $director }}</a>
                                                     @endforeach
                                                 @endif
                                             @else
@@ -187,7 +188,7 @@
                                                 @if ($movie->cast_movie != null)
                                                     @php
                                                         $cast_movie = [];
-                                                        $cast_movie = explode(',', $movie->cast_movie);
+                                                        $cast_movie = explode(', ', $movie->cast_movie);
                                                     @endphp
                                                     @foreach ($cast_movie as $key => $cast_movie)
                                                         <a
@@ -259,7 +260,7 @@
                                 @if ($movie->tags_movie != null)
                                     @php
                                         $tags_movie = [];
-                                        $tags_movie = explode(',', $movie->tags_movie);
+                                        $tags_movie = explode(', ', $movie->tags_movie);
                                     @endphp
                                     @foreach ($tags_movie as $key => $tag)
                                         <a href="{{ url('tag/' . $tag) }}">{{ $tag }}</a>

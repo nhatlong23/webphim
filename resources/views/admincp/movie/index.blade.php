@@ -33,6 +33,7 @@
                             <th scope="col">Năm Phim</th>
                             <th scope="col">Top Views</th>
                             <th scope="col">Season</th>
+                            <th scope="col">View_Movie</th>
                             <th scope="col">Manage</th>
                         </tr>
                     </thead>
@@ -58,7 +59,11 @@
                                         <span class="badge badge-secondary">Không Hiển thị</span>
                                     @endif
                                 </td>
-                                <td><span class="badge badge-primary">{{ $cate->category->title }}</span></td>
+                                <td>
+                                    @foreach ($cate->movie_category as $category)
+                                        <span class="badge badge-danger">{{ $category->title }}</span>
+                                    @endforeach
+                                </td>
                                 <td>
                                     @if ($cate->thuocphim == 'phimle')
                                         <span class="badge badge-primary"> Phim Lẻ</span>
@@ -135,6 +140,7 @@
                                         ]) !!}
                                     </form>
                                 </td>
+                                <td><span class="badge badge-dark">{{ $cate->view_count }} lượt xem</span></td>
                                 <td>
                                     {!! Form::open([
                                         'method' => 'DELETE',

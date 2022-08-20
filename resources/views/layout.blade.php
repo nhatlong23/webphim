@@ -34,10 +34,13 @@
 
     <link rel='dns-prefetch' href='//s.w.org' />
 
-    <link rel='stylesheet' id='bootstrap-css' href='{{ asset('css/bootstrap.min.css') }}' media='all' />
-    <link rel='stylesheet' id='style-css' href='{{ asset('css/style.css') }}' media='all' />
-    <link rel='stylesheet' id='wp-block-library-css' href='{{ asset('css/style.min.css') }}' media='all' />
-    <script type='text/javascript' src='{{ asset('js/jquery.min.js') }}' id='halim-jquery-js'></script>
+    <link rel='stylesheet' id='bootstrap-css' href='{{ asset('css/bootstrap.min.css?ver=5.7.2') }}' media='all' />
+    <link rel='stylesheet' id='style-css' href='{{ asset('css/style.css?ver=5.7.2') }}' media='all' />
+    <link rel='stylesheet' id='wp-block-library-css' href='{{ asset('css/style.min.css?ver=5.7.2') }}' media='all' />
+    <script type='text/javascript' src='{{ asset('js/jquery.min.js?ver=5.7.2') }}' id='halim-jquery-js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type='text/javascript' src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+
     <style type="text/css" id="wp-custom-css">
         .textwidget p a img {
             width: 100%;
@@ -218,13 +221,14 @@
         nonce="iCRKOgCO"></script>
 
     <script style="text/javascript">
-        $(function() {
-            $('#myTab li:first-child a').tab('show')
-        })
+        setTimeout(function(data) {
+            var link = $('#myTab li:first-child a').tab('show')
+            if (link) {
+                link.click();
+            }
+            //0.01-second delay
+        }, 10);
     </script>
-
-
-
     <script style="text/javascript">
         $(".watch_trailer").click(function(e) {
             e.preventDefault();
@@ -265,21 +269,7 @@
             });
         })
     </script>
-
-
-
     <script type="text/javascript">
-        // $(document).ready(function() {
-        //     $.ajax({
-        //         url: "{{ url('/filter-topview-default') }}",
-        //         method: "GET",
-        //         success: function(data) {
-        //             $('#show0').html(data);
-        //         }
-        //     });
-        // })
-
-
         $('.filter-sidebar').click(function() {
             var href = $(this).attr('href');
             var _token = $('input[name="_token"]').val();
@@ -304,6 +294,142 @@
             });
         })
     </script>
+
+
+    <script type="text/javascript">
+        function remove_background(movie_id) {
+            for (var count = 1; count <= 5; count++) {
+                $('#' + movie_id + '-' + count).css('color', '#ccc');
+            }
+        }
+        //hover chuot danh gia sao
+        $(document).on('mouseenter', '.rating', function() {
+            var index = $(this).data("index");
+            var movie_id = $(this).data('movie_id');
+            remove_background(movie_id);
+            for (var count = 1; count <= index; count++) {
+                $('#' + movie_id + '-' + count).css('color', '#ffcc00');
+            }
+        });
+        //nha chuot khong danh gia
+        $(document).on('mouseleave', '.rating', function() {
+            var index = $(this).data("index");
+            var movie_id = $(this).data('movie_id');
+            var rating = $(this).data("rating");
+            remove_background(movie_id);
+
+            for (var count = 1; count <= rating; count++) {
+                $('#' + movie_id + '-' + count).css('color', '#ffcc00');
+            }
+        });
+
+        //click danh gia sao
+        $(document).on('click', '.rating', function() {
+            var index = $(this).data("index");
+            var movie_id = $(this).data('movie_id');
+            var _token = $('input[name="_token"]').val();
+            // //set cookie
+            // function createCookie(name, value, hour) {
+            //     if (hour) {
+            //         var date = new Date();
+            //         date.setTime(date.getTime() + (hour * 3600 * 1000));
+            //         var expires = "; expires=" + date.toGMTString();
+            //     } else var expires = "";
+            //     document.cookie = name + "=" + value + expires + "; path=/";
+            // }
+
+            // function readCookie(name) {
+            //     var nameEQ = name + "=";
+            //     var ca = document.cookie.split(';');
+            //     for (var i = 0; i < ca.length; i++) {
+            //         var c = ca[i];
+            //         while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            //         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            //     }
+            //     return null;
+            // }
+            // createCookie("index", index, 0.01);
+
+            // readCookie("index");
+
+            $.ajax({
+                url: "{{ url('/insert-rating') }}",
+                method: 'POST',
+                data: {
+                    index: index,
+                    movie_id: movie_id,
+                    _token: _token
+                },
+                success: function(data) {
+                    if (data == 'done') {
+                        alert("Bạn đã đánh giá" + index + " trên 5");
+                    } else {
+                        alert("Lỗi đánh giá");
+                    }
+                }
+            });
+        });
+    </script>
+
+    {{-- <script type="text/javascript">
+        function createCookie(name, value, hour) {
+            if (hour) {
+                var date = new Date();
+                date.setTime(date.getTime() + (hour * 3600 * 1000));
+                var expires = "; expires=" + date.toGMTString();
+            } else var expires = "";
+            document.cookie = name + "=" + value + expires + "; path=/";
+        }
+
+        function readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+        createCookie("movie_id", "$movie_id->id", 0.01);
+        console.log(document.cookie);
+    </script> --}}
+
+
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "111815004867541");
+        chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                xfbml: true,
+                version: 'v14.0'
+            });
+        };
+
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+
+
 
     <script>
         jQuery(document).ready(function($) {

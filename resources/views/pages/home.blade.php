@@ -73,7 +73,7 @@
                             </a>
                         </div>
                         <div id="halim-advanced-widget-2-ajax-box" class="halim_box">
-                            @foreach ($cate_home->movie->take(10)->where('status', 1) as $key => $mov)
+                            @foreach ($cate_home->movie_category->take(15)->where('status', 1) as $key => $mov)
                                 <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-37606">
                                     <div class="halim-item">
                                         <a class="halim-thumb" href="{{ route('movie', $mov->slug) }}">
@@ -136,7 +136,7 @@
                         <div role="tabpanel" class="tab-pane active halim-ajax-popular-post">
                             <div class="halim-ajax-popular-post-loading hidden"></div>
                             <div id="halim-ajax-popular-post" class="popular-post">
-                                @foreach ($movie_hot_sidebar as $key => $mov_hot)
+                                @foreach ($movie_hot_sidebar->take(10)->where('status', 1) as $key => $mov_hot)
                                     <div class="item post-37176">
                                         <a href="{{ route('movie', $mov_hot->slug) }}" title="{{ $mov_hot->title }}">
                                             <div class="item-link">
@@ -161,7 +161,8 @@
                                             </div>
                                             <p class="title">{{ $mov_hot->title }}</p>
                                         </a>
-                                        <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
+                                        <div class="viewsCount" style="color: #9d9d9d;">{{ $mov_hot->view_count }} lượt xem
+                                        </div>
                                         <div style="float: left;">
                                             <span class="user-rate-image post-large-rate stars-large-vang"
                                                 style="display: block;/* width: 100%; */">

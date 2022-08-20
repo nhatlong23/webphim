@@ -24,9 +24,11 @@
             <section>
                 <div class="section-bar clearfix">
                     <h1 class="section-title">
-                        <span style="font-size:x-small;font-weight: lighter;" >Phim của đạo diễn : {{ $director }} mới nhất ,Tổng hợp danh sách
+                        <span style="font-size:x-small;font-weight: lighter; font-family: Arial, sans-serif;">Phim của đạo
+                            diễn : {{ $director }} mới nhất ,Tổng hợp danh sách
                             Phim của đạo diễn: {{ $director }} hay được web cập nhật liên tục.Tải Phim của đạo diễn:
-                            {{ $director }} năm 2022, Xem Phim của đạo diễn: {{ $director }} vietsub, thuyết minh mới
+                            {{ $director }} năm 2022, Xem Phim của đạo diễn: {{ $director }} vietsub, thuyết minh
+                            mới
                             nhất, Tổng hợp Phim của đạo diễn: {{ $director }} hay nhất
                         </span>
                     </h1>

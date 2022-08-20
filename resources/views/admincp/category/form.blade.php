@@ -23,6 +23,7 @@
                                 'placeholder' => 'Nhập vào dữ liệu...',
                                 'id' => 'slug',
                                 'onkeyup' => 'ChangeToSlug()',
+                                'required',
                             ]) !!}
                         </div>
                         <div class="form-group">
@@ -40,6 +41,7 @@
                                 'class' => 'form-control',
                                 'placeholder' => 'Nhập vào dữ liệu...',
                                 'id' => 'description',
+                                'required',
                             ]) !!}
                         </div>
                         <div class="form-group">
@@ -69,7 +71,7 @@
                     </thead>
                     <tbody class="order_position">
                         @foreach ($list as $key => $cate)
-                            <tr id="{{$cate->id}}" >
+                            <tr id="{{ $cate->id }}">
                                 <th scope="row">{{ $key }}</th>
                                 <td>{{ $cate->title }}</td>
                                 <td>{{ $cate->description }}</td>

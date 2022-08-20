@@ -39,6 +39,7 @@
                             {!! Form::text('link', isset($episode) ? $episode->linkphim : '', [
                                 'class' => 'form-control',
                                 'placeholder' => 'Nhập vào dữ liệu...',
+                                'required'
                             ]) !!}
                         </div>
                         @if (isset($episode))

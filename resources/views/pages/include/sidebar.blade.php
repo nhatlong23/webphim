@@ -6,7 +6,7 @@
             </div>
         </div>
         <ul class="nav nav-pills mb-3" id="myTab" role="tablist">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link filter-sidebar" id="pills-home-tab" data-toggle="pill" href="#ngay" role="tab"
                     aria-controls="pills" aria-selected="true">Ngày</a>
             </li>

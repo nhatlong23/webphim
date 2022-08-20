@@ -24,8 +24,8 @@ class CountryController extends Controller
      */
     public function create()
     {
-        $list = Country::all();
-        return view('admincp.country.form',compact('list'));
+        $list = Country::orderBy('position', 'ASC')->get();
+        return view('admincp.country.form', compact('list'));
     }
 
     /**
@@ -66,8 +66,8 @@ class CountryController extends Controller
     public function edit($id)
     {
         $country = Country::find($id);
-        $list = Country::all();
-        return view('admincp.country.form',compact('list','country'));
+        $list = Country::orderBy('position', 'ASC')->get();
+        return view('admincp.country.form', compact('list', 'country'));
     }
 
     /**
@@ -99,5 +99,16 @@ class CountryController extends Controller
     {
         Country::find($id)->delete();
         return redirect()->back();
+    }
+
+    public function resorting_country(Request $request)
+    {
+        $data = $request->all();
+
+        foreach ($data['array_id'] as $key => $value) {
+            $country = Country::find($value);
+            $country->position = $key;
+            $country->save();
+        }
     }
 }

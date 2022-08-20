@@ -25,7 +25,7 @@ class GenreController extends Controller
     public function create()
     {
         $list = Genre::all();
-        return view('admincp.genre.form',compact('list'));
+        return view('admincp.genre.form', compact('list'));
     }
 
     /**
@@ -67,7 +67,7 @@ class GenreController extends Controller
     {
         $genre = Genre::find($id);
         $list = Genre::all();
-        return view('admincp.genre.form',compact('list','genre'));
+        return view('admincp.genre.form', compact('list', 'genre'));
     }
 
     /**
@@ -99,5 +99,17 @@ class GenreController extends Controller
     {
         Genre::find($id)->delete();
         return redirect()->back();
+    }
+
+
+    public function resorting_genre(Request $request)
+    {
+        $data = $request->all();
+
+        foreach ($data['array_id'] as $key => $value) {
+            $genre = Genre::find($value);
+            $genre->position = $key;
+            $genre->save();
+        }
     }
 }

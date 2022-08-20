@@ -34,13 +34,6 @@
                                         {!! $episode->linkphim !!}
                                     </div>
                                 </td>
-                                {{-- <td>
-                                    @if ($cate->status)
-                                        Hiển thị
-                                    @else
-                                        Không Hiển thị
-                                    @endif
-                                </td> --}}
                                 <td>
                                     {!! Form::open([
                                         'method' => 'DELETE',

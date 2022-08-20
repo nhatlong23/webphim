@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\Movie;
 use App\Models\Movie_Genre;
+use App\Models\Movie_Category;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Episode;
+use App\Models\Rating;
 use Carbon\Carbon;
 use File;
-use Storage;
 
 class MovieController extends Controller
 {
@@ -22,16 +24,12 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $list = Movie::with('category', 'movie_genre', 'country', 'genre')->orderby('id', 'DESC')->get();
-
+        $list = Movie::with('category', 'movie_genre', 'movie_category', 'country', 'genre')->orderby('id', 'DESC')->get();
         $path = public_path() . "/json/";
         if (!is_dir($path)) {
             mkdir($path, 0777, true);
         }
         File::put($path . 'movies.json', json_encode($list));
-
-
-
         return view('admincp.movie.index', compact('list'));
     }
 
@@ -89,7 +87,7 @@ class MovieController extends Controller
                 </div>
                 <p class="title">' . $mov->title . '</p>
             </a>
-            <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
+            <div class="viewsCount" style="color: #9d9d9d;">  ' . $mov->view_count . ' lượt xem</div>
             <div style="float: left;">
                 <span class="user-rate-image post-large-rate stars-large-vang"
                     style="display: block;/* width: 100%; */">
@@ -97,8 +95,8 @@ class MovieController extends Controller
                 </span>
             </div>
         </div>';
+            echo $output;
         }
-        echo $output;
     }
 
     /**
@@ -112,7 +110,8 @@ class MovieController extends Controller
         $country = Country::pluck('title', 'id');
         $genre = Genre::pluck('title', 'id');
         $list_genre = Genre::all();
-        return view('admincp.movie.form', compact('category', 'country', 'genre', 'list_genre'));
+        $list_category = Category::all();
+        return view('admincp.movie.form', compact('category', 'country', 'genre', 'list_genre', 'list_category'));
     }
 
     /**
@@ -140,17 +139,20 @@ class MovieController extends Controller
         $movie->slug = $data['slug'];
         $movie->description = $data['description'];
         $movie->status = $data['status'];
-        $movie->category_id = $data['category_id'];
+        // $movie->category_id = $data['category_id'];
         $movie->thuocphim = $data['thuocphim'];
         // $movie->genre_id = $data['genre_id'];
         $movie->country_id = $data['country_id'];
         $movie->date_update = Carbon::now('Asia/Ho_Chi_Minh');
         $movie->date_created = Carbon::now('Asia/Ho_Chi_Minh');
-
+        //phim nhieu the loai
         foreach ($data['genre'] as $key => $gen) {
             $movie->genre_id = $gen[0];
         }
-
+        //phim nhieu danh muc
+        foreach ($data['category'] as $key => $cate) {
+            $movie->category_id = $cate[0];
+        }
 
         $get_image = $request->file('image');
 
@@ -164,7 +166,9 @@ class MovieController extends Controller
         }
         $movie->save();
         //them nhieu the loai cho phim
-        $movie->movie_genre()->attach($data['genre']);
+        $movie->movie_genre()->sync($data['genre']);
+        //them nhieu danh muc cho phim
+        $movie->movie_category()->sync($data['category']);
 
         return redirect()->route('movie.index');
     }
@@ -177,7 +181,10 @@ class MovieController extends Controller
      */
     public function show($id)
     {
-        //
+        // $movie = Movie::find($id);
+        // Event::fire('movie.view', $movie);
+
+        // return View::make('movie.show')->withMovie($movie);
     }
 
     /**
@@ -193,8 +200,10 @@ class MovieController extends Controller
         $genre = Genre::pluck('title', 'id');
         $movie = Movie::find($id);
         $list_genre = Genre::all();
+        $list_category = Category::all();
         $movie_genre = $movie->movie_genre;
-        return view('admincp.movie.form', compact('category', 'country', 'genre', 'movie', 'list_genre', 'movie_genre'));
+        $movie_category = $movie->movie_category;
+        return view('admincp.movie.form', compact('category', 'country', 'genre', 'movie', 'list_genre', 'movie_genre', 'list_category', 'movie_category'));
     }
 
     /**
@@ -224,14 +233,18 @@ class MovieController extends Controller
         $movie->slug = $data['slug'];
         $movie->description = $data['description'];
         $movie->status = $data['status'];
-        $movie->category_id = $data['category_id'];
+        // $movie->category_id = $data['category_id'];
         $movie->thuocphim = $data['thuocphim'];
         // $movie->genre_id = $data['genre_id'];
         $movie->country_id = $data['country_id'];
         $movie->date_update = Carbon::now('Asia/Ho_Chi_Minh');
-
+        //phim nhieu the loai
         foreach ($data['genre'] as $key => $gen) {
             $movie->genre_id = $gen[0];
+        }
+        //phim nhieu danh muc
+        foreach ($data['category'] as $key => $cate) {
+            $movie->category_id = $cate[0];
         }
 
         $get_image = $request->file('image');
@@ -251,6 +264,8 @@ class MovieController extends Controller
         $movie->save();
         //them nhieu the loai cho phim
         $movie->movie_genre()->sync($data['genre']);
+        //them nhieu danh muc cho phim
+        $movie->movie_category()->sync($data['category']);
         return redirect()->route('movie.index');
     }
 
@@ -268,9 +283,23 @@ class MovieController extends Controller
         }
         //xoa nhieu the loai
         Movie_Genre::whereIn('movie_id', [$movie->id])->delete();
+        //xoa nhieu danh muc
+        Movie_Category::whereIn('movie_id', [$movie->id])->delete();
         //xoa tap phim
         Episode::whereIn('movie_id', [$movie->id])->delete();
         $movie->delete();
         return redirect()->back();
     }
+
+    //them danh gia vao csdl
+    public function insert_rating(Request $request)
+    {
+        $data = $request->all();
+        $rating = new Rating();
+        $rating->movie_id = $data['movie_id'];
+        $rating->rating = $data['index'];
+        $rating->save();
+        echo 'done';
+    }
+
 }

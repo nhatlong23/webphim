@@ -121,7 +121,6 @@ class EpisodeController extends Controller
             <option value="Cam">Cam</option>
             <option value="HDCam">HDCam</option>';
         }
-
         echo $output;
     }
 }

@@ -22,6 +22,7 @@
                             {!! Form::label('title', 'Title', []) !!}
                             {!! Form::text('title', isset($country) ? $country->title : '', [
                                 'class' => 'form-control',
+                                'required',
                                 'placeholder' => 'Nhập vào dữ liệu...',
                                 'id' => 'slug',
                                 'onkeyup' => 'ChangeToSlug()',
@@ -42,6 +43,7 @@
                                 'class' => 'form-control',
                                 'placeholder' => 'Nhập vào dữ liệu...',
                                 'id' => 'description',
+                                'required',
                             ]) !!}
                         </div>
                         <div class="form-group">
@@ -69,9 +71,9 @@
                             <th scope="col">Manage</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="order_position">
                         @foreach ($list as $key => $cate)
-                            <tr>
+                            <tr id="{{ $cate->id }}">
                                 <th scope="row">{{ $key }}</th>
                                 <td>{{ $cate->title }}</td>
                                 <td>{{ $cate->description }}</td>

@@ -24,7 +24,8 @@
             <section>
                 <div class="section-bar clearfix">
                     <h1 class="section-title">
-                        <span style="font-size:x-small;font-weight: lighter;">Phim có diễn viên : {{ $cast_movie }} mới
+                        <span style="font-size:x-small;font-weight: lighter; font-family: Arial, sans-serif;">Phim có diễn
+                            viên : {{ $cast_movie }} mới
                             nhất ,Tổng hợp danh sách
                             Phim có diễn viên: {{ $cast_movie }} hay được web cập nhật liên tục.Tải Phim có diễn viên:
                             {{ $cast_movie }} năm 2022, Xem Phim có diễn viên: {{ $cast_movie }} vietsub, thuyết minh

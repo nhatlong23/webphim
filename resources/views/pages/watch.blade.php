@@ -50,10 +50,11 @@
                             </div>
                             <div id="toggle-light"><i class="hl-adjust"></i>
                                 Light Off
+                                <i class="bi bi-eye"></i>
                             </div>
                             <div id="report" class="halim-switch"><i class="hl-attention"></i> Report</div>
-                            <div class="luotxem"><i class="hl-eye"></i>
-                                <span>1K</span> lượt xem
+                            <div class="luotxem">
+                                <span>{{ $movie->view_count }}</span> lượt xem
                             </div>
                             <div class="luotxem">
                                 <a class="visible-xs-inline" data-toggle="collapse" href="#moretool" aria-expanded="false"
@@ -77,13 +78,34 @@
                                 <div class="halim-pulse-ring"></div>
                             </div>
                         </a>
-                        <div class="title-wrapper-xem full">
-                            <h1 class="entry-title"><a href="" title="{{ $movie->title }}"
-                                    class="tl">{{ $movie->title }} tập 1</a></h1>
+                        <div class="title-wrapper-xem full" style="display: contents;">
+                            <h1 class="entry-title" style="font-size: 20px; font-weight: bold;">
+                                <a title="{{ $movie->title }}" class="tl">{{ $movie->title }} tập
+                                    {{ $movie->episodes }}
+                                </a>
+                            </h1>
                         </div>
                     </div>
-                    <div class="entry-content htmlwrap clearfix collapse" id="expand-post-content">
-                        <article id="post-37976" class="item-content post-37976"></article>
+                    <div style="font-weight: bolder; font-size: 20px; margin: 5px 5px 10px">
+                        <span> Đánh giá sao :</span>
+                        <ul class="list-inline rating" title="Average rating" style="display: contents; font-weight: bold;">
+                            @for ($count = 1; $count <= 5; $count++)
+                                @php
+                                    if ($count <= $rating) {
+                                        $color = 'color:#ffcc00;';
+                                    } else {
+                                        $color = 'color:#ccc;';
+                                    }
+                                @endphp
+                                <li title="Đánh giá sao" id="{{ $movie->id }}-{{ $count }}"
+                                    data-index="{{ $count }}" data-movie_id="{{ $movie->id }}"
+                                    data-rating="{{ $rating }}" class="rating"
+                                    style="cursor: pointer; {{ $color }} font-size: 30px">
+                                    &#9733;
+                                </li>
+                            @endfor
+                            <li>({{ $rating }}đ/ {{ $reviews }}lượt)</li>
+                        </ul>
                     </div>
                     <div class="clearfix"></div>
                     <div class="text-center">
@@ -98,7 +120,8 @@
                                     @elseif ($movie->sub_movie == 1)
                                         Thuyết Minh
                                     @endif
-                                </a></li>
+                                </a>
+                            </li>
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active server-1" id="server-0">
@@ -124,8 +147,19 @@
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="htmlwrap clearfix">
-                        <div id="lightout"></div>
+                    <div class="section-bar clearfix">
+                        <h2 class="section-title"><span style="color:#fbf29c">Bình Luận</span></h2>
+                    </div>
+                    <div class="entry-content htmlwrap clearfix">
+                        <div class="video-item halim-entry-box">
+                            @php
+                                $current_url = Request::url();
+                            @endphp
+                            <article id="post-38424" class="cmt" style="background: antiquewhite;">
+                                <div class="fb-comments" data-href="{{ $current_url }}" data-width="100%"
+                                    data-numposts="10" data-colorscheme="dark"></div>
+                            </article>
+                        </div>
                     </div>
             </section>
             <section class="related-movies">

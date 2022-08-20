@@ -9,6 +9,7 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\EpisodeController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +34,7 @@ Route::get('/director/{director}', [IndexController::class, 'director']);
 Route::get('/cast-movie/{cast_movie}', [IndexController::class, 'cast_movie']);
 Route::get('/search', [IndexController::class, 'search'])->name('search');
 Route::post('/filter-topview-phim', [MovieController::class, 'filter_topview']);
+Route::post('/insert-rating', [MovieController::class, 'insert_rating']);
 
 Auth::routes();
 
@@ -41,7 +43,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //route admin
 Route::resource('category', CategoryController::class);
-Route::post('resorting', [CategoryController::class, 'resorting'])->name('resorting');
+Route::post('resorting_category', [CategoryController::class, 'resorting_category'])->name('resorting');
+Route::post('resorting_country', [CountryController::class, 'resorting_country'])->name('resorting');
+Route::post('resorting_genre', [GenreController::class, 'resorting_genre'])->name('resorting');
 Route::resource('genre', GenreController::class);
 Route::resource('country', CountryController::class);
 Route::resource('episode', EpisodeController::class);
