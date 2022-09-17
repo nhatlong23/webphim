@@ -42,13 +42,26 @@ class EpisodeController extends Controller
     {
         $data = $request->all();
         $episode = new Episode();
-        $episode->movie_id = $data['movie_id'];
-        $episode->linkphim = $data['link'];
-        $episode->episode = $data['episode'];
-        $episode->update_at = Carbon::now('Asia/Ho_Chi_Minh');
-        $episode->created_at = Carbon::now('Asia/Ho_Chi_Minh');
-        $episode->save();
-        return redirect()->back();
+        $episode_check = Episode::where('movie_id', $data['movie_id'])->where('episode', $data['episode'])->first();
+        if ($episode_check) {
+            return redirect()->back()->with('error', 'Episode đã tồn tại');
+        } else {
+            $episode->movie_id = $data['movie_id'];
+            $episode->linkphim = $data['link'];
+            $episode->episode = $data['episode'];
+            $episode->update_at = Carbon::now('Asia/Ho_Chi_Minh');
+            $episode->created_at = Carbon::now('Asia/Ho_Chi_Minh');
+            $episode->save();
+            return redirect()->back()->with('success', 'Thêm mới thành công');
+        }
+        return redirect()->back()->with('error', 'Thêm mới thất bại');
+    }
+
+    public function add_episode($id)
+    {
+        $movie = Movie::find($id);
+        $list_episode = Episode::with('movie')->where('movie_id', $id)->orderBy('episode', 'DESC')->get();
+        return view('admincp.episodes.add_episode', compact('list_episode', 'movie'));
     }
 
     /**

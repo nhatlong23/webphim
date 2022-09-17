@@ -98,7 +98,7 @@
                                             @if ($movie->thuocphim == 'phimle')
                                                 {{ $movie->duration_movie }}
                                             @else
-                                                {{ $movie->episodes }} tập - {{ $movie->duration_movie }}
+                                                {{ $movie->duration_movie }}
                                             @endif
                                         </li>
                                     @else

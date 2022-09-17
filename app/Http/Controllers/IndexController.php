@@ -201,7 +201,7 @@ class IndexController extends Controller
         $rating = round($rating);
         //luot danh gia
         $reviews = Rating::where('movie_id', $movie->id)->count('movie_id');
-        
+
         return view('pages.watch', compact('category', 'genre', 'country', 'movie', 'movie_hot_sidebar', 'related', 'episode', 'tapphim', 'rating', 'reviews'));
     }
     public function episode()

@@ -50,6 +50,7 @@ Route::resource('genre', GenreController::class);
 Route::resource('country', CountryController::class);
 Route::resource('episode', EpisodeController::class);
 Route::get('select-movie', [EpisodeController::class, 'select_movie'])->name('select-movie');
+Route::get('add-episode/{id}', [EpisodeController::class, 'add_episode'])->name('add-episode');
 Route::resource('movie', MovieController::class);
 Route::post('/update-year-phim', [MovieController::class, 'update_year']);
 Route::post('/update-topview-phim', [MovieController::class, 'update_topview']);

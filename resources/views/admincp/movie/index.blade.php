@@ -5,18 +5,19 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <a href="{{ route('movie.create') }}" class="btn btn-primary">Thêm phim</a>
-                <table class="table" id="tablemovie">
+                <table class="table table-responsive" id="tablemovie">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Title</th>
+                            <th scope="col">Thêm Phim</th>
+                            <th scope="col">Episodes</th>
                             <th scope="col">Name_EN</th>
                             <th scope="col">Score_imdb</th>
                             <th scope="col">Image</th>
                             <th scope="col">Duration</th>
                             <th scope="col">Director</th>
                             <th scope="col">Cast_movie</th>
-                            <th scope="col">Episodes</th>
                             <th scope="col">Tags</th>
                             <th scope="col">Description</th>
                             <th scope="col">Slug</th>
@@ -42,13 +43,14 @@
                             <tr>
                                 <th scope="row">{{ $key }}</th>
                                 <td><span class="badge badge-success">{{ $cate->title }}</span></td>
+                                <td><a href="{{route('add-episode',[$cate->id])}}" class="btn btn-danger btn-sm">Thêm Tập Phim</a></td>
+                                <td><span class="badge badge-success">{{$cate->episode_count}} / {{ $cate->episodes }} tập</span></td>
                                 <td><span class="badge badge-dark">{{ $cate->name_en }}</span></td>
                                 <td><span class="badge badge-secondary">{{ $cate->score_imdb }}</span></td>
                                 <td><img src="{{ asset('uploads/movie/' . $cate->image) }}" width="65"></td>
                                 <td><span class="badge badge-primary">{{ $cate->duration_movie }}</span></td>
                                 <td><span class="badge badge-secondary">{{ $cate->director }}</span></td>
                                 <td><span class="badge badge-danger">{{ $cate->cast_movie }}</span></td>
-                                <td><span class="badge badge-success">{{ $cate->episodes }}</span></td>
                                 <td>{{ substr($cate->tags_movie, 0, 10) }}</td>
                                 <td>{{ substr($cate->description, 0, 10) }}</td>
                                 <td>{{ $cate->slug }}</td>

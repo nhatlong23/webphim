@@ -24,7 +24,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $list = Movie::with('category', 'movie_genre', 'movie_category', 'country', 'genre')->orderby('id', 'DESC')->get();
+        $list = Movie::with('category', 'movie_genre', 'movie_category', 'country', 'genre')->withCount('episode')->orderby('id', 'DESC')->get();
         $path = public_path() . "/json/";
         if (!is_dir($path)) {
             mkdir($path, 0777, true);
@@ -61,7 +61,7 @@ class MovieController extends Controller
     public function filter_topview(Request $request)
     {
         $data = $request->all();
-        $movie = Movie::where('topview', $data['value'])->orderBy('date_update', 'DESC')->take(10)->get();
+        $movie = Movie::where('topview', $data['value'])->orderBy('view_count', 'DESC')->take(10)->get();
         $output = '';
         foreach ($movie as $key => $mov) {
             if ($mov->resolution == 0) {

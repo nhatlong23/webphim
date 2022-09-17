@@ -39,7 +39,7 @@
                             {!! Form::text('link', isset($episode) ? $episode->linkphim : '', [
                                 'class' => 'form-control',
                                 'placeholder' => 'Nhập vào dữ liệu...',
-                                'required'
+                                'required',
                             ]) !!}
                         </div>
                         @if (isset($episode))
@@ -58,14 +58,6 @@
                                 </select>
                             </div>
                         @endif
-
-
-                        {{-- <div class="form-group">
-                            {!! Form::label('episode', 'Tập Phim', []) !!}
-                            <select name="episode" class="form-control" id="show_movie">
-                            </select>
-                        </div> --}}
-
                         @if (!isset($episode))
                             {!! Form::submit('Thêm Tập Phim', ['class' => 'btn btn-primary']) !!}
                         @else
