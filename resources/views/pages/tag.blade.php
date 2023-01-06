@@ -23,6 +23,12 @@
             <section>
                 <div class="section-bar clearfix">
                     <h1 class="section-title"><span>Tags : {{ $tag }}</span></h1>
+                    <div class="section-bar clearfix">
+                        {{-- filter --}}
+                        <div class="row">
+                            @include('pages.include.filter')
+                        </div>
+                    </div>
                 </div>
                 <div class="halim_box">
                     @foreach ($movie as $key => $mov)

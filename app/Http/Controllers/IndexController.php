@@ -60,7 +60,7 @@ class IndexController extends Controller
             $movie = Movie::where('title', 'LIKE', '%' . $search . '%')->where('status', 1)->orderBy('date_update', 'DESC')->paginate(40);
             return view('pages.search', compact('category', 'genre', 'country', 'search', 'movie', 'movie_hot_sidebar'));
         } else {
-            return redirect()->to('/');
+            return redirect()->back();
         }
     }
     public function category($slug)
@@ -204,6 +204,39 @@ class IndexController extends Controller
 
         return view('pages.watch', compact('category', 'genre', 'country', 'movie', 'movie_hot_sidebar', 'related', 'episode', 'tapphim', 'rating', 'reviews'));
     }
+
+    public function filter()
+    {
+        $sapxep = $_GET['order'];
+        $genre_get = $_GET['genre'];
+        $country_get = $_GET['country'];
+        $year_get = $_GET['year'];
+
+        if ($sapxep == '' && $genre_get == '' && $country_get == '' && $year_get == '') {
+            return redirect()->back();
+        } else {
+            $category = Category::orderby('position', 'ASC')->where('status', 1)->get();
+            $genre = Genre::orderby('position', 'ASC')->where('status', 1)->get();
+            $country = Country::orderby('position', 'ASC')->where('status', 1)->get();
+            $movie_hot_sidebar = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('date_update', 'DESC')->take('15')->get();
+
+            //lay du lieu
+            $movie = Movie::withCount('episode');
+            if ($genre_get) {
+                $movie = $movie->where('genre_id', '=', $genre_get);
+            } else if ($country_get) {
+                $movie = $movie->where('country_id', '=', $country_get);
+            } else if ($year_get) {
+                $movie = $movie->where('year', '=', $year_get);
+            } else if ($sapxep) {
+                $movie = $movie->orderBy('date_created', 'DESC');
+            }
+
+            $movie = $movie->orderBy('view_count', 'DESC')->paginate(30);
+            return view('pages.filter', compact('category', 'genre', 'country', 'movie', 'movie_hot_sidebar'));
+        }
+    }
+
     public function episode()
     {
         return view('pages.episode');

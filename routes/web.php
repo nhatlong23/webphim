@@ -35,6 +35,7 @@ Route::get('/cast-movie/{cast_movie}', [IndexController::class, 'cast_movie']);
 Route::get('/search', [IndexController::class, 'search'])->name('search');
 Route::post('/filter-topview-phim', [MovieController::class, 'filter_topview']);
 Route::post('/insert-rating', [MovieController::class, 'insert_rating']);
+Route::get('/filter', [IndexController::class, 'filter'])->name('filter');
 
 Auth::routes();
 

@@ -328,29 +328,6 @@
             var index = $(this).data("index");
             var movie_id = $(this).data('movie_id');
             var _token = $('input[name="_token"]').val();
-            // //set cookie
-            // function createCookie(name, value, hour) {
-            //     if (hour) {
-            //         var date = new Date();
-            //         date.setTime(date.getTime() + (hour * 3600 * 1000));
-            //         var expires = "; expires=" + date.toGMTString();
-            //     } else var expires = "";
-            //     document.cookie = name + "=" + value + expires + "; path=/";
-            // }
-
-            // function readCookie(name) {
-            //     var nameEQ = name + "=";
-            //     var ca = document.cookie.split(';');
-            //     for (var i = 0; i < ca.length; i++) {
-            //         var c = ca[i];
-            //         while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-            //         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-            //     }
-            //     return null;
-            // }
-            // createCookie("index", index, 0.01);
-
-            // readCookie("index");
 
             $.ajax({
                 url: "{{ url('/insert-rating') }}",
@@ -360,9 +337,15 @@
                     movie_id: movie_id,
                     _token: _token
                 },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 success: function(data) {
                     if (data == 'done') {
                         alert("Bạn đã đánh giá" + index + " trên 5");
+                        location.reload();
+                    } else if (data == 'exist') {
+                        alert("Bạn đã đánh giá phim này rồi,cảm ơn bạn nhé");
                     } else {
                         alert("Lỗi đánh giá");
                     }
@@ -370,31 +353,6 @@
             });
         });
     </script>
-
-    {{-- <script type="text/javascript">
-        function createCookie(name, value, hour) {
-            if (hour) {
-                var date = new Date();
-                date.setTime(date.getTime() + (hour * 3600 * 1000));
-                var expires = "; expires=" + date.toGMTString();
-            } else var expires = "";
-            document.cookie = name + "=" + value + expires + "; path=/";
-        }
-
-        function readCookie(name) {
-            var nameEQ = name + "=";
-            var ca = document.cookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
-        }
-        createCookie("movie_id", "$movie_id->id", 0.01);
-        console.log(document.cookie);
-    </script> --}}
-
 
     <!-- Messenger Plugin chat Code -->
     <div id="fb-root"></div>

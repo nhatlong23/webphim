@@ -87,7 +87,7 @@
                         </div>
                     </div>
                     <div style="font-weight: bolder; font-size: 20px; margin: 5px 5px 10px">
-                        <span> Đánh giá sao :</span>
+                        <span> Đánh giá phim :</span>
                         <ul class="list-inline rating" title="Average rating" style="display: contents; font-weight: bold;">
                             @for ($count = 1; $count <= 5; $count++)
                                 @php

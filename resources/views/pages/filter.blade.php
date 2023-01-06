@@ -5,17 +5,8 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">
-                        <div class="yoast_breadcrumb hidden-xs">
-                            <span>
-                                <span>Phim thuộc năm »
-                                    @for ($year_beard = 2006; $year_beard <= 2022; $year_beard++)
-                                        <span class="breadcrumb_last" aria-current="page"><a title="{{ $year_beard }}"
-                                                href="{{ url('year/' . $year_beard) }}">{{ $year_beard }}</a>
-                                        </span> »
-                                    @endfor
-                                </span>
-                            </span>
-                        </div>
+                        <div class="yoast_breadcrumb hidden-xs"><span><span><a href="">Lọc Phim</a> »
+                                    <span class="breadcrumb_last" aria-current="page">2022</span></span></span></div>
                     </div>
                 </div>
             </div>
@@ -26,12 +17,12 @@
         <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
             <section>
                 <div class="section-bar clearfix">
-                    <h1 class="section-title"><span>Năm : {{ $year }}</span></h1>
-                    <div class="section-bar clearfix">
+                    <h1 class="section-title"><span>Lọc Phim</span></h1>
+                </div>
+                <div class="section-bar clearfix">
+                    <div class="row">
                         {{-- filter --}}
-                        <div class="row">
-                            @include('pages.include.filter')
-                        </div>
+                        @include('pages.include.filter')
                     </div>
                 </div>
                 <div class="halim_box">

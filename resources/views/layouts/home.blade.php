@@ -16,7 +16,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    //chưa fix xong phần đang online
+                                    {{-- //chưa fix xong phần đang online --}}
                                     <th scope="col">Đang online</th>
                                     <th scope="col">Tổng Tháng Trước</th>
                                     <th scope="col">Tổng Tháng Này</th>

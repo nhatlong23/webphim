@@ -278,8 +278,8 @@ class MovieController extends Controller
     public function destroy($id)
     {
         $movie = Movie::find($id);
-        if (file_exists('uploads/movie/' . $movie->image)) {
-            unlink('uploads/movie/' . $movie->image);
+        if (file_exists('/uploads/movie/' . $movie->image)) {
+            unlink('/uploads/movie/' . $movie->image);
         }
         //xoa nhieu the loai
         Movie_Genre::whereIn('movie_id', [$movie->id])->delete();
@@ -295,11 +295,18 @@ class MovieController extends Controller
     public function insert_rating(Request $request)
     {
         $data = $request->all();
-        $rating = new Rating();
-        $rating->movie_id = $data['movie_id'];
-        $rating->rating = $data['index'];
-        $rating->save();
-        echo 'done';
-    }
+        $ip_rating = $request->ip();
 
+        $rating_count = Rating::where('movie_id', $data['movie_id'])->where('ip_rating', $ip_rating)->count();
+        if ($rating_count > 0) {
+            echo 'exist';
+        } else {
+            $rating = new Rating();
+            $rating->movie_id = $data['movie_id'];
+            $rating->rating = $data['index'];
+            $rating->ip_rating = $ip_rating;
+            $rating->save();
+            echo 'done';
+        }
+    }
 }

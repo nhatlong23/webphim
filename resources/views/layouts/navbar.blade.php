@@ -17,7 +17,7 @@
                 <a class="nav-link" href="{{ route('country.create') }}">Quốc Gia</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('movie.create') }}">Phim</a>
+                <a class="nav-link" href="{{ route('movie.index') }}">Phim</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('episode.create') }}">Tập phim</a>

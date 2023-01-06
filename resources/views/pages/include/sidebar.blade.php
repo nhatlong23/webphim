@@ -19,37 +19,22 @@
                     aria-controls="pills" aria-selected="false">Tháng</a>
             </li>
         </ul>
-
-
         <form method="POST">
             @csrf
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade" id="ngay" role="tabpanel" aria-labelledby="pills-home-tab">
                     <div id="halim-ajax-popular-post" class="popular-post">
-
-                        <span id="show0">
-
-                        </span>
-
+                        <span id="show0"></span>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="tuan" role="tabpanel" aria-labelledby="pills-profile-tab">
                     <div id="halim-ajax-popular-post" class="popular-post">
-
-                        <span id="show1">
-
-                        </span>
-
+                        <span id="show1"></span>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="thang" role="tabpanel" aria-labelledby="pills-contact-tab">
                     <div id="halim-ajax-popular-post" class="popular-post">
-
-                        <span id="show2">
-
-                        </span>
-
-
+                        <span id="show2"></span>
                     </div>
                 </div>
             </div>
