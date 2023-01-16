@@ -37,13 +37,35 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        // $data = $request->all();
+
+        $data = $request->validate(
+            [
+                'title' => 'required|unique:categories|max:255',
+                'slug' => 'required|unique:categories|max:255',
+                'description' => 'required|max:255',
+                'status' => 'required',
+            ],
+            [
+                'title.required' => 'Vui lòng nhập tiêu đề',
+                'title.unique' => 'Tiêu đề đã tồn tại',
+                'title.max' => 'Tiêu đề không được quá 255 ký tự',
+                'slug.required' => 'Vui lòng nhập slug',
+                'slug.unique' => 'Slug đã tồn tại',
+                'slug.max' => 'Slug không được quá 255 ký tự',
+                'description.required' => 'Vui lòng nhập mô tả',
+                'description.max' => 'Mô tả không được quá 255 ký tự',
+                'status.required' => 'Vui lòng chọn trạng thái',
+            ]
+        );
+
         $category = new Category();
         $category->title = $data['title'];
         $category->slug = $data['slug'];
         $category->description = $data['description'];
         $category->status = $data['status'];
         $category->save();
+        toastr()->success('thành công', 'Thêm dữ liệu danh mục thành công!');
         return redirect()->back();
     }
 
@@ -99,6 +121,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         Category::find($id)->delete();
+        toastr()->warning('Xóa thành công');
         return redirect()->back();
     }
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\EpisodeController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -56,3 +57,13 @@ Route::resource('movie', MovieController::class);
 Route::post('/update-year-phim', [MovieController::class, 'update_year']);
 Route::post('/update-topview-phim', [MovieController::class, 'update_topview']);
 Route::post('/update-season-phim', [MovieController::class, 'update_season']);
+
+
+//thay đổi dữ liệu movie bằng ajax
+// Route::get('/category-choose', [MovieController::class, 'category_choose'])->name('category-choose');
+Route::get('/country-choose', [MovieController::class, 'country_choose'])->name('country-choose');
+
+//site map host
+Route::get('/create_sitemap', function () {
+    return Artisan::call('sitemap:create');
+});

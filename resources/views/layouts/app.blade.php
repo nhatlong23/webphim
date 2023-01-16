@@ -266,6 +266,51 @@
             }
         })
     </script>
+
+
+    {{-- thay doi du lieu bang ajax --}}
+    {{-- <script type="text/javascript">
+        $('.category_chooose').change(function() {
+            var category_id = $(this).val();
+            var movie_id = $(this).attr('id');
+            $.ajax({
+                url: "{{ route('category-choose') }}",
+                method: "GET",
+                data: {
+                    category_id: category_id,
+                    movie_id: movie_id
+                    // _token: _token
+                },
+                success: function(data) {
+                    alert('Thay đổi danh mục thành công');
+                }
+
+            });
+        })
+    </script> --}}
+
+
+    <script type="text/javascript">
+        $('.country_chooose').change(function() {
+            var country_id = $(this).val();
+            var movie_id = $(this).attr('id');
+            $.ajax({
+                url: "{{ route('country-choose') }}",
+                method: "GET",
+                data: {
+                    country_id: country_id,
+                    movie_id: movie_id
+                    // _token: _token
+                },
+                success: function(data) {
+                    alert('Thay đổi country thành công');
+                }
+
+            });
+        })
+    </script>
+
+
 </body>
 
 </html>

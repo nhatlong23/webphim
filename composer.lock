@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff123fbeb2726ec8f027239f3d2573d3",
+    "content-hash": "d51f37427cfaccd4347750695439e18e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1516,6 +1516,76 @@
                 "source": "https://github.com/LaravelCollective/html"
             },
             "time": "2022-02-08T21:02:54+00:00"
+        },
+        {
+            "name": "laravelium/sitemap",
+            "version": "8.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Laravelium/laravel-sitemap.git",
+                "reference": "ae5023139178a8de9b615b21a66368f5025d3a43"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Laravelium/laravel-sitemap/zipball/ae5023139178a8de9b615b21a66368f5025d3a43",
+                "reference": "ae5023139178a8de9b615b21a66368f5025d3a43",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/filesystem": "^8.0",
+                "illuminate/support": "^8.0",
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "laravel/framework": "^8.0",
+                "orchestra/testbench-core": "^6.0",
+                "php-coveralls/php-coveralls": "^2.2",
+                "phpunit/phpunit": "^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravelium\\Sitemap\\SitemapServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Laravelium\\Sitemap": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rumen Damyanov",
+                    "email": "r@alfamatter.com",
+                    "homepage": "https://darumen.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravelium Sitemap package for Laravel.",
+            "homepage": "https://laravelium.com",
+            "keywords": [
+                "Sitemap",
+                "generator",
+                "google-news",
+                "html",
+                "laravel",
+                "laravelium",
+                "php",
+                "xml"
+            ],
+            "support": {
+                "issues": "https://github.com/Laravelium/laravel-sitemap/issues",
+                "source": "https://github.com/Laravelium/laravel-sitemap",
+                "wiki": "https://github.com/Laravelium/laravel-sitemap/wiki"
+            },
+            "abandoned": true,
+            "time": "2020-09-10T20:49:55+00:00"
         },
         {
             "name": "league/commonmark",
@@ -5911,16 +5981,16 @@
         },
         {
             "name": "yoeunes/toastr",
-            "version": "v2.0.0",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yoeunes/toastr.git",
-                "reference": "8627c0b149d652a90eab744348b106ecc219b6c0"
+                "reference": "bcec0005f69ed1186129e006f593efdbe07137e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yoeunes/toastr/zipball/8627c0b149d652a90eab744348b106ecc219b6c0",
-                "reference": "8627c0b149d652a90eab744348b106ecc219b6c0",
+                "url": "https://api.github.com/repos/yoeunes/toastr/zipball/bcec0005f69ed1186129e006f593efdbe07137e8",
+                "reference": "bcec0005f69ed1186129e006f593efdbe07137e8",
                 "shasum": ""
             },
             "require": {
@@ -5990,23 +6060,11 @@
             },
             "funding": [
                 {
-                    "url": "https://www.paypal.com/paypalme/yoeunes",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://ko-fi.com/yoeunes",
-                    "type": "ko_fi"
-                },
-                {
-                    "url": "https://opencollective.com/php-flasher",
-                    "type": "open_collective"
-                },
-                {
-                    "url": "https://www.patreon.com/yoeunes",
-                    "type": "patreon"
+                    "url": "https://github.com/yoeunes",
+                    "type": "github"
                 }
             ],
-            "time": "2022-06-15T05:20:08+00:00"
+            "time": "2022-12-25T01:05:57+00:00"
         }
     ],
     "packages-dev": [

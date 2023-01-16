@@ -25,12 +25,14 @@ class MovieController extends Controller
     public function index()
     {
         $list = Movie::with('category', 'movie_genre', 'movie_category', 'country', 'genre')->withCount('episode')->orderby('id', 'DESC')->get();
+        $category = Category::pluck('title', 'id');
+        $country = Country::pluck('title', 'id');
         $path = public_path() . "/json/";
         if (!is_dir($path)) {
             mkdir($path, 0777, true);
         }
         File::put($path . 'movies.json', json_encode($list));
-        return view('admincp.movie.index', compact('list'));
+        return view('admincp.movie.index', compact('list', 'category', 'country'));
     }
 
 
@@ -89,10 +91,14 @@ class MovieController extends Controller
             </a>
             <div class="viewsCount" style="color: #9d9d9d;">  ' . $mov->view_count . ' lượt xem</div>
             <div style="float: left;">
-                <span class="user-rate-image post-large-rate stars-large-vang"
-                    style="display: block;/* width: 100%; */">
-                    <span style="width: 0%"></span>
-                </span>
+                <ul class="list-inline rating" title="Average rating">
+                ';
+            for ($count = 1; $count <= 5; $count++) {
+                $output .= ' <li title="rating" style="font-size: 20px; color: #ffcc00; padding:0">
+                    &#9733;
+                </li> ';
+            }
+            $output .= '<li title="rating" style="font-size: 20px; color: #ffcc00; padding:0">
             </div>
         </div>';
             echo $output;
@@ -308,5 +314,22 @@ class MovieController extends Controller
             $rating->save();
             echo 'done';
         }
+    }
+
+    //thay đổi dữ liệu movie bằng ajax
+
+    // public function category_choose(Request $request)
+    // {
+    //     $data = $request->all();
+    //     $movie = Movie::find($data['movie_id']);
+    //     $movie->category_id = $data['category_id'];
+    //     $movie->save();
+    // }
+    public function country_choose(Request $request)
+    {
+        $data = $request->all();
+        $movie = Movie::find($data['movie_id']);
+        $movie->country_id = $data['country_id'];
+        $movie->save();
     }
 }

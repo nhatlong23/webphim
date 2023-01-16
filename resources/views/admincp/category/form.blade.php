@@ -6,6 +6,15 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">Quản lí danh mục</div>
+                        @if ($errors->any())
+                            <div class="alert alert-danger" role="alert">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="card-body">
                             @if (session('status'))
                                 <div class="alert alert-success" role="alert">
@@ -24,7 +33,7 @@
                                     'placeholder' => 'Nhập vào dữ liệu...',
                                     'id' => 'slug',
                                     'onkeyup' => 'ChangeToSlug()',
-                                    'required',
+                                    //'required',
                                 ]) !!}
                             </div>
                             <div class="form-group">
@@ -42,7 +51,7 @@
                                     'class' => 'form-control',
                                     'placeholder' => 'Nhập vào dữ liệu...',
                                     'id' => 'description',
-                                    'required',
+                                    //'required',
                                 ]) !!}
                             </div>
                             <div class="form-group">

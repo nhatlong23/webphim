@@ -22,7 +22,7 @@
                                 <th scope="col">Description</th>
                                 <th scope="col">Slug</th>
                                 <th scope="col">Active/Inactive</th>
-                                <th scope="col">Category</th>
+                                <th scope="col-md3">Category</th>
                                 <th scope="col">Thuộc phim</th>
                                 <th scope="col">Genre</th>
                                 <th scope="col">Country</th>
@@ -67,6 +67,11 @@
                                         @foreach ($cate->movie_category as $category)
                                             <span class="badge badge-danger">{{ $category->title }}</span>
                                         @endforeach
+                                        {{-- thay doi category bang ajax --}}
+                                        {{-- {!! Form::select('category_id', $category, isset($cate) ? $cate->category->id : '', [
+                                            'class' => 'form-control category_chooose',
+                                            'id' => $cate->id,
+                                        ]) !!} --}}
                                     </td>
                                     <td>
                                         @if ($cate->thuocphim == 'phimle')
@@ -80,7 +85,13 @@
                                             <span class="badge badge-danger">{{ $gen->title }}</span>
                                         @endforeach
                                     </td>
-                                    <td><span class="badge badge-success">{{ $cate->country->title }}</span></td>
+                                    <td>
+                                        {{-- <span class="badge badge-success">{{ $cate->country->title }}</span> --}}
+                                        {!! Form::select('country_id', $country, isset($cate) ? $cate->country->id : '', [
+                                            'class' => 'form-control country_chooose',
+                                            'id' => $cate->id,
+                                        ]) !!}
+                                    </td>
                                     <td>
                                         @if ($cate->movie_hot == 0)
                                             <span class="badge badge-danger">Không Hot</span>

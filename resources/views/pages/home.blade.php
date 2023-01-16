@@ -164,10 +164,13 @@
                                         <div class="viewsCount" style="color: #9d9d9d;">{{ $mov_hot->view_count }} lượt xem
                                         </div>
                                         <div style="float: left;">
-                                            <span class="user-rate-image post-large-rate stars-large-vang"
-                                                style="display: block;/* width: 100%; */">
-                                                <span style="width: 0%"></span>
-                                            </span>
+                                            <ul class="list-inline rating" title="Average rating">
+                                                @for ($count = 1; $count <= 5; $count++)
+                                                    <li title="rating" style="font-size: 20px; color: #ffcc00; padding:0">
+                                                        &#9733;
+                                                    </li>
+                                                @endfor
+                                            </ul>
                                         </div>
                                     </div>
                                 @endforeach
