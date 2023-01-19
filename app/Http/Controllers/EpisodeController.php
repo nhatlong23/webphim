@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Movie;
 use App\Models\Episode;
+use App\Models\LinkMovie;
 use Carbon\Carbon;
 
 class EpisodeController extends Controller
@@ -49,6 +50,7 @@ class EpisodeController extends Controller
             $episode->movie_id = $data['movie_id'];
             $episode->linkphim = $data['link'];
             $episode->episode = $data['episode'];
+            $episode->server = $data['linkserver'];
             $episode->update_at = Carbon::now('Asia/Ho_Chi_Minh');
             $episode->created_at = Carbon::now('Asia/Ho_Chi_Minh');
             $episode->save();
@@ -60,8 +62,10 @@ class EpisodeController extends Controller
     public function add_episode($id)
     {
         $movie = Movie::find($id);
+        $linkmovie = LinkMovie::orderBy('id', 'DESC')->pluck('title','id');
+        $list_server = LinkMovie::orderBy('id', 'DESC')->get();
         $list_episode = Episode::with('movie')->where('movie_id', $id)->orderBy('episode', 'DESC')->get();
-        return view('admincp.episodes.add_episode', compact('list_episode', 'movie'));
+        return view('admincp.episodes.add_episode', compact('list_episode', 'movie', 'linkmovie','list_server'));
     }
 
     /**
@@ -83,9 +87,10 @@ class EpisodeController extends Controller
      */
     public function edit($id)
     {
+        $linkmovie = LinkMovie::orderBy('id', 'DESC')->pluck('title','id');
         $list_movie = Movie::orderBy('id', 'DESC')->pluck('title', 'id');
         $episode = Episode::find($id);
-        return view('admincp.episodes.form', compact('episode', 'list_movie'));
+        return view('admincp.episodes.form', compact('episode', 'list_movie','linkmovie'));
     }
 
     /**
@@ -101,11 +106,12 @@ class EpisodeController extends Controller
         $episode = Episode::find($id);
         $episode->movie_id = $data['movie_id'];
         $episode->linkphim = $data['link'];
+        $episode->server = $data['linkserver'];
         $episode->episode = $data['episode'];
         $episode->update_at = Carbon::now('Asia/Ho_Chi_Minh');
         $episode->created_at = Carbon::now('Asia/Ho_Chi_Minh');
         $episode->save();
-        return redirect()->to('episode');
+        return redirect()->to('add-episode/' . $data['movie_id'])->with('success', 'Cập nhật');
     }
     /**
      * Remove the specified resource from storage.

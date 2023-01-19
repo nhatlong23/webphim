@@ -13,6 +13,7 @@
                                 <th scope="col">Hình ảnh phim</th>
                                 <th scope="col">Tập Phim</th>
                                 <th scope="col">Link Phim</th>
+                                <th scope="col">Server Phim</th>
                                 {{-- <th scope="col">Active/Inactive</th> --}}
                                 <th scope="col">Manage</th>
                             </tr>
@@ -35,6 +36,13 @@
                                         <div class="iframe-phim">
                                             {!! $episode->linkphim !!}
                                         </div>
+                                    </td>
+                                    <td>
+                                        @foreach ($list_server as $key => $server_link)
+                                            @if ($episode->server == $server_link->id)
+                                                {{ $server_link->title }}
+                                            @endif
+                                        @endforeach
                                     </td>
                                     <td>
                                         {!! Form::open([

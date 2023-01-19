@@ -13,7 +13,7 @@ use App\Models\Genre;
 use App\Models\Episode;
 use App\Models\Rating;
 use Carbon\Carbon;
-use File;
+use Illuminate\Support\Facades\File;
 
 class MovieController extends Controller
 {
@@ -331,5 +331,16 @@ class MovieController extends Controller
         $movie = Movie::find($data['movie_id']);
         $movie->country_id = $data['country_id'];
         $movie->save();
+    }
+    public function watch_video(Request $request)
+    {
+        $data = $request->all();
+        $movie = Movie::find($data['movie_id']);
+        $video = Episode::where('movie_id', $data['movie_id'])->where('episode', $data['episode_id'])->first();
+        $output['video_title'] = $movie->title . '- tập ' . $video->episode;
+        $output['video_desc'] = $movie->description;
+        $output['video_link'] = $video->linkphim;
+
+        echo json_encode($output);
     }
 }

@@ -141,6 +141,20 @@
                                             </a>
                                         @endforeach
                                     </ul>
+                                    <ul class="halim-list-eps">
+                                        @foreach ($server as $key => $server)
+                                            @if ($episode->server==$server->id)
+                                            <li class="halim-episode">
+                                                <span
+                                                    class="halim-btn halim-btn-2 halim-info-1-1 box-shadow"
+                                                    data-post-id="37976" data-server="1" data-episode="1"
+                                                    data-position="first" data-embed="0"
+                                                    >{{ $server->title }}
+                                                </span>
+                                            </li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>

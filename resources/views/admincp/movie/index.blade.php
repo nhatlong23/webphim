@@ -1,6 +1,33 @@
 @extends('layouts.app')
 @section('content')
     @if (Auth::id())
+        <!-- Button trigger modal -->
+        {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#banner_quangcao">
+            Launch demo modal
+        </button> --}}
+
+        <!-- Modal -->
+        <div class="modal" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="video_title">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="video_desc"></p>
+                        <p id="video_link"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-md-12">
@@ -43,8 +70,17 @@
                                 <tr>
                                     <th scope="row">{{ $key }}</th>
                                     <td><span class="badge badge-success">{{ $cate->title }}</span></td>
-                                    <td><a href="{{ route('add-episode', [$cate->id]) }}" class="btn btn-danger btn-sm">Thêm
-                                            Tập Phim</a></td>
+                                    <td>
+                                        <a href="{{ route('add-episode', [$cate->id]) }}" class="btn btn-danger btn-sm">
+                                            Thêm Tập Phim
+                                        </a>
+                                        @foreach ($cate->episode as $key => $ep)
+                                            <a class="show_video" data-movie_video_id="{{ $ep->movie_id }}"
+                                                data-video_episode="{{ $ep->episode }}" style="cursor: pointer">
+                                                <span class="badge badge-light">{{ $ep->episode }}</span>
+                                            </a>
+                                        @endforeach
+                                    </td>
                                     <td><span class="badge badge-success">{{ $cate->episode_count }} / {{ $cate->episodes }}
                                             tập</span></td>
                                     <td><span class="badge badge-dark">{{ $cate->name_en }}</span></td>
