@@ -5,7 +5,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">Thêm Link Phim</div>
+                        <div class="card-header">Thêm Server Phim</div>
                         @if ($errors->any())
                             <div class="alert alert-danger" role="alert">
                                 <ul>

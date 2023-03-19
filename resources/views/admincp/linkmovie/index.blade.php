@@ -1,8 +1,7 @@
 @extends('layouts.app')
 @section('content')
     @if (Auth::id())
-
-        <div class="card-header">Liệt Kê Danh Mục</div>
+        <div class="card-header">Liệt Kê Server</div>
         <table class="table" id="tablemovie">
             <thead>
                 <tr>
