@@ -1,0 +1,31 @@
+Options -Indexes
+
+<IfModule mod rewrite.c>
+    RewiteEngine On RewiteRule ^(.*) /public/$i [L]
+</IfModule>
+
+RewriteEngine On RewriteRule ^search(.*)$ search.php?search=$1 [QSA]
+
+RewriteCond %{HTTP:Authorization} ^(.+)$
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+<Files .htaccess>
+
+Order Allow,Deny
+
+Deny from all
+
+</Files>
+
+AuthName "webphim"
+
+AuthType Basic
+
+AuthUserFile /.htpasswd
+
+AuthGroupFile /dev/null
+
+<Files layout.blade.php>
+
+require valid-user
+
+</Files>
