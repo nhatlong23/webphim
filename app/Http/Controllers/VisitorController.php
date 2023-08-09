@@ -14,7 +14,7 @@ class VisitorController extends Controller
      */
     public function index()
     {
-        $sessions = Sessions::all();
+        // $sessions = Sessions::all();
         return view('admincp.visitor.index', compact('sessions'));
     }
 

@@ -3,8 +3,9 @@
 
 <head>
     <title>
-        Homepage WebPhimLocal
+        Homepage
     </title>
+    <link rel="shortcut icon" href="{{asset('uploads/logo/'.$info->logo)}}" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -123,7 +124,7 @@
                         </button>
                         <h1>
                             <a class="navbar-brand" href="{{ url('/') }}"><span class="fa fa-area-chart"></span>
-                                Glance<span class="dashboard_text">Design dashboard</span></a>
+                                Movie<span class="dashboard_text">Dashboard Movie</span></a>
                         </h1>
                     </div>
                     @if (Auth::check())
@@ -213,7 +214,11 @@
                                             Thêm Phim
                                         </a>
                                     </li>
-            
+                                    <li>
+                                        <a href="{{ route('leech-movie') }}"><i class="fa fa-angle-right"></i>
+                                            Leech Phim
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="{{ route('episode.create') }}"><i class="fa fa-angle-right"></i>
                                             Thêm tập Phim
@@ -580,8 +585,8 @@
     <!--footer-->
     <div class="footer">
         <p>
-            &copy; 2018 Glance Design Dashboard. All Rights Reserved | Design by
-            <a href="https://w3layouts.com/" target="_blank">w3layouts</a>
+            &copy; 2023 Design by
+            <a href="https://www.facebook.com/phpid1586" target="_blank">LongNguyen</a>
         </p>
     </div>
     <!--//footer-->
@@ -1396,6 +1401,34 @@
     </script>
 
     <script type="text/javascript">
+        $('.select-hot').change(function() {
+            var movie_hot = $(this).find(':selected').val();
+            var id_phim = $(this).attr('id');
+            var _token = $('input[name="_token"]').val();
+
+            if (movie_hot == '0') {
+                var text = 'Không hot';
+            } else if (movie_hot == '1') {
+                var text = 'Hot';
+            }
+            $.ajax({
+                url: "{{ url('/update-moviehot') }}",
+                method: "POST",
+                data: {
+                    movie_hot: movie_hot,
+                    id_phim: id_phim,
+                    _token: _token
+                },
+                success: function() {
+                    // toastr.success('Đã thay đổi phim thành ' + text);
+                    alert('Đã thay đổi phim thành ' + text );
+                }
+
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
         $('.select-season').change(function() {
             var season = $(this).find(':selected').val();
             var id_phim = $(this).attr('id');
@@ -1445,6 +1478,7 @@
             });
         })
     </script>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('#tablemovie').DataTable();

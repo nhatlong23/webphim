@@ -11,35 +11,35 @@
     <meta name="language" content="Việt Nam">
 
 
-    <link rel="shortcut icon" href="{{asset('uploads/logo/'.$info->logo)}}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{ asset('uploads/logo/' . $info->logo) }}" type="image/x-icon" />
     <meta name="revisit-after" content="1 days" />
     <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
-    <title>{{$meta_title}}</title>
-    <meta name="description" content="{{$meta_description}}" />
-    <link rel="canonical" href="{{Request::url()}}">
+    <title>{{ $meta_title }}</title>
+    <meta name="description" content="{{ $meta_description }}" />
+    <link rel="canonical" href="{{ Request::url() }}">
     <link rel="next" href="" />
     <meta property="og:locale" content="vi_VN" />
-    <meta property="og:title" content="{{$meta_title}}" />
-    <meta property="og:description" content="{{$meta_description}}" />
-    <meta property="og:url" content="{{Request::url()}}" />
-    <meta property="og:site_name" content="{{$meta_title}}" />
+    <meta property="og:title" content="{{ $meta_title }}" />
+    <meta property="og:description" content="{{ $meta_description }}" />
+    <meta property="og:url" content="{{ Request::url() }}" />
+    <meta property="og:site_name" content="{{ $meta_title }}" />
 
-    <meta property="og:image" content="{{$meta_image}}" />
+    <meta property="og:image" content="{{ $meta_image }}" />
     <meta property="og:image:width" content="300" />
     <meta property="og:image:height" content="55" />
 
     {{-- twitter meta tag --}}
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="{{Request::url()}}" />
-    <meta name="twitter:title" content="{{$meta_title}}" />
-    <meta name="twitter:description" content="{{$meta_description}}" />
-    <meta name="twitter:image" content="{{$meta_image}}" />
+    <meta name="twitter:site" content="{{ Request::url() }}" />
+    <meta name="twitter:title" content="{{ $meta_title }}" />
+    <meta name="twitter:description" content="{{ $meta_description }}" />
+    <meta name="twitter:image" content="{{ $meta_image }}" />
 
     {{-- facebook meta tag html --}}
-    <meta property="og:url" content="{{Request::url()}}" />
-    <meta property="og:title" content="{{$meta_title}}" />
-    <meta property="og:description" content="{{$meta_description}}" />
-    <meta property="og:image" content="{{$meta_image}}" />
+    <meta property="og:url" content="{{ Request::url() }}" />
+    <meta property="og:title" content="{{ $meta_title }}" />
+    <meta property="og:description" content="{{ $meta_description }}" />
+    <meta property="og:image" content="{{ $meta_image }}" />
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -47,7 +47,8 @@
 
     <link rel='stylesheet' id='bootstrap-css' href='{{ asset('css/bootstrap.min.css?ver=5.7.2') }}' media='all' />
     <link rel='stylesheet' id='style-css' href='{{ asset('css/style.css?ver=5.7.2') }}' media='all' />
-    <link rel='stylesheet' id='wp-block-library-css' href='{{ asset('css/style.min.css?ver=5.7.2') }}' media='all' />
+    <link rel='stylesheet' id='wp-block-library-css' href='{{ asset('css/style.min.css?ver=5.7.2') }}'
+        media='all' />
     <script type='text/javascript' src='{{ asset('js/jquery.min.js?ver=5.7.2') }}' id='halim-jquery-js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type='text/javascript' src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -56,10 +57,8 @@
         .textwidget p a img {
             width: 100%;
         }
-    </style>
-    <style>
         #header .site-title {
-            background: url({{asset('uploads/logo/'.$info->logo)}}) no-repeat top left;
+            background: url({{ asset('uploads/logo/' . $info->logo) }}) no-repeat top left;
             background-size: contain;
             text-indent: -9999px;
         }
@@ -154,7 +153,7 @@
                                 <a title="Năm" href="#" data-toggle="dropdown" class="dropdown-toggle"
                                     aria-haspopup="true">Năm <span class="caret"></span></a>
                                 <ul role="menu" class=" dropdown-menu">
-                                    @for ($year = 2006; $year <= 2022; $year++)
+                                    @for ($year = 2006; $year <= 2030; $year++)
                                         <li><a title="{{ $year }}"
                                                 href="{{ url('year/' . $year) }}">{{ $year }}</a></li>
                                     @endfor
@@ -225,21 +224,59 @@
 
     <script type='text/javascript' src='{{ asset('js/bootstrap.min.js?ver=5.7.2') }}' id='bootstrap-js'></script>
     <script type='text/javascript' src='{{ asset('js/owl.carousel.min.js?ver=5.7.2') }}' id='carousel-js'></script>
-    <script type='text/javascript' src='{{ asset('js/halimtheme-core.min.js?ver=1626273138') }}' id='halim-init-js'></script>
+    <script type='text/javascript' src='{{ asset('js/halimtheme-core.min.js?ver=1626273138') }}' id='halim-init-js'>
+    </script>
 
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous"
-        src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v14.0&appId=957633844825401&autoLogAppEvents=1" nonce="iCRKOgCO">
-    </script>
+        src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v14.0&appId=957633844825401&autoLogAppEvents=1"
+        nonce="iCRKOgCO"></script>
 
 
-    <script style="text/javascript">
-        $(window).on('load', function(){
+    {{-- <script style="text/javascript">
+        $(window).on('load', function() {
             $('#banner_quangcao').modal('show');
         });
+    </script> --}}
+    <script>
+        $(document).ready(function() {
+            // Hover function for individual episodes
+            $(".episode-link").hover(
+                function() {
+                    $(this).addClass("active");
+                },
+                function() {
+                    $(this).removeClass("active");
+                }
+            );
+        });
     </script>
-
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.pagination-link').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    let currentPage = this.getAttribute('data-page');
+                    synchronizeMovies(currentPage);
+                });
+            });
+    
+            function synchronizeMovies(currentPage) {
+                // Sử dụng AJAX để gửi giá trị currentPage về máy chủ
+                let xhr = new XMLHttpRequest();
+                xhr.open('GET', '/leech-movie?page=' + currentPage, true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        // Xử lý kết quả nếu cần thiết
+                        // Ví dụ: Cập nhật dữ liệu trên trang hoặc thông báo thành công
+                    }
+                };
+                xhr.send();
+            }
+        });
+    </script>
+    
+    
     <script style="text/javascript">
         setTimeout(function(data) {
             var link = $('#myTab li:first-child a').tab('show')
@@ -271,16 +308,22 @@
                         $.each(data, function(key, value) {
                             if (value.title.search(expression) != -1) {
                                 $('#result').css('display', 'inherit');
+                                var imageSrc = value.image.substring(0, 4) === 'http' ? value.image : 'uploads/movie/' + value.image;
                                 $('#result').append(
-                                    '<li class="list-group-item" style="cursor: pointer"> <img height="40" width="40" src="uploads/movie/' +
-                                    value.image + '">' + value.title + ' </li>');
+                                    '<li class="list-group-item" style="cursor: pointer">' +
+                                    '<img height="40" width="40" src="' + imageSrc +
+                                    '">' +
+                                    value.title +
+                                    '</li>'
+                                );
                             }
                         });
                     });
                 } else {
                     $('#result').css('display', 'none');
                 }
-            })
+            });
+
             $('#result').on('click', 'li', function() {
                 var click_text = $(this).text().split('|');
                 $('#timkiem').val($.trim(click_text[0]));

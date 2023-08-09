@@ -38,10 +38,20 @@
                     @foreach ($movie as $key => $mov)
                         <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
                             <div class="halim-item">
+                                @php
+                                    $image_check = substr($mov->image, 0, 4);
+                                @endphp
                                 <a class="halim-thumb" href="{{ route('movie', $mov->slug) }}">
-                                    <figure><img class="lazy img-responsive"
+                                    <figure>
+                                        @if ($image_check == 'http')
+                                            <img class="lazy img-responsive"
+                                            src="{{ $mov->image }}" alt=""
+                                            title="{{ $mov->title }}">
+                                        @else
+                                            <img class="lazy img-responsive"
                                             src="{{ asset('uploads/movie/' . $mov->image) }}" alt=""
                                             title="{{ $mov->title }}">
+                                        @endif
                                     </figure>
                                     <span class="status">
                                         @if ($mov->resolution == 0)

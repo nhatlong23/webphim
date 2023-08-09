@@ -60,9 +60,9 @@
                             @endif
                             <div class="form-group">
                                 {!! Form::label('linkserver', 'LinkServer', []) !!}
-                                {{-- {!! Form::select('linkserver', $linkmovie, $episode->server, [
+                                {!! Form::select('linkserver', $linkmovie, $episode->server, [
                                     'class' => 'form-control',
-                                ]) !!} --}}
+                                ]) !!}
                             </div>
                             @if (!isset($episode))
                                 {!! Form::submit('Thêm Tập Phim', ['class' => 'btn btn-primary']) !!}

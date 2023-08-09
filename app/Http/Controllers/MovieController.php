@@ -24,7 +24,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $list = Movie::with('category', 'movie_genre', 'movie_category', 'country', 'genre')->withCount('episode')->orderby('id', 'DESC')->get();
+        $list = Movie::with('category', 'movie_genre', 'movie_category', 'country', 'genre')->withCount('episode')->orderBy('id', 'DESC')->paginate(100);
         $category = Category::pluck('title', 'id');
         $country = Country::pluck('title', 'id');
         $path = public_path() . "/json/";
@@ -35,12 +35,21 @@ class MovieController extends Controller
         return view('admincp.movie.index', compact('list', 'category', 'country'));
     }
 
+    public function update_moviehot(Request $request)
+    {
+        $data = $request->all();
+        $movie = Movie::find($data['id_phim']);
+        $movie->movie_hot = $data['movie_hot'];
+        toastr()->success('thành công', 'Cập nhật phim hot thành công!');
+        $movie->save();
+    }
 
     public function update_year(Request $request)
     {
         $data = $request->all();
         $movie = Movie::find($data['id_phim']);
         $movie->year = $data['year'];
+        toastr()->success('thành công', 'Cập nhật năm thành công!');
         $movie->save();
     }
 
@@ -57,6 +66,7 @@ class MovieController extends Controller
         $data = $request->all();
         $movie = Movie::find($data['id_phim']);
         $movie->topview = $data['topview'];
+        toastr()->success('thành công', 'Cập nhật topview thành công!');
         $movie->save();
     }
 
@@ -80,27 +90,33 @@ class MovieController extends Controller
                 $text = 'Trailer';
             }
             $output = '<div class="item post-37176">
-            <a href=" ' . url('/phim/' . $mov->slug) . ' " title="' . $mov->title . '">
-                <div class="item-link">
-                    <img src="' . url('uploads/movie/' . $mov->image) . '"
-                        class="lazy post-thumb" alt="' . $mov->title . '"
-                        title="' . $mov->title . '" />
-                    <span class="is_trailer">' . $text . '</span>
+            <a href="' . url('phim/' . $mov->slug) . '" title="' . $mov->title . '">
+                <div class="item-link">';
+
+            $image_check = substr($mov->image, 0, 4);
+
+            if ($image_check == 'http') {
+                $output .= '<img src="' . $mov->image . '" class="lazy post-thumb" alt="' . $mov->title . '" title="' . $mov->title . '" />';
+            } else {
+                $output .= '<img src="' . url('uploads/movie/' . $mov->image) . '" class="lazy post-thumb" alt="' . $mov->title . '" title="' . $mov->title . '" />';
+            }
+
+            $output .= '<span class="is_trailer">' . $text . '</span>
                 </div>
                 <p class="title">' . $mov->title . '</p>
             </a>
-            <div class="viewsCount" style="color: #9d9d9d;">  ' . $mov->view_count . ' lượt xem</div>
+            <div class="viewsCount" style="color: #9d9d9d;">' . $mov->view_count . ' lượt xem</div>
             <div style="float: left;">
-                <ul class="list-inline rating" title="Average rating">
-                ';
+                <ul class="list-inline rating" title="Average rating">';
+
             for ($count = 1; $count <= 5; $count++) {
-                $output .= ' <li title="rating" style="font-size: 20px; color: #ffcc00; padding:0">
-                    &#9733;
-                </li> ';
+                $output .= '<li title="rating" style="font-size: 20px; color: #ffcc00; padding:0">&#9733;</li>';
             }
-            $output .= '<li title="rating" style="font-size: 20px; color: #ffcc00; padding:0">
-            </div>
+
+            $output .= '</ul>
+        </div>
         </div>';
+
             echo $output;
         }
     }
@@ -149,7 +165,6 @@ class MovieController extends Controller
         $movie->thuocphim = $data['thuocphim'];
         // $movie->genre_id = $data['genre_id'];
         $movie->country_id = $data['country_id'];
-        $movie->date_update = Carbon::now('Asia/Ho_Chi_Minh');
         $movie->date_created = Carbon::now('Asia/Ho_Chi_Minh');
         //phim nhieu the loai
         foreach ($data['genre'] as $key => $gen) {
@@ -159,10 +174,7 @@ class MovieController extends Controller
         foreach ($data['category'] as $key => $cate) {
             $movie->category_id = $cate[0];
         }
-
         $get_image = $request->file('image');
-
-
         if ($get_image) {
             $get_name_image = $get_image->getClientOriginalName();
             $name_image = current(explode('.', $get_name_image));
@@ -175,7 +187,6 @@ class MovieController extends Controller
         $movie->movie_genre()->sync($data['genre']);
         //them nhieu danh muc cho phim
         $movie->movie_category()->sync($data['category']);
-
         return redirect()->route('movie.index');
     }
 
@@ -243,7 +254,7 @@ class MovieController extends Controller
         $movie->thuocphim = $data['thuocphim'];
         // $movie->genre_id = $data['genre_id'];
         $movie->country_id = $data['country_id'];
-        $movie->date_update = Carbon::now('Asia/Ho_Chi_Minh');
+        $movie->date_updated = Carbon::now('Asia/Ho_Chi_Minh');
         //phim nhieu the loai
         foreach ($data['genre'] as $key => $gen) {
             $movie->genre_id = $gen[0];
@@ -252,10 +263,7 @@ class MovieController extends Controller
         foreach ($data['category'] as $key => $cate) {
             $movie->category_id = $cate[0];
         }
-
         $get_image = $request->file('image');
-
-
         if ($get_image) {
             if (file_exists('uploads/movie/' . $movie->image)) {
                 unlink('uploads/movie/' . $movie->image);
@@ -311,6 +319,7 @@ class MovieController extends Controller
             $rating->movie_id = $data['movie_id'];
             $rating->rating = $data['index'];
             $rating->ip_rating = $ip_rating;
+            $rating->created_at = Carbon::now('Asia/Ho_Chi_Minh');
             $rating->save();
             echo 'done';
         }

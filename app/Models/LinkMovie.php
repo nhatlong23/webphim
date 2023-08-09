@@ -16,4 +16,10 @@ class LinkMovie extends Model
         'description',
         'status'
     ];
+
+    public function episodes()
+    {
+        return $this->hasMany(Episode::class);
+    }
+    
 }

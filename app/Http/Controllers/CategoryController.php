@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
-
+use Carbon\Carbon;
 
 class CategoryController extends Controller
 {
@@ -64,6 +64,7 @@ class CategoryController extends Controller
         $category->slug = $data['slug'];
         $category->description = $data['description'];
         $category->status = $data['status'];
+        $category->created_at = Carbon::now('Asia/Ho_Chi_Minh');
         $category->save();
         toastr()->success('thành công', 'Thêm dữ liệu danh mục thành công!');
         return redirect()->route('category.index');
@@ -128,6 +129,7 @@ class CategoryController extends Controller
         $category->slug = $data['slug'];
         $category->description = $data['description'];
         $category->status = $data['status'];
+        $category->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         $category->save();
         return redirect()->route('category.index');
     }

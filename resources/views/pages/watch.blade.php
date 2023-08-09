@@ -80,8 +80,12 @@
                         </a>
                         <div class="title-wrapper-xem full" style="display: contents;">
                             <h1 class="entry-title" style="font-size: 20px; font-weight: bold;">
-                                <a title="{{ $movie->title }}" class="tl">{{ $movie->title }} tập
-                                    {{ $movie->episodes }}
+                                @php
+                                    $url = $_SERVER['REQUEST_URI'];
+                                    $episode = substr($url, -1);
+                                @endphp
+                                <a title="{{ $movie->title }}" class="tl">{{ $movie->title }} -Tập:
+                                    {{ $episode }}
                                 </a>
                             </h1>
                         </div>
@@ -126,38 +130,43 @@
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active server-1" id="server-0">
                                 <div class="halim-server">
-                                    <ul class="halim-list-eps">
-                                        @foreach ($movie->episode as $key => $sotap)
-                                            <a href="{{ url('xem-phim/' . $movie->slug . '/tap-' . $sotap->episode) }}">
-                                                <li class="halim-episode">
-                                                    <span
-                                                        class="halim-btn halim-btn-2 {{ $tapphim == $sotap->episode ? 'active' : '' }} halim-info-1-1 box-shadow"
-                                                        data-post-id="37976" data-server="1" data-episode="1"
-                                                        data-position="first" data-embed="0"
-                                                        data-title="Xem phim {{ $movie->title }} - Tập {{ $sotap->episode }} - {{ $movie->name_en }} - vietsub + Thuyết Minh"
-                                                        data-h1="{{ $movie->title }} - tập {{ $sotap->episode }}">{{ $sotap->episode }}
-                                                    </span>
-                                                </li>
-                                            </a>
-                                        @endforeach
-                                    </ul>
-                                    <ul class="halim-list-eps">
-                                        @foreach ($server as $key => $server)
-                                            @if ($episode->server==$server->id)
-                                            <li class="halim-episode">
-                                                <span
-                                                    class="halim-btn halim-btn-2 halim-info-1-1 box-shadow"
-                                                    data-post-id="37976" data-server="1" data-episode="1"
-                                                    data-position="first" data-embed="0"
-                                                    >{{ $server->title }}
-                                                </span>
-                                            </li>
-                                            @endif
+                                    <ul class="halim-list-eps" style="display: grid;">
+                                        @foreach ($servers as $server)
+                                            @foreach ($episodes_movies as $episodes_movie)
+                                                @if ($episodes_movie->server == $server->id)
+                                                    <li class="halim-episode">
+                                                        <span class="halim-btn halim-btn-2 halim-info-1-1 box-shadow">
+                                                            {{ $server->title }}
+                                                        </span>
+                                                    </li>
+                                                    <ul class="halim-list-eps">
+                                                        @foreach ($episodes_list as $epi)
+                                                            @if ($epi->server == $server->id)
+                                                                @php
+                                                                    // Kiểm tra nếu số tập hiện tại đang xem ($tapphim) trùng với số tập của $epi
+                                                                    $isActive = $tapphim == $epi->episode;
+                                                                @endphp
+                                                                <a href="{{ url('xem-phim/' . $movie->slug . '/tap-' . $epi->episode) }}">
+                                                                    <li class="halim-episode">
+                                                                        <span
+                                                                            class="halim-btn halim-btn-2 {{ $isActive ? 'active' : '' }} halim-info-1-1 box-shadow"
+                                                                            title="Xem phim {{ $movie->title }} - Tập {{ $epi->episode }} - {{ $movie->name_en }} - vietsub + Thuyết Minh"
+                                                                            data-h1="{{ $movie->title }} - tập {{ $epi->episode }}">
+                                                                            {{ $epi->episode }}
+                                                                        </span>
+                                                                    </li>
+                                                                </a>
+                                                            @endif
+                                                        @endforeach
+                                                    </ul>
+                                                @endif
+                                            @endforeach
                                         @endforeach
                                     </ul>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -185,11 +194,20 @@
                         @foreach ($related as $key => $hot)
                             <article class="thumb grid-item post-38498">
                                 <div class="halim-item">
-                                    <a class="halim-thumb" href="{{ route('movie', $hot->slug) }}"
-                                        title="{{ $hot->title }}">
-                                        <figure><img class="lazy img-responsive"
-                                                src="{{ asset('uploads/movie/' . $hot->image) }}"
-                                                alt="{{ $hot->title }}" title="{{ $hot->title }}"></figure>
+                                    @php
+                                        $image_check = substr($hot->image, 0, 4);
+                                    @endphp
+                                    <a class="halim-thumb" href="{{ route('movie', $hot->slug) }}">
+                                        <figure>
+                                            @if ($image_check == 'http')
+                                                <img class="lazy img-responsive" src="{{ $hot->image }}"
+                                                    alt="" title="{{ $hot->title }}">
+                                            @else
+                                                <img class="lazy img-responsive"
+                                                    src="{{ asset('uploads/movie/' . $hot->image) }}" alt=""
+                                                    title="{{ $hot->title }}">
+                                            @endif
+                                        </figure>
                                         <span class="status">HD</span><span class="episode"><i class="fa fa-play"
                                                 aria-hidden="true"></i>
                                             @if ($movie->sub_movie == 0)

@@ -19,9 +19,21 @@
                                     <div class="halim-item">
                                         <a class="halim-thumb" href="{{ route('movie', $hot->slug) }}"
                                             title="{{ $hot->title }}">
-                                            <figure><img class="lazy img-responsive"
-                                                    src="{{ asset('uploads/movie/' . $hot->image) }}"
-                                                    alt="{{ $hot->title }}" title="{{ $hot->title }}"></figure>
+                                            @php
+                                                $image_check = substr($hot->image, 0, 4);
+                                            @endphp
+                                            <figure>
+                                                @if ($image_check == 'http')
+                                                    <img class="lazy img-responsive" src="{{ $hot->image }}"
+                                                        alt="{{ $hot->title }}" title="{{ $hot->title }}"
+                                                        loading="lazy">
+                                                @else
+                                                    <img class="lazy img-responsive"
+                                                        src="{{ asset('uploads/movie/' . $hot->image) }}"
+                                                        alt="{{ $hot->title }}" title="{{ $hot->title }}"
+                                                        loading="lazy">
+                                                @endif
+                                            </figure>
                                             <span class="status">
                                                 @if ($hot->resolution == 0)
                                                     HD
@@ -73,13 +85,24 @@
                             </a>
                         </div>
                         <div id="halim-advanced-widget-2-ajax-box" class="halim_box">
-                            @foreach ($cate_home->movie_category->take(15)->where('status', 1) as $key => $mov)
+                            @foreach ($cate_home->movie_category as $key => $mov)
+                                @php
+                                    $image_check = substr($mov->image, 0, 4);
+                                @endphp
                                 <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-37606">
                                     <div class="halim-item">
                                         <a class="halim-thumb" href="{{ route('movie', $mov->slug) }}">
-                                            <figure><img class="lazy img-responsive"
-                                                    src="{{ asset('uploads/movie/' . $mov->image) }}" alt=""
-                                                    title="{{ $mov->title }}">
+                                            <figure>
+                                                @if ($image_check == 'http')
+                                                    <img class="lazy img-responsive" src="{{ $mov->image }}"
+                                                        alt="{{ $mov->title }}" title="{{ $mov->title }}"
+                                                        loading="lazy">
+                                                @else
+                                                    <img class="lazy img-responsive"
+                                                        src="{{ asset('uploads/movie/' . $mov->image) }}"
+                                                        alt="{{ $mov->title }}" title="{{ $mov->title }}"
+                                                        loading="lazy">
+                                                @endif
                                             </figure>
                                             <span class="status">
                                                 @if ($mov->resolution == 0)
@@ -137,12 +160,21 @@
                             <div class="halim-ajax-popular-post-loading hidden"></div>
                             <div id="halim-ajax-popular-post" class="popular-post">
                                 @foreach ($movie_hot_sidebar->take(10)->where('status', 1) as $key => $mov_hot)
+                                    @php
+                                        $image_check = substr($mov_hot->image, 0, 4);
+                                    @endphp
                                     <div class="item post-37176">
                                         <a href="{{ route('movie', $mov_hot->slug) }}" title="{{ $mov_hot->title }}">
                                             <div class="item-link">
-                                                <img src="{{ asset('uploads/movie/' . $mov_hot->image) }}"
-                                                    class="lazy post-thumb" alt="{{ $mov_hot->title }}"
-                                                    title="{{ $mov_hot->title }}" />
+                                                @if ($image_check == 'http')
+                                                    <img class="lazy post-thumb img-responsive" src="{{ $mov_hot->image }}"
+                                                        alt="{{ $mov_hot->title }}" title="{{ $mov_hot->title }}"
+                                                        loading="lazy">
+                                                @else
+                                                    <img src="{{ asset('uploads/movie/' . $mov_hot->image) }}"
+                                                        class="lazy post-thumb img-responsive" alt="{{ $mov_hot->title }}"
+                                                        title="{{ $mov_hot->title }}" loading="lazy" />
+                                                @endif
                                                 <span class="is_trailer">
                                                     @if ($mov_hot->resolution == 0)
                                                         HD
@@ -161,7 +193,8 @@
                                             </div>
                                             <p class="title">{{ $mov_hot->title }}</p>
                                         </a>
-                                        <div class="viewsCount" style="color: #9d9d9d;">{{ $mov_hot->view_count }} lượt xem
+                                        <div class="viewsCount" style="color: #9d9d9d;">{{ $mov_hot->view_count }} lượt
+                                            xem
                                         </div>
                                         <div style="float: left;">
                                             <ul class="list-inline rating" title="Average rating">

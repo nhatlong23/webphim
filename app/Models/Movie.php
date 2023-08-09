@@ -9,7 +9,9 @@ class Movie extends Model
 {
     public $timestamps = false;
     use HasFactory;
-
+    protected $fillable = [
+        'updated_at',
+    ];
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');

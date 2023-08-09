@@ -7,7 +7,6 @@
                     <div class="card">
                         <a href="{{ route('movie.index') }}" class="btn btn-primary">Liệt kê phim</a>
                         <div class="card-header">Quản lí Phim</div>
-
                         <div class="card-body">
                             @if (session('status'))
                                 <div class="alert alert-success" role="alert">
@@ -124,9 +123,6 @@
                             </div>
                             <div class="form-group">
                                 {!! Form::label('category', 'Category', []) !!}
-                                {{-- {!! Form::select('category_id', $category, isset($movie) ? $movie->category_id : '', [
-                                'class' => 'form-control',
-                            ]) !!} --}}
                                 @foreach ($list_category as $key => $cate)
                                     <br>
                                     @if (isset($movie))

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Country;
+use Carbon\Carbon;
 
 class CountryController extends Controller
 {
@@ -42,6 +43,7 @@ class CountryController extends Controller
         $country->slug = $data['slug'];
         $country->description = $data['description'];
         $country->status = $data['status'];
+        $country->created_at = Carbon::now('Asia/Ho_Chi_Minh');
         $country->save();
         return redirect()->back();
     }
@@ -85,6 +87,7 @@ class CountryController extends Controller
         $country->slug = $data['slug'];
         $country->description = $data['description'];
         $country->status = $data['status'];
+        $country->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         $country->save();
         return redirect()->back();
     }

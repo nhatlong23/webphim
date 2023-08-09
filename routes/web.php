@@ -11,8 +11,12 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\EpisodeController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\LinkMovieController;
+use App\Http\Controllers\LeechMovieController;
+use App\Http\Controllers\RedisController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,17 +61,35 @@ Route::get('select-movie', [EpisodeController::class, 'select_movie'])->name('se
 Route::get('add-episode/{id}', [EpisodeController::class, 'add_episode'])->name('add-episode');
 Route::resource('movie', MovieController::class);
 Route::post('/update-year-phim', [MovieController::class, 'update_year']);
+Route::post('/update-moviehot', [MovieController::class, 'update_moviehot']);
 Route::post('/update-topview-phim', [MovieController::class, 'update_topview']);
 Route::post('/update-season-phim', [MovieController::class, 'update_season']);
 Route::resource('info', InfoController::class);
 Route::resource('linkmovie', LinkMovieController::class);
+Route::resource('leech-movie', LeechMovieController::class);
+Route::resource('redis', RedisController::class);
 
 //thay đổi dữ liệu movie bằng ajax
 // Route::get('/category-choose', [MovieController::class, 'category_choose'])->name('category-choose');
 Route::get('/country-choose', [MovieController::class, 'country_choose'])->name('country-choose');
 Route::POST('/watch-video', [MovieController::class, 'watch_video'])->name('watch-video');
+Route::get('/leech-movie', [LeechMovieController::class, 'leech_movie'])->name('leech-movie');
+Route::get('leech-detail/{slug}', [LeechMovieController::class, 'leech_detail'])->name('leech-detail');
+Route::get('leech-episodes/{slug}', [LeechMovieController::class, 'leech_episodes'])->name('leech-episodes');
+Route::post('leech-store/{slug}', [LeechMovieController::class, 'leech_store'])->name('leech-store');
+Route::post('leech-episode-store/{slug}', [LeechMovieController::class, 'leech_episode_store'])->name('leech-episode-store');
+Route::get('synchronize-all-movies', [LeechMovieController::class, 'synchronizeAllMovies'])->name('synchronize-all-movies');
+Route::get('synchronize-all-episodes', [LeechMovieController::class, 'synchronizeAllEpisodes'])->name('synchronize-all-episodes');
+Route::get('remove-episode', [LeechMovieController::class, 'checkAndRemoveDuplicateEpisodes'])->name('remove-episode');
 
 //site map host
 Route::get('/create_sitemap', function () {
     return Artisan::call('sitemap:create');
+});
+
+
+//test redis
+Route::get('/redis', function () {
+    Redis::set('name', 'Taylor');
+    return Redis::get('name');
 });

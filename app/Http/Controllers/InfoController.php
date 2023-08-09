@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Info;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class InfoController extends Controller
 {
@@ -88,6 +89,7 @@ class InfoController extends Controller
         $info = Info::find($id);
         $info->title = $data['title'];
         $info->description = $data['description'];
+        $info->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         $get_image = $request->file('image');
 
 

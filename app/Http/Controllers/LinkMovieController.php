@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LinkMovie;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class LinkMovieController extends Controller
 {
@@ -56,6 +57,7 @@ class LinkMovieController extends Controller
         $linkmovie->title = $data['title'];
         $linkmovie->description = $data['description'];
         $linkmovie->status = $data['status'];
+        $linkmovie->created_at = Carbon::now('Asia/Ho_Chi_Minh');
         $linkmovie->save();
 
         toastr()->success('thành công', 'Thêm dữ liệu danh mục thành công!');
@@ -113,6 +115,7 @@ class LinkMovieController extends Controller
         $linkmovie->title = $data['title'];
         $linkmovie->description = $data['description'];
         $linkmovie->status = $data['status'];
+        $linkmovie->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         $linkmovie->save();
 
         toastr()->success('thành công', 'Cập nhật link phim thành công!');
