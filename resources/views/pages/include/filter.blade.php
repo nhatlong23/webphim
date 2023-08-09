@@ -10,10 +10,10 @@
         <div class="form-group">
             <select class="form-control stylish_filter" name="order" id="exampleFormControlSelect1">
                 <option value="">--Sắp xếp--</option>
-                <option value="date">Ngày đăng</option>
-                <option value="year_release">Năm sản xuất</option>
-                <option value="name_a_z">Tên phim</option>
-                <option value="watch_view">Lượt xem</option>
+                <option value="ngaytao">Ngày đăng</option>
+                <option value="year">Năm sản xuất</option>
+                <option value="title">Tên phim</option>
+                <option value="topview">Lượt xem</option>
             </select>
         </div>
     </div>
@@ -50,7 +50,7 @@
                     $year = null;
                 }
             @endphp
-            {!! Form::selectYear('year', 2006, 2022, $year, [
+            {!! Form::selectYear('year', 2006, 2030, $year, [
                 'class' => 'form-control stylish_filter',
                 'placeholder' => '--Năm Phim--',
             ]) !!}

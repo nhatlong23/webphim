@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class GenreController extends Controller
 {
@@ -42,6 +43,7 @@ class GenreController extends Controller
         $genre->slug = $data['slug'];
         $genre->description = $data['description'];
         $genre->status = $data['status'];
+        $genre->created_at = Carbon::now('Asia/Ho_Chi_Minh');
         $genre->save();
         return redirect()->route('genre.index');
     }
@@ -85,6 +87,7 @@ class GenreController extends Controller
         $genre->slug = $data['slug'];
         $genre->description = $data['description'];
         $genre->status = $data['status'];
+        $genre->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         $genre->save();
         return redirect()->route('genre.index');
     }

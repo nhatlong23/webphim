@@ -1,0 +1,42 @@
+version: '3'
+services:
+  webphim_server:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    container_name: webphim_server
+    working_dir: /home/longnguyen/Workspace
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - .:/home/longnguyen/Workspace/php/webphim
+      - ./docker/nginx_log:/var/log/nginx
+      - ./docker/php-fpm/php-fpm.log:/var/log/php7.4-fpm.log
+      - ./docker/config/app.conf:/etc/nginx/conf.d/app.conf
+      - ./docker/ssl:/etc/nginx/ssl
+    links:
+      - mysql
+      - redis
+
+  mysql:
+    image: mysql:5.7
+    container_name: webphim_mysql
+    ports:
+      - "3308:3306"
+    volumes:
+      - ./docker/mysql/:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: webphim1
+      MYSQL_USER: webphim
+      MYSQL_PASSWORD: 123456
+
+  redis:
+    image: redis:latest
+    container_name: webphim_redis
+    command: redis-server --requirepass 123456 # Thiết lập mật khẩu cho Redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./docker/redis:/data # Đặt thư mục dữ liệu Redis

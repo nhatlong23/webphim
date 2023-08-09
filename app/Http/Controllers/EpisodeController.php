@@ -18,8 +18,8 @@ class EpisodeController extends Controller
     public function index()
     {
         $list_episode = Episode::with('movie')->orderBy('movie_id', 'DESC')->get();
-        // return response()->json($list_episode);
-        return view('admincp.episodes.index', compact('list_episode'));
+        $list_server = LinkMovie::orderBy('id', 'DESC')->get();
+        return view('admincp.episodes.index', compact('list_episode', 'list_server'));
     }
 
     /**
@@ -42,30 +42,29 @@ class EpisodeController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        // $episode_check = Episode::where('movie_id', $data['movie_id'])->where('episode', $data['episode'])->first();
+        // $server_check =  Episode::where('movie_id', $data['movie_id'])->where('server', $data['linkserver'])->first();
+
+        // if ($server_check) {
+        //     return redirect()->back()->with('error', 'Tập phim hoặc Máy chủ đã tồn tại');
+        // } else {
         $episode = new Episode();
-        $episode_check = Episode::where('movie_id', $data['movie_id'])->where('episode', $data['episode'])->first();
-        if ($episode_check) {
-            return redirect()->back()->with('error', 'Episode đã tồn tại');
-        } else {
-            $episode->movie_id = $data['movie_id'];
-            $episode->linkphim = $data['link'];
-            $episode->episode = $data['episode'];
-            $episode->server = $data['linkserver'];
-            $episode->update_at = Carbon::now('Asia/Ho_Chi_Minh');
-            $episode->created_at = Carbon::now('Asia/Ho_Chi_Minh');
-            $episode->save();
-            return redirect()->back()->with('success', 'Thêm mới thành công');
-        }
-        return redirect()->back()->with('error', 'Thêm mới thất bại');
+        $episode->movie_id = $data['movie_id'];
+        $episode->linkphim = $data['link'];
+        $episode->episode = $data['episode'];
+        $episode->server = $data['linkserver'];
+        $episode->created_at = Carbon::now('Asia/Ho_Chi_Minh');
+        $episode->save();
+        return redirect()->back()->with('success', 'Thêm mới thành công');
     }
 
     public function add_episode($id)
     {
         $movie = Movie::find($id);
-        $linkmovie = LinkMovie::orderBy('id', 'DESC')->pluck('title','id');
+        $linkmovie = LinkMovie::orderBy('id', 'DESC')->pluck('title', 'id');
         $list_server = LinkMovie::orderBy('id', 'DESC')->get();
         $list_episode = Episode::with('movie')->where('movie_id', $id)->orderBy('episode', 'DESC')->get();
-        return view('admincp.episodes.add_episode', compact('list_episode', 'movie', 'linkmovie','list_server'));
+        return view('admincp.episodes.add_episode', compact('list_episode', 'movie', 'linkmovie', 'list_server'));
     }
 
     /**
@@ -87,10 +86,10 @@ class EpisodeController extends Controller
      */
     public function edit($id)
     {
-        $linkmovie = LinkMovie::orderBy('id', 'DESC')->pluck('title','id');
+        $linkmovie = LinkMovie::orderBy('id', 'DESC')->pluck('title', 'id');
         $list_movie = Movie::orderBy('id', 'DESC')->pluck('title', 'id');
         $episode = Episode::find($id);
-        return view('admincp.episodes.form', compact('episode', 'list_movie','linkmovie'));
+        return view('admincp.episodes.form', compact('episode', 'list_movie', 'linkmovie'));
     }
 
     /**
@@ -108,8 +107,7 @@ class EpisodeController extends Controller
         $episode->linkphim = $data['link'];
         $episode->server = $data['linkserver'];
         $episode->episode = $data['episode'];
-        $episode->update_at = Carbon::now('Asia/Ho_Chi_Minh');
-        $episode->created_at = Carbon::now('Asia/Ho_Chi_Minh');
+        $episode->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         $episode->save();
         return redirect()->to('add-episode/' . $data['movie_id'])->with('success', 'Cập nhật');
     }

@@ -9,7 +9,9 @@ class Episode extends Model
 {
     use HasFactory;
     public $timestamps = false;
-
+    protected $fillable = [
+        'updated_at',
+    ];
     public function movie()
     {
         return $this->belongsTo(Movie::class);

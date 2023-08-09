@@ -97,7 +97,15 @@
                                 <tr id="{{ $episode->id }}">
                                     <th scope="row">{{ $key }}</th>
                                     <td>{{ $episode->movie->title }}</td>
-                                    <td><img src="{{ asset('uploads/movie/' . $episode->movie->image) }}" width="100">
+                                    @php
+                                        $image_check = substr($episode->movie->image, 0, 4);
+                                    @endphp
+                                    <td>
+                                        @if ($image_check == 'http')
+                                            <img src="{{ $episode->movie->image }}" width="100">
+                                        @else
+                                            <img src="{{ asset('uploads/movie/' . $episode->movie->image) }}" width="100">
+                                        @endif
                                     </td>
                                     <td>Tập {{ $episode->episode }}</td>
                                     <td>

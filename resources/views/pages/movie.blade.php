@@ -33,8 +33,15 @@
                         </div>
                         <div class="movie_info col-xs-12">
                             <div class="movie-poster col-md-3">
-                                <img class="movie-thumb" src="{{ asset('uploads/movie/' . $movie->image) }}"
-                                    alt="{{ $movie->title }}">
+                                @php
+                                    $image_check = substr($movie->image, 0, 4);
+                                @endphp
+                                @if ($image_check == 'http')
+                                    <img class="movie-thumb" src="{{ $movie->image }}" alt="{{ $movie->title }}">
+                                @else
+                                    <img class="movie-thumb" src="{{ asset('uploads/movie/' . $movie->image) }}"
+                                        alt="{{ $movie->title }}">
+                                @endif
                                 @if ($movie->resolution != 5)
                                     @if ($episode_current_list_count > 0)
                                         <div class="bwa-content">
@@ -49,7 +56,6 @@
                                     <a href="#watch_trailer" style="display: block;"
                                         class="btn btn-primary watch_trailer">Xem Trailer</a>
                                 @endif
-
                             </div>
                             <div class="film-poster col-md-9">
                                 <h1 class="movie-title title-1"
@@ -215,7 +221,7 @@
                     <div class="entry-content htmlwrap clearfix">
                         <div class="video-item halim-entry-box">
                             <article id="post-38424" class="item-content">
-                                {{ $movie->description }}
+                                {!! $movie->description !!}
                             </article>
                         </div>
                     </div>
@@ -282,11 +288,20 @@
                         @foreach ($related as $key => $hot)
                             <article class="thumb grid-item post-38498">
                                 <div class="halim-item">
-                                    <a class="halim-thumb" href="{{ route('movie', $hot->slug) }}"
-                                        title="{{ $hot->title }}">
-                                        <figure><img class="lazy img-responsive"
-                                                src="{{ asset('uploads/movie/' . $hot->image) }}"
-                                                alt="{{ $hot->title }}" title="{{ $hot->title }}"></figure>
+                                    @php
+                                        $image_check = substr($hot->image, 0, 4);
+                                    @endphp
+                                    <a class="halim-thumb" href="{{ route('movie', $hot->slug) }}">
+                                        <figure>
+                                            @if ($image_check == 'http')
+                                                <img class="lazy img-responsive" src="{{ $hot->image }}"
+                                                    alt="" title="{{ $hot->title }} loading="lazy"">
+                                            @else
+                                                <img class="lazy img-responsive"
+                                                    src="{{ asset('uploads/movie/' . $hot->image) }}" alt=""
+                                                    title="{{ $hot->title }} loading="lazy"">
+                                            @endif
+                                        </figure>
                                         <span class="status">HD</span><span class="episode"><i class="fa fa-play"
                                                 aria-hidden="true"></i>
                                             @if ($movie->sub_movie == 0)

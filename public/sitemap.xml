@@ -4,529 +4,614 @@
 	<url>
 	<loc>https://webphim.local</loc>
 		<priority>1.0</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/the-loai/chien-tranh</loc>
+	<loc>https://storestock.live/the-loai/chien-tranh</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/the-loai/gia-dinh</loc>
+	<loc>https://storestock.live/the-loai/gia-dinh</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/the-loai/phieu-luu</loc>
+	<loc>https://storestock.live/the-loai/phieu-luu</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/the-loai/tai-lieu</loc>
+	<loc>https://storestock.live/the-loai/tai-lieu</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/the-loai/than-thoai</loc>
+	<loc>https://storestock.live/the-loai/than-thoai</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/the-loai/the-thao-am-nhac</loc>
+	<loc>https://storestock.live/the-loai/the-thao-am-nhac</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/the-loai/tinh-cam</loc>
+	<loc>https://storestock.live/the-loai/tinh-cam</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/the-loai/phim-ma</loc>
+	<loc>https://storestock.live/the-loai/phim-ma</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/the-loai/co-trang</loc>
+	<loc>https://storestock.live/the-loai/co-trang</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/the-loai/vo-thuat</loc>
+	<loc>https://storestock.live/the-loai/vo-thuat</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/the-loai/hinh-su</loc>
+	<loc>https://storestock.live/the-loai/hinh-su</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/the-loai/hai-huoc</loc>
+	<loc>https://storestock.live/the-loai/hai-huoc</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/the-loai/kinh-di</loc>
+	<loc>https://storestock.live/the-loai/kinh-di</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/the-loai/hoat-hinh</loc>
+	<loc>https://storestock.live/the-loai/hoat-hinh</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/the-loai/vien-tuong</loc>
+	<loc>https://storestock.live/the-loai/vien-tuong</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/the-loai/hanh-dong</loc>
+	<loc>https://storestock.live/the-loai/hanh-dong</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/the-loai/tinh-cam</loc>
+	<loc>https://storestock.live/the-loai/tinh-cam</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/the-loai/tam-ly</loc>
+	<loc>https://storestock.live/the-loai/tam-ly</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/danh-muc/phim-chieu-rap</loc>
+	<loc>https://storestock.live/danh-muc/phim-chieu-rap</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/danh-muc/phim-bo</loc>
+	<loc>https://storestock.live/danh-muc/phim-bo</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/danh-muc/phim-le</loc>
+	<loc>https://storestock.live/danh-muc/phim-le</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/danh-muc/phim-netflix</loc>
+	<loc>https://storestock.live/danh-muc/phim-netflix</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/quoc-gia/philippin</loc>
+	<loc>https://storestock.live/quoc-gia/tho-nhi-ky</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/quoc-gia/thai-lan</loc>
+	<loc>https://storestock.live/quoc-gia/philippin</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/quoc-gia/dai-loan</loc>
+	<loc>https://storestock.live/quoc-gia/thai-lan</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/quoc-gia/han-quoc</loc>
+	<loc>https://storestock.live/quoc-gia/dai-loan</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/quoc-gia/trung-quoc</loc>
+	<loc>https://storestock.live/quoc-gia/han-quoc</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/quoc-gia/nhat-ban</loc>
+	<loc>https://storestock.live/quoc-gia/trung-quoc</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/quoc-gia/hong-kong</loc>
+	<loc>https://storestock.live/quoc-gia/nhat-ban</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/quoc-gia/my</loc>
+	<loc>https://storestock.live/quoc-gia/hong-kong</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/quoc-gia/an-do</loc>
+	<loc>https://storestock.live/quoc-gia/my</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/quoc-gia/trung-quoc</loc>
+	<loc>https://storestock.live/quoc-gia/an-do</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/quoc-gia/viet-nam</loc>
+	<loc>https://storestock.live/quoc-gia/trung-quoc</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/phim/tru-so-bi-mat</loc>
+	<loc>https://storestock.live/quoc-gia/viet-nam</loc>
+		<priority>0.7</priority>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://storestock.live/phim/tim-nha-cho-boss</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/phim/kung-fu-panda-hiep-si-rong-phan-1</loc>
+	<loc>https://storestock.live/phim/thanh-tra-vo-hinh-phan-2</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/phim/big-mouth2022</loc>
+	<loc>https://storestock.live/phim/phuong-phap-kham-pha-tinh-yeu</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/phim/doraemon-nobita-va-cuoc-chien-vu-tru-ti-hon</loc>
+	<loc>https://storestock.live/phim/cuoc-xam-luoc-bi-mat</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/phim/ke-cap-mat-trang-4-su-troi-day-cua-gru</loc>
+	<loc>https://storestock.live/phim/an-lac-truyen</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/phim/nguoi-nhen-khong-con-nha</loc>
+	<loc>https://storestock.live/phim/khoi-lua-nhan-gian-cua-toi</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/phim/lightyear-canh-sat-vu-tru</loc>
+	<loc>https://storestock.live/phim/quarterback</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/phim/con-cuu-non</loc>
+	<loc>https://storestock.live/phim/bi-mat-moi-quan-he</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/tru-so-bi-mat/tap-HD</loc>
+	<loc>https://storestock.live/phim/em-gai-chi-ho-chong-chi-la-cua-em</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-1</loc>
+	<loc>https://storestock.live/phim/nhiem-vu-bat-kha-thi-7-nghiep-bao-phan-1</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-2</loc>
+	<loc>https://storestock.live/phim/tang-11-bien-mat</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-3</loc>
+	<loc>https://storestock.live/phim/me-ke-2023</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-4</loc>
+	<loc>https://storestock.live/phim/tru-so-bi-mat</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-5</loc>
+	<loc>https://storestock.live/phim/kung-fu-panda-hiep-si-rong-phan-1</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-6</loc>
+	<loc>https://storestock.live/phim/big-mouth2022</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-7</loc>
+	<loc>https://storestock.live/phim/doraemon-nobita-va-cuoc-chien-vu-tru-ti-hon</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-8</loc>
+	<loc>https://storestock.live/phim/ke-cap-mat-trang-4-su-troi-day-cua-gru</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-9</loc>
+	<loc>https://storestock.live/phim/nguoi-nhen-khong-con-nha</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-10</loc>
+	<loc>https://storestock.live/phim/lightyear-canh-sat-vu-tru</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-11</loc>
+	<loc>https://storestock.live/phim/con-cuu-non</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:41+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/big-mouth2022/tap-1</loc>
+	<loc>https://storestock.live/xem-phim/tru-so-bi-mat/tap-HD</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/big-mouth2022/tap-2</loc>
+	<loc>https://storestock.live/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-1</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/big-mouth2022/tap-3</loc>
+	<loc>https://storestock.live/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-2</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/big-mouth2022/tap-4</loc>
+	<loc>https://storestock.live/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-3</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/big-mouth2022/tap-6</loc>
+	<loc>https://storestock.live/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-4</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/doraemon-nobita-va-cuoc-chien-vu-tru-ti-hon/tap-HD</loc>
+	<loc>https://storestock.live/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-5</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/ke-cap-mat-trang-4-su-troi-day-cua-gru/tap-HD</loc>
+	<loc>https://storestock.live/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-6</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/nguoi-nhen-khong-con-nha/tap-HD</loc>
+	<loc>https://storestock.live/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-7</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/lightyear-canh-sat-vu-tru/tap-HD</loc>
+	<loc>https://storestock.live/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-8</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/xem-phim/con-cuu-non/tap-1</loc>
+	<loc>https://storestock.live/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-9</loc>
 		<priority>0.6</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2023</loc>
+	<loc>https://storestock.live/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-10</loc>
+		<priority>0.6</priority>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://storestock.live/xem-phim/kung-fu-panda-hiep-si-rong-phan-1/tap-11</loc>
+		<priority>0.6</priority>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://storestock.live/xem-phim/big-mouth2022/tap-1</loc>
+		<priority>0.6</priority>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://storestock.live/xem-phim/big-mouth2022/tap-2</loc>
+		<priority>0.6</priority>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://storestock.live/xem-phim/big-mouth2022/tap-3</loc>
+		<priority>0.6</priority>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://storestock.live/xem-phim/big-mouth2022/tap-4</loc>
+		<priority>0.6</priority>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://storestock.live/xem-phim/big-mouth2022/tap-6</loc>
+		<priority>0.6</priority>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://storestock.live/xem-phim/doraemon-nobita-va-cuoc-chien-vu-tru-ti-hon/tap-HD</loc>
+		<priority>0.6</priority>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://storestock.live/xem-phim/ke-cap-mat-trang-4-su-troi-day-cua-gru/tap-HD</loc>
+		<priority>0.6</priority>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://storestock.live/xem-phim/nguoi-nhen-khong-con-nha/tap-HD</loc>
+		<priority>0.6</priority>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://storestock.live/xem-phim/lightyear-canh-sat-vu-tru/tap-HD</loc>
+		<priority>0.6</priority>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://storestock.live/xem-phim/con-cuu-non/tap-1</loc>
+		<priority>0.6</priority>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://storestock.live/xem-phim/con-cuu-non/tap-2</loc>
+		<priority>0.6</priority>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://storestock.live/year/2023</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2022</loc>
+	<loc>https://storestock.live/year/2022</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2021</loc>
+	<loc>https://storestock.live/year/2021</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2020</loc>
+	<loc>https://storestock.live/year/2020</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2019</loc>
+	<loc>https://storestock.live/year/2019</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2018</loc>
+	<loc>https://storestock.live/year/2018</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2017</loc>
+	<loc>https://storestock.live/year/2017</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2016</loc>
+	<loc>https://storestock.live/year/2016</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2015</loc>
+	<loc>https://storestock.live/year/2015</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2014</loc>
+	<loc>https://storestock.live/year/2014</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2013</loc>
+	<loc>https://storestock.live/year/2013</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2012</loc>
+	<loc>https://storestock.live/year/2012</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2011</loc>
+	<loc>https://storestock.live/year/2011</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2010</loc>
+	<loc>https://storestock.live/year/2010</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2009</loc>
+	<loc>https://storestock.live/year/2009</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2008</loc>
+	<loc>https://storestock.live/year/2008</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2007</loc>
+	<loc>https://storestock.live/year/2007</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2006</loc>
+	<loc>https://storestock.live/year/2006</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2005</loc>
+	<loc>https://storestock.live/year/2005</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2004</loc>
+	<loc>https://storestock.live/year/2004</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2003</loc>
+	<loc>https://storestock.live/year/2003</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2002</loc>
+	<loc>https://storestock.live/year/2002</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2001</loc>
+	<loc>https://storestock.live/year/2001</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://webphim.local/year/2000</loc>
+	<loc>https://storestock.live/year/2000</loc>
 		<priority>0.7</priority>
-		<lastmod>2023-01-16T11:41:42+00:00</lastmod>
+		<lastmod>2023-07-13T16:50:42+00:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 </urlset>
+
