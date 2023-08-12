@@ -27,23 +27,14 @@ class IndexController extends Controller
         $meta_description = $info->description;
         $meta_image = '';
         $sub7days = Carbon::now('Asia/Ho_Chi_Minh')->subDays(30);
-        $movie_hot = Movie::where('movie_hot', 1)->where('status', 1)->where('date_created', '>=', $sub7days)->inRandomOrder()->get();
+        $movie_hot = Movie::where('movie_hot', 1)->where('status', 1)->where('date_created', '>=', $sub7days)->inRandomOrder() ->take(10)->get();
 
         // Kiểm tra xem danh sách phim đã được lưu trong cache chưa
-        if (Cache::has('category_home')) {
-            // Nếu đã có trong cache, lấy dữ liệu từ cache
-            $category_home = Cache::get('category_home');
-        } else {
-            // Nếu chưa có trong cache, thực hiện truy vấn từ cơ sở dữ liệu
-            $category_home = Category::with(['movie_category' => function ($query) {
-                $query->where('status', 1)->take(25);
-            }])->orderBy('position', 'ASC')->where('status', 1)->get();
+        $category_home = Cache::remember('category_home', 60 * 60, function () {
+            return Category::with('movie_category')->orderBy('position', 'ASC')->where('status', 1)->get();
+        });
 
-            // Lưu danh sách phim vào cache với thời gian sống là 12 giờ
-            Cache::put('category_home', $category_home, 12 * 60 * 60); // 60 * 60 là 1 giờ (đơn vị là giây)
-        }
-
-        return view('pages.home', compact('category_home', 'movie_hot', 'meta_title', 'meta_description', 'meta_image'));
+        return view('pages.home', compact('movie_hot', 'meta_title', 'meta_description', 'meta_image'));
     }
 
     public function search()
@@ -58,7 +49,7 @@ class IndexController extends Controller
             $movie = Movie::where(function ($query) use ($search) {
                 $query->where('title', 'LIKE', '%' . $search . '%')->orWhere('name_en', 'LIKE', '%' . $search . '%');
             })
-                ->where('status', 1)->orderBy('date_updated', 'DESC')->paginate(40);
+                ->where('status', 1)->orderBy('date_updated', 'DESC')->paginate(30);
             return view('pages.search', compact('search', 'movie', 'meta_title', 'meta_description', 'meta_image'));
         } else {
             return redirect()->back();
@@ -77,7 +68,7 @@ class IndexController extends Controller
         foreach ($movie_category as $key => $movi) {
             $many_category[] = $movi->movie_id;
         }
-        $movie = Movie::whereIn('id', $many_category)->where('status', 1)->orderBy('date_updated', 'DESC')->paginate(40);
+        $movie = Movie::whereIn('id', $many_category)->where('status', 1)->orderBy('date_updated', 'DESC')->paginate(30);
         return view('pages.category', compact('cate_slug', 'movie', 'meta_title', 'meta_description', 'meta_image'));
     }
     public function year($year)
@@ -86,7 +77,7 @@ class IndexController extends Controller
         $meta_title = 'Năm phim: ' . $year;
         $meta_description = 'Tìm Năm Phim: ' . $year;
         $meta_image = '';
-        $movie = Movie::where('year', $year)->where('status', 1)->orderBy('date_updated', 'DESC')->paginate(40);
+        $movie = Movie::where('year', $year)->where('status', 1)->orderBy('date_updated', 'DESC')->paginate(30);
         return view('pages.year', compact('year', 'movie', 'meta_title', 'meta_description', 'meta_image'));
     }
     public function tag($tag)
@@ -95,7 +86,7 @@ class IndexController extends Controller
         $meta_title = 'Tags: ' . $tag;
         $meta_description = $tag;
         $meta_image = '';
-        $movie = Movie::where('tags_movie', 'LIKE', '%' . $tag . '%')->where('status', 1)->orderBy('date_updated', 'DESC')->paginate(40);
+        $movie = Movie::where('tags_movie', 'LIKE', '%' . $tag . '%')->where('status', 1)->orderBy('date_updated', 'DESC')->paginate(30);
         return view('pages.tag', compact('tag', 'movie', 'meta_title', 'meta_description', 'meta_image'));
     }
     public function director($director)
@@ -104,7 +95,7 @@ class IndexController extends Controller
         $meta_title = 'Đạo Diễn: ' . $director;
         $meta_description = ' Tìm kiếm đạo diễn: ' . $director;
         $meta_image = '';
-        $movie = Movie::where('director', 'LIKE', '%' . $director . '%')->where('status', 1)->orderBy('date_updated', 'DESC')->paginate(40);
+        $movie = Movie::where('director', 'LIKE', '%' . $director . '%')->where('status', 1)->orderBy('date_updated', 'DESC')->paginate(30);
         return view('pages.director', compact('director', 'movie', 'meta_title', 'meta_description', 'meta_image'));
     }
     public function cast_movie($cast_movie)
@@ -113,7 +104,7 @@ class IndexController extends Controller
         $meta_title = 'Diễn Viên: ' . $cast_movie;
         $meta_description = ' Tìm kiếm diễn viên: ' . $cast_movie;
         $meta_image = '';
-        $movie = Movie::where('cast_movie', 'LIKE', '%' . $cast_movie . '%')->where('status', 1)->orderBy('date_updated', 'DESC')->paginate(40);
+        $movie = Movie::where('cast_movie', 'LIKE', '%' . $cast_movie . '%')->where('status', 1)->orderBy('date_updated', 'DESC')->paginate(30);
         return view('pages.cast', compact('cast_movie', 'movie', 'meta_title', 'meta_description', 'meta_image'));
     }
     public function genre($slug)
@@ -128,7 +119,7 @@ class IndexController extends Controller
         foreach ($movie_genre as $key => $movi) {
             $many_genre[] = $movi->movie_id;
         }
-        $movie = Movie::whereIn('id', $many_genre)->where('status', 1)->orderBy('date_updated', 'DESC')->paginate(40);
+        $movie = Movie::whereIn('id', $many_genre)->where('status', 1)->orderBy('date_updated', 'DESC')->paginate(30);
         return view('pages.genre', compact('genre_slug', 'movie', 'meta_title', 'meta_description', 'meta_image'));
     }
     public function country($slug)
@@ -137,7 +128,7 @@ class IndexController extends Controller
         $meta_title = ' Quốc gia: ' . $country_slug->title;
         $meta_description = ' Tìm kiếm quốc gia: ' . $country_slug->description;
         $meta_image = '';
-        $movie = Movie::where('country_id', $country_slug->id)->where('status', 1)->orderBy('date_updated', 'DESC')->paginate(40);
+        $movie = Movie::where('country_id', $country_slug->id)->where('status', 1)->orderBy('date_updated', 'DESC')->paginate(30);
         return view('pages.country', compact('country_slug', 'movie', 'meta_title', 'meta_description', 'meta_image'));
     }
     public function movie($slug)
@@ -151,8 +142,10 @@ class IndexController extends Controller
         } else {
             $meta_image = url('uploads/movie/' . $movie->image);
         }
-        $related = Movie::with('category', 'genre', 'country')->where('category_id', $movie->category->id)
-            ->inRandomOrder()->whereNotIn('slug', [$slug])->get();
+        $related = Movie::with('category', 'genre', 'country')->where('category_id', $movie->category->id)->inRandomOrder()
+            ->whereNotIn('slug', [$slug])
+            ->take(10)
+            ->get();
         //lấy 3 tập gần nhất
         $episode = Episode::with('movie')->where('movie_id', $movie->id)->orderBy('id', 'DESC')->take(3)->get();
         //lấy tập đầu
@@ -174,8 +167,10 @@ class IndexController extends Controller
         } else {
             $meta_image = url('uploads/movie/' . $movie->image);
         }
-        $related = Movie::with('category', 'genre', 'country')->where('category_id', $movie->category->id)
-            ->inRandomOrder()->whereNotIn('slug', [$slug])->get();
+        $related = Movie::with('category', 'genre', 'country')->where('category_id', $movie->category->id)->inRandomOrder()
+            ->whereNotIn('slug', [$slug])
+            ->take(10)
+            ->get();
         if (isset($tap)) {
             $tapphim = $tap;
             $tapphim = substr($tap, 4, 20);

@@ -96,9 +96,9 @@ class MovieController extends Controller
             $image_check = substr($mov->image, 0, 4);
 
             if ($image_check == 'http') {
-                $output .= '<img src="' . $mov->image . '" class="lazy post-thumb" alt="' . $mov->title . '" title="' . $mov->title . '" />';
+                $output .= '<img src="' . $mov->image . '" class="lazy post-thumb" alt="' . $mov->title . '" title="' . $mov->title . '" loading="lazy" />';
             } else {
-                $output .= '<img src="' . url('uploads/movie/' . $mov->image) . '" class="lazy post-thumb" alt="' . $mov->title . '" title="' . $mov->title . '" />';
+                $output .= '<img src="' . url('uploads/movie/' . $mov->image) . '" class="lazy post-thumb" alt="' . $mov->title . '" title="' . $mov->title . '" loading="lazy" />';
             }
 
             $output .= '<span class="is_trailer">' . $text . '</span>

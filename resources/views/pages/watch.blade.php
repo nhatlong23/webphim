@@ -201,11 +201,11 @@
                                         <figure>
                                             @if ($image_check == 'http')
                                                 <img class="lazy img-responsive" src="{{ $hot->image }}"
-                                                    alt="" title="{{ $hot->title }}">
+                                                    alt="" title="{{ $hot->title }}" loading="lazy">
                                             @else
                                                 <img class="lazy img-responsive"
                                                     src="{{ asset('uploads/movie/' . $hot->image) }}" alt=""
-                                                    title="{{ $hot->title }}">
+                                                    title="{{ $hot->title }}" loading="lazy">
                                             @endif
                                         </figure>
                                         <span class="status">HD</span><span class="episode"><i class="fa fa-play"

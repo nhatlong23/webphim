@@ -85,7 +85,7 @@
                             </a>
                         </div>
                         <div id="halim-advanced-widget-2-ajax-box" class="halim_box">
-                            @foreach ($cate_home->movie_category as $key => $mov)
+                            @foreach ($cate_home->movie_category->take(15) as $key => $mov)
                                 @php
                                     $image_check = substr($mov->image, 0, 4);
                                 @endphp

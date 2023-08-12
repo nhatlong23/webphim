@@ -65,7 +65,7 @@ class LeechMovieController extends Controller
 
     public function synchronizeAllMovies(Request $request)
     {
-        $currentPage = $request->query('page', 376);
+        $currentPage = $request->query('page', 1);
         $url = "https://ophim1.com/danh-sach/phim-moi-cap-nhat?page=" . $currentPage;
         $nextPage = $currentPage + 1;
         $nextPageUrl = url()->current() . '?page=' . $nextPage;
