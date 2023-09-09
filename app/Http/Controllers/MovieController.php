@@ -24,7 +24,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $list = Movie::with('category', 'movie_genre', 'movie_category', 'country', 'genre')->withCount('episode')->orderBy('id', 'DESC')->paginate(100);
+        $list = Movie::with('category', 'movie_genre', 'movie_category', 'country', 'genre')->withCount('episode')->orderBy('id', 'DESC')->paginate(30);
         $category = Category::pluck('title', 'id');
         $country = Country::pluck('title', 'id');
         $path = public_path() . "/json/";

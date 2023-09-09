@@ -43,6 +43,11 @@ Route::get('/search', [IndexController::class, 'search'])->name('search');
 Route::post('/filter-topview-phim', [MovieController::class, 'filter_topview']);
 Route::post('/insert-rating', [MovieController::class, 'insert_rating']);
 Route::get('/filter', [IndexController::class, 'filter'])->name('filter');
+Route::get('post/chinh-sach-rieng-tu', [IndexController::class, 'privacy_policy'])->name('privacy-policy');
+Route::get('post/dieu-khoan-su-dung', [IndexController::class, 'terms_of_use'])->name('terms-of-use');
+Route::get('post/khieu-nai-ban-quyen', [IndexController::class, 'copyright_claims'])->name('copyright-claims');
+Route::get('post/lien-he', [IndexController::class, 'contact'])->name('contact');
+Route::get('post/ve-chung-toi', [IndexController::class, 'about_us'])->name('about-us');
 
 Auth::routes();
 
@@ -81,6 +86,7 @@ Route::post('leech-episode-store/{slug}', [LeechMovieController::class, 'leech_e
 Route::get('synchronize-all-movies', [LeechMovieController::class, 'synchronizeAllMovies'])->name('synchronize-all-movies');
 Route::get('synchronize-all-episodes', [LeechMovieController::class, 'synchronizeAllEpisodes'])->name('synchronize-all-episodes');
 Route::get('remove-episode', [LeechMovieController::class, 'checkAndRemoveDuplicateEpisodes'])->name('remove-episode');
+Route::get('delete-movie', [LeechMovieController::class, 'deleteDuplicateMovies'])->name('delete-movie');
 
 //site map host
 Route::get('/create_sitemap', function () {

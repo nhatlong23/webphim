@@ -85,7 +85,7 @@
                             </a>
                         </div>
                         <div id="halim-advanced-widget-2-ajax-box" class="halim_box">
-                            @foreach ($cate_home->movie_category->take(15) as $key => $mov)
+                            @foreach ($cate_home->movie_category as $key => $mov)
                                 @php
                                     $image_check = substr($mov->image, 0, 4);
                                 @endphp
@@ -159,7 +159,7 @@
                         <div role="tabpanel" class="tab-pane active halim-ajax-popular-post">
                             <div class="halim-ajax-popular-post-loading hidden"></div>
                             <div id="halim-ajax-popular-post" class="popular-post">
-                                @foreach ($movie_hot_sidebar->take(10)->where('status', 1) as $key => $mov_hot)
+                                @foreach ($movie_hot_sidebar as $key => $mov_hot)
                                     @php
                                         $image_check = substr($mov_hot->image, 0, 4);
                                     @endphp

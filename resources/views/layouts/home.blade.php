@@ -7,7 +7,7 @@
                     <i class="pull-left fa fa-laptop icon-rounded"></i>
                     <div class="stats">
                         <h5><strong>{{$category_total}}</strong></h5>
-                        <span>Total Category</span>
+                        <span>Tổng danh nục</span>
                     </div>
                 </div>
             </div>
@@ -16,7 +16,7 @@
                     <i class="pull-left fa fa-industry user1 icon-rounded"></i>
                     <div class="stats">
                         <h5><strong>{{$genre_total}}</strong></h5>
-                        <span>Total Genre</span>
+                        <span>Tổng thể loại</span>
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                     <i class="pull-left fa fa-globe user2 icon-rounded"></i>
                     <div class="stats">
                         <h5><strong>{{$country_total}}</strong></h5>
-                        <span>Total Country</span>
+                        <span>Tổng quốc gia</span>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                     <i class="pull-left fa fa-video-camera dollar1 icon-rounded"></i>
                     <div class="stats">
                         <h5><strong>{{$movie_total}}</strong></h5>
-                        <span>Total Movie</span>
+                        <span>Tổng phim</span>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                     <i class="pull-left fa fa-users dollar2 icon-rounded"></i>
                     <div class="stats">
                         <h5><strong>1450</strong></h5>
-                        <span>Total Users</span>
+                        <span>Tổng người dùng</span>
                     </div>
                 </div>
             </div>

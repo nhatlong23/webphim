@@ -34,8 +34,9 @@ class AppServiceProvider extends ServiceProvider
         $category = Category::orderby('position', 'ASC')->where('status', 1)->get();
         $genre = Genre::orderby('position', 'ASC')->where('status', 1)->get();
         $country = Country::orderby('position', 'ASC')->where('status', 1)->get();
-        $movie_hot_sidebar = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('date_updated', 'DESC')->take('20')->get();
+        $movie_hot_sidebar = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('updated_at', 'DESC')->take('20')->get();
         $info = Info::find(1);
+        $currentYear = Carbon::now()->year;
         //total admin
         $category_total = Category::all()->count();
         $genre_total = Genre::all()->count();
@@ -53,6 +54,7 @@ class AppServiceProvider extends ServiceProvider
             'genre_total' => $genre_total,
             'country_total' => $country_total,
             'movie_total' => $movie_total,
+            'currentYear' => $currentYear,
         ]);
     }
 }

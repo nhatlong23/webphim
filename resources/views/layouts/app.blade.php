@@ -5,7 +5,7 @@
     <title>
         Homepage
     </title>
-    <link rel="shortcut icon" href="{{asset('uploads/logo/'.$info->logo)}}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{ asset('uploads/logo/' . $info->logo) }}" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -128,163 +128,165 @@
                         </h1>
                     </div>
                     @if (Auth::check())
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="sidebar-menu">
-                            <li class="header">MAIN NAVIGATION</li>
-                            <li class="treeview">
-                                <a href="{{ url('/home') }}">
-                                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                                </a>
-                            </li>
-                            @php
-                                $segment = Request::segment(1);
-                            @endphp
-                            <li class="treeview {{ $segment == 'category' ? 'active' : '' }} ">
-                                <a href="#">
-                                    <i class="fa fa-laptop"></i>
-                                    <span>Danh mục phim</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li>
-                                        <a href="{{ route('category.index') }}"><i class="fa fa-angle-right"></i>
-                                            Liệt kê danh mục
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('category.create') }}"><i class="fa fa-angle-right"></i>
-                                            Thêm danh mục
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="treeview {{ $segment == 'genre' ? 'active' : '' }}">
-                                <a href="#">
-                                    <i class="fa fa-industry"></i>
-                                    <span>Thể loại phim</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li>
-                                        <a href="{{ route('genre.index') }}"><i class="fa fa-angle-right"></i>
-                                            Liệt kê thể loại
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('genre.create') }}"><i class="fa fa-angle-right"></i>
-                                            Thêm thể loại
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="treeview {{ $segment == 'country' ? 'active' : '' }}">
-                                <a href="#">
-                                    <i class="fa fa-globe"></i>
-                                    <span>Quốc gia phim</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li>
-                                        <a href="{{ route('country.index') }}"><i class="fa fa-angle-right"></i>
-                                            Liệt kê quốc gia
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('country.create') }}"><i class="fa fa-angle-right"></i>
-                                            Thêm quốc gia
-                                        </a>
-                                    </li>
-            
-                                </ul>
-                            </li>
-                            <li class="treeview {{ $segment == 'movie' ? 'active' : '' }}">
-                                <a href="#">
-                                    <i class="fa fa-film"></i>
-                                    <span>Phim</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li>
-                                        <a href="{{ route('movie.index') }}"><i class="fa fa-angle-right"></i>
-                                            Liệt kê Phim
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('movie.create') }}"><i class="fa fa-angle-right"></i>
-                                            Thêm Phim
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('leech-movie') }}"><i class="fa fa-angle-right"></i>
-                                            Leech Phim
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('episode.create') }}"><i class="fa fa-angle-right"></i>
-                                            Thêm tập Phim
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('episode.index') }}"><i class="fa fa-angle-right"></i>
-                                            Liệt kê Tập Phim
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="treeview {{ $segment == 'linkmovie' ? 'active' : '' }}">
-                                <a href="#">
-                                    <i class="fa fa-link"></i>
-                                    <span>Server phim</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li>
-                                        <a href="{{ route('linkmovie.index') }}"><i class="fa fa-angle-right"></i>
-                                            Liệt kê Server
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('linkmovie.create') }}"><i class="fa fa-angle-right"></i>
-                                            Thêm Server phim
-                                        </a>
-                                    </li>
-            
-                                </ul>
-                            </li>
-                            <li class="treeview {{ $segment == 'info' ? 'active' : '' }}">
-                                <a href="#">
-                                    <i class="fa fa-info"></i>
-                                    <span>Info phim</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li>
-                                        <a href="{{ route('info.create') }}"><i class="fa fa-angle-right"></i>
-                                            Thêm Info Phim
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-envelope"></i> <span>Mailbox </span>
-                                    <i class="fa fa-angle-left pull-right"></i><small
-                                        class="label pull-right label-info1">08</small><span
-                                        class="label label-primary1 pull-right">02</span></a>
-                                <ul class="treeview-menu">
-                                    <li>
-                                        <a href="inbox.html"><i class="fa fa-angle-right"></i> Mail Inbox
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="compose.html"><i class="fa fa-angle-right"></i> Compose Mail
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                @endif
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="sidebar-menu">
+                                <li class="header">MAIN NAVIGATION</li>
+                                <li class="treeview">
+                                    <a href="{{ url('/home') }}">
+                                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                                    </a>
+                                </li>
+                                @php
+                                    $segment = Request::segment(1);
+                                @endphp
+                                <li class="treeview {{ $segment == 'category' ? 'active' : '' }} ">
+                                    <a href="#">
+                                        <i class="fa fa-laptop"></i>
+                                        <span>Danh mục phim</span>
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li>
+                                            <a href="{{ route('category.index') }}"><i class="fa fa-angle-right"></i>
+                                                Liệt kê danh mục
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('category.create') }}"><i class="fa fa-angle-right"></i>
+                                                Thêm danh mục
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="treeview {{ $segment == 'genre' ? 'active' : '' }}">
+                                    <a href="#">
+                                        <i class="fa fa-industry"></i>
+                                        <span>Thể loại phim</span>
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li>
+                                            <a href="{{ route('genre.index') }}"><i class="fa fa-angle-right"></i>
+                                                Liệt kê thể loại
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('genre.create') }}"><i class="fa fa-angle-right"></i>
+                                                Thêm thể loại
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="treeview {{ $segment == 'country' ? 'active' : '' }}">
+                                    <a href="#">
+                                        <i class="fa fa-globe"></i>
+                                        <span>Quốc gia phim</span>
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li>
+                                            <a href="{{ route('country.index') }}"><i class="fa fa-angle-right"></i>
+                                                Liệt kê quốc gia
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('country.create') }}"><i class="fa fa-angle-right"></i>
+                                                Thêm quốc gia
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li class="treeview {{ $segment == 'movie' ? 'active' : '' }}">
+                                    <a href="#">
+                                        <i class="fa fa-film"></i>
+                                        <span>Phim</span>
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li>
+                                            <a href="{{ route('movie.index') }}"><i class="fa fa-angle-right"></i>
+                                                Liệt kê Phim
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('movie.create') }}"><i class="fa fa-angle-right"></i>
+                                                Thêm Phim
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('leech-movie') }}"><i class="fa fa-angle-right"></i>
+                                                Leech Phim
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('episode.create') }}"><i class="fa fa-angle-right"></i>
+                                                Thêm tập Phim
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('episode.index') }}"><i class="fa fa-angle-right"></i>
+                                                Liệt kê Tập Phim
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="treeview {{ $segment == 'linkmovie' ? 'active' : '' }}">
+                                    <a href="#">
+                                        <i class="fa fa-link"></i>
+                                        <span>Server phim</span>
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li>
+                                            <a href="{{ route('linkmovie.index') }}"><i
+                                                    class="fa fa-angle-right"></i>
+                                                Liệt kê Server
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('linkmovie.create') }}"><i
+                                                    class="fa fa-angle-right"></i>
+                                                Thêm Server phim
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li class="treeview {{ $segment == 'info' ? 'active' : '' }}">
+                                    <a href="#">
+                                        <i class="fa fa-info"></i>
+                                        <span>Info phim</span>
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li>
+                                            <a href="{{ route('info.create') }}"><i class="fa fa-angle-right"></i>
+                                                Thêm Info Phim
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-envelope"></i> <span>Mailbox </span>
+                                        <i class="fa fa-angle-left pull-right"></i><small
+                                            class="label pull-right label-info1">08</small><span
+                                            class="label label-primary1 pull-right">02</span></a>
+                                    <ul class="treeview-menu">
+                                        <li>
+                                            <a href="inbox.html"><i class="fa fa-angle-right"></i> Mail Inbox
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="compose.html"><i class="fa fa-angle-right"></i> Compose Mail
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    @endif
 
                     <!-- /.navbar-collapse -->
                 </nav>
@@ -506,16 +508,15 @@
                     <!--search-box-->
                     <div class="search-box">
                         <form class="input">
-                            <input class="sb-search-input input__field--madoka" placeholder="Search..."
-                                type="search" id="input-31" />
+                            <input class="sb-search-input input__field--madoka" placeholder="Search..." type="search" id="input-31" />
                             <label class="input__label" for="input-31">
-                                <svg class="graphic" width="100%" height="100%" viewBox="0 0 404 77"
-                                    preserveAspectRatio="none">
+                                <svg class="graphic" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
                                     <path d="m0,0l404,0l0,77l-404,0l0,-77z" />
                                 </svg>
                             </label>
                         </form>
                     </div>
+                </div>
             @endif
             <!--//end-search-box-->
             <div class="profile_details">
@@ -1329,6 +1330,17 @@
     <!-- //Bootstrap Core JavaScript -->
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+
+
+    <script>
+        ClassicEditor.create(document.querySelector('#description'))
+        ClassicEditor.create(document.querySelector('#contact'))
+        ClassicEditor.create(document.querySelector('#terms_of_use'))
+        ClassicEditor.create(document.querySelector('#privacy_policy'))
+        ClassicEditor.create(document.querySelector('#copyright_claims'))
+        ClassicEditor.create(document.querySelector('#about_us'))
+    </script>
 
     <script type="text/javascript">
         $('.show_video').click(function() {
@@ -1421,7 +1433,7 @@
                 },
                 success: function() {
                     // toastr.success('Đã thay đổi phim thành ' + text);
-                    alert('Đã thay đổi phim thành ' + text );
+                    alert('Đã thay đổi phim thành ' + text);
                 }
 
             });

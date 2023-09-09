@@ -28,6 +28,7 @@
             </div>
         </div>
         <td><a href="{{ route('remove-episode') }}" class="btn btn-success">Xóa các tập phim trùng</a></td>
+        <td><a href="{{ route('delete-movie') }}" class="btn btn-success">Xóa các phim trùng</a></td>
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-md-12">

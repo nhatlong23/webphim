@@ -28,7 +28,7 @@
                             viên : {{ $cast_movie }} mới
                             nhất ,Tổng hợp danh sách
                             Phim có diễn viên: {{ $cast_movie }} hay được web cập nhật liên tục.Tải Phim có diễn viên:
-                            {{ $cast_movie }} năm 2022, Xem Phim có diễn viên: {{ $cast_movie }} vietsub, thuyết minh
+                            {{ $cast_movie }} năm {{$currentYear}}, Xem Phim có diễn viên: {{ $cast_movie }} vietsub, thuyết minh
                             mới
                             nhất, Tổng hợp Phim có diễn viên: {{ $cast_movie }} hay nhất
                         </span>

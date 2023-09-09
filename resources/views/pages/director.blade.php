@@ -27,7 +27,7 @@
                         <span style="font-size:x-small;font-weight: lighter; font-family: Arial, sans-serif;">Phim của đạo
                             diễn : {{ $director }} mới nhất ,Tổng hợp danh sách
                             Phim của đạo diễn: {{ $director }} hay được web cập nhật liên tục.Tải Phim của đạo diễn:
-                            {{ $director }} năm 2022, Xem Phim của đạo diễn: {{ $director }} vietsub, thuyết minh
+                            {{ $director }} năm {{$currentYear}}, Xem Phim của đạo diễn: {{ $director }} vietsub, thuyết minh
                             mới
                             nhất, Tổng hợp Phim của đạo diễn: {{ $director }} hay nhất
                         </span>

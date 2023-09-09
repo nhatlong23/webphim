@@ -8,7 +8,7 @@
     </style>
     <div class="col-md-2">
         <div class="form-group">
-            <select class="form-control stylish_filter" name="order" id="exampleFormControlSelect1">
+            <select class="form-control stylish_filter" name="order">
                 <option value="">--Sắp xếp--</option>
                 <option value="ngaytao">Ngày đăng</option>
                 <option value="year">Năm sản xuất</option>
@@ -20,7 +20,7 @@
     {{-- thể loại --}}
     <div class="col-md-2">
         <div class="form-group">
-            <select class="form-control stylish_filter" name="genre" id="exampleFormControlSelect1">
+            <select class="form-control stylish_filter" name="genre">
                 <option value="">--Thể Loại--</option>
                 @foreach ($genre_home as $key => $gen_filter)
                     <option {{ isset($_GET['genre']) && $_GET['genre'] == $gen_filter->id ? 'selected' : '' }}
@@ -32,7 +32,7 @@
     {{-- quốc gia --}}
     <div class="col-md-3">
         <div class="form-group">
-            <select class="form-control stylish_filter" name="country" id="exampleFormControlSelect1">
+            <select class="form-control stylish_filter" name="country">
                 <option value="">--Quốc Gia--</option>
                 @foreach ($country_home as $key => $country_filter)
                     <option {{ isset($_GET['country']) && $_GET['country'] == $country_filter->id ? 'selected' : '' }}

@@ -17,6 +17,7 @@ class Category extends Model
     //1 phim co nhieu danh muc
     public function movie_category()
     {
-        return $this->belongsToMany(Movie::class, 'movie_category')->orderby('date_updated', 'DESC');
+        return $this->belongsToMany(Movie::class, 'movie_category')->orderBy('updated_at', 'DESC')->limit(20);
     }
+    
 }

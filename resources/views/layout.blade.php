@@ -206,19 +206,82 @@
     </div>
     <div class="clearfix"></div>
     <footer id="footer" class="clearfix">
-        <div class="container footer-columns">
-            <div class="row container">
-                <div class="widget about col-xs-12 col-sm-4 col-md-4">
-                    <div class="footer-logo">
-                        <img class="img-responsive"
-                            src="https://img.favpng.com/9/23/19/movie-logo-png-favpng-nRr1DmYq3SNYSLN8571CHQTEG.jpg"
-                            alt="Phim hay 2022- Xem phim hay nhất" />
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-info-single">
+                        <h2 class="title">Phim mới</h2>
+                        <ul class="list-unstyled">
+                            <li style="display: grid;">
+                                @foreach ($category_home as $key => $cate)
+                                    <a style="margin-bottom: 10px;" href="{{ route('category', $cate->slug) }}" title="{{ $cate->title }}"><i class="fa fa-angle-double-right"></i> {{ $cate->title }}</a>
+                                @endforeach
+                            </li>
+                        </ul>
                     </div>
-                    Liên hệ QC: <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                        data-cfemail="e5958d8c888d849ccb868aa58288848c89cb868a88">[email&#160;protected]</a>
+                </div>
+                <style>
+                    .container-page {
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-start;
+                    min-height: 100vh;
+                }
+                    .static-page {
+                    background: #fff;
+                    color: #333;
+                    border-radius: 5px;
+                    margin: 20px;
+                    padding: 20px;
+                    max-width: auto;
+                    width: 100%;
+                }
+                </style>
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-info-single">
+                        <h2 class="title">Phim hot</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ route('about-us') }}" title=""><i class="fa fa-angle-double-right"></i> Về chúng tôi</a></li>
+                            <li><a href="{{ route('homepage') }}" title=""><i class="fa fa-angle-double-right"></i> Phim mới</a></li>
+                            <li><a href="{{ url('sitemap.xml') }}" title=""><i class="fa fa-angle-double-right"></i> Sitemap</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-info-single">
+                        <h2 class="title">Trợ giúp</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="" title=""><i class="fa fa-angle-double-right"></i> Hỏi đáp</a></li>
+                            <li><a href="{{ route('contact') }}" title=""><i class="fa fa-angle-double-right"></i> Liên hệ</a></li>
+                            <li><a href="" title=""><i class="fa fa-angle-double-right"></i> Tin tức</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-info-single">
+                        <h2 class="title">Thông tin</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ route('terms-of-use') }}" title=""><i class="fa fa-angle-double-right"></i> Điều khoản sử dụng</a></li>
+                            <li><a href="{{ route('privacy-policy') }}" title=""><i class="fa fa-angle-double-right"></i> Chính sách riêng tư</a></li>
+                            <li><a href="{{ route('copyright-claims') }}" title=""><i class="fa fa-angle-double-right"></i> Khiếu nại bản quyền</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <section class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Copyright © 2023. Your Company.</p>
+                    </div>
+                    <div class="col-sm-6"></div>
+                </div>
+            </div>
+        </section>
     </footer>
     <div id='easy-top'></div>
 
@@ -252,20 +315,20 @@
         });
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.pagination-link').forEach(link => {
-                link.addEventListener('click', function (e) {
+                link.addEventListener('click', function(e) {
                     e.preventDefault();
                     let currentPage = this.getAttribute('data-page');
                     synchronizeMovies(currentPage);
                 });
             });
-    
+
             function synchronizeMovies(currentPage) {
                 // Sử dụng AJAX để gửi giá trị currentPage về máy chủ
                 let xhr = new XMLHttpRequest();
                 xhr.open('GET', '/leech-movie?page=' + currentPage, true);
-                xhr.onreadystatechange = function () {
+                xhr.onreadystatechange = function() {
                     if (xhr.readyState === XMLHttpRequest.DONE) {
                         // Xử lý kết quả nếu cần thiết
                         // Ví dụ: Cập nhật dữ liệu trên trang hoặc thông báo thành công
@@ -275,8 +338,8 @@
             }
         });
     </script>
-    
-    
+
+
     <script style="text/javascript">
         setTimeout(function(data) {
             var link = $('#myTab li:first-child a').tab('show')
@@ -308,7 +371,8 @@
                         $.each(data, function(key, value) {
                             if (value.title.search(expression) != -1) {
                                 $('#result').css('display', 'inherit');
-                                var imageSrc = value.image.substring(0, 4) === 'http' ? value.image : 'uploads/movie/' + value.image;
+                                var imageSrc = value.image.substring(0, 4) === 'http' ?
+                                    value.image : 'uploads/movie/' + value.image;
                                 $('#result').append(
                                     '<li class="list-group-item" style="cursor: pointer">' +
                                     '<img height="40" width="40" src="' + imageSrc +
@@ -332,6 +396,7 @@
             });
         })
     </script>
+    
     <script type="text/javascript">
         $('.filter-sidebar').click(function() {
             var href = $(this).attr('href');

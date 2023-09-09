@@ -22,8 +22,7 @@
                                 </div>
                             @endif
                             @if (isset($info))
-                            {!! Form::open(['route' => ['info.update', $info->id], 'method' => 'PUT' ,'enctype' => 'multipart/form-data']) !!}
-
+                                {!! Form::open(['route' => ['info.update', $info->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
                             @endif
                             <div class="form-group">
                                 {!! Form::label('title', 'Tiêu đề website', []) !!}
@@ -34,12 +33,62 @@
                                 ]) !!}
                             </div>
                             <div class="form-group">
+                                {!! Form::label('contact', 'Liên hệ', []) !!}
+                                {!! Form::textarea('contact', isset($info) ? $info->contact : '', [
+                                    'style' => 'resize:none',
+                                    'class' => 'form-control',
+                                    'placeholder' => 'Nhập vào dữ liệu...',
+                                    'id' => 'contact',
+                                    //'required',
+                                ]) !!}
+                            </div>
+                            <div class="form-group">
                                 {!! Form::label('description', 'Mô tả website', []) !!}
                                 {!! Form::textarea('description', isset($info) ? $info->description : '', [
                                     'style' => 'resize:none',
                                     'class' => 'form-control',
                                     'placeholder' => 'Nhập vào dữ liệu...',
                                     'id' => 'description',
+                                    //'required',
+                                ]) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('terms_of_use', 'Điều khoản sử dụng', []) !!}
+                                {!! Form::textarea('terms_of_use', isset($info) ? $info->terms_of_use : '', [
+                                    'style' => 'resize:none',
+                                    'class' => 'form-control',
+                                    'placeholder' => 'Nhập vào dữ liệu...',
+                                    'id' => 'terms_of_use',
+                                    //'required',
+                                ]) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('privacy_policy', 'Chính sách riêng tư', []) !!}
+                                {!! Form::textarea('privacy_policy', isset($info) ? $info->privacy_policy : '', [
+                                    'style' => 'resize:none',
+                                    'class' => 'form-control',
+                                    'placeholder' => 'Nhập vào dữ liệu...',
+                                    'id' => 'privacy_policy',
+                                    //'required',
+                                ]) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('copyright_claims', 'Khiếu nại bản quyền', []) !!}
+                                {!! Form::textarea('copyright_claims', isset($info) ? $info->copyright_claims : '', [
+                                    'style' => 'resize:none',
+                                    'class' => 'form-control',
+                                    'placeholder' => 'Nhập vào dữ liệu...',
+                                    'id' => 'copyright_claims',
+                                    //'required',
+                                ]) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('about_us', 'Về chúng tôi', []) !!}
+                                {!! Form::textarea('about_us', isset($info) ? $info->about_us : '', [
+                                    'style' => 'resize:none',
+                                    'class' => 'form-control',
+                                    'placeholder' => 'Nhập vào dữ liệu...',
+                                    'id' => 'about_us',
                                     //'required',
                                 ]) !!}
                             </div>

@@ -54,43 +54,47 @@ class CreateSiteMap extends Command
     public function handle()
     {
         $sitemap = App::make('sitemap');
-        $sitemap->add(route('homepage'), Carbon::now('Asia/Ho_Chi_Minh'), '1.0', 'daily');
+        $now = Carbon::now('Asia/Ho_Chi_Minh');
+        $sitemap->add(route('homepage'), $now, '1.0', 'daily');
         //get all genre from db
         $genre = Genre::orderBy('id', 'DESC')->get();
         //add genre to sitemap
         foreach ($genre as $genre) {
-            $sitemap->add(env('APP_URL') . "the-loai/{$genre->slug}", Carbon::now('Asia/Ho_Chi_Minh'), '0.7', 'daily');
+            $sitemap->add(env('APP_URL') . "/the-loai/{$genre->slug}", $now, '0.9', 'daily');
         }
         //get all category from db
         $category = Category::orderBy('id', 'DESC')->get();
         //add Category to sitemap
         foreach ($category as $cate) {
-            $sitemap->add(env('APP_URL') . "danh-muc/{$cate->slug}", Carbon::now('Asia/Ho_Chi_Minh'), '0.7', 'daily');
+            $sitemap->add(env('APP_URL') . "/danh-muc/{$cate->slug}", $now, '0.9', 'daily');
         }
         //get all country from db
         $country = Country::orderBy('id', 'DESC')->get();
         //add country to sitemap
         foreach ($country as $country) {
-            $sitemap->add(env('APP_URL') . "quoc-gia/{$country->slug}", Carbon::now('Asia/Ho_Chi_Minh'), '0.7', 'daily');
+            $sitemap->add(env('APP_URL') . "/quoc-gia/{$country->slug}", $now, '0.9', 'daily');
         }
-        //get all movie from db
-        $movie = Movie::orderBy('id', 'DESC')->get();
-        //add movie to sitemap
-        foreach ($movie as $mov) {
-            $sitemap->add(env('APP_URL') . "phim/{$mov->slug}", Carbon::now('Asia/Ho_Chi_Minh'), '0.6', 'daily');
-        }
-        //get all movie_ep from db
-        $movie_ep = Movie::with('episode')->orderBy('id', 'DESC')->get();
-        //add movie_ep to sitemap
-        foreach ($movie_ep as $mov_ep) {
-            foreach ($mov_ep->episode as $ep) {
-                $sitemap->add(env('APP_URL') . "xem-phim/{$mov_ep->slug}/tap-{$ep->episode}", Carbon::now('Asia/Ho_Chi_Minh'), '0.6', 'daily');
+
+        // get all movie from db
+        $movies = Movie::orderBy('id', 'DESC')->chunk(100, function ($chunk) use ($sitemap, $now) {
+            foreach ($chunk as $mov) {
+                $sitemap->add(env('APP_URL') . "/phim/{$mov->slug}", $now, '0.7', 'daily');
             }
-        }
+        });
+        
+
+        // //get all movie_ep from db
+        // $movies = Movie::with('episode')->orderBy('id', 'DESC')->get();
+        // foreach ($movies as $mov) {
+        //     foreach ($mov->episode as $ep) {
+        //         $sitemap->add(env('APP_URL') . "xem-phim/{$mov->slug}/tap-{$ep->episode}", $now, '0.6', 'daily');
+        //     }
+        // }
+
         //get all year
-        $year = range(Carbon::now('Asia/Ho_Chi_Minh')->year, 2000);
+        $year = range($now->year, 2000);
         foreach ($year as $year) {
-            $sitemap->add(env('APP_URL') . "year/{$year}", Carbon::now('Asia/Ho_Chi_Minh'), '0.7', 'daily');
+            $sitemap->add(env('APP_URL') . "/year/{$year}", $now, '0.9', 'daily');
         }
         //generate your sitemap (format, filename)
         $sitemap->store('xml', 'sitemap');

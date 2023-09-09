@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="yoast_breadcrumb hidden-xs"><span><span><a href="">Lọc Phim</a> »
-                                    <span class="breadcrumb_last" aria-current="page">2022</span></span></span></div>
+                                    <span class="breadcrumb_last" aria-current="page">{{$currentYear}}</span></span></span></div>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="halim_box">
-                    @foreach ($movie as $key => $mov)
+                    @foreach ($movies as $key => $mov)
                         <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
                             <div class="halim-item">
                                 @php
@@ -85,14 +85,7 @@
                 <div class="clearfix"></div>
                 <div class="text-center">
                     <ul class='page-numbers'>
-                        {{-- <li><span aria-current="page" class="page-numbers current">1</span></li>
-                        <li><a class="page-numbers" href="">2</a></li>
-                        <li><a class="page-numbers" href="">3</a></li>
-                        <li><span class="page-numbers dots">&hellip;</span></li>
-                        <li><a class="page-numbers" href="">55</a></li>
-                        <li><a class="next page-numbers" href=""><i class="hl-down-open rotate-right"></i></a>
-                        </li> --}}
-                        {!! $movie->links('pagination::bootstrap-4') !!}
+                        {{ $movies->appends(request()->query())->links() }}
                     </ul>
                 </div>
             </section>

@@ -63,71 +63,87 @@ class LeechMovieController extends Controller
     }
 
 
-    public function synchronizeAllMovies(Request $request)
-    {
-        $currentPage = $request->query('page', 1);
-        $url = "https://ophim1.com/danh-sach/phim-moi-cap-nhat?page=" . $currentPage;
-        $nextPage = $currentPage + 1;
-        $nextPageUrl = url()->current() . '?page=' . $nextPage;
-
-        try {
-            $resp = Http::get($url)->json();
-            $movies = $resp['items'] ?? [];
-
-            foreach ($movies as $movieData) {
-                $slug = $movieData['slug'] ?? null;
-
-                if (!$slug) {
-                    // If 'slug' key is missing or null, skip this movie data.
-                    continue;
-                }
-
-                $movie = Movie::where('slug', $slug)->first();
-
-                if (!$movie) {
-                    $detailUrl = "https://ophim1.com/phim/" . $slug;
-
-                    try {
-                        $detailResp = Http::get($detailUrl)->json();
-                        $this->saveMovieData($detailResp['movie'] ?? []);
-                    } catch (\Exception $e) {
-                        // Log any exceptions when fetching movie details and continue to the next movie.
-                        // You can add proper logging here to record the issue.
-                        continue;
-                    }
-                }
-            }
-
-            return redirect()->to($nextPageUrl)->with('success', 'Đã đồng bộ tất cả phim thành công');
-        } catch (\Exception $e) {
-            // If any exception occurs during the synchronization process, handle it here.
-            // You can add proper error handling or logging here to record the issue.
-            return redirect()->to($currentPage)->with('error', 'Có lỗi xảy ra khi đồng bộ phim');
-        }
-    }
-
     // public function synchronizeAllMovies(Request $request)
     // {
-    //     $currentPage = $request->input('page', 1);
+    //     $currentPage = $request->query('page', 1);
     //     $url = "https://ophim1.com/danh-sach/phim-moi-cap-nhat?page=" . $currentPage;
-    //     $resp = Http::get($url)->json();
-    //     $movies = $resp['items'];
+    //     $nextPage = $currentPage + 1;
+    //     $nextPageUrl = url()->current() . '?page=' . $nextPage;
 
-    //     foreach ($movies as $movieData) {
-    //         $slug = $movieData['slug'];
-    //         $movie = Movie::where('slug', $slug)->first();
+    //     try {
+    //         $resp = Http::get($url)->json();
+    //         $movies = $resp['items'] ?? [];
 
-    //         if (!$movie) {
-    //             $detailUrl = "https://ophim1.com/phim/" . $slug;
-    //             $detailResp = Http::get($detailUrl)->json();
-    //             $this->saveMovieData($detailResp['movie']);
+    //         foreach ($movies as $movieData) {
+    //             $slug = $movieData['slug'] ?? null;
+
+    //             if (!$slug) {
+    //                 // If 'slug' key is missing or null, skip this movie data.
+    //                 continue;
+    //             }
+
+    //             $movie = Movie::where('slug', $slug)->first();
+
+    //             if (!$movie) {
+    //                 $detailUrl = "https://ophim1.com/phim/" . $slug;
+
+    //                 try {
+    //                     $detailResp = Http::get($detailUrl)->json();
+    //                     $this->saveMovieData($detailResp['movie'] ?? []);
+    //                 } catch (\Exception $e) {
+    //                     // Log any exceptions when fetching movie details and continue to the next movie.
+    //                     // You can add proper logging here to record the issue.
+    //                     continue;
+    //                 }
+    //             }
     //         }
+
+    //         return redirect()->to($nextPageUrl)->with('success', 'Đã đồng bộ tất cả phim thành công');
+    //     } catch (\Exception $e) {
+    //         // If any exception occurs during the synchronization process, handle it here.
+    //         // You can add proper error handling or logging here to record the issue.
+    //         return redirect()->to($currentPage)->with('error', 'Có lỗi xảy ra khi đồng bộ phim');
     //     }
-
-    //     $totalPages = $resp['pagination']['totalPages'];
-
-    //     return redirect()->back()->with('success', 'Đã đồng bộ tất cả phim thành công');
     // }
+    
+    function deleteDuplicateMovies()
+    {
+        // Tìm các phim trùng lặp dựa trên trường slug
+        $duplicates = Movie::select('slug')
+            ->groupBy('slug')
+            ->havingRaw('COUNT(*) > 1')
+            ->get();
+    
+        // Xóa các bản ghi phim trùng lặp
+        foreach ($duplicates as $duplicate) {
+            Movie::where('slug', $duplicate->slug)->delete();
+        }
+    
+        return 'Đã xóa các phim trùng lặp thành công.';
+    }
+
+    public function synchronizeAllMovies(Request $request)
+    {
+        $currentPage = $request->input('page', 1);
+        $url = "https://ophim1.com/danh-sach/phim-moi-cap-nhat?page=" . $currentPage;
+        $resp = Http::get($url)->json();
+        $movies = $resp['items'];
+
+        foreach ($movies as $movieData) {
+            $slug = $movieData['slug'];
+            $movie = Movie::where('slug', $slug)->first();
+
+            if (!$movie) {
+                $detailUrl = "https://ophim1.com/phim/" . $slug;
+                $detailResp = Http::get($detailUrl)->json();
+                $this->saveMovieData($detailResp['movie']);
+            }
+        }
+
+        $totalPages = $resp['pagination']['totalPages'];
+
+        return redirect()->back()->with('success', 'Đã đồng bộ tất cả phim thành công');
+    }
 
 
     public function synchronizeAllEpisodes()
