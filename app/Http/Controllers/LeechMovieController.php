@@ -14,6 +14,9 @@ use App\Models\Episode;
 use App\Models\LinkMovie;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Log;
+use App\Jobs\SynchronizeEpisodes;
+use Illuminate\Support\Facades\Queue;
 
 class LeechMovieController extends Controller
 {
@@ -63,104 +66,91 @@ class LeechMovieController extends Controller
     }
 
 
-    // public function synchronizeAllMovies(Request $request)
-    // {
-    //     $currentPage = $request->query('page', 1);
-    //     $url = "https://ophim1.com/danh-sach/phim-moi-cap-nhat?page=" . $currentPage;
-    //     $nextPage = $currentPage + 1;
-    //     $nextPageUrl = url()->current() . '?page=' . $nextPage;
-
-    //     try {
-    //         $resp = Http::get($url)->json();
-    //         $movies = $resp['items'] ?? [];
-
-    //         foreach ($movies as $movieData) {
-    //             $slug = $movieData['slug'] ?? null;
-
-    //             if (!$slug) {
-    //                 // If 'slug' key is missing or null, skip this movie data.
-    //                 continue;
-    //             }
-
-    //             $movie = Movie::where('slug', $slug)->first();
-
-    //             if (!$movie) {
-    //                 $detailUrl = "https://ophim1.com/phim/" . $slug;
-
-    //                 try {
-    //                     $detailResp = Http::get($detailUrl)->json();
-    //                     $this->saveMovieData($detailResp['movie'] ?? []);
-    //                 } catch (\Exception $e) {
-    //                     // Log any exceptions when fetching movie details and continue to the next movie.
-    //                     // You can add proper logging here to record the issue.
-    //                     continue;
-    //                 }
-    //             }
-    //         }
-
-    //         return redirect()->to($nextPageUrl)->with('success', 'Đã đồng bộ tất cả phim thành công');
-    //     } catch (\Exception $e) {
-    //         // If any exception occurs during the synchronization process, handle it here.
-    //         // You can add proper error handling or logging here to record the issue.
-    //         return redirect()->to($currentPage)->with('error', 'Có lỗi xảy ra khi đồng bộ phim');
-    //     }
-    // }
-    
     function deleteDuplicateMovies()
     {
-        // Tìm các phim trùng lặp dựa trên trường slug
-        $duplicates = Movie::select('slug')
+        // Tìm các bản ghi phim trùng lặp dựa trên trường slug và lấy slug của chúng
+        $duplicateSlugs = Movie::select('slug')
             ->groupBy('slug')
             ->havingRaw('COUNT(*) > 1')
-            ->get();
+            ->pluck('slug')
+            ->toArray();
     
-        // Xóa các bản ghi phim trùng lặp
-        foreach ($duplicates as $duplicate) {
-            Movie::where('slug', $duplicate->slug)->delete();
+        // Xác định bản ghi mới nhất và xóa các bản ghi còn lại
+        foreach ($duplicateSlugs as $slug) {
+            $latestMovieId = Movie::where('slug', $slug)
+                ->latest('date_created')
+                ->value('id');
+    
+            // Xóa các bản ghi có cùng slug nhưng không phải là mới nhất
+            Movie::where('slug', $slug)
+                ->where('id', '<>', $latestMovieId)
+                ->delete();
         }
     
-        return 'Đã xóa các phim trùng lặp thành công.';
+        return 'Đã xóa các phim trùng lặp thành công, chỉ giữ lại phim mới nhất.';
+
+        // Tìm các bản ghi phim trùng lặp dựa trên trường slug
+        // $duplicateSlugs = Movie::select('slug')
+        //     ->groupBy('slug')
+        //     ->havingRaw('COUNT(*) > 1')
+        //     ->pluck('slug')
+        //     ->toArray();
+
+        // // Lấy thông tin `created_at` của các bản ghi phim trùng lặp
+        // $created_at = Movie::select('slug', 'created_at')
+        //     ->whereIn('slug', $duplicateSlugs)
+        //     ->groupBy('slug', 'created_at')
+        //     ->get();
+
+        // // Hiển thị thông tin về các bản ghi phim trùng lặp
+        // dd($created_at);
     }
+    
 
     public function synchronizeAllMovies(Request $request)
     {
-        $currentPage = $request->input('page', 1);
+        $currentPage = $request->query('page', 1);
         $url = "https://ophim1.com/danh-sach/phim-moi-cap-nhat?page=" . $currentPage;
-        $resp = Http::get($url)->json();
-        $movies = $resp['items'];
+        $nextPage = $currentPage + 1;
+        $nextPageUrl = url()->current() . '?page=' . $nextPage;
 
-        foreach ($movies as $movieData) {
-            $slug = $movieData['slug'];
-            $movie = Movie::where('slug', $slug)->first();
+        try {
+            $resp = Http::get($url)->json();
+            $movies = $resp['items'] ?? [];
 
-            if (!$movie) {
-                $detailUrl = "https://ophim1.com/phim/" . $slug;
-                $detailResp = Http::get($detailUrl)->json();
-                $this->saveMovieData($detailResp['movie']);
+            foreach ($movies as $movieData) {
+                $slug = $movieData['slug'] ?? null;
+
+                if (!$slug) {
+                    // If 'slug' key is missing or null, skip this movie data.
+                    continue;
+                }
+
+                $movie = Movie::where('slug', $slug)->first();
+
+                if (!$movie) {
+                    $detailUrl = "https://ophim1.com/phim/" . $slug;
+
+                    try {
+                        $detailResp = Http::get($detailUrl)->json();
+                        $this->saveMovieData($detailResp['movie'] ?? []);
+                    } catch (\Exception $e) {
+                        // Log any exceptions when fetching movie details and continue to the next movie.
+                        // You can add proper logging here to record the issue.
+                        continue;
+                    }
+                }
             }
+
+            return redirect()->to($nextPageUrl)->with('success', 'Đã đồng bộ tất cả phim thành công');
+        } catch (\Exception $e) {
+            // If any exception occurs during the synchronization process, handle it here.
+            // You can add proper error handling or logging here to record the issue.
+            return redirect()->to($currentPage)->with('error', 'Có lỗi xảy ra khi đồng bộ phim');
         }
-
-        $totalPages = $resp['pagination']['totalPages'];
-
-        return redirect()->back()->with('success', 'Đã đồng bộ tất cả phim thành công');
     }
 
-
-    public function synchronizeAllEpisodes()
-    {
-        $movies = Movie::all();
     
-        foreach ($movies as $movie) {
-            if (!$movie->episode()->exists()) {
-                $this->synchronizeEpisodes($movie);
-                $movie->update(['updated_at' => Carbon::now('Asia/Ho_Chi_Minh')]);
-            }
-        }
-    
-        return redirect('leech-movie')->with('success', 'Đã đồng bộ tất cả tập phim thành công');
-    }
-
-
     public function leech_detail($slug)
     {
         $resp = Http::get("https://ophim1.com/phim/" . $slug)->json();
@@ -196,7 +186,8 @@ class LeechMovieController extends Controller
         $this->synchronizeEpisodes($movie);
 
         $movie->update(['updated_at' => Carbon::now('Asia/Ho_Chi_Minh')]);
-        return redirect('leech-movie')->with('success', 'Đã đồng bộ tập phim thành công');
+        return redirect()->back()->with('success', 'Đã đồng bộ tập phim thành công');
+
     }
 
     private function extract_video_code($url)
@@ -352,6 +343,19 @@ class LeechMovieController extends Controller
         }
     }
 
+    public function synchronizeAllEpisodes()
+    {
+        $movies = Movie::all();
+    
+        foreach ($movies as $movie) {
+            if (!$movie->episode()->exists()) {
+                $this->synchronizeEpisodes($movie);
+            }
+        }
+    
+        return redirect('leech-movie')->with('success', 'Đã đồng bộ tất cả tập phim thành công');
+    }
+
     private function synchronizeEpisodes(Movie $movie)
     {
         $slug = $movie->slug;
@@ -381,13 +385,69 @@ class LeechMovieController extends Controller
             }
         }
     }
-    
 
     private function episodeExists($movieId, $episodeName)
     {
         return Episode::where('movie_id', $movieId)->where('episode', $episodeName)->exists();
     }
+    
+    public function updateImageUrls()
+    {
+        $oldUrl = 'https://img.ophim8.cc';
+        $newUrl = 'https://img.ophim9.cc';
+    
+        $batchSize = 1000; // Số lượng bản ghi cập nhật trong mỗi lần
+    
+        $totalRecords = Movie::where('image', 'LIKE', '%' . $oldUrl . '%')->count();
+    
+        for ($offset = 0; $offset < $totalRecords; $offset += $batchSize) {
+            // Lấy $batchSize bản ghi bắt đầu từ $offset
+            $moviesToUpdate = Movie::where('image', 'LIKE', '%' . $oldUrl . '%')
+                ->offset($offset)
+                ->limit($batchSize)
+                ->get();
+    
+            // Cập nhật đường dẫn URL cho từng bản ghi
+            foreach ($moviesToUpdate as $movie) {
+                $movie->image = str_replace($oldUrl, $newUrl, $movie->image);
+                $movie->save();
+            }
+        }
+    
+        return 'Cập nhật đường dẫn URL thành công!';
+    }
 
+    public function leech_detail_episode(Request $request)
+    {
+        $slug = $request->slug;
+    
+        $resp = Http::get("https://ophim1.com/phim/" . $slug)->json();
+        $output['episode_title'] = $resp['movie']['name'];
+    
+        // Khai báo một mảng để lưu trữ thông tin tập phim
+        $episodeInfo = [];
+    
+        foreach ($resp['episodes'] as $res) {
+            foreach ($res['server_data'] as $server_1) {
+                // Thêm thông tin tập phim vào mảng $episodeInfo
+                $episodeInfo[] = [
+                    'name' => $server_1['name'],
+                    'link_embed' => $server_1['link_embed'],
+                ];
+            }
+        }
+    
+        // Gán mảng $episodeInfo vào output
+        $output['content_episode_title'] = $episodeInfo;
+        // Include the CSRF token value within the form
+        $csrfToken = csrf_token();
+        $output['button_save_episode'] = '<form method="post" action="' . route('leech-episode-store', $slug) . '">
+            <input type="hidden" name="_token" value="' . $csrfToken . '">
+            <input type="submit" value="Thêm tập phim" class="btn btn-success">
+        </form>';
+        return response()->json($output);
+    }
+    
     /**
      * Display a listing of the resource.
      *

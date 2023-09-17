@@ -17,7 +17,7 @@ class EpisodeController extends Controller
      */
     public function index()
     {
-        $list_episode = Episode::with('movie')->orderBy('movie_id', 'DESC')->get();
+        $list_episode = Episode::with('movie')->orderBy('movie_id', 'DESC')->paginate(10);
         $list_server = LinkMovie::orderBy('id', 'DESC')->get();
         return view('admincp.episodes.index', compact('list_episode', 'list_server'));
     }
@@ -64,7 +64,20 @@ class EpisodeController extends Controller
         $linkmovie = LinkMovie::orderBy('id', 'DESC')->pluck('title', 'id');
         $list_server = LinkMovie::orderBy('id', 'DESC')->get();
         $list_episode = Episode::with('movie')->where('movie_id', $id)->orderBy('episode', 'DESC')->get();
-        return view('admincp.episodes.add_episode', compact('list_episode', 'movie', 'linkmovie', 'list_server'));
+        // Lấy danh sách tập phim đã có liên kết với phim cụ thể
+        $existingEpisodes = Episode::where('movie_id', $id)->pluck('episode')->toArray();
+
+        // Tổng số tập phim, bạn có thể lấy từ thông tin của phim
+        $totalEpisodes = $movie->episodes;
+            // Tạo danh sách các tập phim chưa có trong cơ sở dữ liệu
+        $episodeOptions = [];
+
+        foreach (range(1, $totalEpisodes) as $episodeNumber) {
+            if (!in_array($episodeNumber, $existingEpisodes)) {
+                $episodeOptions[$episodeNumber] = $episodeNumber;
+            }
+        }
+        return view('admincp.episodes.add_episode', compact('list_episode', 'movie', 'linkmovie', 'list_server', 'episodeOptions'));
     }
 
     /**

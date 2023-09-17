@@ -22,18 +22,26 @@
                                     'enctype' => 'multipart/form-data',
                                 ]) !!}
                             @endif
+                            
+                            @if (!isset($episode))
+                                <div class="form-group">
+                                    {!! Form::label('movie', 'Chọn Phim', []) !!}
+                                    {!! Form::select('movie_id', ['0' => 'Chọn Phim'], isset($episode) ? $episode->movie_id : '', [
+                                            'class' => 'form-control select-movie',
+                                        ],
+                                    ) !!}
+                                </div>
+                            @else
+                                <div class="form-group">
+                                    {!! Form::label('movie', 'Chọn Phim', []) !!}
+                                    {!! Form::text('movie_id', isset($episode) ? $episode->movie->title : '', [
+                                            'class' => 'form-control',
+                                            'readonly',
+                                        ],
+                                    ) !!}
+                                </div>
+                            @endif
 
-                            <div class="form-group">
-                                {!! Form::label('movie', 'Chọn Phim', []) !!}
-                                {!! Form::select(
-                                    'movie_id',
-                                    ['0' => 'Chọn Phim', 'Phim Mới Nhất' => $list_movie],
-                                    isset($episode) ? $episode->movie_id : '',
-                                    [
-                                        'class' => 'form-control select-movie',
-                                    ],
-                                ) !!}
-                            </div>
                             <div class="form-group">
                                 {!! Form::label('link', 'Link Phim', []) !!}
                                 {!! Form::text('link', isset($episode) ? $episode->linkphim : '', [
@@ -42,6 +50,7 @@
                                     'required',
                                 ]) !!}
                             </div>
+
                             @if (isset($episode))
                                 <div class="form-group">
                                     {!! Form::label('episode', 'Tập Phim', []) !!}
@@ -58,12 +67,21 @@
                                     </select>
                                 </div>
                             @endif
-                            <div class="form-group">
-                                {!! Form::label('linkserver', 'LinkServer', []) !!}
-                                {!! Form::select('linkserver', $linkmovie, $episode->server, [
-                                    'class' => 'form-control',
-                                ]) !!}
-                            </div>
+
+                            @if (!isset($episode))
+                                <div class="form-group">
+                                    {!! Form::label('linkserver', 'LinkServer', []) !!}
+                                    
+                                </div>
+                            @else
+                                <div class="form-group">
+                                    {!! Form::label('linkserver', 'LinkServer', []) !!}
+                                    {!! Form::select('linkserver', $linkmovie, $episode->server, [
+                                        'class' => 'form-control',
+                                    ]) !!}
+                                </div>
+                            @endif
+
                             @if (!isset($episode))
                                 {!! Form::submit('Thêm Tập Phim', ['class' => 'btn btn-primary']) !!}
                             @else

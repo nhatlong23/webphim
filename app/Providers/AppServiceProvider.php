@@ -37,11 +37,7 @@ class AppServiceProvider extends ServiceProvider
         $movie_hot_sidebar = Movie::where('movie_hot', 1)->where('status', 1)->orderBy('updated_at', 'DESC')->take('20')->get();
         $info = Info::find(1);
         $currentYear = Carbon::now()->year;
-        //total admin
-        $category_total = Category::all()->count();
-        $genre_total = Genre::all()->count();
-        $country_total = Country::all()->count();
-        $movie_total = Movie::all()->count();
+
         Paginator::useBootstrap();
 
         view()->share([
@@ -50,10 +46,6 @@ class AppServiceProvider extends ServiceProvider
             'genre_home' => $genre,
             'country_home' => $country,
             'movie_hot_sidebar' => $movie_hot_sidebar,
-            'category_total' => $category_total,
-            'genre_total' => $genre_total,
-            'country_total' => $country_total,
-            'movie_total' => $movie_total,
             'currentYear' => $currentYear,
         ]);
     }

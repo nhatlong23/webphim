@@ -43,7 +43,7 @@
                                             }
                                         </style>
                                         <div class="iframe-phim">
-                                            {!! $episode->linkphim !!}
+                                            {{ $episode->linkphim }}
                                         </div>
                                     </td>
                                     <td>

@@ -5,7 +5,7 @@ return [
     /*
      * Enable it?
      */
-    'enabled' => false,
+    'enabled' => true,
 
     /*
      * Enable cache?
@@ -15,7 +15,7 @@ return [
     /*
      * Deffer booting for middleware use
      */
-    'use_middleware' => false,
+    'use_middleware' => true,
 
     /*
      * Robots should be tracked?
@@ -76,12 +76,12 @@ return [
      *    - Error log
      *    - URL queries (including values)
      */
-    'log_enabled' => false,
+    'log_enabled' => true,
 
     /*
      * Log artisan commands?
      */
-    'console_log_enabled' => false,
+    'console_log_enabled' => true,
 
     /*
      * Log SQL queries?
@@ -136,7 +136,7 @@ return [
     /*
      * Log events?
      */
-    'log_events' => false,
+    'log_events' => true,
 
     /*
      * Which events do you want to log exactly?
@@ -181,58 +181,58 @@ return [
      *     sudo apt-get purge php5-geoip
      *
      */
-    'log_geoip' => false,
+    'log_geoip' => true,
 
     /*
      * Do you wish to log the user agent?
      */
-    'log_user_agents' => false,
+    'log_user_agents' => true,
 
     /*
      * Do you wish to log your users?
      */
-    'log_users' => false,
+    'log_users' => true,
 
     /*
      * Do you wish to log devices?
      */
-    'log_devices' => false,
+    'log_devices' => true,
 
     /*
      * Do you wish to log languages?
      */
-    'log_languages' => false,
+    'log_languages' => true,
 
     /*
      * Do you wish to log HTTP referers?
      */
-    'log_referers' => false,
+    'log_referers' => true,
 
     /*
      * Do you wish to log url paths?
      */
-    'log_paths' => false,
+    'log_paths' => true,
 
     /*
      * Do you wish to log url queries and query arguments?
      */
-    'log_queries' => false,
+    'log_queries' => true,
 
     /*
      * Do you wish to log routes and route parameters?
      */
-    'log_routes' => false,
+    'log_routes' => true,
 
     /*
      * Log errors and exceptions?
      */
-    'log_exceptions' => false,
+    'log_exceptions' => true,
 
     /*
      * A cookie may be created on your visitor device, so you can have information
      * on everything made using that device on your site.	 *
      */
-    'store_cookie_tracker' => false,
+    'store_cookie_tracker' => true,
 
     /*
      * If you are storing cookies, you better change it to a name you of your own.

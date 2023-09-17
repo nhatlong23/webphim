@@ -28,7 +28,7 @@ services:
       - ./docker/mysql/:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_DATABASE: webphim1
+      MYSQL_DATABASE: webphim
       MYSQL_USER: webphim
       MYSQL_PASSWORD: 123456
 

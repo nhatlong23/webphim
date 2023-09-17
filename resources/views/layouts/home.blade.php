@@ -42,9 +42,62 @@
                 <div class="r3_counter_box">
                     <i class="pull-left fa fa-users dollar2 icon-rounded"></i>
                     <div class="stats">
-                        <h5><strong>1450</strong></h5>
+                        <h5><strong>{{Tracker::onlineUsers()->count()}}</strong></h5>
                         <span>Tổng người dùng</span>
                     </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+            <div class="row-one widgettable">
+            <div class="col-md10 content-top-2 card">
+                <div class="agileinfo-cdr">
+                    <div class="card-header">
+                        <h3>Thống kê</h3>
+                    </div>
+                    <table class="table" id="tablephim">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Trình duyệt</th>
+                                <th scope="col">Loại trình duyệt</th>
+                                <th scope="col">Loại thiết bị</th>
+                                <th scope="col">Hệ điều hành/Version</th>
+                                <th scope="col">Ip Address</th>
+                                <th scope="col">Bằng điện thoại</th>
+                                <th scope="col">Preference</th>
+                                <th scope="col">Log</th>
+                                <th scope="col">Truy cập</th>
+                                <th scope="col">Tổng trang truy cập</th>
+                            </tr>
+                        </thead>
+                        <tbody class="order_position">
+                            @foreach ($sessions as $key => $session)
+                                <tr>
+                                    <td>{{$key}}</td>
+                                    <td>{{$session->agent->browser}}</td>
+                                    <td>{{$session->agent->name}}</td>
+                                    <td>{{$session->device->kind}}</td>
+                                    <td>{{$session->device->platform }}/{{$session->device->platform_version }}</td>
+                                    <td>{{$session->client_ip }}</td>
+                                    <td>{{$session->device->is_mobile }}</td>
+                                    <td>
+                                        @if ($session->language)
+                                            {{$session->language->preference }}
+                                        @else
+                                            N/A
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{-- @foreach($session->log as $log)
+                                            {!! $log->path !!}<br/>
+                                        @endforeach --}}
+                                    </td>
+                                    <td>{{$session->created_at->diffforHumans()}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="clearfix"></div>

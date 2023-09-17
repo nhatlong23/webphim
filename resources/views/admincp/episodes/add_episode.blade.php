@@ -32,15 +32,24 @@
                                 ]) !!}
                                 {!! Form::hidden('movie_id', isset($movie) ? $movie->id : '', []) !!}
                             </div>
+
                             <div class="form-group">
                                 {!! Form::label('link', 'Link Phim', []) !!}
-                                {!! Form::text('link', isset($episode) ? $episode->linkphim : '', [
+                                {!! Form::text('link', '<p><iframe allowfullscreen frameborder="0" height="360" scrolling="0" src="..." width="100%"></iframe></p>', [
                                     'class' => 'form-control',
-                                    'placeholder' => 'Nhập vào dữ liệu...',
                                     'required',
+                                    'id' => 'link-input',
                                 ]) !!}
                             </div>
-                            @if (isset($episode))
+
+                            @if (!isset($episode))
+                                <div class="form-group">
+                                    {!! Form::label('episode', 'Tập Phim', []) !!}
+                                    {!! Form::select('episode', $episodeOptions, null, [
+                                        'class' => 'form-control',
+                                    ]) !!}
+                                </div>
+                            @else
                                 <div class="form-group">
                                     {!! Form::label('episode', 'Tập Phim', []) !!}
                                     {!! Form::text('episode', isset($episode) ? $episode->episode : '', [
@@ -49,14 +58,8 @@
                                         isset($episode) ? 'readonly' : '',
                                     ]) !!}
                                 </div>
-                            @else
-                                <div class="form-group">
-                                    {!! Form::label('episode', 'Tập Phim', []) !!}
-                                    {!! Form::selectRange('episode', 1, $movie->episodes, $movie->episodes, [
-                                        'class' => 'form-control',
-                                    ]) !!}
-                                </div>
                             @endif
+
                             <div class="form-group">
                                 {!! Form::label('linkserver', 'LinkServer', []) !!}
                                 {!! Form::select('linkserver', $linkmovie, '', [
@@ -116,7 +119,7 @@
                                             }
                                         </style>
                                         <div class="iframe-phim">
-                                            {!! $episode->linkphim !!}
+                                            {{ $episode->linkphim }}
                                         </div>
                                     </td>
                                     <td>

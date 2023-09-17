@@ -106,10 +106,30 @@
                                 d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4zm2-1a1 1 0 0 0-1 1v10.566l3.723-2.482a.5.5 0 0 1 .554 0L11 14.566V4a1 1 0 0 0-1-1H4z" />
                             <path
                                 d="M4.268 1H12a1 1 0 0 1 1 1v11.768l.223.148A.5.5 0 0 0 14 13.5V2a2 2 0 0 0-2-2H6a2 2 0 0 0-1.732 1z" />
-                        </svg><span> Bookmarks</span><span class="count">0</span></div>
-                    <div id="bookmark-list" class="hidden bookmark-list-on-pc">
-                        <ul style="margin: 0;"></ul>
+                        </svg><span> Bookmarks</span><span class="count">0</span>
                     </div>
+                    @if (Auth::user()) : {{Auth::user()->name}} 
+                        
+                    @endif
+                    @if (!Auth::user())
+                        <div id="get-bookmark" class="box-shadow">
+                            <a href="{{ route('login-to-google') }}">
+                                <img width="20" src="https://img.icons8.com/color/48/google-logo.png" alt="google-logo" title="Login to google"/>
+                            </a>
+                        </div>
+                        <div id="get-bookmark" class="box-shadow">
+                            <a href="{{ route('login-to-facebook') }}">
+                                <img width="20" src="https://img.icons8.com/color/48/facebook-new.png" alt="facebook-new" title="Login to Facebook"/>
+                            </a>
+                        </div>
+                    @else
+                        <div id="get-bookmark" class="box-shadow">
+                            <a href="{{ route('logout') }}">
+                                <img width="20" src="{{asset('uploads/logo/logout.svg')}}" alt="logout" title="Logout"/>
+                            </a>
+                        </div>
+                    @endif
+                    
                 </div>
             </div>
         </div>
@@ -360,41 +380,41 @@
     </script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
+        // $(document).ready(function() {
 
-            $('#timkiem').keyup(function() {
-                $('#result').html('');
-                var search = $('#timkiem').val();
-                if (search != '') {
-                    var expression = new RegExp(search, "i");
-                    $.getJSON('json/movies.json', function(data) {
-                        $.each(data, function(key, value) {
-                            if (value.title.search(expression) != -1) {
-                                $('#result').css('display', 'inherit');
-                                var imageSrc = value.image.substring(0, 4) === 'http' ?
-                                    value.image : 'uploads/movie/' + value.image;
-                                $('#result').append(
-                                    '<li class="list-group-item" style="cursor: pointer">' +
-                                    '<img height="40" width="40" src="' + imageSrc +
-                                    '">' +
-                                    value.title +
-                                    '</li>'
-                                );
-                            }
-                        });
-                    });
-                } else {
-                    $('#result').css('display', 'none');
-                }
-            });
+        //     $('#timkiem').keyup(function() {
+        //         $('#result').html('');
+        //         var search = $('#timkiem').val();
+        //         if (search != '') {
+        //             var expression = new RegExp(search, "i");
+        //             $.getJSON('json/movies.json', function(data) {
+        //                 $.each(data, function(key, value) {
+        //                     if (value.title.search(expression) != -1) {
+        //                         $('#result').css('display', 'inherit');
+        //                         var imageSrc = value.image.substring(0, 4) === 'http' ?
+        //                             value.image : 'uploads/movie/' + value.image;
+        //                         $('#result').append(
+        //                             '<li class="list-group-item" style="cursor: pointer">' +
+        //                             '<img height="40" width="40" src="' + imageSrc +
+        //                             '">' +
+        //                             value.title +
+        //                             '</li>'
+        //                         );
+        //                     }
+        //                 });
+        //             });
+        //         } else {
+        //             $('#result').css('display', 'none');
+        //         }
+        //     });
 
-            $('#result').on('click', 'li', function() {
-                var click_text = $(this).text().split('|');
-                $('#timkiem').val($.trim(click_text[0]));
-                $('#result').html('');
-                $('#result').css('display', 'none');
-            });
-        })
+        //     $('#result').on('click', 'li', function() {
+        //         var click_text = $(this).text().split('|');
+        //         $('#timkiem').val($.trim(click_text[0]));
+        //         $('#result').html('');
+        //         $('#result').css('display', 'none');
+        //     });
+        // })
     </script>
     
     <script type="text/javascript">

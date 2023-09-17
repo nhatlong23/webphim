@@ -6,7 +6,7 @@
             Launch demo modal
         </button> --}}
 
-        <!-- Modal -->
+        <!-- Modal check movie episode -->
         <div class="modal" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -27,14 +27,42 @@
                 </div>
             </div>
         </div>
+        <!-- Modal thêm tập phim -->
+        <div class="modal" id="episode" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="episode_title"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="content_episode_title"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <p id="button_save_episode"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <td><a href="{{ route('remove-episode') }}" class="btn btn-success">Xóa các tập phim trùng</a></td>
         <td><a href="{{ route('delete-movie') }}" class="btn btn-success">Xóa các phim trùng</a></td>
+        {{-- <td><a href="{{ route('update-image-movie') }}" class="btn btn-success">Cập nhật hình ảnh sang o9</a></td> --}}
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <a href="{{ route('movie.create') }}" class="btn btn-primary">Thêm phim</a>
+                    {{--  --}}
+                    <h1>Tìm kiếm Real-time</h1>
+                    <input type="text" id="searchInput" placeholder="Nhập từ khóa tìm kiếm" autocomplete="off">
+                    <div id="searchResults" style="display: none;">
+                        <!-- Kết quả tìm kiếm sẽ được hiển thị ở đây -->
+                    </div>
+                    {{--  --}}
                     <div class="table-responsive">
-                        <table class="table table-responsive" id="tablemovie">
+                        <table class="table table-responsive" id="">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -83,9 +111,13 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('add-episode', [$cate->id]) }}" class="btn btn-danger btn-sm">
-                                                Thêm Tập Phim
+                                                Thêm Tập Phim bằng tay
                                             </a>
-
+                                            <span>
+                                                <button type="button" data-movie_slug="{{ $cate->slug }}" 
+                                                class="badge badge-success btn-sm leech_details_episode"
+                                                data-toggle="modal" data-target="#episode">Thêm tập phim bằng api</button>
+                                            </span>
                                             @foreach ($cate->episode->sortByDesc('episode')->take(3) as $key => $ep)
                                                 <a class="show_video" data-movie_video_id="{{ $ep->movie_id }}"
                                                     data-video_episode="{{ $ep->episode }}" style="cursor: pointer">

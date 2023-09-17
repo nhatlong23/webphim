@@ -34,7 +34,7 @@ class CreateSiteMap extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Synchronize sitemap daily';
 
     /**
      * Create a new command instance.
@@ -81,15 +81,6 @@ class CreateSiteMap extends Command
                 $sitemap->add(env('APP_URL') . "/phim/{$mov->slug}", $now, '0.7', 'daily');
             }
         });
-        
-
-        // //get all movie_ep from db
-        // $movies = Movie::with('episode')->orderBy('id', 'DESC')->get();
-        // foreach ($movies as $mov) {
-        //     foreach ($mov->episode as $ep) {
-        //         $sitemap->add(env('APP_URL') . "xem-phim/{$mov->slug}/tap-{$ep->episode}", $now, '0.6', 'daily');
-        //     }
-        // }
 
         //get all year
         $year = range($now->year, 2000);
@@ -101,5 +92,6 @@ class CreateSiteMap extends Command
         if (File::exists(public_path() . '/sitemap.xml')) {
             File::copy(public_path('sitemap.xml'), base_path('sitemap.xml'));
         }
+        $this->info('Synchronize sitemap daily successfully.');
     }
 }

@@ -71,7 +71,7 @@
 
                     </ul>
                 </li>
-                <li class="treeview {{ $segment == 'movie' ? 'active' : '' }}">
+                <li class="treeview {{ in_array($segment, ['movie', 'episode']) ? 'active' : '' }}">
                     <a href="#">
                         <i class="fa fa-film"></i>
                         <span>Phim</span>
@@ -124,13 +124,13 @@
                 <li class="treeview {{ $segment == 'info' ? 'active' : '' }}">
                     <a href="#">
                         <i class="fa fa-info"></i>
-                        <span>Info phim</span>
+                        <span>Website phim</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li>
                             <a href="{{ route('info.create') }}"><i class="fa fa-angle-right"></i>
-                                Thêm Info Phim
+                                Thông tin website Phim
                             </a>
                         </li>
                     </ul>

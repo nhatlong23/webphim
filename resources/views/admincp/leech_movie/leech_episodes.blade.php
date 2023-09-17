@@ -48,10 +48,10 @@
                                 @csrf
                                 <input type="submit" value="Thêm tập phim" class="btn btn-success">
                             </form>
-                            <form method="post" action="">
+                            {{-- <form method="post" action="">
                                 @csrf
                                 <input type="submit" value="Xóa tập phim" class="btn btn-danger">
-                            </form>
+                            </form> --}}
                         </td>
                     </tr>
                 @endforeach

@@ -63,6 +63,18 @@ return [
             ]) : [],
         ],
 
+        'tracker' => [
+            'driver'   => 'mysql',
+            'host'     =>  env('DB_HOST', 'mysql'),
+            'port'     =>  env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'webphim'),
+            'username' => env('DB_USERNAME', 'root'),
+            'password' => env('DB_PASSWORD', '123456'),
+            'charset' => 'utf8mb4',
+            'strict' => false,    // to avoid problems on some MySQL installs
+            'collation' => 'utf8mb4_general_ci',
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),

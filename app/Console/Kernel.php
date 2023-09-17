@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Carbon\Carbon;
 
 class Kernel extends ConsoleKernel
 {
@@ -15,8 +16,16 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        // Đặt múi giờ cho Carbon thành múi giờ Việt Nam (Asia/Ho_Chi_Minh)
+        // $now = Carbon::now('Asia/Ho_Chi_Minh'); // Múi giờ Việt Nam
+    
+        $schedule->command('synchronize:movies')->daily()->sendOutputTo(storage_path('logs/scheduler.log'));
+
+        $schedule->command('sitemap:create')->dailyAt('12:26')->sendOutputTo(storage_path('logs/scheduler.log'));
+
+        $schedule->command('synchronize:episodes')->dailyAt('13:40')->sendOutputTo(storage_path('logs/scheduler.log'));
     }
+    
 
     /**
      * Register the commands for the application.

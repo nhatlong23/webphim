@@ -13,6 +13,8 @@ use App\Http\Controllers\InfoController;
 use App\Http\Controllers\LinkMovieController;
 use App\Http\Controllers\LeechMovieController;
 use App\Http\Controllers\RedisController;
+use App\Http\Controllers\LoginGoogleController;
+use App\Http\Controllers\LoginFacebookController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
@@ -87,6 +89,19 @@ Route::get('synchronize-all-movies', [LeechMovieController::class, 'synchronizeA
 Route::get('synchronize-all-episodes', [LeechMovieController::class, 'synchronizeAllEpisodes'])->name('synchronize-all-episodes');
 Route::get('remove-episode', [LeechMovieController::class, 'checkAndRemoveDuplicateEpisodes'])->name('remove-episode');
 Route::get('delete-movie', [LeechMovieController::class, 'deleteDuplicateMovies'])->name('delete-movie');
+Route::get('update-image-movie', [LeechMovieController::class, 'updateImageUrls'])->name('update-image-movie');
+Route::post('leech-detail-episode', [LeechMovieController::class, 'leech_detail_episode'])->name('leech-detail-episode');
+
+Route::get('/searchMovies', [MovieController::class, 'search'])->name('searchMovies');
+
+//login facebooke, google
+Route::get('auth/google', [LoginGoogleController::class, 'redirectToGoogle'])->name('login-to-google');
+Route::get('auth/google/callback', [LoginGoogleController::class, 'handleGoogleCallback']);
+Route::get('logout', [LoginGoogleController::class, 'logout'])->name('logout');
+
+Route::get('auth/facebook', [LoginFacebookController::class, 'redirectToFacebook'])->name('login-to-facebook');
+Route::get('auth/facebook/callback', [LoginFacebookController::class, 'handleFacebookCallback']);
+
 
 //site map host
 Route::get('/create_sitemap', function () {

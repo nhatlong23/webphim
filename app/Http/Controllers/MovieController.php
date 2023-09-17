@@ -24,14 +24,15 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $list = Movie::with('category', 'movie_genre', 'movie_category', 'country', 'genre')->withCount('episode')->orderBy('id', 'DESC')->paginate(30);
+        $list = Movie::with('category', 'movie_genre', 'movie_category', 'country', 'genre')->withCount('episode')->orderBy('id', 'DESC')->paginate(10);
+        $movie_all = Movie::select('id', 'title','image','name_en','duration_movie','episodes','slug')->withCount('episode')->get();
         $category = Category::pluck('title', 'id');
         $country = Country::pluck('title', 'id');
         $path = public_path() . "/json/";
         if (!is_dir($path)) {
             mkdir($path, 0777, true);
         }
-        File::put($path . 'movies.json', json_encode($list));
+        File::put($path . 'movies.json', json_encode($movie_all));
         return view('admincp.movie.index', compact('list', 'category', 'country'));
     }
 
@@ -254,7 +255,7 @@ class MovieController extends Controller
         $movie->thuocphim = $data['thuocphim'];
         // $movie->genre_id = $data['genre_id'];
         $movie->country_id = $data['country_id'];
-        $movie->date_updated = Carbon::now('Asia/Ho_Chi_Minh');
+        $movie->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         //phim nhieu the loai
         foreach ($data['genre'] as $key => $gen) {
             $movie->genre_id = $gen[0];
@@ -352,4 +353,22 @@ class MovieController extends Controller
 
         echo json_encode($output);
     }
+
+    public function search(Request $request)
+    {
+        $searchKeyword = $request->input('search');
+    
+        $list = Movie::with('category', 'movie_genre', 'movie_category', 'country', 'genre')
+            ->withCount('episode')
+            ->where(function ($query) use ($searchKeyword) {
+                $query->where('title', 'LIKE', '%' . $searchKeyword . '%')
+                ->orWhere('name_en', 'LIKE', '%' . $searchKeyword . '%');
+            })
+            ->orderBy('id', 'DESC')
+            ->paginate(30);
+    
+        // Trả về view chứa kết quả tìm kiếm
+        return view('admincp.movie.search_results', ['movies' => $list]);
+    }
+
 }
