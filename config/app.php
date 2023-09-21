@@ -162,6 +162,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         PragmaRX\Tracker\Vendor\Laravel\ServiceProvider::class,
+        CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider::class,
+        Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
+
 
         /*
          * Package Service Providers...
@@ -234,6 +237,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Toastr' => Yoeunes\Toastr\Facades\Toastr::class,
         'Tracker' => 'PragmaRX\Tracker\Vendor\Laravel\Facade',
+        'Cloudinary' => CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary::class,
+        'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
+
     ],
 
 ];

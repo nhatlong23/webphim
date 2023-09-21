@@ -1,10 +1,11 @@
 <?php
-use Illuminate\Http\Request;
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request; // Sửa namespace ở đây
+use Anhskohbo\NoCaptcha\Facades\NoCaptcha;
 
 class LoginController extends Controller
 {
@@ -19,7 +20,7 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-
+    
     /**
      * Where to redirect users after login.
      *
@@ -36,4 +37,32 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+            'g-recaptcha-response' => 'required|captcha',
+        ], [
+            'g-recaptcha-response.required' => 'Vui lòng xác minh bạn không phải là robot.',
+            'g-recaptcha-response.captcha' => 'Xác minh không thành công. Vui lòng thử lại.',
+        ]);
+    }
+    
+
+
+    public function customerLogin(Request $request)
+    {
+        $credentials = $request->only('google_id');
+    
+        if (Auth::guard('customer')->attempt($credentials)) {
+            // Đăng nhập thành công cho customer
+            return redirect()->intended('/');
+        }
+    
+        // Điều hướng về trang đăng nhập cho customer với thông báo lỗi
+        return 'lỗi đăng nhập';
+    }
+
 }

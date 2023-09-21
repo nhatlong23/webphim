@@ -1,16 +1,26 @@
 @extends('layout')
 @section('content')
+@php
+    $message_director = "mới nhất, Tổng hợp danh sách Phim có đạo diễn: $director hay được web cập nhật liên tục. Tải Phim có đạo diễn : $director năm $currentYear, Xem Phim có đạo diễn : $director vietsub, thuyết minh mới nhất, Tổng hợp Phim có đạo diễn : $director hay nhất";
+@endphp
     <div class="row container" id="wrapper">
         <div class="halim-panel-filter">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-6">
-                        <div class="yoast_breadcrumb hidden-xs">
+                    <div class="col-xs-6-edit">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb" style="margin-bottom: revert;">
+                                <li class="breadcrumb-item"><a href="{{'/'}}">Phim Mới</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Phim có đạo diễn : {{ $director }}</li>
+                            </ol>
+                        </nav>
+                        <div class="breadcrumb-style">
                             <span>
-                                <span>
-                                    <a>Phim của đạo diễn</a> :
-                                    <span class="breadcrumb_last" aria-current="page">{{ $director }}</span>
+                                Phim có diễn viên: 
+                                <span class="breadcrumb-item" aria-current="page">
+                                    <a title="{{ $director }}" href="">{{ $director }}</a>
                                 </span>
+                                {{$message_director}}
                             </span>
                         </div>
                     </div>
@@ -22,62 +32,23 @@
         </div>
         <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
             <section>
-                <div class="section-bar clearfix">
-                    <h1 class="section-title">
-                        <span style="font-size:x-small;font-weight: lighter; font-family: Arial, sans-serif;">Phim của đạo
-                            diễn : {{ $director }} mới nhất ,Tổng hợp danh sách
-                            Phim của đạo diễn: {{ $director }} hay được web cập nhật liên tục.Tải Phim của đạo diễn:
-                            {{ $director }} năm {{$currentYear}}, Xem Phim của đạo diễn: {{ $director }} vietsub, thuyết minh
-                            mới
-                            nhất, Tổng hợp Phim của đạo diễn: {{ $director }} hay nhất
-                        </span>
-                    </h1>
-                </div>
                 <div class="halim_box">
-                    @foreach ($movie as $key => $mov)
+                    @foreach ($movies as $key => $mov)
                         <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
                             <div class="halim-item">
                                 @php
                                     $image_check = substr($mov->image, 0, 4);
+                                    $subtitle = ($mov->sub_movie == 0 ? 'VietSub' : 'Thuyết Minh') . ($mov->season != 0 ? ' - Season ' . $mov->season : '');
                                 @endphp
                                 <a class="halim-thumb" href="{{ route('movie', $mov->slug) }}">
                                     <figure>
-                                        @if ($image_check == 'http')
-                                            <img class="lazy img-responsive"
-                                            src="{{ $mov->image }}" alt=""
-                                            title="{{ $mov->title }}">
-                                        @else
-                                            <img class="lazy img-responsive"
-                                            src="{{ asset('uploads/movie/' . $mov->image) }}" alt=""
-                                            title="{{ $mov->title }}">
-                                        @endif
+                                        <img class="lazy img-responsive" src="{{ $image_check === 'http' ? $mov->image : asset('uploads/movie/' . $mov->image) }}"
+                                            alt="{{ $mov->title }}" title="{{ $mov->title }}" loading="lazy">
                                     </figure>
                                     <span class="status">
-                                        @if ($mov->resolution == 0)
-                                            HD
-                                        @elseif ($mov->resolution == 1)
-                                            SD
-                                        @elseif ($mov->resolution == 2)
-                                            HDCam
-                                        @elseif ($mov->resolution == 3)
-                                            Cam
-                                        @elseif ($mov->resolution == 4)
-                                            FullHD
-                                        @else
-                                            Trailer
-                                        @endif
+                                        {{ $resolutions[$mov->resolution] }}
                                     </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
-                                        @if ($mov->sub_movie == 0)
-                                            VietSub
-                                            @if ($mov->season != 0)
-                                                - Season {{ $mov->season }}
-                                            @endif
-                                        @elseif ($mov->sub_movie == 1)
-                                            Thuyết Minh
-                                            @if ($mov->season != 0)
-                                                - Season {{ $mov->season }}
-                                            @endif
-                                        @endif
+                                        {{ $subtitle }}
                                     </span>
                                     <div class="icon_overlay"></div>
                                     <div class="halim-post-title-box">
@@ -94,14 +65,7 @@
                 <div class="clearfix"></div>
                 <div class="text-center">
                     <ul class='page-numbers'>
-                        {{-- <li><span aria-current="page" class="page-numbers current">1</span></li>
-                        <li><a class="page-numbers" href="">2</a></li>
-                        <li><a class="page-numbers" href="">3</a></li>
-                        <li><span class="page-numbers dots">&hellip;</span></li>
-                        <li><a class="page-numbers" href="">55</a></li>
-                        <li><a class="next page-numbers" href=""><i class="hl-down-open rotate-right"></i></a>
-                        </li> --}}
-                        {!! $movie->links('pagination::bootstrap-4') !!}
+                        {!! $movies->links() !!}
                     </ul>
                 </div>
             </section>

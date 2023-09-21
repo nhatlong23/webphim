@@ -1,6 +1,5 @@
 
 @section('sidebar')
-
     @if (Auth::check())
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="sidebar-menu">

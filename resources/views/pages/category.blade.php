@@ -4,9 +4,21 @@
         <div class="halim-panel-filter">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-6">
-                        <div class="yoast_breadcrumb hidden-xs"><span><span><a href="">{{ $cate_slug->title }}</a> »
-                                    <span class="breadcrumb_last" aria-current="page">{{$currentYear}}</span></span></span></div>
+                    <div class="col-xs-6-edit">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb" style="margin-bottom: revert;">
+                                <li class="breadcrumb-item"><a href="{{'/'}}">Phim Mới</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ $category->title }}</li>
+                            </ol>
+                        </nav>
+                        <div class="breadcrumb-style">
+                            <span>
+                                <span class="breadcrumb-item" aria-current="page">
+                                    <a title="{{ $category->title }}" href="">{{ $category->title }}</a>
+                                </span>
+                               {{$getMessage}}
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -17,7 +29,7 @@
         <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
             <section>
                 <div class="section-bar clearfix">
-                    <h1 class="section-title"><span>{{ $cate_slug->title }}</span></h1>
+                    <h1 class="section-title"><span>{{ $category->title }}</span></h1>
                 </div>
                 <div class="section-bar clearfix">
                     {{-- filter --}}
@@ -26,50 +38,22 @@
                     </div>
                 </div>
                 <div class="halim_box">
-                    @foreach ($movie as $key => $mov)
+                    @foreach ($movies as $key => $mov)
                         <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
                             <div class="halim-item">
                                 @php
                                     $image_check = substr($mov->image, 0, 4);
+                                    $subtitle = ($mov->sub_movie == 0 ? 'VietSub' : 'Thuyết Minh') . ($mov->season != 0 ? ' - Season ' . $mov->season : '');
                                 @endphp
                                 <a class="halim-thumb" href="{{ route('movie', $mov->slug) }}">
                                     <figure>
-                                        @if ($image_check == 'http')
-                                            <img class="lazy img-responsive"
-                                            src="{{ $mov->image }}" alt=""
-                                            title="{{ $mov->title }}">
-                                        @else
-                                            <img class="lazy img-responsive"
-                                            src="{{ asset('uploads/movie/' . $mov->image) }}" alt=""
-                                            title="{{ $mov->title }}">
-                                        @endif
+                                        <img class="lazy img-responsive" src="{{ $image_check === 'http' ? $mov->image : asset('uploads/movie/' . $mov->image) }}"
+                                            alt="{{ $mov->title }}" title="{{ $mov->title }}" loading="lazy">
                                     </figure>
                                     <span class="status">
-                                        @if ($mov->resolution == 0)
-                                            HD
-                                        @elseif ($mov->resolution == 1)
-                                            SD
-                                        @elseif ($mov->resolution == 2)
-                                            HDCam
-                                        @elseif ($mov->resolution == 3)
-                                            Cam
-                                        @elseif ($mov->resolution == 4)
-                                            FullHD
-                                        @else
-                                            Trailer
-                                        @endif
+                                        {{ $resolutions[$mov->resolution] }}
                                     </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
-                                        @if ($mov->sub_movie == 0)
-                                            VietSub
-                                            @if ($mov->season != 0)
-                                                - Season {{ $mov->season }}
-                                            @endif
-                                        @elseif ($mov->sub_movie == 1)
-                                            Thuyết Minh
-                                            @if ($mov->season != 0)
-                                                - Season {{ $mov->season }}
-                                            @endif
-                                        @endif
+                                        {{ $subtitle }}
                                     </span>
                                     <div class="icon_overlay"></div>
                                     <div class="halim-post-title-box">
@@ -86,14 +70,7 @@
                 <div class="clearfix"></div>
                 <div class="text-center">
                     <ul class='page-numbers'>
-                        {{-- <li><span aria-current="page" class="page-numbers current">1</span></li>
-                        <li><a class="page-numbers" href="">2</a></li>
-                        <li><a class="page-numbers" href="">3</a></li>
-                        <li><span class="page-numbers dots">&hellip;</span></li>
-                        <li><a class="page-numbers" href="">55</a></li>
-                        <li><a class="next page-numbers" href=""><i class="hl-down-open rotate-right"></i></a>
-                        </li> --}}
-                        {!! $movie->links('pagination::bootstrap-4') !!}
+                        {!! $movies->links() !!}
                     </ul>
                 </div>
             </section>

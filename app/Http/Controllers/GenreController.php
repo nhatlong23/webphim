@@ -37,7 +37,26 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $request->validate(
+            [
+                'title' => 'required|unique:genres|max:100',
+                'slug' => 'required|unique:genres|max:100',
+                'description' => 'required|max:255',
+                'status' => 'required',
+            ],
+            [
+                'title.required' => 'Vui lòng nhập tiêu đề',
+                'title.unique' => 'Tiêu đề đã tồn tại',
+                'title.max' => 'Tiêu đề không được quá 100 ký tự',
+                'slug.required' => 'Vui lòng nhập slug',
+                'slug.unique' => 'Slug đã tồn tại',
+                'slug.max' => 'Slug không được quá 100 ký tự',
+                'description.required' => 'Vui lòng nhập mô tả',
+                'description.max' => 'Mô tả không được quá 255 ký tự',
+                'status.required' => 'Vui lòng chọn trạng thái',
+            ]
+        );
+
         $genre = new Genre();
         $genre->title = $data['title'];
         $genre->slug = $data['slug'];
@@ -81,7 +100,26 @@ class GenreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
+        $data = $request->validate(
+            [
+                'title' => 'required|unique:genres|max:100',
+                'slug' => 'required|unique:genres|max:100',
+                'description' => 'required|max:255',
+                'status' => 'required',
+            ],
+            [
+                'title.required' => 'Vui lòng nhập tiêu đề',
+                'title.unique' => 'Tiêu đề đã tồn tại',
+                'title.max' => 'Tiêu đề không được quá 100 ký tự',
+                'slug.required' => 'Vui lòng nhập slug',
+                'slug.unique' => 'Slug đã tồn tại',
+                'slug.max' => 'Slug không được quá 100 ký tự',
+                'description.required' => 'Vui lòng nhập mô tả',
+                'description.max' => 'Mô tả không được quá 255 ký tự',
+                'status.required' => 'Vui lòng chọn trạng thái',
+            ]
+        );
+
         $genre = Genre::find($id);
         $genre->title = $data['title'];
         $genre->slug = $data['slug'];

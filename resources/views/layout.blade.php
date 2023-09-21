@@ -62,6 +62,10 @@
             background-size: contain;
             text-indent: -9999px;
         }
+        .dark-mode {
+            background-color: black;
+            color: white;
+        }
     </style>
 </head>
 
@@ -108,10 +112,11 @@
                                 d="M4.268 1H12a1 1 0 0 1 1 1v11.768l.223.148A.5.5 0 0 0 14 13.5V2a2 2 0 0 0-2-2H6a2 2 0 0 0-1.732 1z" />
                         </svg><span> Bookmarks</span><span class="count">0</span>
                     </div>
-                    @if (Auth::user()) : {{Auth::user()->name}} 
-                        
+                    @if (auth('customer')->check())
+                        {{ auth('customer')->user()->name }}
                     @endif
-                    @if (!Auth::user())
+
+                    @if (!Auth::guard('customer')->check())
                         <div id="get-bookmark" class="box-shadow">
                             <a href="{{ route('login-to-google') }}">
                                 <img width="20" src="https://img.icons8.com/color/48/google-logo.png" alt="google-logo" title="Login to google"/>
@@ -170,14 +175,16 @@
                                 </li>
                             @endforeach
                             <li class="mega dropdown">
-                                <a title="Năm" href="#" data-toggle="dropdown" class="dropdown-toggle"
-                                    aria-haspopup="true">Năm <span class="caret"></span></a>
-                                <ul role="menu" class=" dropdown-menu">
-                                    @for ($year = 2006; $year <= 2030; $year++)
-                                        <li><a title="{{ $year }}"
-                                                href="{{ url('year/' . $year) }}">{{ $year }}</a></li>
-                                    @endfor
-                                </ul>
+                            @php
+                                $startYear = 2006;
+                                $endYear = $currentYear + 3;
+                            @endphp
+                            <a title="Năm" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Năm <span class="caret"></span></a>
+                            <ul role="menu" class="dropdown-menu">
+                                @for ($year = $startYear; $year <= $endYear; $year++)
+                                    <li><a title="{{ $year }}" href="{{ url('year/' . $year) }}">{{ $year }}</a></li>
+                                @endfor
+                            </ul>
                             </li>
                             <li class="mega dropdown">
                                 <a title="Thể Loại" href="#" data-toggle="dropdown" class="dropdown-toggle"
@@ -321,6 +328,7 @@
             $('#banner_quangcao').modal('show');
         });
     </script> --}}
+    
     <script>
         $(document).ready(function() {
             // Hover function for individual episodes
@@ -334,31 +342,6 @@
             );
         });
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.pagination-link').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    let currentPage = this.getAttribute('data-page');
-                    synchronizeMovies(currentPage);
-                });
-            });
-
-            function synchronizeMovies(currentPage) {
-                // Sử dụng AJAX để gửi giá trị currentPage về máy chủ
-                let xhr = new XMLHttpRequest();
-                xhr.open('GET', '/leech-movie?page=' + currentPage, true);
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        // Xử lý kết quả nếu cần thiết
-                        // Ví dụ: Cập nhật dữ liệu trên trang hoặc thông báo thành công
-                    }
-                };
-                xhr.send();
-            }
-        });
-    </script>
-
 
     <script style="text/javascript">
         setTimeout(function(data) {
@@ -369,6 +352,7 @@
             //0.01-second delay
         }, 10);
     </script>
+
     <script style="text/javascript">
         $(".watch_trailer").click(function(e) {
             e.preventDefault();
@@ -443,7 +427,6 @@
         })
     </script>
 
-
     <script type="text/javascript">
         function remove_background(movie_id) {
             for (var count = 1; count <= 5; count++) {
@@ -471,8 +454,8 @@
             }
         });
 
-        //click danh gia sao
-        $(document).on('click', '.rating', function() {
+        // click danh gia sao
+        $(document).on('click', '.rating', function () {
             var index = $(this).data("index");
             var movie_id = $(this).data('movie_id');
             var _token = $('input[name="_token"]').val();
@@ -488,12 +471,13 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                success: function(data) {
+                success: function (data) {
                     if (data == 'done') {
-                        alert("Bạn đã đánh giá" + index + " trên 5");
-                        location.reload();
+                        alert("Bạn đã đánh giá " + index + " trên 5");
+                        // Update số đánh giá và điểm đánh giá hiển thị trên trang
+                        $('.rating span').html('(' + index + 'đ/' + data.reviews + 'lượt)');
                     } else if (data == 'exist') {
-                        alert("Bạn đã đánh giá phim này rồi,cảm ơn bạn nhé");
+                        alert("Bạn đã đánh giá phim này rồi, cảm ơn bạn nhé");
                     } else {
                         alert("Lỗi đánh giá");
                     }
@@ -534,9 +518,6 @@
         }(document, 'script', 'facebook-jssdk'));
     </script>
 
-
-
-
     <script>
         jQuery(document).ready(function($) {
             var owl = $('#halim_related_movies-2');
@@ -568,9 +549,6 @@
             })
         });
     </script>
-
-
-
 
     <style>
         #overlay_mb {

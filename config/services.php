@@ -30,6 +30,12 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'cloudinary' => [
+        'cloud_name' => env('phimmoi48h'),
+        'api_key' => env('937766163417813'),
+        'api_secret' => env('zufGxvbkZaLqEirurMibDNAFMpE'),
+    ],
+
     'google' => [
         'client_id' => '911610694739-ljimm68n7on9mn6airhkloti9pssi28k.apps.googleusercontent.com',
         'client_secret' => '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',
@@ -41,4 +47,5 @@ return [
         'client_secret' => '3aa382286e3bac0f086188802ef101c8',
         'redirect' =>  env('APP_URL').'/auth/facebook/callback',
     ],
+
 ];

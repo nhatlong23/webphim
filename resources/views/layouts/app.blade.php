@@ -123,7 +123,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <h1>
-                            <a class="navbar-brand" href="{{ url('/') }}"><span class="fa fa-area-chart"></span>
+                            <a target="_blank" class="navbar-brand" href="{{ url('/') }}"><span class="fa fa-area-chart"></span>
                                 Movie<span class="dashboard_text">Dashboard Movie</span></a>
                         </h1>
                     </div>
@@ -1331,6 +1331,7 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <script async src="https://www.google.com/recaptcha/api.js">
 
 
     <script>

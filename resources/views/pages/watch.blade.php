@@ -1,16 +1,19 @@
 @extends('layout')
 @section('content')
+@php
+    $current_url = Request::url();
+@endphp
     <div class="row container" id="wrapper">
         <div class="halim-panel-filter">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-6">
-                        <div class="yoast_breadcrumb hidden-xs"><span><span><a
-                                        href="{{ route('category', $movie->category->slug) }}">{{ $movie->category->title }}</a>
-                                    » <span><a
-                                            href="{{ route('country', $movie->country->slug) }}"">{{ $movie->country->title }}</a>
-                                        » <span class="breadcrumb_last" aria-current="page">{{ $movie->title }}
-                                        </span></span></span></span></div>
+                    <div class="col-xs-6-edit">
+                        <ol class="breadcrumb" style="margin-bottom: revert;">
+                            <li class="breadcrumb-item"><a href="{{'/'}}">Xem phim</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('category', $movie->category->slug) }}">{{ $movie->category->title }}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('country', $movie->country->slug) }}">{{ $movie->country->title }}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ $movie->title }}</li>
+                        </ol>
                     </div>
                 </div>
             </div>
@@ -33,9 +36,6 @@
                     </div>
 
                     <div class="button-watch">
-                        @php
-                            $current_url = Request::url();
-                        @endphp
                         <ul class="halim-social-plugin col-xs-4 hidden-xs">
                             <li class="fb-like" data-href="{{ $current_url }}" data-width="" data-layout="standard"
                                 data-action="like" data-size="small" data-share="true"></li>
@@ -48,9 +48,10 @@
                             <div id="explayer" class="hidden-xs"><i class="hl-resize-full"></i>
                                 Expand
                             </div>
-                            <div id="toggle-light"><i class="hl-adjust"></i>
-                                Light Off
-                                <i class="bi bi-eye"></i>
+                            <div id="toggle-light" onclick="darkMode()">
+                                <a href="javascript:void(0)">
+                                    <i class="hl-adjust"></i> Light Off <i class="bi bi-eye"></i>
+                                </a>
                             </div>
                             <div id="report" class="halim-switch"><i class="hl-attention"></i> Report</div>
                             <div class="luotxem">
@@ -80,12 +81,8 @@
                         </a>
                         <div class="title-wrapper-xem full" style="display: contents;">
                             <h1 class="entry-title" style="font-size: 20px; font-weight: bold;">
-                                @php
-                                    $url = $_SERVER['REQUEST_URI'];
-                                    $episode = substr($url, -1);
-                                @endphp
                                 <a title="{{ $movie->title }}" class="tl">{{ $movie->title }} -Tập:
-                                    {{ $episode }}
+                                    {{ $tapphim }}
                                 </a>
                             </h1>
                         </div>
@@ -132,41 +129,40 @@
                                 <div class="halim-server">
                                     <ul class="halim-list-eps" style="display: grid;">
                                         @foreach ($servers as $server)
-                                            @foreach ($episodes_movies as $episodes_movie)
-                                                @if ($episodes_movie->server == $server->id)
-                                                    <li class="halim-episode">
-                                                        <span class="halim-btn halim-btn-2 halim-info-1-1 box-shadow">
-                                                            {{ $server->title }}
-                                                        </span>
-                                                    </li>
-                                                    <ul class="halim-list-eps">
-                                                        @foreach ($episodes_list as $epi)
-                                                            @if ($epi->server == $server->id)
-                                                                @php
-                                                                    // Kiểm tra nếu số tập hiện tại đang xem ($tapphim) trùng với số tập của $epi
-                                                                    $isActive = $tapphim == $epi->episode;
-                                                                @endphp
-                                                                <a href="{{ url('xem-phim/' . $movie->slug . '/tap-' . $epi->episode) }}">
-                                                                    <li class="halim-episode">
-                                                                        <span
-                                                                            class="halim-btn halim-btn-2 {{ $isActive ? 'active' : '' }} halim-info-1-1 box-shadow"
-                                                                            title="Xem phim {{ $movie->title }} - Tập {{ $epi->episode }} - {{ $movie->name_en }} - vietsub + Thuyết Minh"
-                                                                            data-h1="{{ $movie->title }} - tập {{ $epi->episode }}">
-                                                                            {{ $epi->episode }}
-                                                                        </span>
-                                                                    </li>
-                                                                </a>
-                                                            @endif
-                                                        @endforeach
-                                                    </ul>
-                                                @endif
-                                            @endforeach
+                                            @php
+                                                // Lọc danh sách tập phim theo máy chủ
+                                                $episodesForServer = $episodes_list->where('server', $server->id);
+                                            @endphp
+
+                                            @if ($episodesForServer->isNotEmpty())
+                                                <li class="halim-episode">
+                                                    <span class="halim-btn halim-btn-2 halim-info-1-1 box-shadow">
+                                                        {{ $server->title }}
+                                                    </span>
+                                                </li>
+                                                <ul class="halim-list-eps">
+                                                    @foreach ($episodesForServer as $epi)
+                                                        @php
+                                                            // Kiểm tra nếu số tập hiện tại đang xem ($tapphim) trùng với số tập của $epi
+                                                            $isActive = $tapphim == $epi->episode;
+                                                        @endphp
+                                                        <a href="{{ url('xem-phim/' . $movie->slug . '/tap-' . $epi->episode) }}">
+                                                            <li class="halim-episode">
+                                                                <span
+                                                                    class="halim-btn halim-btn-2 {{ $isActive ? 'active' : '' }} halim-info-1-1 box-shadow"
+                                                                    title="Xem phim {{ $movie->title }} - Tập {{ $epi->episode }} - {{ $movie->name_en }} - vietsub + Thuyết Minh"
+                                                                    data-h1="{{ $movie->title }} - tập {{ $epi->episode }}">
+                                                                    {{ $epi->episode }}
+                                                                </span>
+                                                            </li>
+                                                        </a>
+                                                    @endforeach
+                                                </ul>
+                                            @endif
                                         @endforeach
                                     </ul>
-                                    <div class="clearfix"></div>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -175,9 +171,6 @@
                     </div>
                     <div class="entry-content htmlwrap clearfix">
                         <div class="video-item halim-entry-box">
-                            @php
-                                $current_url = Request::url();
-                            @endphp
                             <article id="post-38424" class="cmt" style="background: antiquewhite;">
                                 <div class="fb-comments" data-href="{{ $current_url }}" data-width="100%"
                                     data-numposts="10" data-colorscheme="dark"></div>
@@ -199,14 +192,8 @@
                                     @endphp
                                     <a class="halim-thumb" href="{{ route('movie', $hot->slug) }}">
                                         <figure>
-                                            @if ($image_check == 'http')
-                                                <img class="lazy img-responsive" src="{{ $hot->image }}"
-                                                    alt="" title="{{ $hot->title }}" loading="lazy">
-                                            @else
-                                                <img class="lazy img-responsive"
-                                                    src="{{ asset('uploads/movie/' . $hot->image) }}" alt=""
-                                                    title="{{ $hot->title }}" loading="lazy">
-                                            @endif
+                                            <img class="lazy img-responsive" src="{{ $image_check === 'http' ? $hot->image : asset('uploads/movie/' . $hot->image) }}"
+                                                alt="{{ $hot->title }}" title="{{ $hot->title }}" loading="lazy">
                                         </figure>
                                         <span class="status">HD</span><span class="episode"><i class="fa fa-play"
                                                 aria-hidden="true"></i>

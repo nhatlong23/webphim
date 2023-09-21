@@ -1281,6 +1281,10 @@ pre code {
     width: 50%
 }
 
+.col-xs-6-edit {
+    margin: 8px 16px;
+}
+
 .col-xs-5 {
     width: 41.66666667%
 }
@@ -4528,7 +4532,14 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     margin-bottom: 20px;
     list-style: none;
     background-color: #f5f5f5;
-    border-radius: 4px
+    border-radius: 4px;
+}
+
+.breadcrumb-style {
+    padding: 8px 15px;
+    list-style: none;
+    border-radius: 4px;
+    background: darkslategray;
 }
 
 .breadcrumb>li {
@@ -4536,7 +4547,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 
 .breadcrumb>li+li:before {
-    content: "/\00a0";
+    content: ">\00a0";
     padding: 0 5px;
     color: #ccc
 }

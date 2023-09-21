@@ -13,8 +13,7 @@ use App\Http\Controllers\InfoController;
 use App\Http\Controllers\LinkMovieController;
 use App\Http\Controllers\LeechMovieController;
 use App\Http\Controllers\RedisController;
-use App\Http\Controllers\LoginGoogleController;
-use App\Http\Controllers\LoginFacebookController;
+use App\Http\Controllers\LoginSocialiteController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
@@ -52,9 +51,11 @@ Route::get('post/lien-he', [IndexController::class, 'contact'])->name('contact')
 Route::get('post/ve-chung-toi', [IndexController::class, 'about_us'])->name('about-us');
 
 Auth::routes();
+Route::match(['get', 'post'], 'register', function(){
+    return redirect('/');
+});
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
 
 //route admin
 Route::resource('category', CategoryController::class);
@@ -94,14 +95,15 @@ Route::post('leech-detail-episode', [LeechMovieController::class, 'leech_detail_
 
 Route::get('/searchMovies', [MovieController::class, 'search'])->name('searchMovies');
 
-//login facebooke, google
-Route::get('auth/google', [LoginGoogleController::class, 'redirectToGoogle'])->name('login-to-google');
-Route::get('auth/google/callback', [LoginGoogleController::class, 'handleGoogleCallback']);
-Route::get('logout', [LoginGoogleController::class, 'logout'])->name('logout');
+Route::middleware(['customer'])->group(function () {
+    //customer login facebooke, google
+    Route::get('auth/google', [LoginSocialiteController::class, 'redirectToGoogle'])->name('login-to-google');
+    Route::get('auth/google/callback', [LoginSocialiteController::class, 'handleGoogleCallback']);
 
-Route::get('auth/facebook', [LoginFacebookController::class, 'redirectToFacebook'])->name('login-to-facebook');
-Route::get('auth/facebook/callback', [LoginFacebookController::class, 'handleFacebookCallback']);
-
+    Route::get('auth/facebook', [LoginSocialiteController::class, 'redirectToFacebook'])->name('login-to-facebook');
+    Route::get('auth/facebook/callback', [LoginSocialiteController::class, 'handleFacebookCallback']);
+});
+Route::get('logout', [LoginSocialiteController::class, 'logout'])->name('logout');
 
 //site map host
 Route::get('/create_sitemap', function () {

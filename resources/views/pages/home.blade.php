@@ -21,45 +21,17 @@
                                             title="{{ $hot->title }}">
                                             @php
                                                 $image_check = substr($hot->image, 0, 4);
+                                                $subtitle = ($hot->sub_movie == 0 ? 'VietSub' : 'Thuyết Minh') . ($hot->season != 0 ? ' - Season ' . $hot->season : '');
                                             @endphp
                                             <figure>
-                                                @if ($image_check == 'http')
-                                                    <img class="lazy img-responsive" src="{{ $hot->image }}"
-                                                        alt="{{ $hot->title }}" title="{{ $hot->title }}"
-                                                        loading="lazy">
-                                                @else
-                                                    <img class="lazy img-responsive"
-                                                        src="{{ asset('uploads/movie/' . $hot->image) }}"
-                                                        alt="{{ $hot->title }}" title="{{ $hot->title }}"
-                                                        loading="lazy">
-                                                @endif
+                                                <img class="lazy img-responsive" src="{{ $image_check === 'http' ? $hot->image : asset('uploads/movie/' . $hot->image) }}"
+                                                    alt="{{ $hot->title }}" title="{{ $hot->title }}" loading="lazy">
                                             </figure>
                                             <span class="status">
-                                                @if ($hot->resolution == 0)
-                                                    HD
-                                                @elseif ($hot->resolution == 1)
-                                                    SD
-                                                @elseif ($hot->resolution == 2)
-                                                    HDCam
-                                                @elseif ($hot->resolution == 3)
-                                                    Cam
-                                                @elseif ($hot->resolution == 4)
-                                                    FullHD
-                                                @else
-                                                    Trailer
-                                                @endif
-                                            </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
-                                                @if ($hot->sub_movie == 0)
-                                                    VietSub
-                                                    @if ($hot->season != 0)
-                                                        - Season {{ $hot->season }}
-                                                    @endif
-                                                @elseif ($hot->sub_movie == 1)
-                                                    Thuyết Minh
-                                                    @if ($hot->season != 0)
-                                                        - Season {{ $hot->season }}
-                                                    @endif
-                                                @endif
+                                                {{ $resolutions[$hot->resolution] }}
+                                            </span>
+                                            <span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
+                                                {{ $subtitle }}
                                             </span>
                                             <div class="icon_overlay"></div>
                                             <div class="halim-post-title-box">
@@ -88,49 +60,20 @@
                             @foreach ($cate_home->movie_category as $key => $mov)
                                 @php
                                     $image_check = substr($mov->image, 0, 4);
+                                    $subtitle = ($mov->sub_movie == 0 ? 'VietSub' : 'Thuyết Minh') . ($mov->season != 0 ? ' - Season ' . $mov->season : '');
                                 @endphp
                                 <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-37606">
                                     <div class="halim-item">
                                         <a class="halim-thumb" href="{{ route('movie', $mov->slug) }}">
                                             <figure>
-                                                @if ($image_check == 'http')
-                                                    <img class="lazy img-responsive" src="{{ $mov->image }}"
-                                                        alt="{{ $mov->title }}" title="{{ $mov->title }}"
-                                                        loading="lazy">
-                                                @else
-                                                    <img class="lazy img-responsive"
-                                                        src="{{ asset('uploads/movie/' . $mov->image) }}"
-                                                        alt="{{ $mov->title }}" title="{{ $mov->title }}"
-                                                        loading="lazy">
-                                                @endif
+                                                <img class="lazy img-responsive" src="{{ $image_check === 'http' ? $mov->image : asset('uploads/movie/' . $mov->image) }}"
+                                                    alt="{{ $mov->title }}" title="{{ $mov->title }}" loading="lazy">
                                             </figure>
                                             <span class="status">
-                                                @if ($mov->resolution == 0)
-                                                    HD
-                                                @elseif ($mov->resolution == 1)
-                                                    SD
-                                                @elseif ($mov->resolution == 2)
-                                                    HDCam
-                                                @elseif ($mov->resolution == 3)
-                                                    Cam
-                                                @elseif ($mov->resolution == 4)
-                                                    FullHD
-                                                @else
-                                                    Trailer
-                                                @endif
+                                                {{ $resolutions[$mov->resolution] }}
                                             </span>
                                             <span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
-                                                @if ($mov->sub_movie == 0)
-                                                    VietSub
-                                                    @if ($mov->season != 0)
-                                                        - Season {{ $mov->season }}
-                                                    @endif
-                                                @elseif ($mov->sub_movie == 1)
-                                                    Thuyết Minh
-                                                    @if ($mov->season != 0)
-                                                        - Season {{ $mov->season }}
-                                                    @endif
-                                                @endif
+                                                {{ $subtitle }}
                                             </span>
                                             <div class="icon_overlay"></div>
                                             <div class="halim-post-title-box">
@@ -166,29 +109,10 @@
                                     <div class="item post-37176">
                                         <a href="{{ route('movie', $mov_hot->slug) }}" title="{{ $mov_hot->title }}">
                                             <div class="item-link">
-                                                @if ($image_check == 'http')
-                                                    <img class="lazy post-thumb img-responsive" src="{{ $mov_hot->image }}"
-                                                        alt="{{ $mov_hot->title }}" title="{{ $mov_hot->title }}"
-                                                        loading="lazy">
-                                                @else
-                                                    <img src="{{ asset('uploads/movie/' . $mov_hot->image) }}"
-                                                        class="lazy post-thumb img-responsive" alt="{{ $mov_hot->title }}"
-                                                        title="{{ $mov_hot->title }}" loading="lazy" />
-                                                @endif
+                                                    <img class="lazy post-thumb img-responsive" src="{{ $image_check === 'http' ? $mov_hot->image : asset('uploads/movie/' . $mov_hot->image) }}"
+                                                        alt="{{ $mov_hot->title }}" title="{{ $mov_hot->title }}" loading="lazy">
                                                 <span class="is_trailer">
-                                                    @if ($mov_hot->resolution == 0)
-                                                        HD
-                                                    @elseif ($mov_hot->resolution == 1)
-                                                        SD
-                                                    @elseif ($mov_hot->resolution == 2)
-                                                        HDCam
-                                                    @elseif ($mov_hot->resolution == 3)
-                                                        Cam
-                                                    @elseif ($mov_hot->resolution == 4)
-                                                        FullHD
-                                                    @else
-                                                        Trailer
-                                                    @endif
+                                                   {{ $resolutions[$mov_hot->resolution] }}
                                                 </span>
                                             </div>
                                             <p class="title">{{ $mov_hot->title }}</p>

@@ -72,7 +72,7 @@
                             </tr>
                         </thead>
                         <tbody class="order_position">
-                            @foreach ($sessions as $key => $session)
+                            @foreach ($sessions->take(10) as $key => $session)
                                 <tr>
                                     <td>{{$key}}</td>
                                     <td>{{$session->agent->browser}}</td>
