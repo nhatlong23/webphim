@@ -14,7 +14,8 @@ yarn-error.log
 /.idea
 /.vscode
 /docker/mysql
-/docker/nginx_log
+/docker/nginx_log/access.log
+docker/nginx_log/error.log
 /docker/php-fpm
-/docker/redis
+docker/redis/dump.rdb
 /docker/ssl
