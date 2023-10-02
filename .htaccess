@@ -10,6 +10,8 @@ RewriteCond %{HTTP:Authorization} ^(.+)$
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 <Files .htaccess>
 
+php_value max_execution_time 60
+
 Order Allow,Deny
 
 Deny from all

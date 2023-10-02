@@ -10,6 +10,7 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\EpisodeController;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\LinkMovieController;
 use App\Http\Controllers\LeechMovieController;
 use App\Http\Controllers\RedisController;
@@ -73,9 +74,12 @@ Route::post('/update-moviehot', [MovieController::class, 'update_moviehot']);
 Route::post('/update-topview-phim', [MovieController::class, 'update_topview']);
 Route::post('/update-season-phim', [MovieController::class, 'update_season']);
 Route::resource('info', InfoController::class);
+Route::resource('customer', CustomersController::class);
 Route::resource('linkmovie', LinkMovieController::class);
 Route::resource('leech-movie', LeechMovieController::class);
 Route::resource('redis', RedisController::class);
+
+Route::post('/toggleCustomerLock/{id}', [CustomersController::class, 'toggleCustomerLock'])->name('toggleCustomerLock');
 
 //thay đổi dữ liệu movie bằng ajax
 // Route::get('/category-choose', [MovieController::class, 'category_choose'])->name('category-choose');
@@ -102,8 +106,23 @@ Route::middleware(['customer'])->group(function () {
 
     Route::get('auth/facebook', [LoginSocialiteController::class, 'redirectToFacebook'])->name('login-to-facebook');
     Route::get('auth/facebook/callback', [LoginSocialiteController::class, 'handleFacebookCallback']);
+
+    Route::get('customers/login', [LoginSocialiteController::class, 'redirectToLogin'])->name('redirectToLogin');
+    Route::get('customers/register', [LoginSocialiteController::class, 'redirectToRegister'])->name('redirectToRegister');
+    Route::get('customers/verifyEmail/{email}', [LoginSocialiteController::class, 'verifyEmail'])->name('verifyEmail');
+    Route::get('customers/forgotPassword', [LoginSocialiteController::class, 'redirectToForgotPassword'])->name('redirectToForgotPassword');
+    Route::get('customers/resetPassword/{email}/{token}', [LoginSocialiteController::class, 'redirectToResetPassword'])->name('redirectToResetPassword');
+    Route::get('resendCode-customers/{email}', [LoginSocialiteController::class, 'resendCode'])->name('resendCode');
+    Route::post('login-customers', [LoginSocialiteController::class, 'CheckLoginCustomers'])->name('checkLogin');
+    Route::post('register-customers', [LoginSocialiteController::class, 'RegisterCustomers'])->name('RegisterCustomer');
+    Route::post('sendResetLinkEmail-customers', [LoginSocialiteController::class, 'sendResetLinkEmail'])->name('sendResetLinkEmail');
+    Route::post('resetPassword-customers', [LoginSocialiteController::class, 'resetPassword'])->name('resetPassword');
+    Route::post('checkCodeLogin-customers', [LoginSocialiteController::class, 'checkCodeLogin'])->name('checkCodeLogin');
 });
 Route::get('logout', [LoginSocialiteController::class, 'logout'])->name('logout');
+
+//send mail
+Route::get('send-email', [MovieController::class, 'sendEmailNewMovies'])->name('sendMail');
 
 //site map host
 Route::get('/create_sitemap', function () {
@@ -113,6 +132,6 @@ Route::get('/create_sitemap', function () {
 
 //test redis
 Route::get('/redis', function () {
-    Redis::set('name', 'Taylor');
+    Redis::set('name', 'LongNguyen');
     return Redis::get('name');
 });

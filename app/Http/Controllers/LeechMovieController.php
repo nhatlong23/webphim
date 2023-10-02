@@ -122,7 +122,6 @@ class LeechMovieController extends Controller
                 $slug = $movieData['slug'] ?? null;
 
                 if (!$slug) {
-                    // If 'slug' key is missing or null, skip this movie data.
                     continue;
                 }
 
@@ -135,8 +134,6 @@ class LeechMovieController extends Controller
                         $detailResp = Http::get($detailUrl)->json();
                         $this->saveMovieData($detailResp['movie'] ?? []);
                     } catch (\Exception $e) {
-                        // Log any exceptions when fetching movie details and continue to the next movie.
-                        // You can add proper logging here to record the issue.
                         continue;
                     }
                 }
@@ -144,8 +141,6 @@ class LeechMovieController extends Controller
 
             return redirect()->to($nextPageUrl)->with('success', 'Đã đồng bộ tất cả phim thành công');
         } catch (\Exception $e) {
-            // If any exception occurs during the synchronization process, handle it here.
-            // You can add proper error handling or logging here to record the issue.
             return redirect()->to($currentPage)->with('error', 'Có lỗi xảy ra khi đồng bộ phim');
         }
     }

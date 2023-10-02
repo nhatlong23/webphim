@@ -30,6 +30,9 @@
                     </div>
                 </div>
                 <div class="halim_box">
+                @if(isset($noResultsMessage))
+                    <div class="alert alert-danger">{{ $noResultsMessage }} <a href="#">Vui lòng click vào đây để tìm kiếm sâu hơn</a></div>
+                @else
                     @foreach ($movies as $key => $mov)
                         <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
                             <div class="halim-item">
@@ -65,6 +68,7 @@
                         {!! $movies->links() !!}
                     </ul>
                 </div>
+                @endif
             </section>
         </main>
         {{-- SideBar --}}

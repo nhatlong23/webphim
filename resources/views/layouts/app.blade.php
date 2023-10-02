@@ -262,7 +262,21 @@
                                     <ul class="treeview-menu">
                                         <li>
                                             <a href="{{ route('info.create') }}"><i class="fa fa-angle-right"></i>
-                                                Thêm Info Phim
+                                                Thông tin web phim
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="treeview {{ $segment == 'customer' ? 'active' : '' }}">
+                                    <a href="#">
+                                        <i class="fa fa-user"></i>
+                                        <span>Người dùng</span>
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li>
+                                            <a href="{{ route('customer.index') }}"><i class="fa fa-angle-right"></i>
+                                                Xem thông tin người dùng
                                             </a>
                                         </li>
                                     </ul>
@@ -275,11 +289,11 @@
                                             class="label label-primary1 pull-right">02</span></a>
                                     <ul class="treeview-menu">
                                         <li>
-                                            <a href="inbox.html"><i class="fa fa-angle-right"></i> Mail Inbox
+                                            <a href=""><i class="fa fa-angle-right"></i> Mail Inbox
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="compose.html"><i class="fa fa-angle-right"></i> Compose Mail
+                                            <a href=""><i class="fa fa-angle-right"></i> Compose Mail
                                             </a>
                                         </li>
                                     </ul>

@@ -6,11 +6,238 @@ use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Exception;
 use App\Models\Customer;
+use App\Models\Info;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ResetPasswordMail;
+use App\Mail\VerifyEmail;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 class LoginSocialiteController extends Controller
 {
+    //login customers
+    public function redirectToLogin(){
+        $info = Info::find(1);
+        $meta_title = $info->title;
+        $meta_description = $info->description;
+        $meta_image = '';
+        return view('pages.loginCustomers.login', compact('meta_title', 'meta_description', 'meta_image'));
+    }
 
+    //register customers
+    public function redirectToRegister(){
+        $info = Info::find(1);
+        $meta_title = $info->title;
+        $meta_description = $info->description;
+        $meta_image = '';
+        return view('pages.loginCustomers.register', compact('meta_title', 'meta_description', 'meta_image'));
+    }
+
+    public function redirectToForgotPassword(){
+        $info = Info::find(1);
+        $meta_title = $info->title;
+        $meta_description = $info->description;
+        $meta_image = '';
+        return view('pages.loginCustomers.forgotPassword', compact('meta_title', 'meta_description', 'meta_image'));
+    }
+
+    public function redirectToResetPassword(Request $request, $email, $token){
+        $info = Info::find(1);
+        $meta_title = $info->title;
+        $meta_description = $info->description;
+        $meta_image = '';
+        $request->token;
+        $request->email;
+        return view('pages.loginCustomers.resetPassword', compact('meta_title', 'meta_description', 'meta_image', 'token', 'email'));
+    }
+
+    public function verifyEmail(Request $request, $email){
+        $info = Info::find(1);
+        $meta_title = $info->title;
+        $meta_description = $info->description;
+        $meta_image = '';
+        $request->email;
+        return view('pages.loginCustomers.VerifyEmail', compact('meta_title', 'meta_description', 'meta_image', 'email'));
+    }
+
+    public function resetPassword(Request $request) {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+            'check-password' => 'required|same:password',
+            'token' => 'required',
+        ],
+        [
+            'email.email' => 'Email không đúng định dạng',
+            'password.required' => 'Vui lòng nhập mật khẩu',
+            'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự',
+            'check-password.required' => 'Vui lòng nhập lại mật khẩu',
+            'check-password.same' => 'Mật khẩu nhập lại không khớp',
+        ]);
+        
+        $now = Carbon::now('Asia/Ho_Chi_Minh');
+        $customer = Customer::where('email', $request->email)->first();
+    
+        if (!$customer) {
+            return redirect()->back()->withErrors(['email' => 'Không tìm thấy người dùng với địa chỉ email này.']);
+        }
+    
+        if ($customer->token !== $request->token) {
+            return redirect()->back()->withErrors(['token' => 'Lỗi vui lòng làm lại.']);
+        }
+        
+        if ($customer->expires_at < $now) {
+            return redirect()->back()->withErrors(['token' => 'Liên kết này đã hết hạn vui lòng thực hiện lại từng bước quên mật khẩu.']);
+        }
+
+        $customer->update([
+            'password' => bcrypt($request->password),
+            'token' => null,
+        ]);
+    
+        Auth::guard('customer')->login($customer);
+    
+        return redirect('/')->with('success', 'Đổi mật khẩu thành công.');
+    }
+
+    public function sendResetLinkEmail(Request $request){
+        $request->validate([
+            'email' => 'required|email|exists:customers,email',
+        ],
+        [
+            'email.required' => 'Vui lòng nhập email',
+            'email.email' => 'Email không đúng định dạng',
+            'email.exists' => 'Không tìm thấy người dùng với địa chỉ email này.',
+        ]);
+        
+        $customer = Customer::where('email', $request->email)->first();
+
+        if (!$customer) {
+            return back()->withErrors(['email' => 'Không tìm thấy người dùng với địa chỉ email này.']);
+        }
+        $name = $customer->name;
+        $token = Str::random(64);
+        $expires_at = Carbon::now('Asia/Ho_Chi_Minh')->addHour();
+        $customer->update(['token' => $token, 'expires_at' => $expires_at]);
+        $resetLink = route('redirectToResetPassword', ['token' => $token, 'email' => $customer->email]);
+        Mail::to($customer->email)->send(new ResetPasswordMail($resetLink, $name));
+
+        return back()->with('status', 'Email đã được gửi thành công. Vui lòng kiểm tra hộp thư đến của bạn.');
+    }
+
+    public function CheckLoginCustomers(Request $request){
+        try {
+            $email = $request->input('email');
+            $password = $request->input('password');
+    
+            $customer = Customer::where('email', $email)->first();
+    
+            if (!$customer) {
+                // Trường hợp: Email không tồn tại
+                return back()->withErrors(['email' => 'Email không tồn tại']);
+            }
+    
+            if (!$customer->verified) {
+                // Trường hợp: Tài khoản chưa được xác thực
+                return back()->withErrors(['email' => 'Tài khoản chưa được xác thực']);
+            }
+
+            if ($customer->locked) {
+                // Trường hợp: Tài khoản bị khóa
+                return back()->withErrors(['email' => 'Sorry!! Tài khoản của bạn đã bị khóa. Vui lòng liên hệ admin để biết thêm chi tiết']);
+            }
+    
+            if (Auth::guard('customer')->attempt(['email' => $email, 'password' => $password], $request->input('remember'))) {
+                return redirect()->intended('/');
+            } else {
+                // Trường hợp: Email hoặc mật khẩu không đúng
+                return back()->withErrors(['email' => 'Email hoặc mật khẩu không đúng']);
+            }
+        } catch (\Throwable $e) {
+            dd($e->getMessage());
+        }
+    }
+    
+
+    public function RegisterCustomers(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:customers',
+            'password' => 'required|min:6',
+            'check-password' => 'required|same:password',
+        ], 
+        [
+            'name.required' => 'Vui lòng nhập họ tên',
+            'email.required' => 'Vui lòng nhập email',
+            'email.email' => 'Email không đúng định dạng',
+            'email.unique' => 'Email đã tồn tại',
+            'password.required' => 'Vui lòng nhập mật khẩu',
+            'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự',
+            'check-password.required' => 'Vui lòng nhập lại mật khẩu',
+            'check-password.same' => 'Mật khẩu nhập lại không khớp',
+        ]);
+
+        $customer = new Customer;
+        $customer->name = $request->input('name');
+        $customer->email = $request->input('email');
+        $customer->password = bcrypt($request->input('password'));
+        $customer->verification_code = Str::random(4);
+        $customer->verified = false;
+        $customer->locked = false;
+        $customer->created_at = Carbon::now('Asia/Ho_Chi_Minh')->addHour();
+        $customer->save();
+
+        $passCode = $customer->verification_code;
+        $email = $customer->email;
+        Mail::to($customer->email)->send(new VerifyEmail($passCode, $email));
+        return redirect()->route('verifyEmail',['email' => $customer->email])->with('status', 'Vui lòng xác nhận code trong email.');
+    }
+
+    public function checkCodeLogin(Request $request){
+        $now = Carbon::now('Asia/Ho_Chi_Minh');
+        $verification_code = $request->input('verification_code');
+        $email = $request->input('email');
+    
+        $customer = Customer::where('email', $email)->where('verification_code', $verification_code)->first();
+    
+        if ($customer) {
+            if ($customer->created_at < $now) {
+                return redirect()->back()->withErrors(['verification_code' => 'Mã đã hết hạn, vui lòng click vào đây để gửi lại mã xác minh.']);
+            }
+    
+            if ($verification_code === $customer->verification_code) {
+                $customer->verified = true;
+                $customer->save();
+    
+                Auth::guard('customer')->login($customer);
+    
+                return redirect('/');
+            }
+        }
+    
+        return redirect()->back()->with('status', 'Lỗi nhập sai mã xác minh, vui lòng nhập lại.');
+    }
+    
+    public function resendCode(Request $request, $email){
+        $email = $request->email;
+        $customer = Customer::where('email', $email)->first();
+        if (!$customer) {
+            return redirect()->back()->with('status', 'Không tìm thấy tài khoản với email này.');
+        }
+    
+        $passCode = Str::random(4);
+        $customer->verification_code = $passCode;
+        $customer->created_at = Carbon::now('Asia/Ho_Chi_Minh')->addHour();
+        $customer->save();
+        
+        // $email = $customer->email;
+        Mail::to($customer->email)->send(new VerifyEmail($passCode, $email));
+    
+        return redirect()->route('verifyEmail',['email' => $customer->email])->with('status', 'Đã gửi lại mã xác minh, vui lòng xác nhận mã trong email.');
+    }
+    
+    
     //login to google
     public function redirectToGoogle()
     {
@@ -54,29 +281,26 @@ class LoginSocialiteController extends Controller
     {
         try {
         
-            $user = Socialite::driver('facebook')->user();
-         
-            $finduser = User::where('email', $user->email)->first();
-        
-            if($finduser){
-         
-                Auth::login($finduser);
-        
-                return redirect()->intended('dashboard');
-         
+            $facebookUser = Socialite::driver('facebook')->user();
+
+            $customerFacebook = Customer::where('facebook_id', $facebookUser->id)->first();
+
+            if($customerFacebook){
+                Auth::guard('customer')->login($customerFacebook);
+                return redirect()->intended('/');
             }else{
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'facebook_id'=> $user->id,
+                $newUser = Customer::create([
+                    'name' => $facebookUser->name,
+                    'email' => $facebookUser->email,
+                    'facebook_id'=> $facebookUser->id,
                     'password' => encrypt('123456dummy')
                 ]);
         
-                Auth::login($newUser);
-        
-                return redirect()->intended('dashboard');
+                Auth::guard('customer')->login($customerFacebook);
             }
-        
+
+            return redirect()->intended('/');
+            
         } catch (Exception $e) {
             dd($e->getMessage());
         }

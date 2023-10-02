@@ -118,13 +118,8 @@
 
                     @if (!Auth::guard('customer')->check())
                         <div id="get-bookmark" class="box-shadow">
-                            <a href="{{ route('login-to-google') }}">
-                                <img width="20" src="https://img.icons8.com/color/48/google-logo.png" alt="google-logo" title="Login to google"/>
-                            </a>
-                        </div>
-                        <div id="get-bookmark" class="box-shadow">
-                            <a href="{{ route('login-to-facebook') }}">
-                                <img width="20" src="https://img.icons8.com/color/48/facebook-new.png" alt="facebook-new" title="Login to Facebook"/>
+                            <a href="{{ route('redirectToLogin') }}">
+                                <img width="20" src="https://img.icons8.com/external-flat-icons-inmotus-design/67/external-login-man-and-woman-flat-icons-inmotus-design.png" alt="external-login-man-and-woman-flat-icons-inmotus-design" title="Login"/>
                             </a>
                         </div>
                     @else
@@ -134,7 +129,6 @@
                             </a>
                         </div>
                     @endif
-                    
                 </div>
             </div>
         </div>

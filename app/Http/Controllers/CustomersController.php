@@ -3,9 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Sessions;
+use App\Models\Customer;
+use Carbon\Carbon;
 
-class AdminController extends Controller
+class CustomersController extends Controller
 {
+    public function toggleCustomerLock(Request $request, $id)
+    {
+        $customer = Customer::find($id);
+
+        if (!$customer) {
+            return redirect()->back()->with('error', 'Người dùng không tồn tại.');
+        }
+
+        $customer->locked = !$customer->locked;
+        $customer->save();
+
+        $action = $customer->locked ? 'KHÓA' : 'MỞ KHÓA';
+        $message = 'Tài khoản của người dùng đã được "' . $action . '" thành công.';
+
+        return redirect()->back()->with('success', $message);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +33,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        $all_customers = Customer::all();
+        return view('admincp.customers.index', compact('all_customers'));
     }
 
     /**
@@ -24,6 +45,7 @@ class AdminController extends Controller
     public function create()
     {
         //
+
     }
 
     /**

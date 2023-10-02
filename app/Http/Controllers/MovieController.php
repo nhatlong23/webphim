@@ -13,6 +13,10 @@ use App\Models\Genre;
 use App\Models\Episode;
 use App\Models\Rating;
 use Carbon\Carbon;
+use App\Mail\MoviesNew;
+use App\Models\Customer;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\File;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
@@ -344,20 +348,58 @@ class MovieController extends Controller
     {
         $data = $request->all();
         $ip_rating = $request->ip();
-
+    
         $rating_count = Rating::where('movie_id', $data['movie_id'])->where('ip_rating', $ip_rating)->count();
+    
         if ($rating_count > 0) {
-            echo 'exist';
+            return 'exist';
         } else {
             $rating = new Rating();
             $rating->movie_id = $data['movie_id'];
             $rating->rating = $data['index'];
             $rating->ip_rating = $ip_rating;
-            $rating->created_at = Carbon::now('Asia/Ho_Chi_Minh');
+            $rating->date_created = Carbon::now('Asia/Ho_Chi_Minh');
             $rating->save();
-            echo 'done';
+            return 'done';
         }
     }
+    
+    
+    public function sendEmailNewMovies(Request $request)
+    {
+        $yearNow = Carbon::now('Asia/Ho_Chi_Minh')->year;
+    
+        // Lấy danh sách khách hàng có email
+        $customers = Customer::whereNotNull('email')->get();
+    
+        foreach ($customers as $customer) {
+            $emailedMovies = $customer->emailed_movies ?? [];
+    
+            if (!is_array($emailedMovies)) {
+                $emailedMovies = [];
+            }
+    
+            // Lấy danh sách phim mới thỏa mãn điều kiện và chưa được gửi email cho khách hàng này
+            $newMovies = Movie::where('date_created', '>=', Carbon::now('Asia/Ho_Chi_Minh')->subDays(3))->where('year', $yearNow)
+                ->whereNotIn('id', $emailedMovies)->get();
+    
+            try {
+                Mail::to($customer->email)->send(new MoviesNew($newMovies));
+    
+                // Đánh dấu các phim đã được gửi email cho khách hàng
+                foreach ($newMovies as $movie) {
+                    $emailedMovies[] = $movie->id;
+                }
+
+                $customer->update(['emailed_movies' => $emailedMovies]);
+            } catch (\Exception $e) {
+                return redirect()->back()->with('error', 'Lỗi khi gửi email cho khách hàng ' . $customer->email . ': ' . $e->getMessage());
+            }
+        }
+    
+        return redirect()->back()->with('success', 'Gửi mail thành công');
+    }
+    
 
     //thay đổi dữ liệu movie bằng ajax
 

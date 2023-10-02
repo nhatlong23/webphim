@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request; // Sửa namespace ở đây
+use Illuminate\Http\Request;
 use Anhskohbo\NoCaptcha\Facades\NoCaptcha;
 
 class LoginController extends Controller
@@ -49,12 +49,10 @@ class LoginController extends Controller
             'g-recaptcha-response.captcha' => 'Xác minh không thành công. Vui lòng thử lại.',
         ]);
     }
-    
-
 
     public function customerLogin(Request $request)
     {
-        $credentials = $request->only('google_id');
+        $credentials = $request->only('google_id', 'facebook_id');
     
         if (Auth::guard('customer')->attempt($credentials)) {
             // Đăng nhập thành công cho customer

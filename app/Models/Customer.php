@@ -23,6 +23,10 @@ class Customer extends Authenticatable
         'password',
         'google_id',
         'facebook_id',
+        'emailed_movies',
+        'token',
+        'expires_at',
+        'locked'
     ];
 
     /**
@@ -43,4 +47,9 @@ class Customer extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function isSocialLogin()
+    {
+        return !empty($this->facebook_id) || !empty($this->google_id);
+    }
 }

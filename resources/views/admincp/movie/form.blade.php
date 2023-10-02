@@ -194,8 +194,11 @@
                                 {!! Form::file('image', [
                                     'class' => 'form-control-file',
                                 ]) !!}
+                                <?php
+                                    $image_check = substr($movie->image, 0, 4);
+                                ?>
                                 @if (isset($movie))
-                                    <img src="{{ asset('uploads/movie/' . $movie->image) }}" width="20%">
+                                    <img src="{{ $image_check === 'http' ? $movie->image : asset('uploads/movie/' . $movie->image) }}" width="20%">
                                 @endif
                             </div>
                             @if (!isset($movie))
