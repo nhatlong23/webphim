@@ -34,8 +34,7 @@
 			</div>
 			<div class="fxt-bg-color">
 				<div class="fxt-header">
-					<a href="{{ route('homepage') }}" class="fxt-logo"><img src="{{asset('loginCustomer/img/logo-5.png')}}" alt="Logo"></a>
-				</div>
+					<a href="{{ route('homepage') }}" class="fxt-logo"><img src="{{ asset('uploads/logo/' . $info->logo) }}" width="150px" alt="Logo"></a>				</div>
 				<div class="fxt-form">
 					@if ($errors->any())
 						<div class="alert alert-danger">

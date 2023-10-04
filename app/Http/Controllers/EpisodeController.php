@@ -7,6 +7,7 @@ use App\Models\Movie;
 use App\Models\Episode;
 use App\Models\LinkMovie;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class EpisodeController extends Controller
 {
@@ -30,7 +31,11 @@ class EpisodeController extends Controller
     public function create()
     {
         $list_movie = Movie::orderBy('id', 'DESC')->pluck('title', 'id');
-        return view('admincp.episodes.form', compact('list_movie'));
+        $moviesWithTypes = Movie::whereDoesntHave('episode')
+        ->select(DB::raw("CONCAT(title, ' (', thuocphim, ')') AS full_title"), 'id')
+        ->pluck('full_title', 'id')->prepend('Chọn Phim', '0');
+    
+        return view('admincp.episodes.form', compact('list_movie','moviesWithTypes'));
     }
 
     /**
@@ -112,18 +117,24 @@ class EpisodeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
         $data = $request->all();
         $episode = Episode::find($id);
-        $episode->movie_id = $data['movie_id'];
+
+        if (isset($data['movie_id'])) {
+            $episode->movie_id = $data['movie_id'];
+        }
+
         $episode->linkphim = $data['link'];
         $episode->server = $data['linkserver'];
         $episode->episode = $data['episode'];
         $episode->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         $episode->save();
-        return redirect()->to('add-episode/' . $data['movie_id'])->with('success', 'Cập nhật');
+        return redirect()->to('add-episode/' . $episode->movie_id)->with('success', 'Cập nhật');
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -136,12 +147,13 @@ class EpisodeController extends Controller
         return redirect()->to('episode');
     }
 
-    public function select_movie()
+    public function select_movie(Request $request)
     {
-        $id = $_GET['id'];
-        $movie = Movie::find($id);
+        $movieId = $request->input('movieId');
+        $movie = Movie::find($movieId);
+
         $output = '<option>---Chọn Tập Phim---</option>';
-        if ($movie->thuocphim == 'phimbo') {
+        if ($movie && $movie->thuocphim == 'phimbo') {
             for ($i = 1; $i <= $movie->episodes; $i++) {
                 $output .= '<option value="' . $i . '">' . $i . '</option>';
             }
@@ -151,6 +163,9 @@ class EpisodeController extends Controller
             <option value="Cam">Cam</option>
             <option value="HDCam">HDCam</option>';
         }
-        echo $output;
+
+        return $output;
     }
+
+    
 }

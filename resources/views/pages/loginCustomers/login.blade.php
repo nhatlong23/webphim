@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="vi">
+<html class="no-js" lang="">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -34,7 +34,7 @@
 			</div>
 			<div class="fxt-bg-color">
 				<div class="fxt-header">
-					<a href="{{ route('homepage') }}" class="fxt-logo"><img src="{{asset('loginCustomer/img/logo-5.png')}}" alt="Logo"></a>
+					<a href="{{ route('homepage') }}" class="fxt-logo"><img src="{{ asset('uploads/logo/' . $info->logo) }}" width="150px" alt="Logo"></a>
 					<div class="fxt-page-switcher">
 						<a href="{{ route('redirectToLogin') }}" class="switcher-text switcher-text1 active">Đăng nhập</a>
 						<a href="{{ route('redirectToRegister') }}" class="switcher-text switcher-text2">Đăng ký</a>
@@ -72,7 +72,7 @@
 						</div>
 					</form>
 					<div>
-						<a href="">Nếu như bạn chưa kịp xác thực thì bạn hãy bấm vào đây để xác thực với admin của chúng tôi</a>
+						{{-- <a href="">Nếu như bạn chưa kịp xác thực thì bạn hãy bấm vào đây để xác thực với admin của chúng tôi</a> --}}
 					</div>
 				</div>
 				<div class="fxt-footer">

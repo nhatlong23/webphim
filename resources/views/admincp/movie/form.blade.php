@@ -7,17 +7,22 @@
                     <div class="card">
                         <a href="{{ route('movie.index') }}" class="btn btn-primary">Liệt kê phim</a>
                         <div class="card-header">Quản lí Phim</div>
+                        @if ($errors->any())
+                            <div class="alert alert-danger" role="alert">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="card-body">
                             @if (session('status'))
                                 <div class="alert alert-success" role="alert">
                                     {{ session('status') }}
                                 </div>
                             @endif
-                            @if (!isset($movie))
-                                {!! Form::open(['route' => 'movie.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-                            @else
-                                {!! Form::open(['route' => ['movie.update', $movie->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
-                            @endif
+                            {!! Form::open(['route' => isset($movie) ? ['movie.update', $movie->id] : 'movie.store', 'method' => isset($movie) ? 'PUT' : 'POST', 'enctype' => 'multipart/form-data']) !!}
                             <div class="form-group">
                                 {!! Form::label('title', 'Title', []) !!}
                                 {!! Form::text('title', isset($movie) ? $movie->title : '', [
@@ -125,15 +130,12 @@
                                 {!! Form::label('category', 'Category', []) !!}
                                 @foreach ($list_category as $key => $cate)
                                     <br>
-                                    @if (isset($movie))
-                                        {!! Form::checkbox(
-                                            'category[]',
-                                            $cate->id,
-                                            isset($movie_category) && $movie_category->contains($cate->id) ? true : false,
-                                        ) !!}
-                                    @else
-                                        {!! Form::checkbox('category[]', $cate->id, '') !!}
-                                    @endif
+                                    {!! Form::checkbox(
+                                        'category[]',
+                                        $cate->id,
+                                        isset($movie_category) && $movie_category->contains($cate->id),
+                                        []
+                                    ) !!}
                                     {!! Form::label('category', $cate->title) !!}
                                 @endforeach
                             </div>
@@ -158,11 +160,12 @@
                                 {!! Form::label('genre', 'Genre', []) !!} <br>
                                 @foreach ($list_genre as $key => $gen)
                                     <br>
-                                    @if (isset($movie))
-                                        {!! Form::checkbox('genre[]', $gen->id, isset($movie_genre) && $movie_genre->contains($gen->id) ? true : false) !!}
-                                    @else
-                                        {!! Form::checkbox('genre[]', $gen->id, '') !!}
-                                    @endif
+                                    {!! Form::checkbox(
+                                        'genre[]',
+                                        $gen->id,
+                                        isset($movie_genre) && $movie_genre->contains($gen->id),
+                                        []
+                                    ) !!}
                                     {!! Form::label('genre', $gen->title) !!}
                                 @endforeach
                             </div>
@@ -195,17 +198,13 @@
                                     'class' => 'form-control-file',
                                 ]) !!}
                                 <?php
-                                    $image_check = substr($movie->image, 0, 4);
+                                    $image_check = isset($movie) ? substr($movie->image, 0, 4) : '';
                                 ?>
-                                @if (isset($movie))
+                                @if (isset($movie) && !empty($movie->image))
                                     <img src="{{ $image_check === 'http' ? $movie->image : asset('uploads/movie/' . $movie->image) }}" width="20%">
                                 @endif
                             </div>
-                            @if (!isset($movie))
-                                {!! Form::submit('Thêm dữ liệu', ['class' => 'btn btn-primary']) !!}
-                            @else
-                                {!! Form::submit('Cập Nhật', ['class' => 'btn btn-success']) !!}
-                            @endif
+                            {!! Form::submit(isset($movie) ? 'Cập Nhật' : 'Thêm dữ liệu', ['class' => isset($movie) ? 'btn btn-success' : 'btn btn-primary']) !!}
                             {!! Form::close() !!}
                         </div>
                     </div>

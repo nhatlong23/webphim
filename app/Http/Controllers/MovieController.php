@@ -170,7 +170,6 @@ class MovieController extends Controller
         $movie->slug = $data['slug'];
         $movie->description = $data['description'];
         $movie->status = $data['status'];
-        // $movie->category_id = $data['category_id'];
         $movie->thuocphim = $data['thuocphim'];
         // $movie->genre_id = $data['genre_id'];
         $movie->country_id = $data['country_id'];
@@ -368,25 +367,22 @@ class MovieController extends Controller
     public function sendEmailNewMovies(Request $request)
     {
         $yearNow = Carbon::now('Asia/Ho_Chi_Minh')->year;
-    
-        // Lấy danh sách khách hàng có email
-        $customers = Customer::whereNotNull('email')->get();
-    
+
+        $customers = Customer::where('verified', 1)->where('locked', 0)->whereNotNull('email')->get();
+
         foreach ($customers as $customer) {
             $emailedMovies = $customer->emailed_movies ?? [];
-    
+
             if (!is_array($emailedMovies)) {
                 $emailedMovies = [];
             }
-    
-            // Lấy danh sách phim mới thỏa mãn điều kiện và chưa được gửi email cho khách hàng này
-            $newMovies = Movie::where('date_created', '>=', Carbon::now('Asia/Ho_Chi_Minh')->subDays(3))->where('year', $yearNow)
-                ->whereNotIn('id', $emailedMovies)->get();
-    
+
+            $newMovies = Movie::where('date_created', '>=', Carbon::now('Asia/Ho_Chi_Minh')->subDays(3))
+                ->where('year', $yearNow)->whereNotIn('id', $emailedMovies)->get();
+
             try {
                 Mail::to($customer->email)->send(new MoviesNew($newMovies));
-    
-                // Đánh dấu các phim đã được gửi email cho khách hàng
+
                 foreach ($newMovies as $movie) {
                     $emailedMovies[] = $movie->id;
                 }
@@ -396,7 +392,7 @@ class MovieController extends Controller
                 return redirect()->back()->with('error', 'Lỗi khi gửi email cho khách hàng ' . $customer->email . ': ' . $e->getMessage());
             }
         }
-    
+
         return redirect()->back()->with('success', 'Gửi mail thành công');
     }
     

@@ -46,10 +46,20 @@ class Customer extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'emailed_movies' => 'json',
     ];
     
     public function isSocialLogin()
     {
         return !empty($this->facebook_id) || !empty($this->google_id);
+    }
+
+    public function movies()
+    {
+        if (!empty($this->emailed_movies)) {
+            return Movie::whereIn('id', $this->emailed_movies)->pluck('title')->toArray();
+        }
+
+        return [];
     }
 }

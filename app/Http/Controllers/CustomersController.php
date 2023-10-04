@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Sessions;
 use App\Models\Customer;
+use App\Models\Movie;
 use Carbon\Carbon;
 
 class CustomersController extends Controller
@@ -33,7 +34,7 @@ class CustomersController extends Controller
      */
     public function index()
     {
-        $all_customers = Customer::all();
+        $all_customers = Customer::orderBy('id', 'DESC')->get();
         return view('admincp.customers.index', compact('all_customers'));
     }
 

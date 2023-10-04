@@ -1461,21 +1461,18 @@
 
     <script type="text/javascript">
         $('.select-movie').change(function() {
-            var id = $(this).val();
-            // var _token = $('input[name="_token"]').val();
+            var movieId = $(this).val();
             $.ajax({
                 url: "{{ route('select-movie') }}",
                 method: "GET",
                 data: {
-                    id: id
-                    // _token: _token
+                    movieId: movieId
                 },
                 success: function(data) {
-                    $('#show_movie').html(data);
+                    $('#episode-list').html(data);
                 }
-
             });
-        })
+        });
     </script>
 
     <script type="text/javascript">

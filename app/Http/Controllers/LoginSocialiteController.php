@@ -134,24 +134,20 @@ class LoginSocialiteController extends Controller
             $customer = Customer::where('email', $email)->first();
     
             if (!$customer) {
-                // Trường hợp: Email không tồn tại
                 return back()->withErrors(['email' => 'Email không tồn tại']);
             }
     
             if (!$customer->verified) {
-                // Trường hợp: Tài khoản chưa được xác thực
-                return back()->withErrors(['email' => 'Tài khoản chưa được xác thực']);
+                return redirect()->route('verifyEmail', ['email' => $email])->with('status', 'Tài khoản của bạn chưa được xác thực vui lòng click vào dưới để gửi lại mã xác thực');
             }
 
             if ($customer->locked) {
-                // Trường hợp: Tài khoản bị khóa
                 return back()->withErrors(['email' => 'Sorry!! Tài khoản của bạn đã bị khóa. Vui lòng liên hệ admin để biết thêm chi tiết']);
             }
     
             if (Auth::guard('customer')->attempt(['email' => $email, 'password' => $password], $request->input('remember'))) {
                 return redirect()->intended('/');
             } else {
-                // Trường hợp: Email hoặc mật khẩu không đúng
                 return back()->withErrors(['email' => 'Email hoặc mật khẩu không đúng']);
             }
         } catch (\Throwable $e) {

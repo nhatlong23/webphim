@@ -7,6 +7,15 @@
                     <div class="card">
                         <a href="{{ route('episode.index') }}" class="btn btn-primary">Liệt kê danh sách tập phim</a>
                         <div class="card-header">Quản lí tập Phim</div>
+                        @if ($errors->any())
+                            <div class="alert alert-danger" role="alert">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="card-body">
                             @if (session('status'))
                                 <div class="alert alert-success" role="alert">
@@ -23,24 +32,21 @@
                                 ]) !!}
                             @endif
                             
-                            @if (!isset($episode))
-                                <div class="form-group">
-                                    {!! Form::label('movie', 'Chọn Phim', []) !!}
-                                    {!! Form::select('movie_id', ['0' => 'Chọn Phim'], isset($episode) ? $episode->movie_id : '', [
-                                            'class' => 'form-control select-movie',
-                                        ],
-                                    ) !!}
-                                </div>
-                            @else
-                                <div class="form-group">
-                                    {!! Form::label('movie', 'Chọn Phim', []) !!}
-                                    {!! Form::text('movie_id', isset($episode) ? $episode->movie->title : '', [
-                                            'class' => 'form-control',
-                                            'readonly',
-                                        ],
-                                    ) !!}
-                                </div>
-                            @endif
+                            <div class="form-group">
+                                {!! Form::label('movie', 'Chọn Phim', []) !!}
+                                @if (!isset($episode))
+                                    {!! Form::select('movie_id', $moviesWithTypes, null, [
+                                        'class' => 'form-control select-movie',
+                                        'id' => 'select-movie',
+                                    ]) !!}
+                                @else
+                                    {!! Form::text('movie_title', $episode->movie->title, [
+                                        'class' => 'form-control',
+                                        'readonly',
+                                    ]) !!}
+                                    {!! Form::hidden('movie_id', $episode->movie_id) !!}
+                                @endif
+                            </div>
 
                             <div class="form-group">
                                 {!! Form::label('link', 'Link Phim', []) !!}
@@ -63,7 +69,7 @@
                             @else
                                 <div class="form-group">
                                     {!! Form::label('episode', 'Tập Phim', []) !!}
-                                    <select name="episode" class="form-control" id="show_movie">
+                                    <select name="episode" class="form-control " id="episode-list">
                                     </select>
                                 </div>
                             @endif
@@ -71,7 +77,6 @@
                             @if (!isset($episode))
                                 <div class="form-group">
                                     {!! Form::label('linkserver', 'LinkServer', []) !!}
-                                    
                                 </div>
                             @else
                                 <div class="form-group">

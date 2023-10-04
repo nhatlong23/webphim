@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Genre;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-
+use Toastr;
 class GenreController extends Controller
 {
     /**
@@ -64,6 +64,7 @@ class GenreController extends Controller
         $genre->status = $data['status'];
         $genre->created_at = Carbon::now('Asia/Ho_Chi_Minh');
         $genre->save();
+        toastr()->success("Thêm thành công thể loại: $genre->title");
         return redirect()->route('genre.index');
     }
 
@@ -100,33 +101,46 @@ class GenreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->validate(
-            [
-                'title' => 'required|unique:genres|max:100',
-                'slug' => 'required|unique:genres|max:100',
-                'description' => 'required|max:255',
-                'status' => 'required',
-            ],
-            [
-                'title.required' => 'Vui lòng nhập tiêu đề',
-                'title.unique' => 'Tiêu đề đã tồn tại',
-                'title.max' => 'Tiêu đề không được quá 100 ký tự',
-                'slug.required' => 'Vui lòng nhập slug',
-                'slug.unique' => 'Slug đã tồn tại',
-                'slug.max' => 'Slug không được quá 100 ký tự',
-                'description.required' => 'Vui lòng nhập mô tả',
-                'description.max' => 'Mô tả không được quá 255 ký tự',
-                'status.required' => 'Vui lòng chọn trạng thái',
-            ]
-        );
-
+        $data = $request->validate([
+            'title' => 'required|max:100',
+            'slug' => 'required|max:100',
+            'description' => 'required|max:255',
+            'status' => 'required',
+        ], [
+            'title.required' => 'Vui lòng nhập tiêu đề',
+            'title.max' => 'Tiêu đề không được quá 100 ký tự',
+            'slug.required' => 'Vui lòng nhập slug',
+            'slug.max' => 'Slug không được quá 100 ký tự',
+            'description.required' => 'Vui lòng nhập mô tả',
+            'description.max' => 'Mô tả không được quá 255 ký tự',
+            'status.required' => 'Vui lòng chọn trạng thái',
+        ]);
+    
         $genre = Genre::find($id);
+    
+        if ($genre->title != $data['title']) {
+            Toastr::success('Thay đổi tiêu đề thể loại thành ' . $data['title']);
+        }
+    
+        if ($genre->slug != $data['slug']) {
+            Toastr::success('Thay đổi slug thể loại thành ' . $data['slug']);
+        }
+    
+        if ($genre->description != $data['description']) {
+            Toastr::success('Thay đổi mô tả thể loại thành ' . $data['description']);
+        }
+    
+        if ($genre->status != $data['status']) {
+            Toastr::success('Thay đổi trạng thái thể loại thành ' . $data['status']);
+        }
+    
         $genre->title = $data['title'];
         $genre->slug = $data['slug'];
         $genre->description = $data['description'];
         $genre->status = $data['status'];
         $genre->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         $genre->save();
+    
         return redirect()->route('genre.index');
     }
 
@@ -138,10 +152,16 @@ class GenreController extends Controller
      */
     public function destroy($id)
     {
-        Genre::find($id)->delete();
+        $genre = Genre::find($id);
+        if ($genre) {
+            $genreName = $genre->title;
+            $genre->delete();
+            toastr()->warning("Xóa thành công thể loại: $genreName");
+        } else {
+            toastr()->error('Không tìm thấy thể loại để xóa');
+        }
         return redirect()->route('genre.index');
     }
-
 
     public function resorting_genre(Request $request)
     {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Carbon\Carbon;
+use Toastr;
 
 class CategoryController extends Controller
 {
@@ -64,7 +65,7 @@ class CategoryController extends Controller
         $category->status = $data['status'];
         $category->created_at = Carbon::now('Asia/Ho_Chi_Minh');
         $category->save();
-        toastr()->success('thành công', 'Thêm dữ liệu danh mục thành công!');
+        toastr()->success("Thêm thành công danh mục: $category->title");
         return redirect()->route('category.index');
     }
 
@@ -101,33 +102,46 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->validate(
-            [
-                'title' => 'required|unique:categories|max:100',
-                'slug' => 'required|unique:categories|max:100',
-                'description' => 'required|max:255',
-                'status' => 'required',
-            ],
-            [
-                'title.required' => 'Vui lòng nhập tiêu đề',
-                'title.unique' => 'Tiêu đề đã tồn tại',
-                'title.max' => 'Tiêu đề không được quá 100 ký tự',
-                'slug.required' => 'Vui lòng nhập slug',
-                'slug.unique' => 'Slug đã tồn tại',
-                'slug.max' => 'Slug không được quá 100 ký tự',
-                'description.required' => 'Vui lòng nhập mô tả',
-                'description.max' => 'Mô tả không được quá 255 ký tự',
-                'status.required' => 'Vui lòng chọn trạng thái',
-            ]
-        );
-
+        $data = $request->validate([
+            'title' => 'required|max:100',
+            'slug' => 'required|max:100',
+            'description' => 'required|max:255',
+            'status' => 'required',
+        ], [
+            'title.required' => 'Vui lòng nhập tiêu đề',
+            'title.max' => 'Tiêu đề không được quá 100 ký tự',
+            'slug.required' => 'Vui lòng nhập slug',
+            'slug.max' => 'Slug không được quá 100 ký tự',
+            'description.required' => 'Vui lòng nhập mô tả',
+            'description.max' => 'Mô tả không được quá 255 ký tự',
+            'status.required' => 'Vui lòng chọn trạng thái',
+        ]);
+    
         $category = Category::find($id);
+    
+        if ($category->title != $data['title']) {
+            Toastr::success('Thay đổi tiêu đề danh mục thành ' . $data['title']);
+        }
+    
+        if ($category->slug != $data['slug']) {
+            Toastr::success('Thay đổi slug danh mục thành ' . $data['slug']);
+        }
+    
+        if ($category->description != $data['description']) {
+            Toastr::success('Thay đổi mô tả danh mục thành ' . $data['description']);
+        }
+    
+        if ($category->status != $data['status']) {
+            Toastr::success('Thay đổi trạng thái danh mục thành ' . $data['status']);
+        }
+    
         $category->title = $data['title'];
         $category->slug = $data['slug'];
         $category->description = $data['description'];
         $category->status = $data['status'];
         $category->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         $category->save();
+    
         return redirect()->route('category.index');
     }
 
@@ -139,10 +153,17 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::find($id)->delete();
-        toastr()->warning('Xóa thành công');
+        $category = Category::find($id);
+        if ($category) {
+            $categoryName = $category->title;
+            $category->delete();
+            toastr()->warning("Xóa thành công danh mục: $categoryName");
+        } else {
+            toastr()->error('Không tìm thấy danh mục để xóa');
+        }
         return redirect()->route('category.index');
     }
+    
 
     public function resorting_category(Request $request)
     {

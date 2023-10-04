@@ -14,12 +14,13 @@
                                 <th scope="col">Đăng nhập bằng</th>
                                 <th scope="col">Tình trạng email</th>
                                 <th scope="col">Tình trạng tài khoản</th>
+                                <th scope="col">Phim đã được gửi theo email</th>
                                 <th scope="col">Manage</th>
                             </tr>
                         </thead>
                         <tbody class="order_positionn">
                             @foreach ($all_customers as $key => $customer)
-                                <tr id="{{ $customer->id }}">
+                                <tr id="{{ $customer->id }}" style="{{ (!$customer->verified || $customer->locked) ? 'font-weight: bold; color: red;' : '' }}">
                                     <th scope="row">{{ $key }}</th>
                                     <td>{{ $customer->name }}</td>
                                     <td>{{ $customer->email }}</td>
@@ -47,6 +48,15 @@
                                         @endif
                                     </td>
                                     <td>
+                                        <div style="height: 100px; overflow: auto; border: 1px solid #ccc; padding: 5px;">
+                                            @if (!empty($customer->movies()))
+                                                {!! str_replace(', ', '<br>- ', implode(', ', $customer->movies())) !!}
+                                            @else
+                                                Không có phim
+                                            @endif
+                                        </div>
+                                    </td>
+                                    <td>
                                         {!! Form::open([
                                             'method' => 'post',
                                             'route' => ['toggleCustomerLock', $customer->id],
@@ -58,6 +68,7 @@
                                 </tr>
                             @endforeach
                         </tbody>
+
                     </table>
                 </div>
             </div>

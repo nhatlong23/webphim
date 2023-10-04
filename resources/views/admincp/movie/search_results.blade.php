@@ -53,22 +53,14 @@
                                             <span class="badge badge-success">{{ $cate->title }}</span> <br>
                                         </td>
                                         <td>
-                                            <span><a href="{{ route('leech-episodes', $cate->slug) }}" class="btn btn-success">Tập phim</a></span>
-                                            {{-- <span>
-                                                <button type="button" data-movie_slug="{{ $cate->slug }}" 
-                                                class="badge badge-success btn-sm leech_details_episode"
-                                                data-toggle="modal" data-target="#episode">Thêm tập phim</button>
-                                            </span> --}}
+                                            <span><a href="{{ route('leech-episodes', $cate->slug) }}" class="btn btn-success">Tập phim api</a></span>
+                                            <a href="{{ route('add-episode', [$cate->id]) }}" class="btn btn-danger btn-sm">Thêm Tập Phim bằng tay</a>
                                         </td>
                                         <td>
                                             @php
                                                 $image_check = substr($cate->image, 0, 4);
                                             @endphp
-                                            @if ($image_check == 'http')
-                                                <img src="{{ $cate->image }}" width="65"> <br>
-                                            @else
-                                                <img src="{{ asset('uploads/movie/' . $cate->image) }}" width="65"> <br>
-                                            @endif
+                                            <img src="{{ (strpos($cate->image, 'http') === 0) ? $cate->image : asset('uploads/movie/' . $cate->image) }}" width="65">
                                             <span class="badge badge-success">{{ $cate->episode_count }} / {{ $cate->episodes }} tập</span> <br>
                                             <span class="badge badge-primary">{{ $cate->duration_movie }}</span> <br>
                                         </td>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Country;
 use Carbon\Carbon;
+use Toastr;
 
 class CountryController extends Controller
 {
@@ -64,7 +65,8 @@ class CountryController extends Controller
         $country->status = $data['status'];
         $country->created_at = Carbon::now('Asia/Ho_Chi_Minh');
         $country->save();
-        return redirect()->back();
+        toastr()->success("Thêm thành công quốc gia: $country->title");
+        return redirect()->route('country.index');
     }
 
     /**
@@ -100,34 +102,47 @@ class CountryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->validate(
-            [
-                'title' => 'required|unique:countries|max:100',
-                'slug' => 'required|unique:countries|max:100',
-                'description' => 'required|max:255',
-                'status' => 'required',
-            ],
-            [
-                'title.required' => 'Vui lòng nhập tiêu đề',
-                'title.unique' => 'Tiêu đề đã tồn tại',
-                'title.max' => 'Tiêu đề không được quá 100 ký tự',
-                'slug.required' => 'Vui lòng nhập slug',
-                'slug.unique' => 'Slug đã tồn tại',
-                'slug.max' => 'Slug không được quá 100 ký tự',
-                'description.required' => 'Vui lòng nhập mô tả',
-                'description.max' => 'Mô tả không được quá 255 ký tự',
-                'status.required' => 'Vui lòng chọn trạng thái',
-            ]
-        );
-
+        $data = $request->validate([
+            'title' => 'required|max:100',
+            'slug' => 'required|max:100',
+            'description' => 'required|max:255',
+            'status' => 'required',
+        ], [
+            'title.required' => 'Vui lòng nhập tiêu đề',
+            'title.max' => 'Tiêu đề không được quá 100 ký tự',
+            'slug.required' => 'Vui lòng nhập slug',
+            'slug.max' => 'Slug không được quá 100 ký tự',
+            'description.required' => 'Vui lòng nhập mô tả',
+            'description.max' => 'Mô tả không được quá 255 ký tự',
+            'status.required' => 'Vui lòng chọn trạng thái',
+        ]);
+    
         $country = Country::find($id);
+    
+        if ($country->title != $data['title']) {
+            Toastr::success('Thay đổi tiêu đề quốc gia thành ' . $data['title']);
+        }
+    
+        if ($country->slug != $data['slug']) {
+            Toastr::success('Thay đổi slug quốc gia thành ' . $data['slug']);
+        }
+    
+        if ($country->description != $data['description']) {
+            Toastr::success('Thay đổi mô tả quốc gia thành ' . $data['description']);
+        }
+    
+        if ($country->status != $data['status']) {
+            Toastr::success('Thay đổi trạng thái quốc gia thành ' . $data['status']);
+        }
+    
         $country->title = $data['title'];
         $country->slug = $data['slug'];
         $country->description = $data['description'];
         $country->status = $data['status'];
         $country->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         $country->save();
-        return redirect()->back();
+    
+        return redirect()->route('country.index');
     }
 
     /**
@@ -138,9 +153,17 @@ class CountryController extends Controller
      */
     public function destroy($id)
     {
-        Country::find($id)->delete();
+        $country = Country::find($id);
+        if ($country) {
+            $countryName = $country->title;
+            $country->delete();
+            toastr()->warning("Xóa thành công quốc gia: $countryName");
+        } else {
+            toastr()->error('Không tìm thấy quốc gia để xóa');
+        }
         return redirect()->back();
     }
+    
 
     public function resorting_country(Request $request)
     {

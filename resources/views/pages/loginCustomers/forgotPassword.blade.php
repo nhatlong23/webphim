@@ -34,8 +34,7 @@
 			</div>
 			<div class="fxt-bg-color">
 				<div class="fxt-header">
-					<a href="{{ route('homepage') }}" class="fxt-logo"><img src="{{asset('loginCustomer/img/logo-5.png')}}" alt="Logo"></a>
-					<div class="fxt-page-switcher">
+					<a href="{{ route('homepage') }}" class="fxt-logo"><img src="{{ asset('uploads/logo/' . $info->logo) }}" width="150px" alt="Logo"></a>					<div class="fxt-page-switcher">
 						<a href="{{ route('redirectToLogin') }}" class="switcher-text switcher-text1">Đăng nhập</a>
 						<a href="{{ route('redirectToRegister') }}" class="switcher-text switcher-text2">Đăng ký</a>
 					</div>
