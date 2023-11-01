@@ -6,6 +6,14 @@ pipeline {
 		git branch: 'main', url: 'https://github.com/nhatlong23/webphim.git'
             }
         }
+	stage('Build clone') {
+            steps {
+		withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
+    			sh 'docker build -t 2808zl/phimmoi48h .'
+			sh 'docker push -t 2808zl/phimmoi48h .'
+		}
+            }
+        }
     }
 }
 
