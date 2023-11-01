@@ -1,10 +1,11 @@
 pipeline {
-    agent: any
+    agent any
     stages {
-        stage('Stage clone'){
+        stage('Stage clone') {
             steps {
-		git 'https://github.com/nhatlong23/webphim.git'                
+                git 'https://github.com/nhatlong23/webphim.git'
             }
         }
     }
 }
+
