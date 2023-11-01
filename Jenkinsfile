@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Stage clone') {
             steps {
-                git 'https://github.com/nhatlong23/webphim.git'
+		git branch: 'main', url: 'https://github.com/nhatlong23/webphim.git'
             }
         }
     }
