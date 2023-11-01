@@ -31,7 +31,7 @@ class MovieController extends Controller
     public function index()
     {
         $list = Movie::with('category', 'movie_genre', 'movie_category', 'country', 'genre')->withCount('episode')->orderBy('id', 'DESC')->paginate(10);
-        $movie_all = Movie::select('id', 'title','image','name_en','duration_movie','episodes','slug')->withCount('episode')->get();
+        $movie_all = Movie::select('id', 'title', 'image', 'name_en', 'duration_movie', 'episodes', 'slug')->withCount('episode')->get();
         $category = Category::pluck('title', 'id');
         $country = Country::pluck('title', 'id');
         $path = public_path() . "/json/";
@@ -81,10 +81,10 @@ class MovieController extends Controller
     {
         $data = $request->all();
         $movies = Movie::where('topview', $data['value'])->orderBy('view_count', 'DESC')->take(10)->get();
-    
+
         foreach ($movies as $movie) {
             $resolution_text = '';
-    
+
             switch ($movie->resolution) {
                 case 0:
                     $resolution_text = 'HD';
@@ -104,9 +104,9 @@ class MovieController extends Controller
                 default:
                     $resolution_text = 'Trailer';
             }
-    
+
             $image_url = (strpos($movie->image, 'http') === 0) ? $movie->image : url('uploads/movie/' . $movie->image);
-    
+
             echo '<div class="item post-37176">
                 <a href="' . url('phim/' . $movie->slug) . '" title="' . $movie->title . '">
                     <div class="item-link">
@@ -118,17 +118,16 @@ class MovieController extends Controller
                 <div class="viewsCount" style="color: #9d9d9d;">' . $movie->view_count . ' lượt xem</div>
                 <div style="float: left;">
                     <ul class="list-inline rating" title="Average rating">';
-    
+
             for ($count = 1; $count <= 5; $count++) {
                 echo '<li title="rating" style="font-size: 20px; color: #ffcc00; padding:0">&#9733;</li>';
             }
-    
+
             echo '</ul>
                 </div>
             </div>';
         }
     }
-    
 
     /**
      * Show the form for creating a new resource.
@@ -188,7 +187,7 @@ class MovieController extends Controller
             $original_name = $get_image->getClientOriginalName();
             $public_id = pathinfo($original_name, PATHINFO_FILENAME);
             $uploadedImage = Cloudinary::upload($get_image->getRealPath(), [
-                'folder' => 'movie',
+                'folder' => 'movie_local',
                 'transformation' => [
                     'quality' => 'auto',
                     'fetch_format' => 'auto',
@@ -287,10 +286,10 @@ class MovieController extends Controller
             // Xóa ảnh cũ trên Cloudinary trước khi tải lên ảnh mới
             if ($movie->image) {
                 $public_id_old = $movie->image;
-                $token = explode('/',$public_id_old);
-                $token2 = explode('.', $token[sizeof($token)-1]);
+                $token = explode('/', $public_id_old);
+                $token2 = explode('.', $token[sizeof($token) - 1]);
                 // Sử dụng Cloudinary để xóa ảnh cũ
-                Cloudinary::destroy('movie/'.$token2[0]);
+                Cloudinary::destroy('movie/' . $token2[0]);
             }
 
             $original_name = $get_image->getClientOriginalName();
@@ -298,7 +297,7 @@ class MovieController extends Controller
 
             // Tải ảnh mới lên Cloudinary
             $uploadedImage = Cloudinary::upload($get_image->getRealPath(), [
-                'folder' => 'movie',
+                'folder' => 'movie_local',
                 'transformation' => [
                     'quality' => 'auto',
                     'fetch_format' => 'auto',
@@ -308,7 +307,7 @@ class MovieController extends Controller
 
             $movie->image = $uploadedImage->getSecurePath();
         }
-        
+
         $movie->save();
         //them nhieu the loai cho phim
         $movie->movie_genre()->sync($data['genre']);
@@ -328,9 +327,9 @@ class MovieController extends Controller
         $movie = Movie::find($id);
         if ($movie->image) {
             $public_id_old = $movie->image;
-            $token = explode('/',$public_id_old);
-            $token2 = explode('.', $token[sizeof($token)-1]);
-            Cloudinary::destroy('movie/'.$token2[0]);
+            $token = explode('/', $public_id_old);
+            $token2 = explode('.', $token[sizeof($token) - 1]);
+            Cloudinary::destroy('movie/' . $token2[0]);
         }
         //xoa nhieu the loai
         Movie_Genre::whereIn('movie_id', [$movie->id])->delete();
@@ -347,9 +346,9 @@ class MovieController extends Controller
     {
         $data = $request->all();
         $ip_rating = $request->ip();
-    
+
         $rating_count = Rating::where('movie_id', $data['movie_id'])->where('ip_rating', $ip_rating)->count();
-    
+
         if ($rating_count > 0) {
             return 'exist';
         } else {
@@ -362,8 +361,7 @@ class MovieController extends Controller
             return 'done';
         }
     }
-    
-    
+
     public function sendEmailNewMovies(Request $request)
     {
         $yearNow = Carbon::now('Asia/Ho_Chi_Minh')->year;
@@ -395,7 +393,6 @@ class MovieController extends Controller
 
         return redirect()->back()->with('success', 'Gửi mail thành công');
     }
-    
 
     //thay đổi dữ liệu movie bằng ajax
 
@@ -428,18 +425,17 @@ class MovieController extends Controller
     public function search(Request $request)
     {
         $searchKeyword = $request->input('search');
-    
+
         $list = Movie::with('category', 'movie_genre', 'movie_category', 'country', 'genre')
             ->withCount('episode')
             ->where(function ($query) use ($searchKeyword) {
                 $query->where('title', 'LIKE', '%' . $searchKeyword . '%')
-                ->orWhere('name_en', 'LIKE', '%' . $searchKeyword . '%');
+                    ->orWhere('name_en', 'LIKE', '%' . $searchKeyword . '%');
             })
             ->orderBy('id', 'DESC')
             ->paginate(30);
-    
+
         // Trả về view chứa kết quả tìm kiếm
         return view('admincp.movie.search_results', ['movies' => $list]);
     }
-
 }

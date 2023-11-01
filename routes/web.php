@@ -98,6 +98,7 @@ Route::get('update-image-movie', [LeechMovieController::class, 'updateImageUrls'
 Route::post('leech-detail-episode', [LeechMovieController::class, 'leech_detail_episode'])->name('leech-detail-episode');
 
 Route::get('/searchMovies', [MovieController::class, 'search'])->name('searchMovies');
+Route::get('/profile', [IndexController::class, 'profile'])->name('profile')->middleware('auth:customer');
 
 Route::middleware(['customer'])->group(function () {
     //customer login facebooke, google
@@ -119,6 +120,7 @@ Route::middleware(['customer'])->group(function () {
     Route::post('resetPassword-customers', [LoginSocialiteController::class, 'resetPassword'])->name('resetPassword');
     Route::post('checkCodeLogin-customers', [LoginSocialiteController::class, 'checkCodeLogin'])->name('checkCodeLogin');
 });
+
 Route::get('logout', [LoginSocialiteController::class, 'logout'])->name('logout');
 
 //send mail
@@ -128,7 +130,6 @@ Route::get('send-email', [MovieController::class, 'sendEmailNewMovies'])->name('
 Route::get('/create_sitemap', function () {
     return Artisan::call('sitemap:create');
 });
-
 
 //test redis
 Route::get('/redis', function () {

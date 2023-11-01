@@ -102,7 +102,7 @@
             </div>
             <div class="clearfix"></div>
         </div>
-        <div class="row-one widgettable">
+        {{-- <div class="row-one widgettable">
             <div class="col-md-7 content-top-2 card">
                 <div class="agileinfo-cdr">
                     <div class="card-header">
@@ -222,7 +222,7 @@
                 <div id="chartdiv"></div>
             </div>
             <div class="clearfix"></div>
-        </div>
+        </div> --}}
         <!-- for amcharts js -->
         <script src="js/amcharts.js"></script>
         <script src="js/serial.js"></script>
@@ -230,8 +230,8 @@
         <link rel="stylesheet" href="css/export.css" type="text/css" media="all" />
         <script src="js/light.js"></script>
         <!-- for amcharts js -->
-        <script src="js/index1.js"></script>
-        <div class="charts">
+        {{-- <script src="js/index1.js"></script> --}}
+        {{-- <div class="charts">
             <div class="mid-content-top charts-grids">
                 <div class="middle-content">
                     <h4 class="title">Carousel Slider</h4>
@@ -262,8 +262,8 @@
                 </div>
                 <!--//sreen-gallery-cursual---->
             </div>
-        </div>
-        <div class="col_1">
+        </div> --}}
+        {{-- <div class="col_1">
             <div class="col-md-4 span_8">
                 <div class="activity_box">
                     <h2>Inbox</h2>
@@ -487,7 +487,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="clearfix"></div>
-        </div>
+        </div> --}}
     </div>
     </div>
 @endsection

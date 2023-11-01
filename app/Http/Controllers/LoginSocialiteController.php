@@ -14,6 +14,8 @@ use App\Mail\ResetPasswordMail;
 use App\Mail\VerifyEmail;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+
+
 class LoginSocialiteController extends Controller
 {
     //login customers

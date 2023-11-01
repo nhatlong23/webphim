@@ -64,9 +64,9 @@
                                 @endphp
                                 <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-37606">
                                     <div class="halim-item">
-                                        <a class="halim-thumb" href="{{ route('movie', $mov->slug) }}">
+                                        <a id="BookmarksUrl_{{$mov->id}}" class="halim-thumb" href="{{ route('movie', $mov->slug) }}">
                                             <figure>
-                                                <img class="lazy img-responsive" src="{{ $image_check === 'http' ? $mov->image : asset('uploads/movie/' . $mov->image) }}"
+                                                <img id="BookmarksImage_{{$mov->id}}" class="lazy img-responsive" src="{{ $image_check === 'http' ? $mov->image : asset('uploads/movie/' . $mov->image) }}"
                                                     alt="{{ $mov->title }}" title="{{ $mov->title }}" loading="lazy">
                                             </figure>
                                             <span class="status">
@@ -78,8 +78,9 @@
                                             <div class="icon_overlay"></div>
                                             <div class="halim-post-title-box">
                                                 <div class="halim-post-title ">
-                                                    <p class="entry-title">{{ $mov->title }}</p>
-                                                    <p class="original_title">{{ $mov->name_en }}</p>
+                                                    <p id="BookmarksName_{{ $mov->id }}" class="entry-title">{{ $mov->title }}</p>
+                                                    <p id="BookmarksNameEn_{{$mov->id}}" class="original_title">{{ $mov->name_en }}</p>
+                                                    <a style="display: contents;" id="{{ $mov->id }}" onclick="addMovieToBookmarks(this.id)">Thêm vào Bookmarks</a>
                                                 </div>
                                             </div>
                                         </a>
@@ -141,4 +142,6 @@
             @include('pages.include.sidebar')
         </div>
     </div>
+
+    
 @endsection

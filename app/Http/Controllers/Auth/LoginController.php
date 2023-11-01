@@ -55,11 +55,9 @@ class LoginController extends Controller
         $credentials = $request->only('google_id', 'facebook_id');
     
         if (Auth::guard('customer')->attempt($credentials)) {
-            // Đăng nhập thành công cho customer
             return redirect()->intended('/');
         }
     
-        // Điều hướng về trang đăng nhập cho customer với thông báo lỗi
         return 'lỗi đăng nhập';
     }
 

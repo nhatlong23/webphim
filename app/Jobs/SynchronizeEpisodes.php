@@ -18,9 +18,11 @@ class SynchronizeEpisodes implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($movieId, $episodeName, $linkEmbed)
     {
-        //
+        $this->movieId = $movieId;
+        $this->episodeName = $episodeName;
+        $this->linkEmbed = $linkEmbed;
     }
 
     /**

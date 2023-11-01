@@ -110,7 +110,9 @@
                                 d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4zm2-1a1 1 0 0 0-1 1v10.566l3.723-2.482a.5.5 0 0 1 .554 0L11 14.566V4a1 1 0 0 0-1-1H4z" />
                             <path
                                 d="M4.268 1H12a1 1 0 0 1 1 1v11.768l.223.148A.5.5 0 0 0 14 13.5V2a2 2 0 0 0-2-2H6a2 2 0 0 0-1.732 1z" />
-                        </svg><span> Bookmarks</span><span class="count">0</span>
+                        </svg>
+                        <span> Bookmarks</span>
+                        <span class="count"></span>
                     </div>
                     @if (auth('customer')->check())
                         {{ auth('customer')->user()->name }}
@@ -150,7 +152,7 @@
                     </button>
                     <button type="button" class="navbar-toggle collapsed pull-right get-bookmark-on-mobile">
                         Bookmarks<i class="hl-bookmark" aria-hidden="true"></i>
-                        <span class="count">0</span>
+                        <span class="count"></span>
                     </button>
                     <button type="button" class="navbar-toggle collapsed pull-right get-locphim-on-mobile">
                         <a href="javascript:;" id="expand-ajax-filter" style="color: #ffed4d;">Lọc <i
@@ -729,6 +731,109 @@
             float: left;
         }
     </style>
+
+    <script>
+        function viewBookmarks() {
+            if (localStorage.getItem('bookmarksMovies') !== null) {
+                const bookmarksMovies = JSON.parse(localStorage.getItem('bookmarksMovies')) || [];
+
+                $('#bookmarks').empty();
+
+                for (let i = 0; i < bookmarksMovies.length; i++) {
+                    const name = bookmarksMovies[i].name;
+                    const nameEn = bookmarksMovies[i].nameEn;
+                    const image = bookmarksMovies[i].image;
+                    const url = bookmarksMovies[i].url;
+                    const id = `bookmark_${i}`;
+
+                    const articleHtml = `
+                        <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021" id="${id}">
+                            <div class="halim-item">
+                                <a class="halim-thumb" href="${url}">
+                                    <figure>
+                                        <img class="lazy img-responsive" src="${image}" loading="lazy">
+                                    </figure>
+                                    <span class="status">
+                                        ...
+                                    </span>
+                                    <span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
+                                        ...
+                                    </span>
+                                    <div class="icon_overlay"></div>
+                                    <div class="halim-post-title-box">
+                                        <div class="halim-post-title ">
+                                            <p class="entry-title">${name}</p>
+                                            <p class="original_title">${nameEn}</p>
+                                            <a style="display: contents;" id="${i}" onclick="deleteMovieToBookmarks(this.id)">Xóa khỏi Bookmarks</a>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </article>
+                    `;
+                    $('#bookmarks').append(articleHtml);
+                }
+            }
+        }
+
+        function deleteMovieToBookmarks(index) {
+            if (confirm("Bạn có chắc chắn xóa phim trong bookmark không?")) {
+                const bookmarksMovies = JSON.parse(localStorage.getItem('bookmarksMovies')) || [];
+
+                bookmarksMovies.splice(index, 1);
+
+                localStorage.setItem('bookmarksMovies', JSON.stringify(bookmarksMovies));
+
+                $(`#bookmark_${index}`).remove();
+            }
+            updateMovieCount();
+        }
+
+        function updateMovieCount() {
+            const bookmarksMovies = JSON.parse(localStorage.getItem('bookmarksMovies')) || [];
+
+            const numberOfMovies = bookmarksMovies.length;
+            const countSpan = document.querySelector('.count');
+
+            if (numberOfMovies === 0) {
+                countSpan.textContent = '0';
+            } else {
+                countSpan.textContent = numberOfMovies;
+            }
+        }
+
+        function addMovieToBookmarks(movieId) {
+            const id = movieId;
+            const name = document.getElementById('BookmarksName_' + id).innerHTML;
+            const nameEn = document.getElementById('BookmarksNameEn_' + id).innerHTML;
+            const image = document.getElementById('BookmarksImage_' + id).src;
+            const url = document.getElementById('BookmarksUrl_' + id).href;
+
+            const bookmarksMovies = JSON.parse(localStorage.getItem('bookmarksMovies')) || [];
+            const isMovieAdded = bookmarksMovies.some(movie => movie.id === movieId);
+
+            if (isMovieAdded) {
+                alert('Phim này đã được thêm vào bookmarks.');
+            } else {
+                const newMovie = {
+                    id: movieId,
+                    name: name,
+                    nameEn: nameEn,
+                    image: image,
+                    url: url
+                };
+                bookmarksMovies.push(newMovie);
+
+                localStorage.setItem('bookmarksMovies', JSON.stringify(bookmarksMovies));
+                alert('Đã thêm phim ' + name + ' vào bookmarks');
+                updateMovieCount();
+            }
+        }
+        window.addEventListener('DOMContentLoaded', function () {
+            updateMovieCount();
+            viewBookmarks();
+        });
+    </script>
 </body>
 
 </html>

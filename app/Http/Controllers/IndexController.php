@@ -15,6 +15,7 @@ use App\Models\Rating;
 use App\Models\Info;
 use App\Models\LinkMovie;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session as FacadesSession;
 use Illuminate\Support\Facades\Cache;
 
@@ -32,7 +33,6 @@ class IndexController extends Controller
         $category_home = Cache::remember('category_home', 30 * 60, function () {
             return Category::with(['movie_category'])->orderBy('position', 'ASC')->where('status', 1)->get();
         });
-
         return view('pages.home', compact('movie_hot', 'meta_title', 'meta_description', 'meta_image'));
     }
 
@@ -317,6 +317,17 @@ class IndexController extends Controller
         toastr()->success('thành công', 'Lọc phim thành công!');
     
         return view('pages.filter', compact('movies', 'meta_title', 'meta_description', 'meta_image'));
+    }
+
+    public function profile()
+    {
+        $info = Info::find(1);
+        $meta_title = $info->title;
+        $meta_description = $info->description;
+        $meta_image = '';
+
+        $customer = Auth::guard('customer')->user();
+        return view('pages.customers.profile', compact('customer', 'meta_title', 'meta_description', 'meta_image'));
     }
 
     public function privacy_policy()

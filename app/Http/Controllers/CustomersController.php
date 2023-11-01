@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Sessions;
 use App\Models\Customer;
 use App\Models\Movie;
 use Carbon\Carbon;
+use App\Models\Info;
 
 class CustomersController extends Controller
 {
@@ -104,4 +105,5 @@ class CustomersController extends Controller
     {
         //
     }
+
 }

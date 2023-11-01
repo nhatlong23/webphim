@@ -17,6 +17,8 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Log;
 use App\Jobs\SynchronizeEpisodes;
 use Illuminate\Support\Facades\Queue;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use GuzzleHttp\Client;
 
 class LeechMovieController extends Controller
 {
@@ -279,7 +281,13 @@ class LeechMovieController extends Controller
         }
         $movie->slug = $data['slug'];
         $movie->description = $data['content'] ?? null;
-        $movie->image = $data['thumb_url'];
+
+        $imagePath = $data['thumb_url'] ?? null;
+        if ($imagePath) {
+            $imageFileName = pathinfo(parse_url($imagePath, PHP_URL_PATH), PATHINFO_FILENAME);
+            $movie->image = $this->uploadImageToCloudinary($imagePath, $imageFileName);
+        }
+        
         $movie->status = 1;
         if (array_key_exists('episode_total', $data)) {
             $episode_total = $data['episode_total'];
@@ -338,6 +346,24 @@ class LeechMovieController extends Controller
         }
     }
 
+    private function uploadImageToCloudinary($imagePath, $publicId)
+    {
+        if (!$imagePath) {
+            return null;
+        }
+    
+        $uploadedImage = Cloudinary::upload($imagePath, [
+            'folder' => 'movie_local',
+            'transformation' => [
+                'quality' => 'auto',
+                'fetch_format' => 'auto',
+            ],
+            'public_id' => $publicId,
+        ]);
+    
+        return $uploadedImage->getSecurePath();
+    }
+
     public function synchronizeAllEpisodes()
     {
         $movies = Movie::all();
@@ -350,7 +376,7 @@ class LeechMovieController extends Controller
     
         return redirect('leech-movie')->with('success', 'Đã đồng bộ tất cả tập phim thành công');
     }
-
+    
     private function synchronizeEpisodes(Movie $movie)
     {
         $slug = $movie->slug;
