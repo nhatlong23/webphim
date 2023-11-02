@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        PATH = "/usr/local/bin:${env.PATH}"
+    }
     stages {
         stage('Stage clone') {
             steps {
@@ -8,14 +11,11 @@ pipeline {
         }
         stage('Build clone') {
             steps {
-                withEnv(['PATH+DOCKER=/usr/local/bin']) {
-                    withDockerRegistry(credentialsId: 'docker-hub1', url: 'https://index.docker.io/v1/') {
-                        sh 'docker build -t 2808zl/phimmoi48h:v1 .'
-                        sh 'docker push 2808zl/phimmoi48h:v1'
-                    }
+                withDockerRegistry(credentialsId: 'docker-hub1', url: 'https://index.docker.io/v1/') {
+                    sh 'docker build -t 2808zl/phimmoi48h:v1 .'
+                    sh 'docker push 2808zl/phimmoi48h:v1'
                 }
             }
         }
     }
 }
-
