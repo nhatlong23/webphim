@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        PATH = "/usr/bin:${env.PATH}"
+    }
     stages {
         stage('Stage clone') {
             steps {
