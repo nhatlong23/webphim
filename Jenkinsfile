@@ -8,7 +8,7 @@ pipeline {
         }
 	stage('Build clone') {
             steps {
-		withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
+		withDockerRegistry(credentialsId: 'docker-hub1', url: 'https://index.docker.io/v1/') {
     			sh 'docker build -t 2808zl/phimmoi48h:v1 .'
 			sh 'docker push -t 2808zl/phimmoi48h'
 		}
