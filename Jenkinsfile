@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "2808zl/phimmoi48h"
-        DOCKERFILE_PATH="${WORKSPACE}/docker/Dockerfile"
+        DOCKERFILE_PATH = "${WORKSPACE}/docker/Dockerfile"
     }
 
     stages {
@@ -14,9 +14,8 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-            // agent { node { label 'main' } }
             environment {
-                DOCKER_TAG="${GIT_BRANCH.tokenize('/').pop()}-${GIT_COMMIT.substring(0,7)}"
+                DOCKER_TAG = "${GIT_BRANCH.tokenize('/').pop()}-${GIT_COMMIT.substring(0, 7)}"
             }
             steps {
                 script {
