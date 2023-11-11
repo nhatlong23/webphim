@@ -39,11 +39,10 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    docker.image(env.DOCKER_IMAGE).withRun('-p 80:80 -p 443:443 --name webphim_server')
+                    sh "docker run -d -p 80:80 -p 443:443 --name webphim_server ${DOCKER_IMAGE}:latest"
                 }
             }
         }
-
         // stage('Run Tests') {
         //     steps {
         //         // Perform any testing steps here if needed
