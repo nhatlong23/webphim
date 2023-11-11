@@ -46,17 +46,17 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                // Perform any testing steps here if needed
-            }
-        }
+        // stage('Run Tests') {
+        //     steps {
+        //         // Perform any testing steps here if needed
+        //     }
+        // }
 
-        stage('Deploy') {
-            steps {
-                // Perform any deployment steps here if needed
-            }
-        }
+        // stage('Deploy') {
+        //     steps {
+        //         // Perform any deployment steps here if needed
+        //     }
+        // }
     }
 
     post {
