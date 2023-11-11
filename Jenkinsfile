@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "2808zl/phimmoi48h"
-        DOCKERFILE_PATH="${WORKSPACE}/Job-Phimmoi48h/docker/Dockerfile"
+        DOCKERFILE_PATH="${WORKSPACE}/docker/Dockerfile"
     }
 
     stages {
