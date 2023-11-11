@@ -13,7 +13,7 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-            agent { node { label 'main' } }
+            // agent { node { label 'main' } }
             environment {
                 DOCKER_TAG="${GIT_BRANCH.tokenize('/').pop()}-${GIT_COMMIT.substring(0,7)}"
             }
