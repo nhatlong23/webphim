@@ -24,6 +24,7 @@ pipeline {
                     sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} -f ${DOCKERFILE_PATH} ."
                     sh "docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest"
                     sh "docker image ls | grep ${DOCKER_IMAGE}"
+                    sh "rm -rf ${DOCKER_CONFIG}"
                     sh "mkdir -p ${DOCKER_CONFIG}"
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-password', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                         sh "echo $DOCKER_PASSWORD | docker --config=${DOCKER_CONFIG} login --username $DOCKER_USERNAME --password-stdin"
