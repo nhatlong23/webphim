@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "2808zl/phimmoi48h"
         DOCKERFILE_PATH = "${WORKSPACE}/docker/Dockerfile"
+        DOCKER_CONFIG = "${WORKSPACE}/docker/.docker"
     }
 
     stages {
@@ -19,12 +20,12 @@ pipeline {
             }
             steps {
                 script {
-                    echo "Dockerfile path: ${DOCKERFILE_PATH}"
                     sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} -f ${DOCKERFILE_PATH} ."
                     sh "docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest"
                     sh "docker image ls | grep ${DOCKER_IMAGE}"
+                    sh "mkdir -p ${DOCKER_CONFIG}"
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-password', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                        sh "echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin"
+                        sh "echo $DOCKER_PASSWORD | docker --config=${DOCKER_CONFIG} login --username $DOCKER_USERNAME --password-stdin"
                     }
                     sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
                     sh "docker push ${DOCKER_IMAGE}:latest"
