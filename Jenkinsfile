@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "2808zl/phimmoi48h"
     }
+
     stages {
         stage('Clone Repository') {
             steps {
@@ -26,12 +27,13 @@ pipeline {
                         sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
                         sh "docker push ${DOCKER_IMAGE}:latest"
                     }
-                //clean to save disk
-                sh "docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}"
-                sh "docker image rm ${DOCKER_IMAGE}:latest"
-                withDockerRegistry(credentialsId: 'docker-hub1', url: 'https://index.docker.io/v1/') {
-                    sh 'docker build -t 2808zl/phimmoi48h:v1 .'
-                    sh 'docker push 2808zl/phimmoi48h:v1'
+                    //clean to save disk
+                    sh "docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    sh "docker image rm ${DOCKER_IMAGE}:latest"
+                    withDockerRegistry(credentialsId: 'docker-hub1', url: 'https://index.docker.io/v1/') {
+                        sh 'docker build -t 2808zl/phimmoi48h:v1 .'
+                        sh 'docker push 2808zl/phimmoi48h:v1'
+                    }
                 }
             }
         }
