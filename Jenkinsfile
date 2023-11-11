@@ -25,7 +25,7 @@ pipeline {
                     sh "mkdir -p ${DOCKER_CONFIG}"
                     // Login to Docker Hub
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-password', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                        sh "echo $DOCKER_PASSWORD | docker --config=${DOCKER_CONFIG} login --username $DOCKER_USERNAME --password-stdin"
+                        sh "docker --config=${DOCKER_CONFIG} login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}"
                     }
                     sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} -f ${DOCKERFILE_PATH} ."
                     sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
@@ -42,7 +42,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                     // Stop and remove existing container
+                    // Stop and remove existing container
                     sh "docker stop ${CONTAINER_NAME} || true"
                     sh "docker rm ${CONTAINER_NAME} || true"
                     // Run the new container
