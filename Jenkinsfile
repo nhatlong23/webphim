@@ -27,7 +27,7 @@ pipeline {
                         sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
                         sh "docker push ${DOCKER_IMAGE}:latest"
                     }
-                    //clean to save disk
+                    // Clean up to save disk
                     sh "docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}"
                     sh "docker image rm ${DOCKER_IMAGE}:latest"
                     withDockerRegistry(credentialsId: 'docker-hub1', url: 'https://index.docker.io/v1/') {
@@ -48,13 +48,13 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                // Thực hiện các bước kiểm thử ở đây nếu cần
+                // Perform any testing steps here if needed
             }
         }
 
         stage('Deploy') {
             steps {
-                // Thực hiện các bước triển khai ở đây nếu cần
+                // Perform any deployment steps here if needed
             }
         }
     }
