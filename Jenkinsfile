@@ -5,6 +5,7 @@ pipeline {
         DOCKER_IMAGE = "2808zl/phimmoi48h"
         DOCKERFILE_PATH = "${WORKSPACE}/docker/Dockerfile"
         DOCKER_CONFIG = "${WORKSPACE}/docker/.docker"
+        CONTAINER_NAME = "webphim_server"
     }
 
     stages {
@@ -41,7 +42,11 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    sh "docker run -d -p 80:80 -p 443:443 --name webphim_server ${DOCKER_IMAGE}:latest"
+                     // Stop and remove existing container
+                    sh "docker stop ${CONTAINER_NAME} || true"
+                    sh "docker rm ${CONTAINER_NAME} || true"
+                    // Run the new container
+                    sh "docker run -d -p 80:80 -p 443:443 --name ${CONTAINER_NAME} ${DOCKER_IMAGE}:latest"
                 }
             }
         }
