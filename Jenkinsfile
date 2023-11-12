@@ -63,7 +63,7 @@ pipeline {
             steps {
                 script {
                     withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key', keyFileVariable: 'SSH_KEY')]) {
-                        sh "ssh -i ${SSH_KEY} jenkins@34.124.153.247 './delopy.sh'"
+                        sh "ssh -i ${SSH_KEY} -l jenkins 34.124.153.247 './delopy.sh'"
                     }
                 }
             }
