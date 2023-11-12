@@ -48,7 +48,7 @@ pipeline {
                     sh "docker stop ${CONTAINER_NAME} || true"
                     sh "docker rm ${CONTAINER_NAME} || true"
                     // Run the new container
-                    sh "docker run -d -p 80:80 -p 443:443 --name ${CONTAINER_NAME} ${DOCKER_IMAGE}:latest"
+                    // sh "docker run -d -p 80:80 -p 443:443 --name ${CONTAINER_NAME} ${DOCKER_IMAGE}:latest"
                 }
             }
         }
@@ -59,11 +59,15 @@ pipeline {
         //     }
         // }
 
-        // stage('Deploy') {
-        //     steps {
-        //         // Perform any deployment steps here if needed
-        //     }
-        // }
+        stage('Deploy') {
+            steps {
+                script {
+                    withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key', keyFileVariable: 'SSH_KEY')]) {
+                        sh "ssh -i $SSH_KEY jenkins@34.124.153.247 './delopy.sh'"
+                    }
+                }
+            }
+        }
     }
 
     post {
