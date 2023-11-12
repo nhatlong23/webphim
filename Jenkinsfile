@@ -61,10 +61,8 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                script {
-                    withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key', keyFileVariable: 'SSH_KEY')]) {
-                        sh "ssh -i ${SSH_KEY} -l jenkins 34.124.153.247 './delopy.sh'"
-                    }
+                sshagent(['ssh-key']) {
+                    sh "ssh -o StrictHostKeyChecking=no -l jenkins 34.124.153.247 './deploy.sh'"
                 }
             }
         }
