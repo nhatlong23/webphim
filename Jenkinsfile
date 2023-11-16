@@ -21,22 +21,24 @@ pipeline {
             }
             steps {
                 script {
-                    sh "docker image ls | grep ${DOCKER_IMAGE}"
-                    // sh "rm -rf ${DOCKER_CONFIG}"
-                    // sh "mkdir -p ${DOCKER_CONFIG}"
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-password', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                        sh "echo $DOCKER_PASSWORD | docker --config=${DOCKER_CONFIG} login --username $DOCKER_USERNAME --password-stdin"
-                    }
-                    sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} -f ${DOCKERFILE_PATH} ."
-                    sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
-                    script {
+                    def dockerImageExists = sh(script: "docker image ls | grep ${DOCKER_IMAGE}", returnStatus: true)
+                    if (!dockerImageExists) {
+                        sh "rm -rf ${DOCKER_CONFIG}"
+                        sh "mkdir -p ${DOCKER_CONFIG}"
+                        withCredentials([usernamePassword(credentialsId: 'docker-hub-password', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                            sh "echo $DOCKER_PASSWORD | docker --config=${DOCKER_CONFIG} login --username $DOCKER_USERNAME --password-stdin"
+                        }
+                        sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} -f ${DOCKERFILE_PATH} ."
+                        sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
                         if (GIT_BRANCH ==~ /.*main.*/) {
                             sh "docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest"
                             sh "docker push ${DOCKER_IMAGE}:latest"
                         }
+                        // Clean up to save disk
+                        sh "docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    } else {
+                        echo "Docker image ${DOCKER_IMAGE} already exists. Skipping the build."
                     }
-                    // Clean up to save disk
-                    sh "docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
             }
         }
@@ -59,13 +61,13 @@ pipeline {
         //     }
         // }
 
-        stage('Deploy') {
-            steps {
-                sshagent(['ssh-key']) {
-                    sh "ssh -o StrictHostKeyChecking=no -l jenkins 34.124.153.247 './deploy.sh'"
-                }
-            }
-        }
+        // stage('Deploy') {
+        //     steps {
+        //         sshagent(['ssh-key']) {
+        //             sh "ssh -o StrictHostKeyChecking=no -l jenkins 34.124.153.247 './deploy.sh'"
+        //         }
+        //     }
+        // }
     }
 
     post {
