@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', credentialsId: 'Github', url: 'https://github.com/nhatlong23/webphim.git'
+                git branch: 'develop', credentialsId: 'Github', url: 'https://github.com/nhatlong23/webphim.git'
             }
         }
 
