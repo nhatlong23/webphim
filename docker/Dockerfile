@@ -1,5 +1,6 @@
 FROM wyveo/nginx-php-fpm:php74
-# Cài đặt dịch vụ cron và các công việc lên lịch
-RUN apt-get update && apt-get install -y cron && apt-get clean
+
+# Update package lists and upgrade packages
+RUN apt-get update && apt-get upgrade -y
 
 LABEL maintainer="nhatlong2356@gmail.com"
