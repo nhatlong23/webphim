@@ -63,8 +63,12 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
-                    sh "ssh -i $SSH_PRIVATE_KEY jenkins@34.143.171.2 './deploy.sh'"
+                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key', keyFileVariable: 'SSH_PRIVATE_KEY', usernameVariable: 'jenkins')]) {
+                    sh """
+                        echo "\$SSH_PRIVATE_KEY" > ssh_key
+                        chmod 600 ssh_key
+                        ssh -i ssh_key jenkins@34.143.171.2 './deploy.sh'
+                    """
                 }
             }
         }
