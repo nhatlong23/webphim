@@ -43,17 +43,17 @@ pipeline {
             }
         }
 
-        stage('Run Docker Container') {
-            steps {
-                script {
-                    // Stop and remove existing container
-                    sh "docker stop ${CONTAINER_NAME} || true"
-                    sh "docker rm ${CONTAINER_NAME} || true"
-                    // Run the new container
-                    sh "docker run -d -p 80:80 -p 443:443 --name ${CONTAINER_NAME} ${DOCKER_IMAGE}:latest"
-                }
-            }
-        }
+        // stage('Run Docker Container') {
+        //     steps {
+        //         script {
+        //             // Stop and remove existing container
+        //             sh "docker stop ${CONTAINER_NAME} || true"
+        //             sh "docker rm ${CONTAINER_NAME} || true"
+        //             // Run the new container
+        //             sh "docker run -d -p 80:80 -p 443:443 --name ${CONTAINER_NAME} ${DOCKER_IMAGE}:latest"
+        //         }
+        //     }
+        // }
 
         // stage('Run Tests') {
         //     steps {
@@ -61,13 +61,13 @@ pipeline {
         //     }
         // }
 
-        // stage('Deploy') {
-        //     steps {
-        //         sshagent(['ssh-key']) {
-        //             sh "ssh -o StrictHostKeyChecking=no -l jenkins 34.124.153.247 './deploy.sh'"
-        //         }
-        //     }
-        // }
+        stage('Deploy') {
+            steps {
+                sshagent(credentials: ['ssh-key'], ignoreMissing: true) {
+                    sh "ssh -o StrictHostKeyChecking=no -l jenkins 34.143.171.2 './deploy.sh'"
+                }
+            }
+        }
     }
 
     post {
