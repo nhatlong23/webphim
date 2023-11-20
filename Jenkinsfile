@@ -72,7 +72,7 @@ pipeline {
                                     sshTransfer(
                                         cleanRemote: false,
                                         excludes: '',
-                                        execCommand: 'cp .env.example .env && ./deploy.sh', // Thêm lệnh deploy.sh vào đây
+                                        execCommand: "cp ${WORKSPACE}/.env.example ${WORKSPACE}/.env && ${WORKSPACE}/deploy.sh",
                                         execTimeout: 120000,
                                         flatten: false,
                                         makeEmptyDirs: false,
