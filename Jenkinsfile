@@ -63,8 +63,8 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sshagent(credentials: ['ssh-key'], ignoreMissing: true) {
-                    sh "ssh -o StrictHostKeyChecking=no -l jenkins 34.143.171.2 './deploy.sh'"
+                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
+                    sh "ssh -i $SSH_PRIVATE_KEY jenkins@34.143.171.2 './deploy.sh'"
                 }
             }
         }
