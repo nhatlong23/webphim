@@ -63,13 +63,14 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key', keyFileVariable: 'SSH_PRIVATE_KEY', usernameVariable: 'jenkins')]) {
-                    sh """
-                        echo "\$SSH_PRIVATE_KEY" > ssh_key
-                        chmod 600 ssh_key
-                        ssh -vvv -i ssh_key jenkins@34.143.171.2 './deploy.sh'
-                    """
-                }
+                // withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key', keyFileVariable: 'SSH_PRIVATE_KEY', usernameVariable: 'jenkins')]) {
+                //     sh """
+                //         echo "\$SSH_PRIVATE_KEY" > ssh_key
+                //         chmod 600 ssh_key
+                //         ssh -vvv -i ssh_key jenkins@34.143.171.2 './deploy.sh'
+                //     """
+                // }
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'ssh-server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'cp .env.example .env', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '.env.example')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
             }
         }
     }
