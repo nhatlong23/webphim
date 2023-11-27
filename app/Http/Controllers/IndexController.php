@@ -27,7 +27,7 @@ class IndexController extends Controller
         $meta_title = $info->title;
         $meta_description = $info->description;
         $meta_image = '';
-        $sub7days = Carbon::now('Asia/Ho_Chi_Minh')->subDays(30);
+        $sub7days = Carbon::now('Asia/Ho_Chi_Minh')->subDays(300);
         $movie_hot = Movie::where('movie_hot', 1)->where('status', 1)->where('date_created', '>=', $sub7days)->inRandomOrder()->take(10)->get();
         // Kiểm tra xem danh sách phim đã được lưu trong cache chưa
         $category_home = Cache::remember('category_home', 30 * 60, function () {

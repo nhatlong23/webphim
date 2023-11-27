@@ -10,6 +10,10 @@ class Rating extends Model
     use HasFactory;
     public $timestamps = false;
 
-    // protected $table = 'ratings';
-
+    protected $table = 'ratings';
+    protected $filltable = [
+        'movie_id',
+        'rating',
+        'ip_rating'
+    ];
 }

@@ -20,18 +20,18 @@
             <div id="ajax-filter" class="panel-collapse collapse" aria-expanded="true" role="menu">
                 <div class="ajax"></div>
             </div>
+            {{-- <div><p>Bạn đang:<span id="status">....</span></p></div> --}}
         </div>
         <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
             <section id="content" class="test">
                 <div class="clearfix wrap-content">
-
                     <style type="text/css">
                         .iframe-phim iframe {
                             width: 100%;
                             height: 500px;
                         }
                     </style>
-                    <div class="iframe-phim">
+                    <div class="iframe-phim" id="videoContainer">
                         {!! $episode->linkphim !!}
                     </div>
 
@@ -244,6 +244,20 @@
                                     }
                                 }
                             })
+                        });
+                    </script>
+
+                    <script>
+                        const status = document.getElementById('status');
+
+                        status.textContent = navigator.onLine ? 'Online' : 'Offline';
+
+                        window.addEventListener('online', () => {
+                            status.textContent = 'Online';
+                        });
+
+                        window.addEventListener('offline', () => {
+                            status.textContent = 'Offline';
                         });
                     </script>
                 </div>
