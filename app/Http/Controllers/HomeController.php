@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Movie;
+use App\Models\Episode;
 use PragmaRX\Tracker\Vendor\Laravel\Facade as Tracker;
 use PragmaRX\Tracker\Vendor\Laravel\Support\Session;
 
@@ -35,10 +36,11 @@ class HomeController extends Controller
     {
         $sessions = Tracker::sessions();
         //total admin
-        $category_total = Category::all()->count();
-        $genre_total = Genre::all()->count();
-        $country_total = Country::all()->count();
-        $movie_total = Movie::all()->count();
-        return view('layouts.home', compact('sessions','category_total','genre_total','country_total','movie_total'));
+        $category_total = Category::count();
+        $genre_total = Genre::count();
+        $country_total = Country::count();
+        $movie_total = Movie::count();
+        $episode_total = Episode::count();
+        return view('layouts.home', compact('sessions','category_total','genre_total','country_total','movie_total','episode_total'));
     }
 }

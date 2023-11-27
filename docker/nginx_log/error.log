@@ -429,3 +429,129 @@
 2023/10/28 03:42:45 [notice] 19#19: start worker process 25
 2023/10/28 03:42:45 [notice] 19#19: start worker process 26
 2023/10/28 03:42:45 [notice] 19#19: start worker process 27
+2023/11/02 08:48:34 [notice] 18#18: using the "epoll" event method
+2023/11/02 08:48:34 [notice] 18#18: nginx/1.21.6
+2023/11/02 08:48:34 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2023/11/02 08:48:34 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
+2023/11/02 08:48:34 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2023/11/02 08:48:34 [notice] 18#18: start worker processes
+2023/11/02 08:48:34 [notice] 18#18: start worker process 19
+2023/11/02 08:48:34 [notice] 18#18: start worker process 20
+2023/11/02 08:48:34 [notice] 18#18: start worker process 21
+2023/11/02 08:48:34 [notice] 18#18: start worker process 22
+2023/11/02 08:48:34 [notice] 18#18: start worker process 23
+2023/11/02 08:48:34 [notice] 18#18: start worker process 24
+2023/11/02 08:48:34 [notice] 18#18: start worker process 25
+2023/11/02 08:48:34 [notice] 18#18: start worker process 26
+2023/11/06 17:22:05 [notice] 18#18: using the "epoll" event method
+2023/11/06 17:22:05 [notice] 18#18: nginx/1.21.6
+2023/11/06 17:22:05 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2023/11/06 17:22:05 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
+2023/11/06 17:22:05 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2023/11/06 17:22:05 [notice] 18#18: start worker processes
+2023/11/06 17:22:05 [notice] 18#18: start worker process 19
+2023/11/06 17:22:05 [notice] 18#18: start worker process 20
+2023/11/06 17:22:05 [notice] 18#18: start worker process 21
+2023/11/06 17:22:05 [notice] 18#18: start worker process 22
+2023/11/06 17:22:05 [notice] 18#18: start worker process 23
+2023/11/06 17:22:05 [notice] 18#18: start worker process 24
+2023/11/06 17:22:05 [notice] 18#18: start worker process 25
+2023/11/06 17:22:05 [notice] 18#18: start worker process 26
+2023/11/23 01:46:13 [notice] 18#18: using the "epoll" event method
+2023/11/23 01:46:13 [notice] 18#18: nginx/1.21.6
+2023/11/23 01:46:13 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2023/11/23 01:46:13 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
+2023/11/23 01:46:13 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2023/11/23 01:46:13 [notice] 18#18: start worker processes
+2023/11/23 01:46:13 [notice] 18#18: start worker process 19
+2023/11/23 01:46:13 [notice] 18#18: start worker process 20
+2023/11/23 01:46:13 [notice] 18#18: start worker process 21
+2023/11/23 01:46:13 [notice] 18#18: start worker process 22
+2023/11/23 01:46:13 [notice] 18#18: start worker process 23
+2023/11/23 01:46:13 [notice] 18#18: start worker process 24
+2023/11/23 01:46:13 [notice] 18#18: start worker process 25
+2023/11/23 01:46:13 [notice] 18#18: start worker process 26
+2023/11/23 01:50:29 [warn] 20#20: *1 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/1/00/0000000001 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "GET /_ignition/health-check HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "http://webphim.local/"
+2023/11/23 01:53:49 [warn] 20#20: *24 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/2/00/0000000002 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "POST / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "http://webphim.local/"
+2023/11/23 02:00:12 [error] 20#20: *91 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /js/Chart.bundle.js HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local", referrer: "https://webphim.local/login"
+2023/11/23 02:07:52 [error] 20#20: *99 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
+2023/11/23 02:09:41 [error] 19#19: *102 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
+2023/11/23 02:11:32 [error] 19#19: *104 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
+2023/11/23 02:12:43 [error] 19#19: *106 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
+2023/11/23 02:14:31 [error] 19#19: *110 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
+2023/11/23 02:18:29 [error] 19#19: *112 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
+2023/11/23 02:47:22 [error] 19#19: *114 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
+2023/11/23 02:48:36 [error] 19#19: *116 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
+2023/11/23 02:53:09 [error] 19#19: *119 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
+2023/11/23 03:04:19 [warn] 23#23: *193 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000003, client: 172.18.0.1, server: webphim.local, request: "POST /info/1 HTTP/1.1", host: "webphim.local", referrer: "https://webphim.local/info/create"
+2023/11/23 04:44:47 [notice] 18#18: using the "epoll" event method
+2023/11/23 04:44:47 [notice] 18#18: nginx/1.21.6
+2023/11/23 04:44:47 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2023/11/23 04:44:47 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
+2023/11/23 04:44:47 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2023/11/23 04:44:47 [notice] 18#18: start worker processes
+2023/11/23 04:44:47 [notice] 18#18: start worker process 19
+2023/11/23 04:44:47 [notice] 18#18: start worker process 20
+2023/11/23 04:44:47 [notice] 18#18: start worker process 21
+2023/11/23 04:44:47 [notice] 18#18: start worker process 22
+2023/11/23 04:44:47 [notice] 18#18: start worker process 23
+2023/11/23 04:44:47 [notice] 18#18: start worker process 24
+2023/11/23 04:44:47 [notice] 18#18: start worker process 25
+2023/11/23 04:44:47 [notice] 18#18: start worker process 26
+2023/11/23 04:49:37 [warn] 23#23: *5 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/1/00/0000000001 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "GET /movie HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/country"
+2023/11/23 04:57:41 [notice] 18#18: using the "epoll" event method
+2023/11/23 04:57:41 [notice] 18#18: nginx/1.21.6
+2023/11/23 04:57:41 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2023/11/23 04:57:41 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
+2023/11/23 04:57:41 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2023/11/23 04:57:41 [notice] 18#18: start worker processes
+2023/11/23 04:57:41 [notice] 18#18: start worker process 19
+2023/11/23 04:57:41 [notice] 18#18: start worker process 20
+2023/11/23 04:57:41 [notice] 18#18: start worker process 21
+2023/11/23 04:57:41 [notice] 18#18: start worker process 22
+2023/11/23 04:57:41 [notice] 18#18: start worker process 23
+2023/11/23 04:57:41 [notice] 18#18: start worker process 24
+2023/11/23 04:57:41 [notice] 18#18: start worker process 25
+2023/11/23 04:57:41 [notice] 18#18: start worker process 26
+2023/11/23 06:20:52 [notice] 18#18: using the "epoll" event method
+2023/11/23 06:20:52 [notice] 18#18: nginx/1.21.6
+2023/11/23 06:20:52 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2023/11/23 06:20:52 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
+2023/11/23 06:20:52 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2023/11/23 06:20:52 [notice] 18#18: start worker processes
+2023/11/23 06:20:52 [notice] 18#18: start worker process 19
+2023/11/23 06:20:52 [notice] 18#18: start worker process 20
+2023/11/23 06:20:52 [notice] 18#18: start worker process 21
+2023/11/23 06:20:52 [notice] 18#18: start worker process 22
+2023/11/23 06:20:52 [notice] 18#18: start worker process 23
+2023/11/23 06:20:52 [notice] 18#18: start worker process 24
+2023/11/23 06:20:52 [notice] 18#18: start worker process 25
+2023/11/23 06:20:52 [notice] 18#18: start worker process 26
+2023/11/23 07:48:25 [notice] 18#18: using the "epoll" event method
+2023/11/23 07:48:25 [notice] 18#18: nginx/1.21.6
+2023/11/23 07:48:25 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2023/11/23 07:48:25 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
+2023/11/23 07:48:25 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2023/11/23 07:48:25 [notice] 18#18: start worker processes
+2023/11/23 07:48:25 [notice] 18#18: start worker process 19
+2023/11/23 07:48:25 [notice] 18#18: start worker process 20
+2023/11/23 07:48:25 [notice] 18#18: start worker process 21
+2023/11/23 07:48:25 [notice] 18#18: start worker process 22
+2023/11/23 07:48:25 [notice] 18#18: start worker process 23
+2023/11/23 07:48:25 [notice] 18#18: start worker process 24
+2023/11/23 07:48:25 [notice] 18#18: start worker process 25
+2023/11/23 07:48:25 [notice] 18#18: start worker process 26
+2023/11/23 08:21:04 [notice] 18#18: using the "epoll" event method
+2023/11/23 08:21:04 [notice] 18#18: nginx/1.21.6
+2023/11/23 08:21:04 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2023/11/23 08:21:04 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
+2023/11/23 08:21:04 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2023/11/23 08:21:04 [notice] 18#18: start worker processes
+2023/11/23 08:21:04 [notice] 18#18: start worker process 19
+2023/11/23 08:21:04 [notice] 18#18: start worker process 20
+2023/11/23 08:21:04 [notice] 18#18: start worker process 21
+2023/11/23 08:21:04 [notice] 18#18: start worker process 22
+2023/11/23 08:21:04 [notice] 18#18: start worker process 23
+2023/11/23 08:21:04 [notice] 18#18: start worker process 24
+2023/11/23 08:21:04 [notice] 18#18: start worker process 25
+2023/11/23 08:21:04 [notice] 18#18: start worker process 26

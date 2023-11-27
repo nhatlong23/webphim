@@ -10,7 +10,7 @@ class Info extends Model
     public $timestamps = false;
     use HasFactory;
 
-    protected $table = 'info';
+    protected $table = 'infos';
     protected $filltable = [
         'title',
         'description',
