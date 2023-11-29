@@ -1,6 +1,8 @@
 version: '2.1'
+
 orbs:
   docker: circleci/docker@2.4.0
+
 jobs:
   build-and-push:
     environment:
@@ -19,10 +21,12 @@ jobs:
       - docker/push:
           digest-path: /tmp/digest.txt
           image: $DOCKER_IMAGE
-          tag: $DOCKER_TAGS
+          tag: $DOCKER_TAGS:latest
       - run:
+          name: Display Digest
           command: |
             echo "Digest is: $(</tmp/digest.txt)"
+
 workflows:
   build-deploy:
     jobs:
