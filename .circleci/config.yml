@@ -25,9 +25,13 @@ jobs:
       - run:
           name: Display Digest
           command: |
-            echo "Digest is: $(</tmp/digest.txt)"
+            echo "Digest is: $(cat /tmp/digest.txt)"
 
 workflows:
   build-deploy:
     jobs:
       - build-and-push:
+          filters:
+            branches:
+              only:
+                - main
