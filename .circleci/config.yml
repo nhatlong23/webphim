@@ -24,7 +24,6 @@ jobs:
       - docker/push:
           digest-path: /tmp/digest.txt
           image: $DOCKER_IMAGE
-          dockerfile: ${DOCKERFILE_PATH}
           tag: $DOCKER_TAGS
       - run:
           name: Display Digest
