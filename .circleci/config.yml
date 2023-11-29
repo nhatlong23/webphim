@@ -7,7 +7,7 @@ jobs:
   build-and-push:
     environment:
       DOCKER_IMAGE: 2808zl/phimmoi48h
-      DOCKER_TAGS: "${GIT_BRANCH.tokenize('/').pop()}-${BUILD_NUMBER}-${GIT_COMMIT.substring(0, 7)}"
+      DOCKER_TAGS: latest
     executor: docker/docker
     steps:
       - setup_remote_docker
@@ -21,7 +21,7 @@ jobs:
       - docker/push:
           digest-path: /tmp/digest.txt
           image: $DOCKER_IMAGE
-          tag: $DOCKER_TAGS:latest
+          tag: $DOCKER_TAGS
       - run:
           name: Display Digest
           command: |
