@@ -7,8 +7,6 @@ jobs:
   build-and-push:
     environment:
       DOCKER_IMAGE: 2808zl/phimmoi48h
-       DOCKER_TAGS: |
-        $(echo "${GIT_BRANCH.tokenize('/').pop()}-${BUILD_NUMBER}-${GIT_COMMIT}" | cut -c 1-7)
       DOCKERFILE_PATH: ./docker/Dockerfile
 
     executor: docker/docker
@@ -18,6 +16,10 @@ jobs:
       - docker/check:
           docker-username: DOCKER_USER
           docker-password: DOCKER_PASSWORD
+      - run:
+          name: Set DOCKER_TAGS
+          command: |
+            export DOCKER_TAGS=$(echo "${CIRCLE_BRANCH//\//-}-${CIRCLE_BUILD_NUM}-${CIRCLE_SHA1}" | cut -c 1-7)
       - docker/build:
           image: $DOCKER_IMAGE
           dockerfile: ${DOCKERFILE_PATH}
@@ -29,7 +31,7 @@ jobs:
       - run:
           name: Tag and Push Latest
           command: |
-            if [[ "${GIT_BRANCH}" =~ .*main.* ]]; then
+            if [[ "${CIRCLE_BRANCH}" =~ .*main.* ]]; then
               docker tag ${DOCKER_IMAGE}:${DOCKER_TAGS} ${DOCKER_IMAGE}:latest
               docker push ${DOCKER_IMAGE}:latest
             fi
