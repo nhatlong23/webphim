@@ -31,6 +31,3 @@ workflows:
   build-deploy:
     jobs:
       - build-and-push:
-          filters:
-            branches:
-              only: main
