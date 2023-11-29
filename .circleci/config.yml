@@ -7,7 +7,7 @@ jobs:
   build-and-push:
     environment:
       DOCKER_IMAGE: 2808zl/phimmoi48h
-      DOCKER_TAGS: "${GIT_BRANCH.tokenize('/').pop()}-${BUILD_NUMBER}-${GIT_COMMIT:0:7}"
+      DOCKER_TAGS: "${GIT_BRANCH.tokenize('/').pop()}-${BUILD_NUMBER}-${GIT_COMMIT | slice:0:7}"
       DOCKERFILE_PATH: ./docker/Dockerfile
 
     executor: docker/docker
