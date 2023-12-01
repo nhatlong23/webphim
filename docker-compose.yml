@@ -5,12 +5,12 @@ services:
       context: .
       dockerfile: ./docker/Dockerfile
     container_name: webphim_server
-    working_dir: /home/longnguyen/Workspace
+    working_dir: /var/www/html/phimmoi48h
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - .:/home/longnguyen/Workspace/php/webphim
+      - .:/var/www/html/phimmoi48h
       - ./docker/nginx_log:/var/log/nginx
       - ./docker/php-fpm/php-fpm.log:/var/log/php7.4-fpm.log
       - ./docker/config/app.conf:/etc/nginx/conf.d/app.conf

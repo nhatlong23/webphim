@@ -18,18 +18,18 @@ class CreateTrackerEventsTable extends Migration
      */
     public function migrateUp()
     {
-        $this->builder->create(
-            $this->table,
-            function ($table) {
-                $table->bigIncrements('id');
-
-                $table->string('name')->index();
-
-                $table->timestamps();
-                $table->index('created_at');
-                $table->index('updated_at');
-            }
-        );
+        if (!$this->builder->hasTable($this->table)) {
+            $this->builder->create(
+                $this->table,
+                function ($table) {
+                    $table->bigIncrements('id');
+                    $table->string('name')->index();
+                    $table->timestamps();
+                    $table->index('created_at');
+                    $table->index('updated_at');
+                }
+            );
+        }
     }
 
     /**

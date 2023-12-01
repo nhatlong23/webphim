@@ -152,4 +152,13 @@
             window.location = "/login";
         </script>
     @endif
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor.create(document.querySelector('#description'))
+        ClassicEditor.create(document.querySelector('#contact'))
+        ClassicEditor.create(document.querySelector('#terms_of_use'))
+        ClassicEditor.create(document.querySelector('#privacy_policy'))
+        ClassicEditor.create(document.querySelector('#copyright_claims'))
+        ClassicEditor.create(document.querySelector('#about_us'))
+    </script>
 @endsection

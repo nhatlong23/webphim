@@ -6,6 +6,8 @@ pipeline {
         DOCKERFILE_PATH = "${WORKSPACE}/docker/Dockerfile"
         DOCKER_CONFIG = "${WORKSPACE}/docker/.docker"
         CONTAINER_NAME = "webphim_server"
+        DOCKER_TAG = "${GIT_BRANCH.tokenize('/').pop()}-${BUILD_NUMBER}-${GIT_COMMIT.substring(0, 7)}"
+
     }
 
     stages {
@@ -15,10 +17,13 @@ pipeline {
             }
         }
 
+        // stage('Run Tests') {
+        //     steps {
+        //         // Perform any testing steps here if needed
+        //     }
+        // }
+
         stage('Build Docker Image') {
-            environment {
-                DOCKER_TAG = "${GIT_BRANCH.tokenize('/').pop()}-${BUILD_NUMBER}-${GIT_COMMIT.substring(0, 7)}"
-            }
             steps {
                 script {
                     def dockerImageExists = sh(script: "docker image ls | grep ${DOCKER_IMAGE}", returnStatus: true)
@@ -43,31 +48,38 @@ pipeline {
             }
         }
 
-        stage('Run Docker Container') {
+        stage('Deploy') {
             steps {
                 script {
-                    // Stop and remove existing container
-                    sh "docker stop ${CONTAINER_NAME} || true"
-                    sh "docker rm ${CONTAINER_NAME} || true"
-                    // Run the new container
-                    sh "docker run -d -p 80:80 -p 443:443 --name ${CONTAINER_NAME} ${DOCKER_IMAGE}:latest"
+                    sshPublisher(
+                        publishers: [
+                            sshPublisherDesc(
+                                configName: 'ssh-server',
+                                transfers: [
+                                    sshTransfer(
+                                        cleanRemote: false,
+                                        excludes: '',
+                                        execCommand: "cp ${WORKSPACE}/.env.example ${WORKSPACE}/.env && ${WORKSPACE}/deploy.sh",
+                                        execTimeout: 120000,
+                                        flatten: false,
+                                        makeEmptyDirs: false,
+                                        noDefaultExcludes: false,
+                                        patternSeparator: '[, ]+',
+                                        remoteDirectory: '',
+                                        remoteDirectorySDF: false,
+                                        removePrefix: '',
+                                        sourceFiles: '.env.example'
+                                    )
+                                ],
+                                usePromotionTimestamp: false,
+                                useWorkspaceInPromotion: false,
+                                verbose: false
+                            )
+                        ]
+                    )
                 }
             }
         }
-
-        // stage('Run Tests') {
-        //     steps {
-        //         // Perform any testing steps here if needed
-        //     }
-        // }
-
-        // stage('Deploy') {
-        //     steps {
-        //         sshagent(['ssh-key']) {
-        //             sh "ssh -o StrictHostKeyChecking=no -l jenkins 34.124.153.247 './deploy.sh'"
-        //         }
-        //     }
-        // }
     }
 
     post {

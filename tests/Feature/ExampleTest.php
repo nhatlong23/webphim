@@ -2,6 +2,9 @@
 
 namespace Tests\Feature;
 
+@ob_start();
+session_start();
+
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
