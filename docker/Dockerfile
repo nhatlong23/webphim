@@ -11,7 +11,7 @@ RUN git clone https://github.com/nhatlong23/webphim.git .
 
 COPY . ./
 
-RUN [ -e .env.example ] && cp .env.example .env || true
+RUN [ -e .env.example ] && cp .env.production .env || true
 
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-scripts
 
