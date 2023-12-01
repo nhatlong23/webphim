@@ -1,23 +1,38 @@
+# Sử dụng một hình ảnh có sẵn cho PHP 7.4 và Nginx
 FROM wyveo/nginx-php-fpm:php74
 
-# Update package lists and upgrade packages
-USER root
-RUN apt-get update && apt-get upgrade -y && \
-    apt-get install -y sudo && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# Thiết lập thư mục làm việc
+WORKDIR /var/www/html/phimmoi48h
 
-# Add a new user 'longnguyen' and grant sudo privileges
-RUN useradd -m -s /bin/bash longnguyen && \
-    echo "longnguyen ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/longnguyen && \
-    chmod 0440 /etc/sudoers.d/longnguyen
+# Cài đặt các gói cần thiết
+RUN apt-get update && apt-get install -y \
+    git \
+    net-tools
 
-# Set the working directory
-WORKDIR /var/www/html
+# Clone mã nguồn từ GitHub
+RUN git clone https://github.com/nhatlong23/webphim.git .
 
-# Set ownership of the working directory to 'longnguyen'
-RUN chown -R longnguyen:longnguyen /var/www/html
+COPY . ./
+# Sao chép tệp .env.example và đặt tên là .env
+COPY .env* ./
 
-USER longnguyen
+# Cài đặt Composer dependencies
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-scripts
 
+# Thiết lập quyền cho thư mục Laravel
+RUN chown -R www-data:www-data /var/www/html/phimmoi48h
+
+# Sao chép các tệp và thư mục Laravel
+COPY . /var/www/html/phimmoi48h
+
+# Sinh khóa ứng dụng của Laravel
+RUN php artisan key:generate
+
+# Chạy migrations và seeders nếu cần
+# RUN php artisan migrate --seed
+
+# Expose cổng 80 cho ứng dụng Laravel
+EXPOSE 80
+
+# Nhãn thông tin người duy trì hình ảnh
 LABEL maintainer="nhatlong2356@gmail.com"

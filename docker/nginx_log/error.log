@@ -555,3 +555,85 @@
 2023/11/23 08:21:04 [notice] 18#18: start worker process 24
 2023/11/23 08:21:04 [notice] 18#18: start worker process 25
 2023/11/23 08:21:04 [notice] 18#18: start worker process 26
+2023/11/30 03:14:11 [emerg] 19#19: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/11/30 03:14:13 [emerg] 23#23: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/11/30 03:14:15 [emerg] 24#24: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/11/30 03:14:18 [emerg] 25#25: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/11/30 03:20:08 [emerg] 18#18: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/11/30 03:20:09 [emerg] 22#22: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/11/30 03:20:11 [emerg] 23#23: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/11/30 03:20:14 [emerg] 24#24: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/11/30 03:25:21 [emerg] 18#18: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/11/30 03:25:23 [emerg] 22#22: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/11/30 03:25:25 [emerg] 23#23: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/11/30 03:25:28 [emerg] 24#24: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/11/30 03:29:28 [emerg] 19#19: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/11/30 03:29:30 [emerg] 29#29: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/11/30 03:29:32 [emerg] 32#32: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/11/30 03:29:35 [emerg] 33#33: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/11/30 03:33:08 [notice] 18#18: using the "epoll" event method
+2023/11/30 03:33:08 [notice] 18#18: nginx/1.21.6
+2023/11/30 03:33:08 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2023/11/30 03:33:08 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
+2023/11/30 03:33:08 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2023/11/30 03:33:08 [notice] 18#18: start worker processes
+2023/11/30 03:33:08 [notice] 18#18: start worker process 19
+2023/11/30 03:33:08 [notice] 18#18: start worker process 20
+2023/11/30 03:33:08 [notice] 18#18: start worker process 21
+2023/11/30 03:33:08 [notice] 18#18: start worker process 22
+2023/11/30 03:33:08 [notice] 18#18: start worker process 23
+2023/11/30 03:33:08 [notice] 18#18: start worker process 24
+2023/11/30 03:33:08 [notice] 18#18: start worker process 25
+2023/11/30 03:33:08 [notice] 18#18: start worker process 26
+2023/11/30 03:41:24 [warn] 26#26: *16 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/1/00/0000000001 while reading upstream, client: 172.21.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local"
+2023/11/30 03:42:18 [notice] 18#18: using the "epoll" event method
+2023/11/30 03:42:18 [notice] 18#18: nginx/1.21.6
+2023/11/30 03:42:18 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2023/11/30 03:42:18 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
+2023/11/30 03:42:18 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2023/11/30 03:42:18 [notice] 18#18: start worker processes
+2023/11/30 03:42:18 [notice] 18#18: start worker process 19
+2023/11/30 03:42:18 [notice] 18#18: start worker process 20
+2023/11/30 03:42:18 [notice] 18#18: start worker process 21
+2023/11/30 03:42:18 [notice] 18#18: start worker process 22
+2023/11/30 03:42:18 [notice] 18#18: start worker process 23
+2023/11/30 03:42:18 [notice] 18#18: start worker process 24
+2023/11/30 03:42:18 [notice] 18#18: start worker process 25
+2023/11/30 03:42:18 [notice] 18#18: start worker process 26
+2023/11/30 03:43:00 [warn] 20#20: *3 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/1/00/0000000001 while reading upstream, client: 172.21.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local"
+2023/12/01 02:26:17 [notice] 18#18: using the "epoll" event method
+2023/12/01 02:26:17 [notice] 18#18: nginx/1.21.6
+2023/12/01 02:26:17 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2023/12/01 02:26:17 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
+2023/12/01 02:26:17 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2023/12/01 02:26:17 [notice] 18#18: start worker processes
+2023/12/01 02:26:17 [notice] 18#18: start worker process 19
+2023/12/01 02:26:17 [notice] 18#18: start worker process 20
+2023/12/01 02:26:17 [notice] 18#18: start worker process 21
+2023/12/01 02:26:17 [notice] 18#18: start worker process 22
+2023/12/01 02:26:17 [notice] 18#18: start worker process 23
+2023/12/01 02:26:17 [notice] 18#18: start worker process 24
+2023/12/01 02:26:17 [notice] 18#18: start worker process 25
+2023/12/01 02:26:17 [notice] 18#18: start worker process 26
+2023/12/01 03:18:50 [emerg] 18#18: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/12/01 03:18:51 [emerg] 22#22: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/12/01 03:18:53 [emerg] 23#23: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/12/01 03:18:56 [emerg] 24#24: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/12/01 03:20:36 [emerg] 19#19: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/12/01 03:20:37 [emerg] 23#23: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/12/01 03:20:39 [emerg] 24#24: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/12/01 03:20:42 [emerg] 25#25: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2023/12/01 03:22:26 [notice] 18#18: using the "epoll" event method
+2023/12/01 03:22:26 [notice] 18#18: nginx/1.21.6
+2023/12/01 03:22:26 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2023/12/01 03:22:26 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
+2023/12/01 03:22:26 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2023/12/01 03:22:26 [notice] 18#18: start worker processes
+2023/12/01 03:22:26 [notice] 18#18: start worker process 19
+2023/12/01 03:22:26 [notice] 18#18: start worker process 20
+2023/12/01 03:22:26 [notice] 18#18: start worker process 21
+2023/12/01 03:22:26 [notice] 18#18: start worker process 22
+2023/12/01 03:22:26 [notice] 18#18: start worker process 23
+2023/12/01 03:22:26 [notice] 18#18: start worker process 24
+2023/12/01 03:22:26 [notice] 18#18: start worker process 25
+2023/12/01 03:22:26 [notice] 18#18: start worker process 26
