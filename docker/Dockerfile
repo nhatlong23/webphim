@@ -12,9 +12,11 @@ RUN apt-get update && apt-get install -y \
 # Clone mã nguồn từ GitHub
 RUN git clone https://github.com/nhatlong23/webphim.git .
 
+# Copy only necessary files first
 COPY . ./
+
 # Sao chép tệp .env.example và đặt tên là .env
-COPY .env* ./
+RUN [ -e .env.example ] && cp .env.example .env || true
 
 # Cài đặt Composer dependencies
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-scripts
