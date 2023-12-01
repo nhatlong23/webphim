@@ -233,6 +233,105 @@
             </div>
         </div>
         {{ $list->links() }}
+
+    <script>
+        var typingTimer;
+        var doneTypingInterval = 1000;  // Thời gian chờ sau khi ngừng nhập (1 giây)
+
+        $(document).ready(function () {
+            $('#searchInput').on('input', function () {
+                clearTimeout(typingTimer);
+                var searchKeyword = $(this).val();
+
+                typingTimer = setTimeout(function () {
+                    // Kiểm tra xem có từ khóa tìm kiếm không
+                    if (searchKeyword === "") {
+                        // Nếu không có từ khóa, ẩn kết quả tìm kiếm
+                        $('#searchResults').hide();
+                    } else {
+                        // Nếu có từ khóa, hiển thị kết quả tìm kiếm
+                        $('#searchResults').show();
+
+                        // Gửi yêu cầu Ajax khi người dùng nhập từ khóa
+                        $.ajax({
+                            url: "{{ route('searchMovies') }}", // Thay đổi route tương ứng của bạn
+                            method: 'GET',
+                            data: {
+                                search: searchKeyword
+                            },
+                            success: function (response) {
+                                // Hiển thị kết quả trả về trong div searchResults
+                                $('#searchResults').html(response);
+                            }
+                        });
+                    }
+                }, doneTypingInterval);
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $('.show_video').click(function() {
+            var movie_id = $(this).data('movie_video_id');
+            var episode_id = $(this).data('video_episode');
+            $.ajax({
+                url: "{{ route('watch-video') }}",
+                method: "POST",
+                dataType: "json",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    movie_id: movie_id,
+                    episode_id: episode_id
+                    // _token: _token
+                },
+                success: function(data) {
+                    $('#video_title').html(data.video_title);
+                    $('#video_link').html(data.video_link);
+                    $('#video_desc').html(data.video_desc);
+                    $('#videoModal').modal('show');
+                }
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
+        $('.leech_details_episode').click(function() {
+            var slug = $(this).data('movie_slug');
+            $.ajax({
+                url: "{{ route('leech-detail-episode') }}",
+                method: "POST",
+                dataType: "json",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    slug: slug,
+                },
+                success: function(data) {
+                    $('#episode_title').html(data.episode_title);
+                    var contentHtml = '';
+                    $.each(data.content_episode_title, function(index, episode) {
+                        contentHtml += '<p>Tập: ' + episode.name + '</p>';
+                        contentHtml += '<input type="text" id="episode_link_embed_input" class="form-control" value="' + episode.link_embed + '" readonly>';
+                    });
+                    $('#content_episode_title').html(contentHtml);
+
+                    // Create a hidden input field for CSRF token
+                    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                    var csrfInput = '<input type="hidden" name="_token" value="' + csrfToken + '">';
+                    
+                    // Append the CSRF input to the form
+                    var form = data.button_save_episode.replace('<p id="button_save_episode">', '<p id="button_save_episode">' + csrfInput);
+                    
+                    $('#button_save_episode').html(form);
+                    $('#episode').modal('show');
+                }
+            });
+        })
+    </script>
+
     @else
         <script>
             window.location = "/login";

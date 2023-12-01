@@ -82,7 +82,7 @@ Route::resource('redis', RedisController::class);
 Route::post('/toggleCustomerLock/{id}', [CustomersController::class, 'toggleCustomerLock'])->name('toggleCustomerLock');
 
 //thay đổi dữ liệu movie bằng ajax
-// Route::get('/category-choose', [MovieController::class, 'category_choose'])->name('category-choose');
+Route::get('/category-choose', [MovieController::class, 'category_choose'])->name('category-choose');
 Route::get('/country-choose', [MovieController::class, 'country_choose'])->name('country-choose');
 Route::POST('/watch-video', [MovieController::class, 'watch_video'])->name('watch-video');
 Route::get('/leech-movie', [LeechMovieController::class, 'leech_movie'])->name('leech-movie');

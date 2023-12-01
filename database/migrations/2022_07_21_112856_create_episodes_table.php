@@ -15,6 +15,10 @@ class CreateEpisodesTable extends Migration
     {
         Schema::create('episodes', function (Blueprint $table) {
             $table->id();
+            $table->integer('movie_id')->unique();
+            $table->string('linkphim');
+            $table->string('episode', 100);
+            $table->string('server', 100);
             $table->timestamps();
         });
     }

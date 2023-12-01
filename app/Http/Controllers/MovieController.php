@@ -356,7 +356,7 @@ class MovieController extends Controller
             $rating->movie_id = $data['movie_id'];
             $rating->rating = $data['index'];
             $rating->ip_rating = $ip_rating;
-            $rating->date_created = Carbon::now('Asia/Ho_Chi_Minh');
+            $rating->created_at = Carbon::now('Asia/Ho_Chi_Minh');
             $rating->save();
             return 'done';
         }

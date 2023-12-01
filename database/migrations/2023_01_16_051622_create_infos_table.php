@@ -15,6 +15,14 @@ class CreateInfosTable extends Migration
     {
         Schema::create('infos', function (Blueprint $table) {
             $table->id();
+            $table->string('title', 100)->unique();
+            $table->longText('description')->unique();
+            $table->string('logo')->unique();
+            $table->longText('terms_of_use')->unique();
+            $table->longText('contact')->unique();
+            $table->longText('privacy_policy')->unique();
+            $table->longText('copyright_claims')->unique();
+            $table->longText('about_us')->unique();
             $table->timestamps();
         });
     }
