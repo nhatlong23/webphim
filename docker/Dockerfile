@@ -9,20 +9,17 @@ RUN apt-get update && apt-get install -y \
 
 RUN git clone https://github.com/nhatlong23/webphim.git .
 
-COPY . ./
+COPY . .
 
-RUN [ -e .env.example ] && cp .env.production .env || true
-
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-scripts
-
-RUN chown -R www-data:www-data /var/www/html/phimmoi48h
-
-COPY . /var/www/html/phimmoi48h
-
-RUN chmod -R 777 /var/www/html/phimmoi48h/storage
-
-RUN php artisan key:generate
-
+RUN [ -e .env.example ] && cp .env.production .env || true \
+    && composer install --no-interaction --prefer-dist --optimize-autoloader --no-scripts \
+    && chown -R www-data:www-data /var/www/html/phimmoi48h \
+    && chmod -R 777 /var/www/html/phimmoi48h/storage \
+    && chmod -R 777 /var/www/html/phimmoi48h/storage/logs \
+    && chmod -R 777 /var/www/html/phimmoi48h/storage/framework/sessions \
+    && chmod -R 777 /var/www/html/phimmoi48h/storage/framework/views \
+    && php artisan key:generate
+    
 # Chạy migrations và seeders nếu cần
 # RUN php artisan migrate --seed
 
