@@ -14,14 +14,13 @@ COPY --from=builder /app/vendor ./vendor
 COPY . .
 
 RUN chown -R www-data:www-data /var/www/html/phimmoi48h \
+    && rm -rf .env \
     && cp .env.production .env \
     && touch /var/www/html/phimmoi48h/storage/logs/laravel.log \
     && chmod -R 775 /var/www/html/phimmoi48h/storage \
     && chmod -R 775 /var/www/html/phimmoi48h/storage/logs \
     && chmod -R 775 /var/www/html/phimmoi48h/storage/framework/sessions \
     && chmod -R 775 /var/www/html/phimmoi48h/storage/framework/views
-
-CMD php artisan key:generate || true && php-fpm
 
 EXPOSE 80
 
