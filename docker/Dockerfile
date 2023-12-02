@@ -13,14 +13,19 @@ WORKDIR /var/www/html/phimmoi48h
 COPY --from=builder /app/vendor ./vendor
 COPY . .
 
+RUN apt-get update && apt-get install -y \
+    net-tools \
+    vim
+
 RUN chown -R www-data:www-data /var/www/html/phimmoi48h \
     && rm -rf .env \
     && cp .env.production .env \
     && touch /var/www/html/phimmoi48h/storage/logs/laravel.log \
-    && chmod -R 775 /var/www/html/phimmoi48h/storage \
-    && chmod -R 775 /var/www/html/phimmoi48h/storage/logs \
-    && chmod -R 775 /var/www/html/phimmoi48h/storage/framework/sessions \
-    && chmod -R 775 /var/www/html/phimmoi48h/storage/framework/views
+    && chmod -R 777 /var/www/html/phimmoi48h/storage \
+    && chmod -R 777 /var/www/html/phimmoi48h/storage/logs/laravel.log \
+    && chmod -R 777 /var/www/html/phimmoi48h/storage/framework/cache \
+    && chmod -R 777 /var/www/html/phimmoi48h/storage/framework/sessions \
+    && chmod -R 777 /var/www/html/phimmoi48h/storage/framework/views 
 
 EXPOSE 80
 
