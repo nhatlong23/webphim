@@ -23,6 +23,7 @@ RUN chown -R www-data:www-data /var/www/html/phimmoi48h \
     && touch /var/www/html/phimmoi48h/storage/logs/laravel.log \
     && chmod -R 777 /var/www/html/phimmoi48h/storage \
     && chmod -R 777 /var/www/html/phimmoi48h/storage/logs/laravel.log \
+    && chmod -R 777 /var/www/html/phimmoi48h/bootstrap/cache \
     && chmod -R 777 /var/www/html/phimmoi48h/storage/framework/cache \
     && chmod -R 777 /var/www/html/phimmoi48h/storage/framework/sessions \
     && chmod -R 777 /var/www/html/phimmoi48h/storage/framework/views 
