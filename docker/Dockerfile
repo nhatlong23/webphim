@@ -1,17 +1,31 @@
 FROM wyveo/nginx-php-fpm:php74
 
-# Update package lists and upgrade packages
-RUN apt-get update && apt-get upgrade -y
+WORKDIR /var/www/html/phimmoi48h
 
-# Add a new user 'longnguyen'
-RUN useradd -m -s /bin/bash longnguyen
+RUN apt-get update && apt-get install -y \
+    git \
+    net-tools \
+    vim
 
-# Set the working directory
-WORKDIR /var/www/html
+RUN git clone https://github.com/nhatlong23/webphim.git .
 
-# Set ownership of the working directory to 'longnguyen'
-RUN chown -R longnguyen:longnguyen /var/www/html
+COPY . ./
 
-USER longnguyen
+RUN [ -e .env.example ] && cp .env.production .env || true
+
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-scripts
+
+RUN chown -R www-data:www-data /var/www/html/phimmoi48h
+
+COPY . /var/www/html/phimmoi48h
+
+RUN chmod -R 777 /var/www/html/phimmoi48h/storage
+
+RUN php artisan key:generate
+
+# Chạy migrations và seeders nếu cần
+# RUN php artisan migrate --seed
+
+EXPOSE 80
 
 LABEL maintainer="nhatlong2356@gmail.com"

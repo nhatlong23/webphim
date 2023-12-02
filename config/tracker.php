@@ -5,17 +5,17 @@ return [
     /*
      * Enable it?
      */
-    'enabled' => false,
+    'enabled' => true,
 
     /*
      * Enable cache?
      */
-    'cache_enabled' => false,
+    'cache_enabled' => true,
 
     /*
      * Deffer booting for middleware use
      */
-    'use_middleware' => false,
+    'use_middleware' => true,
 
     /*
      * Robots should be tracked?
