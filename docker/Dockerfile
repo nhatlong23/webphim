@@ -20,6 +20,7 @@ RUN chown -R www-data:www-data /var/www/html/phimmoi48h
 COPY . /var/www/html/phimmoi48h
 
 RUN chmod -R 777 /var/www/html/phimmoi48h/storage
+RUN chmod 777 /var/www/html/phimmoi48h/storage/logs/laravel.log
 
 RUN php artisan key:generate
 
