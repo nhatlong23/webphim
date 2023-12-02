@@ -1,4 +1,8 @@
-FROM wyveo/nginx-php-fpm:php74
+# Sử dụng multi-stage build để giảm kích thước của image cuối cùng
+FROM composer:2 as composer
+
+# Stage 1: Build image với Composer
+FROM wyveo/nginx-php-fpm:php74 as builder
 
 WORKDIR /var/www/html/phimmoi48h
 
@@ -7,24 +11,27 @@ RUN apt-get update && apt-get install -y \
     net-tools \
     vim
 
-RUN git clone https://github.com/nhatlong23/webphim.git .
+COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-COPY . ./
+# Clone mã nguồn từ GitHub và chỉ copy những file cần thiết
+RUN git clone --depth 1 https://github.com/nhatlong23/webphim.git .
 
-RUN [ -e .env.example ] && cp .env.production .env || true
-
+# Cài đặt Composer dependencies
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-scripts
 
-RUN chown -R www-data:www-data /var/www/html/phimmoi48h
+# Chạy các lệnh cần thiết
+RUN chown -R www-data:www-data /var/www/html/phimmoi48h \
+    && chmod -R 777 storage \
+    # && chmod 777 storage/logs/laravel.log \
+    && php artisan key:generate
 
-COPY . /var/www/html/phimmoi48h
+# Stage 2: Tạo image cuối cùng
+FROM wyveo/nginx-php-fpm:php74
 
-RUN chmod -R 777 /var/www/html/phimmoi48h/storage
+WORKDIR /var/www/html/phimmoi48h
 
-RUN php artisan key:generate
-
-# Chạy migrations và seeders nếu cần
-# RUN php artisan migrate --seed
+# Copy từ image builder
+COPY --from=builder /var/www/html/phimmoi48h /var/www/html/phimmoi48h
 
 EXPOSE 80
 
