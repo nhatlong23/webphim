@@ -11,7 +11,7 @@
                 <section class="related-movies">
                     <div id="halim_related_movies-2xx" class="wrap-slider">
                         <div class="section-bar clearfix">
-                            <h3 class="section-title"><span>PHIM HOTTTTTTTTTT</span></h3>
+                            <h3 class="section-title"><span>PHIM HOT</span></h3>
                         </div>
                         <div id="halim_related_movies-2" class="owl-carousel owl-theme related-film">
                             @foreach ($movie_hot as $key => $hot)
