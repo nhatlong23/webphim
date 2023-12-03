@@ -48,7 +48,7 @@ jobs:
             - "5b:f6:97:09:a5:fc:36:da:f7:2b:f0:5e:38:3c:43:8a"
       - run:
           name: Deploy to Google Cloud Run
-          run: ssh -o StrictHostKeyChecking=no longnguyen@34.126.111.17 './deploy.sh'
+          command: ssh -o StrictHostKeyChecking=no longnguyen@34.126.111.17 './deploy.sh'
 workflows:
   build-deploy:
     jobs:
