@@ -41,6 +41,7 @@ class CreateMoviesTable extends Migration
             $table->integer('view_count');
             $table->tinyInteger('emailed');
             $table->string('date_created', 50);
+            $table->index(['title', 'name_en']);
             $table->timestamps();
         });
     }

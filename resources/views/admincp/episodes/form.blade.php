@@ -31,7 +31,7 @@
                                     'enctype' => 'multipart/form-data',
                                 ]) !!}
                             @endif
-                            
+
                             <div class="form-group">
                                 {!! Form::label('movie', 'Chọn Phim', []) !!}
                                 @if (!isset($episode))

@@ -11,7 +11,7 @@
                 <section class="related-movies">
                     <div id="halim_related_movies-2xx" class="wrap-slider">
                         <div class="section-bar clearfix">
-                            <h3 class="section-title"><span>PHIM HOT</span></h3>
+                            <h3 class="section-title"><span>PHIM MỚI HOT</span></h3>
                         </div>
                         <div id="halim_related_movies-2" class="owl-carousel owl-theme related-film">
                             @foreach ($movie_hot as $key => $hot)
@@ -24,7 +24,8 @@
                                                 $subtitle = ($hot->sub_movie == 0 ? 'VietSub' : 'Thuyết Minh') . ($hot->season != 0 ? ' - Season ' . $hot->season : '');
                                             @endphp
                                             <figure>
-                                                <img class="lazy img-responsive" src="{{ $image_check === 'http' ? $hot->image : asset('uploads/movie/' . $hot->image) }}"
+                                                <img class="lazy img-responsive"
+                                                    src="{{ $image_check === 'http' ? $hot->image : asset('uploads/movie/' . $hot->image) }}"
                                                     alt="{{ $hot->title }}" title="{{ $hot->title }}" loading="lazy">
                                             </figure>
                                             <span class="status">
@@ -64,9 +65,11 @@
                                 @endphp
                                 <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-37606">
                                     <div class="halim-item">
-                                        <a id="BookmarksUrl_{{$mov->id}}" class="halim-thumb" href="{{ route('movie', $mov->slug) }}">
+                                        <a id="BookmarksUrl_{{ $mov->id }}" class="halim-thumb"
+                                            href="{{ route('movie', $mov->slug) }}">
                                             <figure>
-                                                <img id="BookmarksImage_{{$mov->id}}" class="lazy img-responsive" src="{{ $image_check === 'http' ? $mov->image : asset('uploads/movie/' . $mov->image) }}"
+                                                <img id="BookmarksImage_{{ $mov->id }}" class="lazy img-responsive"
+                                                    src="{{ $image_check === 'http' ? $mov->image : asset('uploads/movie/' . $mov->image) }}"
                                                     alt="{{ $mov->title }}" title="{{ $mov->title }}" loading="lazy">
                                             </figure>
                                             <span class="status">
@@ -79,8 +82,9 @@
                                             <div class="halim-post-title-box">
                                                 <div class="halim-post-title ">
                                                     <p id="BookmarksName_{{ $mov->id }}" class="entry-title">{{ $mov->title }}</p>
-                                                    <p id="BookmarksNameEn_{{$mov->id}}" class="original_title">{{ $mov->name_en }}</p>
-                                                    <a style="display: contents;" id="{{ $mov->id }}" onclick="addMovieToBookmarks(this.id)">Thêm vào Bookmarks</a>
+                                                    <p id="BookmarksNameEn_{{ $mov->id }}" class="original_title">{{ $mov->name_en }}</p>
+                                                    <a style="display: contents;" id="{{ $mov->id }}"
+                                                        onclick="addMovieToBookmarks(this.id)">Thêm vào Bookmarks</a>
                                                 </div>
                                             </div>
                                         </a>
@@ -110,10 +114,12 @@
                                     <div class="item post-37176">
                                         <a href="{{ route('movie', $mov_hot->slug) }}" title="{{ $mov_hot->title }}">
                                             <div class="item-link">
-                                                    <img class="lazy post-thumb img-responsive" src="{{ $image_check === 'http' ? $mov_hot->image : asset('uploads/movie/' . $mov_hot->image) }}"
-                                                        alt="{{ $mov_hot->title }}" title="{{ $mov_hot->title }}" loading="lazy">
+                                                <img class="lazy post-thumb img-responsive"
+                                                    src="{{ $image_check === 'http' ? $mov_hot->image : asset('uploads/movie/' . $mov_hot->image) }}"
+                                                    alt="{{ $mov_hot->title }}" title="{{ $mov_hot->title }}"
+                                                    loading="lazy">
                                                 <span class="is_trailer">
-                                                   {{ $resolutions[$mov_hot->resolution] }}
+                                                    {{ $resolutions[$mov_hot->resolution] }}
                                                 </span>
                                             </div>
                                             <p class="title">{{ $mov_hot->title }}</p>
@@ -142,6 +148,4 @@
             @include('pages.include.sidebar')
         </div>
     </div>
-
-    
 @endsection

@@ -75,6 +75,11 @@ Route::post('/update-topview-phim', [MovieController::class, 'update_topview']);
 Route::post('/update-season-phim', [MovieController::class, 'update_season']);
 Route::resource('info', InfoController::class);
 Route::resource('customer', CustomersController::class);
+Route::get('profile-admin', [CustomersController::class, 'profile_admin'])->name('profile-admin');
+Route::post('update-profile-admin', [CustomersController::class, 'update_profile_admin'])->name('update-profile-admin');
+Route::post('update-role-admin', [CustomersController::class, 'update_role_admin'])->name('update-role-admin');
+Route::post('update-locked-admin', [CustomersController::class, 'update_locked_admin'])->name('update-locked-admin');
+Route::delete('delete-admin', [CustomersController::class, 'delete_admin'])->name('delete-admin');
 Route::resource('linkmovie', LinkMovieController::class);
 Route::resource('leech-movie', LeechMovieController::class);
 Route::resource('redis', RedisController::class);
@@ -98,10 +103,10 @@ Route::get('update-image-movie', [LeechMovieController::class, 'updateImageUrls'
 Route::post('leech-detail-episode', [LeechMovieController::class, 'leech_detail_episode'])->name('leech-detail-episode');
 
 Route::get('/searchMovies', [MovieController::class, 'search'])->name('searchMovies');
-Route::get('/profile', [IndexController::class, 'profile'])->name('profile')->middleware('auth:customer');
+Route::get('/bookmark', [IndexController::class, 'profile'])->name('profile');
 
 Route::middleware(['customer'])->group(function () {
-    //customer login facebooke, google
+    //customer login facebook, google
     Route::get('auth/google', [LoginSocialiteController::class, 'redirectToGoogle'])->name('login-to-google');
     Route::get('auth/google/callback', [LoginSocialiteController::class, 'handleGoogleCallback']);
 

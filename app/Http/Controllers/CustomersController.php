@@ -8,6 +8,8 @@ use App\Models\Customer;
 use App\Models\Movie;
 use Carbon\Carbon;
 use App\Models\Info;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class CustomersController extends Controller
 {
@@ -106,4 +108,68 @@ class CustomersController extends Controller
         //
     }
 
+    public function profile_admin()
+    {
+        $admin = User::find(Auth::id());
+        $all_admin = User::where('roles', '!=', 0)->orderBy('id', 'DESC')->get();
+        return view('admincp.profile.profile_admin', compact('admin', 'all_admin'));
+    }
+
+    public function update_role_admin(Request $request)
+    {
+        $data = $request->all();
+        $admin = User::find($data['admin_id']);
+        $admin->roles = $data['roles'];
+        $admin->save();
+        return redirect()->back()->with('success', 'Cập nhật quyền thành công.');
+    }
+
+    public function update_locked_admin(Request $request)
+    {
+        $data = $request->all();
+        $admin = User::find($data['admin_id']);
+        $admin->locked = $data['locked'];
+        $admin->save();
+        return redirect()->back()->with('success', 'Cập nhật khóa thành công.');
+    }
+
+    public function delete_admin(Request $request)
+    {
+        $admin = User::find($request->id);
+    
+        if (!$admin) {
+            return redirect()->back()->with('error', 'Admin not found.');
+        }
+    
+        $admin->delete();
+        return redirect()->back()->with('success', 'Xóa admin thành công.');
+    }
+
+    public function update_profile_admin(Request $request)
+    {
+        $request->validate(
+            [
+                'name' => 'required',
+                'phone_number' => 'required',
+                'address' => 'required',
+            ],
+            [
+                'name.required' => 'Vui lòng nhập tên.',
+                'phone_number.required' => 'Vui lòng nhập số điện thoại.',
+                'address.required' => 'Vui lòng nhập địa chỉ.',
+            ]
+        );
+        $user = User::find(Auth::id());
+        $user->name = $request->name;
+        $user->phone_number = $request->phone_number;
+        $user->address = $request->address;
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $file_name = $file->getClientOriginalName();
+            $file->move('uploads/avatar', $file_name);
+            $user->avatar = $file_name;
+        }
+        $user->save();
+        return redirect()->back()->with('success', 'Cập nhật thông tin admin thành công.');
+    }
 }

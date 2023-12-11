@@ -21,5 +21,4 @@ class LinkMovie extends Model
     {
         return $this->hasMany(Episode::class);
     }
-    
 }

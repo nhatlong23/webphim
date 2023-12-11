@@ -1,4 +1,4 @@
-version: '2.1'
+version: "2.1"
 
 orbs:
   docker: circleci/docker@2.4.0
@@ -42,13 +42,17 @@ jobs:
             echo "Digest is: $(cat /tmp/digest.txt)"
   deploy:
     executor: docker/docker
+    environment:
+      SSH_KEY_FINGERPRINT: "5b:f6:97:09:a5:fc:36:da:f7:2b:f0:5e:38:3c:43:8a"
+      DEPLOYED_USER: "longnguyen"
+      DEPLOYED_SERVER: "34.126.111.17"
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "5b:f6:97:09:a5:fc:36:da:f7:2b:f0:5e:38:3c:43:8a"
+            - "$SSH_KEY_FINGERPRINT"
       - run:
           name: Deploy to Google Cloud Run
-          command: ssh -o StrictHostKeyChecking=no longnguyen@34.126.111.17 './deploy.sh'
+          command: ssh -o StrictHostKeyChecking=no $DEPLOYED_USER@$DEPLOYED_SERVER './deploy.sh'
 workflows:
   build-deploy:
     jobs:
@@ -56,7 +60,7 @@ workflows:
           filters:
             branches:
               only:
-                - develop
+                - main
       - deploy:
           requires:
             - build-and-push

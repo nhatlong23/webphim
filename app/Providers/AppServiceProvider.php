@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
     private function shareGlobalVariables()
     {
         view()->share([
-            'info' => Info::find(1),
+            'info' => $this->getActiveInfos(),
             'category_home' => $this->getActiveCategories(),
             'genre_home' => $this->getActiveGenres(),
             'country_home' => $this->getActiveCountries(),
@@ -49,6 +49,11 @@ class AppServiceProvider extends ServiceProvider
             'resolutions' => $this->getResolutions(),
             'getMessage' => $this->getMessage(),
         ]);
+    }
+
+    private function getActiveInfos()
+    {
+        return Info::find(1);
     }
 
     private function getActiveCategories()
@@ -83,10 +88,11 @@ class AppServiceProvider extends ServiceProvider
         ];
     }
 
-    private function getMessage(){
+    private function getMessage()
+    {
         $currentYear = Carbon::now()->year;
         $YearCurrent = $currentYear - 1;
         $message = "mới nhất, Tổng hợp danh sách các bộ phim hay được web cập nhật liên tục. Tải hơn 10.000 bộ phim năm $YearCurrent , $currentYear vietsub, thuyết minh mới nhất, hay nhất";
-        return $message;   
+        return $message;
     }
 }

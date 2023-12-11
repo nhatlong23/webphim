@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMovieGenresTable extends Migration
+class CreateMovieGenreTable extends Migration
 {
     /**
      * Run the migrations.

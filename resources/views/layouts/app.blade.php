@@ -123,7 +123,8 @@
                             <span class="icon-bar"></span>
                         </button>
                         <h1>
-                            <a target="_blank" class="navbar-brand" href="{{ url('/') }}"><span class="fa fa-area-chart"></span>
+                            <a target="_blank" class="navbar-brand" href="{{ url('/') }}"><span
+                                    class="fa fa-area-chart"></span>
                                 Movie<span class="dashboard_text">Dashboard Movie</span></a>
                         </h1>
                     </div>
@@ -281,6 +282,20 @@
                                         </li>
                                     </ul>
                                 </li>
+                                {{-- <li class="treeview {{ $segment == 'customer' ? 'active' : '' }}">
+                                    <a href="#">
+                                        <i class="fa fa-user"></i>
+                                        <span>Admin</span>
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li>
+                                            <a href="{{ route('profile-admin') }}"><i class="fa fa-angle-right"></i>
+                                                Thông tin admin
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li> --}}
                                 <li class="treeview">
                                     <a href="#">
                                         <i class="fa fa-envelope"></i> <span>Mailbox </span>
@@ -522,9 +537,11 @@
                     <!--search-box-->
                     <div class="search-box">
                         <form class="input">
-                            <input class="sb-search-input input__field--madoka" placeholder="Search..." type="search" id="input-31" />
+                            <input class="sb-search-input input__field--madoka" placeholder="Search..."
+                                type="search" id="input-31" />
                             <label class="input__label" for="input-31">
-                                <svg class="graphic" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
+                                <svg class="graphic" width="100%" height="100%" viewBox="0 0 404 77"
+                                    preserveAspectRatio="none">
                                     <path d="m0,0l404,0l0,77l-404,0l0,-77z" />
                                 </svg>
                             </label>
@@ -570,7 +587,7 @@
                                     <a href="#"><i class="fa fa-user"></i> My Account</a>
                                 </li>
                                 <li>
-                                    <a href="#"><i class="fa fa-suitcase"></i> Profile</a>
+                                    <a href="{{route('profile-admin')}}"><i class="fa fa-suitcase"></i> Profile</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('logout') }}"
@@ -644,23 +661,20 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     <script async src="https://www.google.com/recaptcha/api.js">
-
-
-
-    <script type="text/javascript">
-        $('.select-movie').change(function() {
-            var movieId = $(this).val();
-            $.ajax({
-                url: "{{ route('select-movie') }}",
-                method: "GET",
-                data: {
-                    movieId: movieId
-                },
-                success: function(data) {
-                    $('#episode-list').html(data);
-                }
+        < script type = "text/javascript" >
+            $('.select-movie').change(function() {
+                var movieId = $(this).val();
+                $.ajax({
+                    url: "/select-movie",
+                    method: "GET",
+                    data: {
+                        movieId: movieId
+                    },
+                    success: function(data) {
+                        $('#episode-list').html(data);
+                    }
+                });
             });
-        });
     </script>
 
     <script type="text/javascript">
@@ -670,7 +684,7 @@
             var _token = $('input[name="_token"]').val();
 
             $.ajax({
-                url: "{{ url('/update-year-phim') }}",
+                url: "/update-year-phim",
                 method: "POST",
                 data: {
                     year: year,
@@ -697,7 +711,7 @@
                 var text = 'Hot';
             }
             $.ajax({
-                url: "{{ url('/update-moviehot') }}",
+                url: "/update-movie-hot",
                 method: "POST",
                 data: {
                     movie_hot: movie_hot,
@@ -720,7 +734,7 @@
             var _token = $('input[name="_token"]').val();
 
             $.ajax({
-                url: "{{ url('/update-season-phim') }}",
+                url: "/update-season-phim",
                 method: "POST",
                 data: {
                     season: season,
@@ -749,7 +763,7 @@
                 var text = 'Tháng';
             }
             $.ajax({
-                url: "{{ url('/update-topview-phim') }}",
+                url: "/update-topview-phim",
                 method: "POST",
                 data: {
                     topview: topview,
@@ -814,7 +828,7 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: "{{ route('resorting') }}",
+                    url: "/resorting",
                     method: 'POST',
                     data: {
                         array_id: array_id
@@ -827,28 +841,30 @@
         })
     </script>
 
-    // thay doi du lieu bang ajax 
+    // thay doi du lieu bang ajax
+    //
     // <script type="text/javascript">
-    //     $(document).ready(function() {
-    //         $('.category_choose').change(function() {
-    //             var category_id = $(this).val();
-    //             var movie_id = $(this).attr('id');
-    //             $.ajax({
-    //                 url: "{{ route('category-choose') }}",
-    //                 method: "GET",
-    //                 data: {
-    //                     category_id: category_id,
-    //                     movie_id: movie_id
-    //                 },
-    //                 success: function(data) {
-    //                     alert('Thay đổi danh mục thành công');
-    //                 },
-    //                 error: function(xhr, status, error) {
-    //                     console.error(xhr.responseText);
-    //                 }
+    //         $(document).ready(function() {
+    //             $('.category_choose').change(function() {
+    //                 var category_id = $(this).val();
+    //                 var movie_id = $(this).attr('id');
+    //                 $.ajax({
+    //                     url: "{{ route('category-choose') }}",
+    //                     method: "GET",
+    //                     data: {
+    //                         category_id: category_id,
+    //                         movie_id: movie_id
+    //                     },
+    //                     success: function(data) {
+    //                         alert('Thay đổi danh mục thành công');
+    //                     },
+    //                     error: function(xhr, status, error) {
+    //                         console.error(xhr.responseText);
+    //                     }
+    //                 });
     //             });
     //         });
-    //     });
+        
     // </script>
 
     <script type="text/javascript">
@@ -856,7 +872,7 @@
             var country_id = $(this).val();
             var movie_id = $(this).attr('id');
             $.ajax({
-                url: "{{ route('country-choose') }}",
+                url: "/country-choose",
                 method: "GET",
                 data: {
                     country_id: country_id,

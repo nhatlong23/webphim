@@ -26,11 +26,12 @@
                                     @php
                                         $image_check = substr($episode->movie->image, 0, 4);
                                     @endphp
-                                     <td>
+                                    <td>
                                         @if ($image_check == 'http')
                                             <img src="{{ $episode->movie->image }}" width="100">
                                         @else
-                                            <img src="{{ asset('uploads/movie/' . $episode->movie->image) }}" width="100">
+                                            <img src="{{ asset('uploads/movie/' . $episode->movie->image) }}"
+                                                width="100">
                                         @endif
                                     </td>
                                     </td>

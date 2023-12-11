@@ -1,8 +1,8 @@
 @extends('layout')
 @section('content')
-@php
-    $message_director = "mới nhất, Tổng hợp danh sách Phim có đạo diễn: $director hay được web cập nhật liên tục. Tải Phim có đạo diễn : $director năm $currentYear, Xem Phim có đạo diễn : $director vietsub, thuyết minh mới nhất, Tổng hợp Phim có đạo diễn : $director hay nhất";
-@endphp
+    @php
+        $message_director = "mới nhất, Tổng hợp danh sách Phim có đạo diễn: $director hay được web cập nhật liên tục. Tải Phim có đạo diễn : $director năm $currentYear, Xem Phim có đạo diễn : $director vietsub, thuyết minh mới nhất, Tổng hợp Phim có đạo diễn : $director hay nhất";
+    @endphp
     <div class="row container" id="wrapper">
         <div class="halim-panel-filter">
             <div class="panel-heading">
@@ -10,17 +10,18 @@
                     <div class="col-xs-6-edit">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb" style="margin-bottom: revert;">
-                                <li class="breadcrumb-item"><a href="{{'/'}}">Phim Mới</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Phim có đạo diễn : {{ $director }}</li>
+                                <li class="breadcrumb-item"><a href="{{ '/' }}">Phim Mới</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Phim có đạo diễn :
+                                    {{ $director }}</li>
                             </ol>
                         </nav>
                         <div class="breadcrumb-style">
                             <span>
-                                Phim có diễn viên: 
+                                Phim có diễn viên:
                                 <span class="breadcrumb-item" aria-current="page">
                                     <a title="{{ $director }}" href="">{{ $director }}</a>
                                 </span>
-                                {{$message_director}}
+                                {{ $message_director }}
                             </span>
                         </div>
                     </div>
@@ -42,7 +43,8 @@
                                 @endphp
                                 <a class="halim-thumb" href="{{ route('movie', $mov->slug) }}">
                                     <figure>
-                                        <img class="lazy img-responsive" src="{{ $image_check === 'http' ? $mov->image : asset('uploads/movie/' . $mov->image) }}"
+                                        <img class="lazy img-responsive"
+                                            src="{{ $image_check === 'http' ? $mov->image : asset('uploads/movie/' . $mov->image) }}"
                                             alt="{{ $mov->title }}" title="{{ $mov->title }}" loading="lazy">
                                     </figure>
                                     <span class="status">

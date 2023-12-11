@@ -22,6 +22,7 @@ RUN chown -R www-data:www-data /var/www/html/phimmoi48h \
     && cp .env.production .env \
     && touch /var/www/html/phimmoi48h/storage/logs/laravel.log \
     && chmod -R 777 /var/www/html/phimmoi48h/storage \
+    && chmod 777 /var/www/html/phimmoi48h/public/json/movies.json \
     && chmod -R 777 /var/www/html/phimmoi48h/storage/logs/laravel.log \
     && chmod -R 777 /var/www/html/phimmoi48h/bootstrap/cache \
     && chmod -R 777 /var/www/html/phimmoi48h/storage/framework/cache \

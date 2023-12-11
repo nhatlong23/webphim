@@ -47,7 +47,8 @@
 
     <link rel='stylesheet' id='bootstrap-css' href='{{ asset('css/bootstrap.min.css?ver=5.7.2') }}' media='all' />
     <link rel='stylesheet' id='style-css' href='{{ asset('css/style.css?ver=5.7.2') }}' media='all' />
-    <link rel='stylesheet' id='wp-block-library-css' href='{{ asset('css/style.min.css?ver=5.7.2') }}' media='all' />
+    <link rel='stylesheet' id='wp-block-library-css' href='{{ asset('css/style.min.css?ver=5.7.2') }}'
+        media='all' />
     <script type='text/javascript' src='{{ asset('js/jquery.min.js?ver=5.7.2') }}' id='halim-jquery-js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type='text/javascript' src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -56,11 +57,13 @@
         .textwidget p a img {
             width: 100%;
         }
+
         #header .site-title {
             background: url({{ asset('uploads/logo/' . $info->logo) }}) no-repeat top left;
             background-size: contain;
             text-indent: -9999px;
         }
+
         .dark-mode {
             background-color: black;
             color: white;
@@ -103,30 +106,36 @@
                     </div>
                 </div>
                 <div class="col-md-4 hidden-xs">
-                    <div id="get-bookmark" class="box-shadow"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                            height="16" fill="currentColor" class="bi bi-bookmarks" viewBox="0 0 16 16">
-                            <path
-                                d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4zm2-1a1 1 0 0 0-1 1v10.566l3.723-2.482a.5.5 0 0 1 .554 0L11 14.566V4a1 1 0 0 0-1-1H4z" />
-                            <path
-                                d="M4.268 1H12a1 1 0 0 1 1 1v11.768l.223.148A.5.5 0 0 0 14 13.5V2a2 2 0 0 0-2-2H6a2 2 0 0 0-1.732 1z" />
-                        </svg>
-                        <span> Bookmarks</span>
-                        <span class="count"></span>
-                    </div>
+                    <a href="{{ route('profile') }}">
+                        <div id="get-bookmark" class="box-shadow"><svg xmlns="http://www.w3.org/2000/svg"
+                                width="16" height="16" fill="currentColor" class="bi bi-bookmarks"
+                                viewBox="0 0 16 16">
+                                <path
+                                    d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4zm2-1a1 1 0 0 0-1 1v10.566l3.723-2.482a.5.5 0 0 1 .554 0L11 14.566V4a1 1 0 0 0-1-1H4z" />
+                                <path
+                                    d="M4.268 1H12a1 1 0 0 1 1 1v11.768l.223.148A.5.5 0 0 0 14 13.5V2a2 2 0 0 0-2-2H6a2 2 0 0 0-1.732 1z" />
+                            </svg>
+                            <span> Bookmarks</span>
+                            <span class="count"></span>
+                        </div>
+                    </a>
                     @if (auth('customer')->check())
                         {{ auth('customer')->user()->name }}
                     @endif
 
                     @if (!Auth::guard('customer')->check())
-                        <div id="get-bookmark" class="box-shadow">
-                            <a href="{{ route('redirectToLogin') }}">
-                                <img width="20" src="https://img.icons8.com/external-flat-icons-inmotus-design/67/external-login-man-and-woman-flat-icons-inmotus-design.png" alt="external-login-man-and-woman-flat-icons-inmotus-design" title="Login"/>
-                            </a>
-                        </div>
+                        <a href="{{ route('redirectToLogin') }}">
+                            <div id="get-bookmark" class="box-shadow">
+                                <img width="20"
+                                    src="https://img.icons8.com/external-flat-icons-inmotus-design/67/external-login-man-and-woman-flat-icons-inmotus-design.png"
+                                    alt="external-login-man-and-woman-flat-icons-inmotus-design" title="Login" />
+                            </div>
+                        </a>
                     @else
                         <div id="get-bookmark" class="box-shadow">
                             <a href="{{ route('logout') }}">
-                                <img width="20" src="{{asset('uploads/logo/logout.svg')}}" alt="logout" title="Logout"/>
+                                <img width="20" src="{{ asset('uploads/logo/logout.svg') }}" alt="logout"
+                                    title="Logout" />
                             </a>
                         </div>
                     @endif
@@ -170,16 +179,20 @@
                                 </li>
                             @endforeach
                             <li class="mega dropdown">
-                            @php
-                                $startYear = 2006;
-                                $endYear = $currentYear + 3;
-                            @endphp
-                            <a title="Năm" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Năm <span class="caret"></span></a>
-                            <ul role="menu" class="dropdown-menu">
-                                @for ($year = $startYear; $year <= $endYear; $year++)
-                                    <li><a title="{{ $year }}" href="{{ url('year/' . $year) }}">{{ $year }}</a></li>
-                                @endfor
-                            </ul>
+                                @php
+                                    $now = new DateTime();
+                                    $currentYear = $now->format('Y');
+                                    $startYear = $currentYear - 17;
+                                    $endYear = $currentYear + 3;
+                                @endphp
+                                <a title="Năm" href="#" data-toggle="dropdown" class="dropdown-toggle"
+                                    aria-haspopup="true">Năm <span class="caret"></span></a>
+                                <ul role="menu" class="dropdown-menu">
+                                    @for ($year = $startYear; $year <= $endYear; $year++)
+                                        <li><a title="{{ $year }}"
+                                                href="{{ url('year/' . $year) }}">{{ $year }}</a></li>
+                                    @endfor
+                                </ul>
                             </li>
                             <li class="mega dropdown">
                                 <a title="Thể Loại" href="#" data-toggle="dropdown" class="dropdown-toggle"
@@ -236,7 +249,9 @@
                         <ul class="list-unstyled">
                             <li style="display: grid;">
                                 @foreach ($category_home as $key => $cate)
-                                    <a style="margin-bottom: 10px;" href="{{ route('category', $cate->slug) }}" title="{{ $cate->title }}"><i class="fa fa-angle-double-right"></i> {{ $cate->title }}</a>
+                                    <a style="margin-bottom: 10px;" href="{{ route('category', $cate->slug) }}"
+                                        title="{{ $cate->title }}"><i class="fa fa-angle-double-right"></i>
+                                        {{ $cate->title }}</a>
                                 @endforeach
                             </li>
                         </ul>
@@ -244,28 +259,32 @@
                 </div>
                 <style>
                     .container-page {
-                    display: flex;
-                    justify-content: center;
-                    align-items: flex-start;
-                    min-height: 100vh;
-                }
+                        display: flex;
+                        justify-content: center;
+                        align-items: flex-start;
+                        min-height: 100vh;
+                    }
+
                     .static-page {
-                    background: #fff;
-                    color: #333;
-                    border-radius: 5px;
-                    margin: 20px;
-                    padding: 20px;
-                    max-width: auto;
-                    width: 100%;
-                }
+                        background: #fff;
+                        color: #333;
+                        border-radius: 5px;
+                        margin: 20px;
+                        padding: 20px;
+                        max-width: auto;
+                        width: 100%;
+                    }
                 </style>
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-info-single">
                         <h2 class="title">Phim hot</h2>
                         <ul class="list-unstyled">
-                            <li><a href="{{ route('about-us') }}" title=""><i class="fa fa-angle-double-right"></i> Về chúng tôi</a></li>
-                            <li><a href="{{ route('homepage') }}" title=""><i class="fa fa-angle-double-right"></i> Phim mới</a></li>
-                            <li><a href="{{ url('sitemap.xml') }}" title=""><i class="fa fa-angle-double-right"></i> Sitemap</a></li>
+                            <li><a href="{{ route('about-us') }}" title=""><i
+                                        class="fa fa-angle-double-right"></i> Về chúng tôi</a></li>
+                            <li><a href="{{ route('homepage') }}" title=""><i
+                                        class="fa fa-angle-double-right"></i> Phim mới</a></li>
+                            <li><a href="{{ url('sitemap.xml') }}" title=""><i
+                                        class="fa fa-angle-double-right"></i> Sitemap</a></li>
                         </ul>
                     </div>
                 </div>
@@ -274,9 +293,12 @@
                     <div class="footer-info-single">
                         <h2 class="title">Trợ giúp</h2>
                         <ul class="list-unstyled">
-                            <li><a href="" title=""><i class="fa fa-angle-double-right"></i> Hỏi đáp</a></li>
-                            <li><a href="{{ route('contact') }}" title=""><i class="fa fa-angle-double-right"></i> Liên hệ</a></li>
-                            <li><a href="" title=""><i class="fa fa-angle-double-right"></i> Tin tức</a></li>
+                            <li><a href="" title=""><i class="fa fa-angle-double-right"></i> Hỏi đáp</a>
+                            </li>
+                            <li><a href="{{ route('contact') }}" title=""><i
+                                        class="fa fa-angle-double-right"></i> Liên hệ</a></li>
+                            <li><a href="" title=""><i class="fa fa-angle-double-right"></i> Tin tức</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -285,9 +307,12 @@
                     <div class="footer-info-single">
                         <h2 class="title">Thông tin</h2>
                         <ul class="list-unstyled">
-                            <li><a href="{{ route('terms-of-use') }}" title=""><i class="fa fa-angle-double-right"></i> Điều khoản sử dụng</a></li>
-                            <li><a href="{{ route('privacy-policy') }}" title=""><i class="fa fa-angle-double-right"></i> Chính sách riêng tư</a></li>
-                            <li><a href="{{ route('copyright-claims') }}" title=""><i class="fa fa-angle-double-right"></i> Khiếu nại bản quyền</a></li>
+                            <li><a href="{{ route('terms-of-use') }}" title=""><i
+                                        class="fa fa-angle-double-right"></i> Điều khoản sử dụng</a></li>
+                            <li><a href="{{ route('privacy-policy') }}" title=""><i
+                                        class="fa fa-angle-double-right"></i> Chính sách riêng tư</a></li>
+                            <li><a href="{{ route('copyright-claims') }}" title=""><i
+                                        class="fa fa-angle-double-right"></i> Khiếu nại bản quyền</a></li>
                         </ul>
                     </div>
                 </div>
@@ -309,13 +334,13 @@
 
     <script type='text/javascript' src='{{ asset('js/bootstrap.min.js?ver=5.7.2') }}' id='bootstrap-js'></script>
     <script type='text/javascript' src='{{ asset('js/owl.carousel.min.js?ver=5.7.2') }}' id='carousel-js'></script>
-    <script type='text/javascript' src='{{ asset('js/halimtheme-core.min.js?ver=1626273138') }}' id='halim-init-js'></script>
+    <script type='text/javascript' src='{{ asset('js/halimtheme-core.min.js?ver=1626273138') }}' id='halim-init-js'>
+    </script>
 
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous"
         src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v14.0&appId=957633844825401&autoLogAppEvents=1"
-        nonce="iCRKOgCO">
-    </script>
+        nonce="iCRKOgCO"></script>
 
 
     {{-- <script style="text/javascript">
@@ -323,7 +348,7 @@
             $('#banner_quangcao').modal('show');
         });
     </script> --}}
-    
+
     <script>
         $(document).ready(function() {
             // Hover function for individual episodes
@@ -395,7 +420,7 @@
         //     });
         // })
     </script>
-    
+
     <script type="text/javascript">
         $('.filter-sidebar').click(function() {
             var href = $(this).attr('href');
@@ -409,7 +434,7 @@
                 var value = 2;
             }
             $.ajax({
-                url: "{{ url('/filter-topview-phim') }}",
+                url: "/filter-topview-phim",
                 method: "POST",
                 data: {
                     value: value,
@@ -450,13 +475,13 @@
         });
 
         // click danh gia sao
-        $(document).on('click', '.rating', function () {
+        $(document).on('click', '.rating', function() {
             var index = $(this).data("index");
             var movie_id = $(this).data('movie_id');
             var _token = $('input[name="_token"]').val();
 
             $.ajax({
-                url: "{{ url('/insert-rating') }}",
+                url: "/insert-rating",
                 method: 'POST',
                 data: {
                     index: index,
@@ -466,7 +491,7 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                success: function (data) {
+                success: function(data) {
                     if (data == 'done') {
                         alert("Bạn đã đánh giá " + index + " trên 5");
                         // Update số đánh giá và điểm đánh giá hiển thị trên trang
@@ -481,6 +506,19 @@
         });
     </script>
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BYZWLDM18S"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-BYZWLDM18S');
+    </script>
+
     <!-- Messenger Plugin chat Code -->
     <div id="fb-root"></div>
 
@@ -490,7 +528,7 @@
 
     <script>
         var chatbox = document.getElementById('fb-customer-chat');
-        chatbox.setAttribute("page_id", "111815004867541");
+        chatbox.setAttribute("page_id", "108898418875113");
         chatbox.setAttribute("attribution", "biz_inbox");
     </script>
 
@@ -499,7 +537,7 @@
         window.fbAsyncInit = function() {
             FB.init({
                 xfbml: true,
-                version: 'v14.0'
+                version: 'v18.0'
             });
         };
 
@@ -824,15 +862,58 @@
                 bookmarksMovies.push(newMovie);
 
                 localStorage.setItem('bookmarksMovies', JSON.stringify(bookmarksMovies));
-                alert('Đã thêm phim ' + name + ' vào bookmarks');
+                alert('Đã thêm phim' + name + ' vào bookmarks');
                 updateMovieCount();
             }
         }
-        window.addEventListener('DOMContentLoaded', function () {
+        window.addEventListener('DOMContentLoaded', function() {
             updateMovieCount();
             viewBookmarks();
         });
     </script>
+
+    <!-- Start of LiveChat (www.livechat.com) code -->
+    <script>
+        window.__lc = window.__lc || {};
+        window.__lc.license = 16785891;;
+        (function(n, t, c) {
+            function i(n) {
+                return e._h ? e._h.apply(null, n) : e._q.push(n)
+            }
+            var e = {
+                _q: [],
+                _h: null,
+                _v: "2.0",
+                on: function() {
+                    i(["on", c.call(arguments)])
+                },
+                once: function() {
+                    i(["once", c.call(arguments)])
+                },
+                off: function() {
+                    i(["off", c.call(arguments)])
+                },
+                get: function() {
+                    if (!e._h) throw new Error("[LiveChatWidget] You can't use getters before load.");
+                    return i(["get", c.call(arguments)])
+                },
+                call: function() {
+                    i(["call", c.call(arguments)])
+                },
+                init: function() {
+                    var n = t.createElement("script");
+                    n.async = !0, n.type = "text/javascript", n.src = "https://cdn.livechatinc.com/tracking.js",
+                        t.head.appendChild(n)
+                }
+            };
+            !n.__lc.asyncInit && e.init(), n.LiveChatWidget = n.LiveChatWidget || e
+        }(window, document, [].slice))
+    </script>
+    <noscript>
+        <a href="https://www.livechat.com/chat-with/16785891/" rel="nofollow">Chat with us</a>, powered by
+        <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a>
+    </noscript>
+    <!-- End of LiveChat code -->
 </body>
 
 </html>

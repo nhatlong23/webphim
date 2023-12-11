@@ -35,11 +35,15 @@
 
                             <div class="form-group">
                                 {!! Form::label('link', 'Link Phim', []) !!}
-                                {!! Form::text('link', '<p><iframe allowfullscreen frameborder="0" height="360" scrolling="0" src="..." width="100%"></iframe></p>', [
-                                    'class' => 'form-control',
-                                    'required',
-                                    'id' => 'link-input',
-                                ]) !!}
+                                {!! Form::text(
+                                    'link',
+                                    '<p><iframe allowfullscreen frameborder="0" height="360" scrolling="0" src="..." width="100%"></iframe></p>',
+                                    [
+                                        'class' => 'form-control',
+                                        'required',
+                                        'id' => 'link-input',
+                                    ],
+                                ) !!}
                             </div>
 
                             @if (!isset($episode))
@@ -107,7 +111,8 @@
                                         @if ($image_check == 'http')
                                             <img src="{{ $episode->movie->image }}" width="100">
                                         @else
-                                            <img src="{{ asset('uploads/movie/' . $episode->movie->image) }}" width="100">
+                                            <img src="{{ asset('uploads/movie/' . $episode->movie->image) }}"
+                                                width="100">
                                         @endif
                                     </td>
                                     <td>Tập {{ $episode->episode }}</td>

@@ -6,7 +6,8 @@
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="yoast_breadcrumb hidden-xs"><span><span><a href="">Lọc Phim</a> »
-                                    <span class="breadcrumb_last" aria-current="page">{{$currentYear}}</span></span></span></div>
+                                    <span class="breadcrumb_last" aria-current="page">{{ $currentYear }}</span></span></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -35,13 +36,14 @@
                                 @endphp
                                 <a class="halim-thumb" href="{{ route('movie', $mov->slug) }}">
                                     <figure>
-                                        <img class="lazy img-responsive" src="{{ $image_check === 'http' ? $mov->image : asset('uploads/movie/' . $mov->image) }}"
+                                        <img class="lazy img-responsive"
+                                            src="{{ $image_check === 'http' ? $mov->image : asset('uploads/movie/' . $mov->image) }}"
                                             alt="{{ $mov->title }}" title="{{ $mov->title }}" loading="lazy">
                                     </figure>
                                     <span class="status">
                                         {{ $resolutions[$mov->resolution] }}
                                     </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
-                                       {{ $subtitle }}
+                                        {{ $subtitle }}
                                     </span>
                                     <div class="icon_overlay"></div>
                                     <div class="halim-post-title-box">

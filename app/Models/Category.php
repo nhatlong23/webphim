@@ -18,10 +18,9 @@ class Category extends Model
     public function movie_category()
     {
         return $this->belongsToMany(Movie::class, 'movie_category')->where('year', '=', '2023')
-        ->whereHas('genre', function ($subquery) {
-            $subquery->where('status', 1);
-        })
-        ->orderBy('date_created', 'DESC')->limit(20);
+            ->whereHas('genre', function ($subquery) {
+                $subquery->where('status', 1);
+            })
+            ->orderBy('date_created', 'DESC')->limit(20);
     }
-    
 }

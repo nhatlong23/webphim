@@ -7,7 +7,7 @@
                     <div class="col-xs-6-edit">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb" style="margin-bottom: revert;">
-                                <li class="breadcrumb-item"><a href="{{'/'}}">Phim Mới</a></li>
+                                <li class="breadcrumb-item"><a href="{{ '/' }}">Phim Mới</a></li>
                             </ol>
                         </nav>
                     </div>
@@ -16,11 +16,13 @@
         </div>
         <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
             <section>
-                <div class="halim_box">
-                    <h1>Thông Tin Cá Nhân</h1>
-                    <p>Họ và tên: {{ $customer->name }}</p>
-                    <p>Email: {{ $customer->email }}</p>
-                </div>
+                @if (auth('customer')->check())
+                    <div class="halim_box">
+                        <h1>Thông Tin Cá Nhân</h1>
+                        <p>Họ và tên: {{ $customer->name }}</p>
+                        <p>Email: {{ $customer->email }}</p>
+                    </div>
+                @endif
                 <h1>Phim đã lưu vào Bookmarks </h1>
                 <div id="bookmarks" class="halim_box"></div>
                 <div class="clearfix"></div>

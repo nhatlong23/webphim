@@ -7,7 +7,7 @@
                     <div class="col-xs-6-edit">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb" style="margin-bottom: revert;">
-                                <li class="breadcrumb-item"><a href="{{'/'}}">Phim Mới</a></li>
+                                <li class="breadcrumb-item"><a href="{{ '/' }}">Phim Mới</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">{{ $category->title }}</li>
                             </ol>
                         </nav>
@@ -16,7 +16,7 @@
                                 <span class="breadcrumb-item" aria-current="page">
                                     <a title="{{ $category->title }}" href="">{{ $category->title }}</a>
                                 </span>
-                               {{$getMessage}}
+                                {{ $getMessage }}
                             </span>
                         </div>
                     </div>
@@ -47,7 +47,8 @@
                                 @endphp
                                 <a class="halim-thumb" href="{{ route('movie', $mov->slug) }}">
                                     <figure>
-                                        <img class="lazy img-responsive" src="{{ $image_check === 'http' ? $mov->image : asset('uploads/movie/' . $mov->image) }}"
+                                        <img class="lazy img-responsive"
+                                            src="{{ $image_check === 'http' ? $mov->image : asset('uploads/movie/' . $mov->image) }}"
                                             alt="{{ $mov->title }}" title="{{ $mov->title }}" loading="lazy">
                                     </figure>
                                     <span class="status">
