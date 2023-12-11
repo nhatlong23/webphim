@@ -41,6 +41,6 @@ class HomeController extends Controller
         $country_total = Country::count();
         $movie_total = Movie::count();
         $episode_total = Episode::count();
-        return view('layouts.home', compact('sessions','category_total','genre_total','country_total','movie_total','episode_total'));
+        return view('layouts.home', compact('sessions', 'category_total', 'genre_total', 'country_total', 'movie_total', 'episode_total'));
     }
 }

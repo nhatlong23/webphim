@@ -48,11 +48,10 @@ class LeechMovieController extends Controller
         return view('admincp.leech_movie.index', compact('moviesPaginator', 'pathImage', 'resp_pagination'));
     }
 
-
     public function checkAndRemoveDuplicateEpisodes()
     {
         $episodeData = [];
-    
+
         Episode::orderBy('id')->chunk(200, function ($episodes) use (&$episodeData) {
             foreach ($episodes as $episode) {
                 $key = $episode->linkphim . '|' . $episode->episode;
@@ -63,10 +62,9 @@ class LeechMovieController extends Controller
                 }
             }
         });
-    
+
         return redirect('movie')->with('success', 'Checked and removed duplicate episodes successfully');
     }
-
 
     function deleteDuplicateMovies()
     {
@@ -76,19 +74,19 @@ class LeechMovieController extends Controller
             ->havingRaw('COUNT(*) > 1')
             ->pluck('slug')
             ->toArray();
-    
+
         // Xác định bản ghi mới nhất và xóa các bản ghi còn lại
         foreach ($duplicateSlugs as $slug) {
             $latestMovieId = Movie::where('slug', $slug)
                 ->latest('date_created')
                 ->value('id');
-    
+
             // Xóa các bản ghi có cùng slug nhưng không phải là mới nhất
             Movie::where('slug', $slug)
                 ->where('id', '<>', $latestMovieId)
                 ->delete();
         }
-    
+
         return 'Đã xóa các phim trùng lặp thành công, chỉ giữ lại phim mới nhất.';
 
         // Tìm các bản ghi phim trùng lặp dựa trên trường slug
@@ -107,7 +105,6 @@ class LeechMovieController extends Controller
         // // Hiển thị thông tin về các bản ghi phim trùng lặp
         // dd($created_at);
     }
-    
 
     public function synchronizeAllMovies(Request $request)
     {
@@ -147,14 +144,12 @@ class LeechMovieController extends Controller
         }
     }
 
-    
     public function leech_detail($slug)
     {
         $resp = Http::get("https://ophim1.com/phim/" . $slug)->json();
         $resp_movie[] = $resp['movie'];
         return view('admincp.leech_movie.leech_detail', compact('resp_movie'));
     }
-
 
     public function leech_store(Request $request, $slug)
     {
@@ -184,7 +179,6 @@ class LeechMovieController extends Controller
 
         $movie->update(['updated_at' => Carbon::now('Asia/Ho_Chi_Minh')]);
         return redirect()->back()->with('success', 'Đã đồng bộ tập phim thành công');
-
     }
 
     private function extract_video_code($url)
@@ -287,7 +281,7 @@ class LeechMovieController extends Controller
             $imageFileName = pathinfo(parse_url($imagePath, PHP_URL_PATH), PATHINFO_FILENAME);
             $movie->image = $this->uploadImageToCloudinary($imagePath, $imageFileName);
         }
-        
+
         $movie->status = 1;
         if (array_key_exists('episode_total', $data)) {
             $episode_total = $data['episode_total'];
@@ -351,7 +345,7 @@ class LeechMovieController extends Controller
         if (!$imagePath) {
             return null;
         }
-    
+
         $uploadedImage = Cloudinary::upload($imagePath, [
             'folder' => 'movie_local',
             'transformation' => [
@@ -360,36 +354,36 @@ class LeechMovieController extends Controller
             ],
             'public_id' => $publicId,
         ]);
-    
+
         return $uploadedImage->getSecurePath();
     }
 
     public function synchronizeAllEpisodes()
     {
         $movies = Movie::all();
-    
+
         foreach ($movies as $movie) {
             if (!$movie->episode()->exists()) {
                 $this->synchronizeEpisodes($movie);
             }
         }
-    
+
         return redirect('leech-movie')->with('success', 'Đã đồng bộ tất cả tập phim thành công');
     }
-    
+
     private function synchronizeEpisodes(Movie $movie)
     {
         $slug = $movie->slug;
         $movieData = Http::get("https://ophim1.com/phim/" . $slug)->json();
-    
+
         if (empty($movieData['episodes'])) {
             return;
         }
-    
+
         foreach ($movieData['episodes'] as $episodeData) {
             foreach ($episodeData['server_data'] as $serverData) {
                 $episodeName = $serverData['name'];
-    
+
                 // Check if the episode already exists for this movie
                 if (!$this->episodeExists($movie->id, $episodeName)) {
                     $episode = new Episode();
@@ -411,43 +405,43 @@ class LeechMovieController extends Controller
     {
         return Episode::where('movie_id', $movieId)->where('episode', $episodeName)->exists();
     }
-    
+
     public function updateImageUrls()
     {
         $oldUrl = 'https://img.ophim8.cc';
         $newUrl = 'https://img.ophim9.cc';
-    
+
         $batchSize = 1000; // Số lượng bản ghi cập nhật trong mỗi lần
-    
+
         $totalRecords = Movie::where('image', 'LIKE', '%' . $oldUrl . '%')->count();
-    
+
         for ($offset = 0; $offset < $totalRecords; $offset += $batchSize) {
             // Lấy $batchSize bản ghi bắt đầu từ $offset
             $moviesToUpdate = Movie::where('image', 'LIKE', '%' . $oldUrl . '%')
                 ->offset($offset)
                 ->limit($batchSize)
                 ->get();
-    
+
             // Cập nhật đường dẫn URL cho từng bản ghi
             foreach ($moviesToUpdate as $movie) {
                 $movie->image = str_replace($oldUrl, $newUrl, $movie->image);
                 $movie->save();
             }
         }
-    
+
         return 'Cập nhật đường dẫn URL thành công!';
     }
 
     public function leech_detail_episode(Request $request)
     {
         $slug = $request->slug;
-    
+
         $resp = Http::get("https://ophim1.com/phim/" . $slug)->json();
         $output['episode_title'] = $resp['movie']['name'];
-    
+
         // Khai báo một mảng để lưu trữ thông tin tập phim
         $episodeInfo = [];
-    
+
         foreach ($resp['episodes'] as $res) {
             foreach ($res['server_data'] as $server_1) {
                 // Thêm thông tin tập phim vào mảng $episodeInfo
@@ -457,7 +451,7 @@ class LeechMovieController extends Controller
                 ];
             }
         }
-    
+
         // Gán mảng $episodeInfo vào output
         $output['content_episode_title'] = $episodeInfo;
         // Include the CSRF token value within the form
@@ -468,7 +462,7 @@ class LeechMovieController extends Controller
         </form>';
         return response()->json($output);
     }
-    
+
     /**
      * Display a listing of the resource.
      *

@@ -32,10 +32,10 @@ class EpisodeController extends Controller
     {
         $list_movie = Movie::orderBy('id', 'DESC')->pluck('title', 'id');
         $moviesWithTypes = Movie::whereDoesntHave('episode')
-        ->select(DB::raw("CONCAT(title, ' (', thuocphim, ')') AS full_title"), 'id')
-        ->pluck('full_title', 'id')->prepend('Chọn Phim', '0');
-    
-        return view('admincp.episodes.form', compact('list_movie','moviesWithTypes'));
+            ->select(DB::raw("CONCAT(title, ' (', thuocphim, ')') AS full_title"), 'id')
+            ->pluck('full_title', 'id')->prepend('Chọn Phim', '0');
+
+        return view('admincp.episodes.form', compact('list_movie', 'moviesWithTypes'));
     }
 
     /**
@@ -74,7 +74,7 @@ class EpisodeController extends Controller
 
         // Tổng số tập phim, bạn có thể lấy từ thông tin của phim
         $totalEpisodes = $movie->episodes;
-            // Tạo danh sách các tập phim chưa có trong cơ sở dữ liệu
+        // Tạo danh sách các tập phim chưa có trong cơ sở dữ liệu
         $episodeOptions = [];
 
         foreach (range(1, $totalEpisodes) as $episodeNumber) {
@@ -166,6 +166,4 @@ class EpisodeController extends Controller
 
         return $output;
     }
-
-    
 }

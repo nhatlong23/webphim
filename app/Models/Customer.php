@@ -27,7 +27,8 @@ class Customer extends Authenticatable
         'emailed_movies',
         'token',
         'expires_at',
-        'locked'
+        'locked',
+        'verified'
     ];
 
     /**
@@ -49,7 +50,7 @@ class Customer extends Authenticatable
         'email_verified_at' => 'datetime',
         'emailed_movies' => 'json',
     ];
-    
+
     public function isSocialLogin()
     {
         return !empty($this->facebook_id) || !empty($this->google_id);

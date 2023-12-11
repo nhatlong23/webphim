@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Carbon\Carbon;
-use Toastr;
 
 class CategoryController extends Controller
 {
@@ -116,32 +115,33 @@ class CategoryController extends Controller
             'description.max' => 'Mô tả không được quá 255 ký tự',
             'status.required' => 'Vui lòng chọn trạng thái',
         ]);
-    
+
         $category = Category::find($id);
-    
+
         if ($category->title != $data['title']) {
-            Toastr::success('Thay đổi tiêu đề danh mục thành ' . $data['title']);
+            toastr()->success('Thay đổi tiêu đề danh mục thành ' . $data['title']);
         }
-    
+
         if ($category->slug != $data['slug']) {
-            Toastr::success('Thay đổi slug danh mục thành ' . $data['slug']);
+            toastr()->success('Thay đổi slug danh mục thành ' . $data['slug']);
         }
-    
+
         if ($category->description != $data['description']) {
-            Toastr::success('Thay đổi mô tả danh mục thành ' . $data['description']);
+            toastr()->success('Thay đổi mô tả danh mục thành ' . $data['description']);
         }
-    
+
         if ($category->status != $data['status']) {
-            Toastr::success('Thay đổi trạng thái danh mục thành ' . $data['status']);
+            $statusText = $data['status'] == 1 ? 'hiển thị' : 'không hiển thị';
+            toastr()->success('Thay đổi trạng thái danh mục thành ' . $statusText);
         }
-    
+
         $category->title = $data['title'];
         $category->slug = $data['slug'];
         $category->description = $data['description'];
         $category->status = $data['status'];
         $category->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         $category->save();
-    
+
         return redirect()->route('category.index');
     }
 
@@ -163,7 +163,7 @@ class CategoryController extends Controller
         }
         return redirect()->route('category.index');
     }
-    
+
     public function resorting_category(Request $request)
     {
         $data = $request->all();

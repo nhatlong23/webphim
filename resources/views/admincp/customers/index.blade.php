@@ -2,9 +2,9 @@
 @section('content')
     @if (Auth::id())
         <div class="container">
+            <td><a href="{{ route('sendMail') }}" class="btn btn-success">send mail</a></td>
             <div class="row justify-content-center">
                 <div class="col-md-12">
-
                     <table class="table" id="tablemovie">
                         <thead>
                             <tr>
@@ -20,7 +20,8 @@
                         </thead>
                         <tbody class="order_positionn">
                             @foreach ($all_customers as $key => $customer)
-                                <tr id="{{ $customer->id }}" style="{{ (!$customer->verified || $customer->locked) ? 'font-weight: bold; color: red;' : '' }}">
+                                <tr id="{{ $customer->id }}"
+                                    style="{{ !$customer->verified || $customer->locked ? 'font-weight: bold; color: red;' : '' }}">
                                     <th scope="row">{{ $key }}</th>
                                     <td>{{ $customer->name }}</td>
                                     <td>{{ $customer->email }}</td>
@@ -62,7 +63,9 @@
                                             'route' => ['toggleCustomerLock', $customer->id],
                                             'onsubmit' => 'return confirm("Bạn có muốn ' . ($customer->locked ? 'MỞ KHÓA' : 'KHÓA') . ' tài khoản này ?")',
                                         ]) !!}
-                                        {!! Form::submit($customer->locked ? 'MỞ KHÓA' : 'KHÓA', ['class' => $customer->locked ? 'btn btn-success' : 'btn btn-danger']) !!}
+                                        {!! Form::submit($customer->locked ? 'MỞ KHÓA' : 'KHÓA', [
+                                            'class' => $customer->locked ? 'btn btn-success' : 'btn btn-danger',
+                                        ]) !!}
                                         {!! Form::close() !!}
                                     </td>
                                 </tr>

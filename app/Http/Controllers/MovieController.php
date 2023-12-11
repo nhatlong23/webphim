@@ -42,7 +42,7 @@ class MovieController extends Controller
         return view('admincp.movie.index', compact('list', 'category', 'country'));
     }
 
-    public function update_moviehot(Request $request)
+    public function update_movie_hot(Request $request)
     {
         $data = $request->all();
         $movie = Movie::find($data['id_phim']);

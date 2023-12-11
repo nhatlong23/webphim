@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Country;
 use Carbon\Carbon;
-use Toastr;
 
 class CountryController extends Controller
 {
@@ -116,32 +115,33 @@ class CountryController extends Controller
             'description.max' => 'Mô tả không được quá 255 ký tự',
             'status.required' => 'Vui lòng chọn trạng thái',
         ]);
-    
+
         $country = Country::find($id);
-    
+
         if ($country->title != $data['title']) {
-            Toastr::success('Thay đổi tiêu đề quốc gia thành ' . $data['title']);
+            toastr()->success('Thay đổi tiêu đề quốc gia thành ' . $data['title']);
         }
-    
+
         if ($country->slug != $data['slug']) {
-            Toastr::success('Thay đổi slug quốc gia thành ' . $data['slug']);
+            toastr()->success('Thay đổi slug quốc gia thành ' . $data['slug']);
         }
-    
+
         if ($country->description != $data['description']) {
-            Toastr::success('Thay đổi mô tả quốc gia thành ' . $data['description']);
+            toastr()->success('Thay đổi mô tả quốc gia thành ' . $data['description']);
         }
-    
+
         if ($country->status != $data['status']) {
-            Toastr::success('Thay đổi trạng thái quốc gia thành ' . $data['status']);
+            $statusText = $data['status'] == 1 ? 'hiển thị' : 'không hiển thị';
+            toastr()->success('Thay đổi trạng thái quốc gia thành ' . $statusText);
         }
-    
+
         $country->title = $data['title'];
         $country->slug = $data['slug'];
         $country->description = $data['description'];
         $country->status = $data['status'];
         $country->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         $country->save();
-    
+
         return redirect()->route('country.index');
     }
 
@@ -163,7 +163,7 @@ class CountryController extends Controller
         }
         return redirect()->back();
     }
-    
+
 
     public function resorting_country(Request $request)
     {

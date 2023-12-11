@@ -5,7 +5,11 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">Thêm Danh Mục</div>
+                        @if (!isset($category))
+                            <div class="card-header">Thêm Danh Mục</div>
+                        @else
+                            <div class="card-header">Cập Nhật Danh Mục</div>
+                        @endif
                         @if ($errors->any())
                             <div class="alert alert-danger" role="alert">
                                 <ul>

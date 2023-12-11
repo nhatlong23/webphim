@@ -1,9 +1,9 @@
 @extends('layout')
 @section('content')
-@php
-    $YearCurrent = $year - 1 ;
-    $message = "mới nhất, Tổng hợp danh sách các bộ phim hay được web cập nhật liên tục. Tải hơn 10.000 bộ phim năm $YearCurrent , $year vietsub, thuyết minh mới nhất, hay nhất ";
-@endphp
+    @php
+        $YearCurrent = $year - 1;
+        $message = "mới nhất, Tổng hợp danh sách các bộ phim hay được web cập nhật liên tục. Tải hơn 10.000 bộ phim năm $YearCurrent , $year vietsub, thuyết minh mới nhất, hay nhất ";
+    @endphp
     <div class="row container" id="wrapper">
         <div class="halim-panel-filter">
             <div class="panel-heading">
@@ -11,7 +11,7 @@
                     <div class="col-xs-6-edit">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb" style="margin-bottom: revert;">
-                                <li class="breadcrumb-item"><a href="{{'/'}}">Phim Mới</a></li>
+                                <li class="breadcrumb-item"><a href="{{ '/' }}">Phim Mới</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Phim Năm : {{ $year }}</li>
                             </ol>
                         </nav>
@@ -21,7 +21,7 @@
                                 <span class="breadcrumb-item" aria-current="page">
                                     <a title="{{ $year }}" href="{{ url('year/' . $year) }}">{{ $year }}</a>
                                 </span>
-                                {{$message}}
+                                {{ $message }}
                             </span>
                         </div>
                     </div>
@@ -52,7 +52,8 @@
                                 @endphp
                                 <a class="halim-thumb" href="{{ route('movie', $mov->slug) }}">
                                     <figure>
-                                        <img class="lazy img-responsive" src="{{ $image_check === 'http' ? $mov->image : asset('uploads/movie/' . $mov->image) }}"
+                                        <img class="lazy img-responsive"
+                                            src="{{ $image_check === 'http' ? $mov->image : asset('uploads/movie/' . $mov->image) }}"
                                             alt="{{ $mov->title }}" title="{{ $mov->title }}" loading="lazy">
                                     </figure>
                                     <span class="status">

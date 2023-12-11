@@ -11,7 +11,7 @@ class Info extends Model
     use HasFactory;
 
     protected $table = 'infos';
-    protected $filltable = [
+    protected $fillable = [
         'title',
         'description',
         'logo'

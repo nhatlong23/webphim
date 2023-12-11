@@ -1,17 +1,21 @@
 @extends('layout')
 @section('content')
-@php
-    $current_url = Request::url();
-@endphp
+    @php
+        $current_url = Request::url();
+    @endphp
     <div class="row container" id="wrapper">
         <div class="halim-panel-filter">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6-edit">
                         <ol class="breadcrumb" style="margin-bottom: revert;">
-                            <li class="breadcrumb-item"><a href="{{'/'}}">Xem phim</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('category', $movie->category->slug) }}">{{ $movie->category->title }}</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('country', $movie->country->slug) }}">{{ $movie->country->title }}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ '/' }}">Xem phim</a></li>
+                            <li class="breadcrumb-item"><a
+                                    href="{{ route('category', $movie->category->slug) }}">{{ $movie->category->title }}</a>
+                            </li>
+                            <li class="breadcrumb-item"><a
+                                    href="{{ route('country', $movie->country->slug) }}">{{ $movie->country->title }}</a>
+                            </li>
                             <li class="breadcrumb-item active" aria-current="page">{{ $movie->title }}</li>
                         </ol>
                     </div>
@@ -146,7 +150,8 @@
                                                             // Kiểm tra nếu số tập hiện tại đang xem ($tapphim) trùng với số tập của $epi
                                                             $isActive = $tapphim == $epi->episode;
                                                         @endphp
-                                                        <a href="{{ url('xem-phim/' . $movie->slug . '/tap-' . $epi->episode) }}">
+                                                        <a
+                                                            href="{{ url('xem-phim/' . $movie->slug . '/tap-' . $epi->episode) }}">
                                                             <li class="halim-episode">
                                                                 <span
                                                                     class="halim-btn halim-btn-2 {{ $isActive ? 'active' : '' }} halim-info-1-1 box-shadow"
@@ -192,7 +197,8 @@
                                     @endphp
                                     <a class="halim-thumb" href="{{ route('movie', $hot->slug) }}">
                                         <figure>
-                                            <img class="lazy img-responsive" src="{{ $image_check === 'http' ? $hot->image : asset('uploads/movie/' . $hot->image) }}"
+                                            <img class="lazy img-responsive"
+                                                src="{{ $image_check === 'http' ? $hot->image : asset('uploads/movie/' . $hot->image) }}"
                                                 alt="{{ $hot->title }}" title="{{ $hot->title }}" loading="lazy">
                                         </figure>
                                         <span class="status">HD</span><span class="episode"><i class="fa fa-play"

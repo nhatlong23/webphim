@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
 
-# Di chuyển đến thư mục của script
-cd "$(dirname $BASH_SOURCE)"
+DOCKER_COMPOSE_FILE="./docker-compose.yml"
 
-# Dừng và gỡ container hiện tại
-docker-compose stop
-docker-compose rm -f
+if ! command -v docker-compose &> /dev/null; then
+    echo "Lỗi: Docker Compose không được cài đặt hoặc không tìm thấy."
+    exit 1
+fi
 
-# Pull images mới nhất từ Docker Hub
+if [ ! -f "$DOCKER_COMPOSE_FILE" ]; then
+    echo "Lỗi: File docker-compose.yml không tồn tại."
+    exit 1
+fi
+
+docker-compose down --volumes --remove-orphans
+docker image prune -f
 docker-compose pull
-
-# Khởi động các container
 docker-compose up -d
-
-# Di chuyển trở lại thư mục làm việc trước đó
-cd - > /dev/null

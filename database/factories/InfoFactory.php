@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Info;
 
 class InfoFactory extends Factory
 {
@@ -14,7 +15,9 @@ class InfoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->sentence(),
+            'description' => $this->faker->paragraph(),
+            'logo' => $this->faker->imageUrl($width = 640, $height = 480),
         ];
     }
 }

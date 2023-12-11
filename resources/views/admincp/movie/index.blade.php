@@ -5,7 +5,6 @@
         {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#banner_quangcao">
             Launch demo modal
         </button> --}}
-
         <!-- Modal check movie episode -->
         <div class="modal" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -28,7 +27,8 @@
             </div>
         </div>
         <!-- Modal thêm tập phim -->
-        <div class="modal" id="episode" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal" id="episode" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -47,16 +47,15 @@
                 </div>
             </div>
         </div>
-        <td><a href="{{ route('remove-episode') }}" class="btn btn-success">Xóa các tập phim trùng</a></td>
-        <td><a href="{{ route('delete-movie') }}" class="btn btn-success">Xóa các phim trùng</a></td>
-        <td><a href="{{ route('sendMail') }}" class="btn btn-success">send mail</a></td>
+        {{-- <td><a href="{{ route('remove-episode') }}" class="btn btn-success">Xóa các tập phim trùng</a></td> --}}
+        {{-- <td><a href="{{ route('delete-movie') }}" class="btn btn-success">Xóa các phim trùng</a></td> --}}
         {{-- <td><a href="{{ route('update-image-movie') }}" class="btn btn-success">Cập nhật hình ảnh sang o9</a></td> --}}
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <a href="{{ route('movie.create') }}" class="btn btn-primary">Thêm phim</a>
                     {{--  --}}
-                    <h1>Tìm kiếm Real-time</h1>
+                    <h1>Tìm kiếm Phim</h1>
                     <input type="text" id="searchInput" placeholder="Nhập từ khóa tìm kiếm" autocomplete="off">
                     <div id="searchResults" style="display: none;">
                         <!-- Kết quả tìm kiếm sẽ được hiển thị ở đây -->
@@ -99,7 +98,8 @@
                                             <span class="badge badge-primary">{{ $cate->slug }}</span> <br>
                                             <span class="badge badge-dark">{{ $cate->name_en }}</span> <br>
                                             <span class="badge badge-secondary">imdb: {{ $cate->score_imdb }}</span> <br>
-                                            <span class="badge {{ $cate->thuocphim == 'phimle' ? 'badge-primary' : 'badge-secondary' }}">
+                                            <span
+                                                class="badge {{ $cate->thuocphim == 'phimle' ? 'badge-primary' : 'badge-secondary' }}">
                                                 {{ $cate->thuocphim == 'phimle' ? 'Phim Lẻ' : 'Phim Bộ' }}
                                             </span> <br>
                                             <span class="badge {{ $cate->status ? 'badge-primary' : 'badge-secondary' }}">
@@ -107,13 +107,15 @@
                                             </span> <br>
                                         </td>
                                         <td>
-                                            <a href="{{ route('add-episode', [$cate->id]) }}" class="btn btn-danger btn-sm">Thêm Tập Phim bằng tay</a>
-                                            <button type="button" data-movie_slug="{{ $cate->slug }}" 
-                                                    class="badge badge-success btn-sm leech_details_episode"
-                                                    data-toggle="modal" data-target="#episode">Thêm tập phim bằng api
+                                            <a href="{{ route('add-episode', [$cate->id]) }}"
+                                                class="btn btn-danger btn-sm">Thêm Tập Phim bằng tay</a>
+                                            <button type="button" data-movie_slug="{{ $cate->slug }}"
+                                                class="badge badge-success btn-sm leech_details_episode" data-toggle="modal"
+                                                data-target="#episode">Thêm tập phim bằng api
                                             </button>
                                             @foreach ($cate->episode->sortByDesc('episode')->take(3) as $ep)
-                                                <a class="show_video" data-movie_video_id="{{ $ep->movie_id }}" data-video_episode="{{ $ep->episode }}" style="cursor: pointer">
+                                                <a class="show_video" data-movie_video_id="{{ $ep->movie_id }}"
+                                                    data-video_episode="{{ $ep->episode }}" style="cursor: pointer">
                                                     <span class="badge badge-light">{{ $ep->episode }}</span>
                                                 </a>
                                             @endforeach
@@ -122,28 +124,35 @@
                                             @switch($cate->resolution)
                                                 @case(0)
                                                     <span class="badge badge-primary">HD</span>
-                                                    @break
+                                                @break
+
                                                 @case(1)
                                                     <span class="badge badge-secondary">SD</span>
-                                                    @break
+                                                @break
+
                                                 @case(2)
                                                     <span class="badge badge-success">HDCam</span>
-                                                    @break
+                                                @break
+
                                                 @case(3)
                                                     <span class="badge badge-danger">Cam</span>
                                                     <span class="badge badge-primary">Ngày ra bản HD: 03-09-2023</span>
-                                                    @break
+                                                @break
+
                                                 @case(4)
                                                     <span class="badge badge-warning">FullHD</span>
-                                                    @break
+                                                @break
+
                                                 @default
                                                     <span class="badge badge-dark">Trailer</span>
                                                     <span class="badge badge-primary">Ngày công chiếu: 02-09-2023</span>
                                             @endswitch
                                         </td>
                                         <td>
-                                            <img src="{{ (strpos($cate->image, 'http') === 0) ? $cate->image : asset('uploads/movie/' . $cate->image) }}" width="65">
-                                            <span class="badge badge-success">{{ $cate->episode_count }} / {{ $cate->episodes }} tập</span> <br>
+                                            <img src="{{ strpos($cate->image, 'http') === 0 ? $cate->image : asset('uploads/movie/' . $cate->image) }}"
+                                                width="65">
+                                            <span class="badge badge-success">{{ $cate->episode_count }} /
+                                                {{ $cate->episodes }} tập</span> <br>
                                             <span class="badge badge-primary">{{ $cate->duration_movie }}</span> <br>
                                             <span class="badge badge-dark">{{ $cate->view_count }} lượt xem</span>
                                         </td>
@@ -158,7 +167,8 @@
                                                 <span class="badge badge-primary">Phim Lẻ</span> <br>
                                             @else
                                                 <span class="badge badge-secondary">Phim Bộ</span> <br>
-                                                <a href="{{ route('add-episode', [$cate->id]) }}" class="btn btn-danger btn-sm">Cập nhật</a>
+                                                <a href="{{ route('add-episode', [$cate->id]) }}"
+                                                    class="btn btn-danger btn-sm">Cập nhật</a>
                                             @endif
                                         </td>
                                         <td>
@@ -182,29 +192,19 @@
 
                                             <form method="POST" style="margin-bottom: 10px">
                                                 @csrf
-                                                {!! Form::select(
-                                                    'movie_hot',
-                                                    ['0' => 'Không hot', '1' => 'Hot'],
-                                                    $cate->movie_hot ?? '',
-                                                    [
-                                                        'class' => 'select-hot',
-                                                        'id' => $cate->id,
-                                                    ],
-                                                ) !!}
+                                                {!! Form::select('movie_hot', ['0' => 'Không hot', '1' => 'Hot'], $cate->movie_hot ?? '', [
+                                                    'class' => 'select-hot',
+                                                    'id' => $cate->id,
+                                                ]) !!}
                                             </form>
 
                                             <form method="POST" style="margin-bottom: 10px">
                                                 @csrf
-                                                {!! Form::select(
-                                                    'topview',
-                                                    ['0' => 'Ngày', '1' => 'Tuần', '2' => 'Tháng'],
-                                                    $cate->topview ?? '',
-                                                    [
-                                                        'class' => 'select-topview',
-                                                        'id' => $cate->id,
-                                                        'placeholder' => 'Topview',
-                                                    ],
-                                                ) !!}
+                                                {!! Form::select('topview', ['0' => 'Ngày', '1' => 'Tuần', '2' => 'Tháng'], $cate->topview ?? '', [
+                                                    'class' => 'select-topview',
+                                                    'id' => $cate->id,
+                                                    'placeholder' => 'Topview',
+                                                ]) !!}
                                             </form>
 
                                             {!! Form::select('country_id', $country, $cate->country->id ?? '', [
@@ -234,104 +234,104 @@
         </div>
         {{ $list->links() }}
 
-    <script>
-        var typingTimer;
-        var doneTypingInterval = 1000;  // Thời gian chờ sau khi ngừng nhập (1 giây)
+        <script>
+            var typingTimer;
+            var doneTypingInterval = 1000;
 
-        $(document).ready(function () {
-            $('#searchInput').on('input', function () {
-                clearTimeout(typingTimer);
-                var searchKeyword = $(this).val();
+            $(document).ready(function() {
+                $('#searchInput').on('input', function() {
+                    clearTimeout(typingTimer);
+                    var searchKeyword = $(this).val();
 
-                typingTimer = setTimeout(function () {
-                    // Kiểm tra xem có từ khóa tìm kiếm không
-                    if (searchKeyword === "") {
-                        // Nếu không có từ khóa, ẩn kết quả tìm kiếm
-                        $('#searchResults').hide();
-                    } else {
-                        // Nếu có từ khóa, hiển thị kết quả tìm kiếm
-                        $('#searchResults').show();
+                    typingTimer = setTimeout(function() {
+                        // Kiểm tra xem có từ khóa tìm kiếm không
+                        if (searchKeyword === "") {
+                            // Nếu không có từ khóa, ẩn kết quả tìm kiếm
+                            $('#searchResults').hide();
+                        } else {
+                            // Nếu có từ khóa, hiển thị kết quả tìm kiếm
+                            $('#searchResults').show();
 
-                        // Gửi yêu cầu Ajax khi người dùng nhập từ khóa
-                        $.ajax({
-                            url: "{{ route('searchMovies') }}", // Thay đổi route tương ứng của bạn
-                            method: 'GET',
-                            data: {
-                                search: searchKeyword
-                            },
-                            success: function (response) {
-                                // Hiển thị kết quả trả về trong div searchResults
-                                $('#searchResults').html(response);
-                            }
-                        });
+                            $.ajax({
+                                url: "/searchMovies",
+                                method: 'GET',
+                                data: {
+                                    search: searchKeyword
+                                },
+                                success: function(response) {
+                                    $('#searchResults').html(response);
+                                }
+                            });
+                        }
+                    }, doneTypingInterval);
+                });
+            });
+        </script>
+
+        <script type="text/javascript">
+            $('.show_video').click(function() {
+                var movie_id = $(this).data('movie_video_id');
+                var episode_id = $(this).data('video_episode');
+                $.ajax({
+                    url: "/watch-video",
+                    method: "POST",
+                    dataType: "json",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {
+                        movie_id: movie_id,
+                        episode_id: episode_id
+                        // _token: _token
+                    },
+                    success: function(data) {
+                        $('#video_title').html(data.video_title);
+                        $('#video_link').html(data.video_link);
+                        $('#video_desc').html(data.video_desc);
+                        $('#videoModal').modal('show');
                     }
-                }, doneTypingInterval);
-            });
-        });
-    </script>
+                });
+            })
+        </script>
 
-    <script type="text/javascript">
-        $('.show_video').click(function() {
-            var movie_id = $(this).data('movie_video_id');
-            var episode_id = $(this).data('video_episode');
-            $.ajax({
-                url: "{{ route('watch-video') }}",
-                method: "POST",
-                dataType: "json",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {
-                    movie_id: movie_id,
-                    episode_id: episode_id
-                    // _token: _token
-                },
-                success: function(data) {
-                    $('#video_title').html(data.video_title);
-                    $('#video_link').html(data.video_link);
-                    $('#video_desc').html(data.video_desc);
-                    $('#videoModal').modal('show');
-                }
-            });
-        })
-    </script>
+        <script type="text/javascript">
+            $('.leech_details_episode').click(function() {
+                var slug = $(this).data('movie_slug');
+                $.ajax({
+                    url: "/leech-detail-episode",
+                    method: "POST",
+                    dataType: "json",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {
+                        slug: slug,
+                    },
+                    success: function(data) {
+                        $('#episode_title').html(data.episode_title);
+                        var contentHtml = '';
+                        $.each(data.content_episode_title, function(index, episode) {
+                            contentHtml += '<p>Tập: ' + episode.name + '</p>';
+                            contentHtml +=
+                                '<input type="text" id="episode_link_embed_input" class="form-control" value="' +
+                                episode.link_embed + '" readonly>';
+                        });
+                        $('#content_episode_title').html(contentHtml);
 
-    <script type="text/javascript">
-        $('.leech_details_episode').click(function() {
-            var slug = $(this).data('movie_slug');
-            $.ajax({
-                url: "{{ route('leech-detail-episode') }}",
-                method: "POST",
-                dataType: "json",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {
-                    slug: slug,
-                },
-                success: function(data) {
-                    $('#episode_title').html(data.episode_title);
-                    var contentHtml = '';
-                    $.each(data.content_episode_title, function(index, episode) {
-                        contentHtml += '<p>Tập: ' + episode.name + '</p>';
-                        contentHtml += '<input type="text" id="episode_link_embed_input" class="form-control" value="' + episode.link_embed + '" readonly>';
-                    });
-                    $('#content_episode_title').html(contentHtml);
+                        // Create a hidden input field for CSRF token
+                        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                        var csrfInput = '<input type="hidden" name="_token" value="' + csrfToken + '">';
 
-                    // Create a hidden input field for CSRF token
-                    var csrfToken = $('meta[name="csrf-token"]').attr('content');
-                    var csrfInput = '<input type="hidden" name="_token" value="' + csrfToken + '">';
-                    
-                    // Append the CSRF input to the form
-                    var form = data.button_save_episode.replace('<p id="button_save_episode">', '<p id="button_save_episode">' + csrfInput);
-                    
-                    $('#button_save_episode').html(form);
-                    $('#episode').modal('show');
-                }
-            });
-        })
-    </script>
+                        // Append the CSRF input to the form
+                        var form = data.button_save_episode.replace('<p id="button_save_episode">',
+                            '<p id="button_save_episode">' + csrfInput);
 
+                        $('#button_save_episode').html(form);
+                        $('#episode').modal('show');
+                    }
+                });
+            })
+        </script>
     @else
         <script>
             window.location = "/login";

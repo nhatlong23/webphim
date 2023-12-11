@@ -7,7 +7,7 @@
                     <div class="col-xs-6-edit">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb" style="margin-bottom: revert;">
-                                <li class="breadcrumb-item"><a href="{{'/'}}">Phim Mới</a></li>
+                                <li class="breadcrumb-item"><a href="{{ '/' }}">Phim Mới</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Từ khóa: {{ $search }}</li>
                             </ol>
                         </nav>
@@ -30,37 +30,39 @@
                     </div>
                 </div>
                 <div class="halim_box">
-                @if(isset($noResultsMessage))
-                    <div class="alert alert-danger">{{ $noResultsMessage }} <a href="#">Vui lòng click vào đây để tìm kiếm sâu hơn</a></div>
-                @else
-                    @foreach ($movies as $key => $mov)
-                        <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
-                            <div class="halim-item">
-                                @php
-                                    $image_check = substr($mov->image, 0, 4);
-                                    $subtitle = ($mov->sub_movie == 0 ? 'VietSub' : 'Thuyết Minh') . ($mov->season != 0 ? ' - Season ' . $mov->season : '');
-                                @endphp
-                                <a class="halim-thumb" href="{{ route('movie', $mov->slug) }}">
-                                    <figure>
-                                        <img class="lazy img-responsive" src="{{ $image_check === 'http' ? $mov->image : asset('uploads/movie/' . $mov->image) }}"
-                                            alt="{{ $mov->title }}" title="{{ $mov->title }}" loading="lazy">
-                                    </figure>
-                                    <span class="status">
-                                        {{ $resolutions[$mov->resolution] }}
-                                    </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
-                                        {{ $subtitle }}
-                                    </span>
-                                    <div class="icon_overlay"></div>
-                                    <div class="halim-post-title-box">
-                                        <div class="halim-post-title ">
-                                            <p class="entry-title">{{ $mov->title }}</p>
-                                            <p class="original_title">{{ $mov->name_en }}</p>
+                    @if (isset($noResultsMessage))
+                        <div class="alert alert-danger">{{ $noResultsMessage }} <a href="#">Vui lòng click vào đây để
+                                tìm kiếm sâu hơn</a></div>
+                    @else
+                        @foreach ($movies as $key => $mov)
+                            <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
+                                <div class="halim-item">
+                                    @php
+                                        $image_check = substr($mov->image, 0, 4);
+                                        $subtitle = ($mov->sub_movie == 0 ? 'VietSub' : 'Thuyết Minh') . ($mov->season != 0 ? ' - Season ' . $mov->season : '');
+                                    @endphp
+                                    <a class="halim-thumb" href="{{ route('movie', $mov->slug) }}">
+                                        <figure>
+                                            <img class="lazy img-responsive"
+                                                src="{{ $image_check === 'http' ? $mov->image : asset('uploads/movie/' . $mov->image) }}"
+                                                alt="{{ $mov->title }}" title="{{ $mov->title }}" loading="lazy">
+                                        </figure>
+                                        <span class="status">
+                                            {{ $resolutions[$mov->resolution] }}
+                                        </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
+                                            {{ $subtitle }}
+                                        </span>
+                                        <div class="icon_overlay"></div>
+                                        <div class="halim-post-title-box">
+                                            <div class="halim-post-title ">
+                                                <p class="entry-title">{{ $mov->title }}</p>
+                                                <p class="original_title">{{ $mov->name_en }}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </article>
-                    @endforeach
+                                    </a>
+                                </div>
+                            </article>
+                        @endforeach
                 </div>
                 <div class="clearfix"></div>
                 <div class="text-center">

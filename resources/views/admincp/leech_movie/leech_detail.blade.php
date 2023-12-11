@@ -36,24 +36,24 @@
                 </thead>
                 <tbody class="order_position">
                     @foreach ($resp_movie as $key => $res)
-                        <tr  id="{{ $res['_id'] }}">
+                        <tr id="{{ $res['_id'] }}">
                             <th scope="row">{{ $key }}</th>
                             <td>{{ $res['name'] }}
-                            @php
-                                $movie = \App\Models\Movie::where('slug', $res['slug'])->first();
-                            @endphp
-                            @if (!$movie)
-                                <form method="post" action="{{ route('leech-store', $res['slug']) }}">
-                                    @csrf
-                                    <input type="submit" class="btn btn-success" value="Thêm phim">
-                                </form>
-                            @else
-                                <form method="post" action="{{ route('movie.destroy', $movie->id) }}">
-                                    @csrf
-                                    @method('delete')
-                                    <input type="submit" class="btn btn-danger" value="Xóa phim">
-                                </form>
-                            @endif
+                                @php
+                                    $movie = \App\Models\Movie::where('slug', $res['slug'])->first();
+                                @endphp
+                                @if (!$movie)
+                                    <form method="post" action="{{ route('leech-store', $res['slug']) }}">
+                                        @csrf
+                                        <input type="submit" class="btn btn-success" value="Thêm phim">
+                                    </form>
+                                @else
+                                    <form method="post" action="{{ route('movie.destroy', $movie->id) }}">
+                                        @csrf
+                                        @method('delete')
+                                        <input type="submit" class="btn btn-danger" value="Xóa phim">
+                                    </form>
+                                @endif
                             </td>
                             <td>{{ $res['origin_name'] }}</td>
                             {{-- <td>{{ $res['content'] }}</td> --}}
@@ -75,23 +75,23 @@
                             <td>{{ $res['view'] }}</td>
                             <td>
                                 @foreach ($res['actor'] as $astor)
-                                    <span class="badge badge-info">{{$astor}}</span>
-                                @endforeach    
+                                    <span class="badge badge-info">{{ $astor }}</span>
+                                @endforeach
                             </td>
                             <td>
                                 @foreach ($res['director'] as $director)
-                                    <span class="badge badge-info">{{$director}}</span>
-                                @endforeach  
+                                    <span class="badge badge-info">{{ $director }}</span>
+                                @endforeach
                             </td>
                             <td>
                                 @foreach ($res['category'] as $category)
-                                    <span class="badge badge-info">{{$category['name']}}</span>
-                                @endforeach  
+                                    <span class="badge badge-info">{{ $category['name'] }}</span>
+                                @endforeach
                             </td>
                             <td>
                                 @foreach ($res['country'] as $country)
-                                    <span class="badge badge-info">{{$country['name']}}</span>
-                                @endforeach  
+                                    <span class="badge badge-info">{{ $country['name'] }}</span>
+                                @endforeach
                             </td>
                             <td>
                                 @if ($res['is_copyright'] == true)
@@ -105,7 +105,7 @@
                                     <span class="badge badge-info">Có</span>
                                 @else
                                     <span class="badge badge-info">Không</span>
-                                @endif    
+                                @endif
                             </td>
                             <td><img src="{{ $res['poster_url'] }}" width="80px" height="80px"></td>
                             <td>
@@ -113,7 +113,7 @@
                                     <span class="badge badge-info">Có</span>
                                 @else
                                     <span class="badge badge-info">Không</span>
-                                @endif    
+                                @endif
                             </td>
                         </tr>
                     @endforeach

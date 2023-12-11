@@ -7,9 +7,13 @@
                     <div class="col-xs-6-edit">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb" style="margin-bottom: revert;">
-                                <li class="breadcrumb-item"><a href="{{'/'}}">Xem phim</a></li>
-                                <li class="breadcrumb-item"><a href="{{ route('category', $movie->category->slug) }}">{{ $movie->category->title }}</a></li>
-                                <li class="breadcrumb-item"><a href="{{ route('country', $movie->country->slug) }}">{{ $movie->country->title }}</a></li>
+                                <li class="breadcrumb-item"><a href="{{ '/' }}">Xem phim</a></li>
+                                <li class="breadcrumb-item"><a
+                                        href="{{ route('category', $movie->category->slug) }}">{{ $movie->category->title }}</a>
+                                </li>
+                                <li class="breadcrumb-item"><a
+                                        href="{{ route('country', $movie->country->slug) }}">{{ $movie->country->title }}</a>
+                                </li>
                                 <li class="breadcrumb-item active" aria-current="page">{{ $movie->title }}</li>
                             </ol>
                         </nav>
@@ -40,20 +44,24 @@
                                     $image_check = substr(trim($movie->image ?? ''), 0, 4);
                                     $director = array_map('trim', explode(', ', $movie->director ?? ''));
                                     $cast_movie = array_map('trim', explode(', ', $movie->cast_movie ?? ''));
-                                    $tags_movie = array_map('trim', explode(', ', $movie->tags_movie ?? ''));
+                                    $tags_movie = array_map('trim', explode(',', $movie->tags_movie ?? ''));
                                 @endphp
-                                <img class="movie-thumb" src="{{ $image_check === 'http' ? $movie->image : asset('uploads/movie/' . $movie->image) }}" alt="{{ $movie->title }}">
+                                <img class="movie-thumb"
+                                    src="{{ $image_check === 'http' ? $movie->image : asset('uploads/movie/' . $movie->image) }}"
+                                    alt="{{ $movie->title }}">
                                 @if ($movie->resolution != 5)
                                     @if ($episode_current_list > 0)
                                         <div class="bwa-content">
                                             <div class="loader"></div>
-                                            <a href="{{ url('xem-phim/' . $movie->slug . '/tap-' . $episode_tapdau->episode) }}" class="bwac-btn">
+                                            <a href="{{ url('xem-phim/' . $movie->slug . '/tap-' . $episode_tapdau->episode) }}"
+                                                class="bwac-btn">
                                                 <i class="fa fa-play"></i>
                                             </a>
                                         </div>
                                     @endif
                                 @else
-                                    <a href="#watch_trailer" style="display: block;" class="btn btn-primary watch_trailer">Xem Trailer</a>
+                                    <a href="#watch_trailer" style="display: block;"
+                                        class="btn btn-primary watch_trailer">Xem Trailer</a>
                                 @endif
                             </div>
                             <div class="film-poster col-md-9">
@@ -62,7 +70,8 @@
                                     {{ $movie->title }}</h1>
                                 <h2 class="movie-title title-2" style="font-size: 12px;">{{ $movie->name_en }}</h2>
                                 <ul class="list-info-group">
-                                    <li class="list-info-group-item"><span>Trạng Thái</span> : <span class="quality">{{ $resolutions[$movie->resolution] }}</span>
+                                    <li class="list-info-group-item"><span>Trạng Thái</span> : <span
+                                            class="quality">{{ $resolutions[$movie->resolution] }}</span>
                                         @if ($movie->resolution != 5)
                                             <span class="episode">
                                                 @if ($movie->sub_movie == 0)
@@ -97,7 +106,8 @@
                                             <span>Tập phim mới nhất</span> :
                                             @if ($episode_current_list > 0)
                                                 @foreach ($episode as $ep)
-                                                    <a href="{{ url('xem-phim/' . ($movie->thuocphim == 'phimbo' ? $ep->movie->slug : $movie->slug) . '/tap-' . $ep->episode) }}" rel="tag">Tập {{ $ep->episode }}</a>
+                                                    <a href="{{ url('xem-phim/' . ($movie->thuocphim == 'phimbo' ? $ep->movie->slug : $movie->slug) . '/tap-' . $ep->episode) }}"
+                                                        rel="tag">Tập {{ $ep->episode }}</a>
                                                 @endforeach
                                             @else
                                                 Đang cập nhật
@@ -131,7 +141,8 @@
                                         @endforeach
                                     </li>
 
-                                    <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{ route('country', $movie->country->slug) }}"
+                                    <li class="list-info-group-item"><span>Quốc gia</span> : <a
+                                            href="{{ route('country', $movie->country->slug) }}"
                                             rel="tag">{{ $movie->country->title }}</a>
                                     </li>
 
@@ -152,7 +163,7 @@
                                             @endif
                                         </a>
                                     </li>
-                                    
+
                                     <li class="list-info-group-item last-item"
                                         style="-overflow: hidden;-display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-flex: 1;-webkit-box-orient: vertical;">
                                         <span>Diễn viên</span> :
@@ -190,7 +201,8 @@
                     </div>
 
                     <div class="section-bar clearfix">
-                        <h2 class="section-title"><span style="color:#fbf29c">Trailer phim {{ $movie->title }} - {{ $movie->name_en }}</span>
+                        <h2 class="section-title"><span style="color:#fbf29c">Trailer phim {{ $movie->title }} -
+                                {{ $movie->name_en }}</span>
                         </h2>
                     </div>
                     <div class="entry-content htmlwrap clearfix">
@@ -248,11 +260,12 @@
                                     @endphp
                                     <a class="halim-thumb" href="{{ route('movie', $hot->slug) }}">
                                         <figure>
-                                            <img class="lazy img-responsive" src="{{ $image_check === 'http' ? $hot->image : asset('uploads/movie/' . $hot->image) }}"
+                                            <img class="lazy img-responsive"
+                                                src="{{ $image_check === 'http' ? $hot->image : asset('uploads/movie/' . $hot->image) }}"
                                                 alt="{{ $hot->title }}" title="{{ $hot->title }}" loading="lazy">
                                         </figure>
-                                        <span class="status">{{ $resolutions[$movie->resolution] }}</span><span class="episode"><i class="fa fa-play"
-                                                aria-hidden="true"></i>
+                                        <span class="status">{{ $resolutions[$movie->resolution] }}</span><span
+                                            class="episode"><i class="fa fa-play" aria-hidden="true"></i>
                                             @if ($movie->sub_movie == 0)
                                                 VietSub
                                             @elseif ($movie->sub_movie == 1)

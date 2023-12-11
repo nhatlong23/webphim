@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Genre;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use Toastr;
+
 class GenreController extends Controller
 {
     /**
@@ -115,32 +115,33 @@ class GenreController extends Controller
             'description.max' => 'Mô tả không được quá 255 ký tự',
             'status.required' => 'Vui lòng chọn trạng thái',
         ]);
-    
+
         $genre = Genre::find($id);
-    
+
         if ($genre->title != $data['title']) {
-            Toastr::success('Thay đổi tiêu đề thể loại thành ' . $data['title']);
+            toastr()->success('Thay đổi tiêu đề thể loại thành ' . $data['title']);
         }
-    
+
         if ($genre->slug != $data['slug']) {
-            Toastr::success('Thay đổi slug thể loại thành ' . $data['slug']);
+            toastr()->success('Thay đổi slug thể loại thành ' . $data['slug']);
         }
-    
+
         if ($genre->description != $data['description']) {
-            Toastr::success('Thay đổi mô tả thể loại thành ' . $data['description']);
+            toastr()->success('Thay đổi mô tả thể loại thành ' . $data['description']);
         }
-    
+
         if ($genre->status != $data['status']) {
-            Toastr::success('Thay đổi trạng thái thể loại thành ' . $data['status']);
+            $statusText = $data['status'] == 1 ? 'hiển thị' : 'không hiển thị';
+            toastr()->success('Thay đổi trạng thái thể loại thành ' . $statusText);
         }
-    
+
         $genre->title = $data['title'];
         $genre->slug = $data['slug'];
         $genre->description = $data['description'];
         $genre->status = $data['status'];
         $genre->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         $genre->save();
-    
+
         return redirect()->route('genre.index');
     }
 

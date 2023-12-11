@@ -1,709 +1,103 @@
-2023/09/21 09:29:26 [notice] 18#18: using the "epoll" event method
-2023/09/21 09:29:26 [notice] 18#18: nginx/1.21.6
-2023/09/21 09:29:26 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/09/21 09:29:26 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/09/21 09:29:26 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/09/21 09:29:26 [notice] 18#18: start worker processes
-2023/09/21 09:29:26 [notice] 18#18: start worker process 19
-2023/09/21 09:29:26 [notice] 18#18: start worker process 20
-2023/09/21 09:29:26 [notice] 18#18: start worker process 21
-2023/09/21 09:29:26 [notice] 18#18: start worker process 22
-2023/09/21 09:29:26 [notice] 18#18: start worker process 23
-2023/09/21 09:29:26 [notice] 18#18: start worker process 24
-2023/09/21 09:29:26 [notice] 18#18: start worker process 25
-2023/09/21 09:29:26 [notice] 18#18: start worker process 26
-2023/09/22 10:01:26 [error] 23#23: *8 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/09/22 10:04:40 [notice] 18#18: using the "epoll" event method
-2023/09/22 10:04:40 [notice] 18#18: nginx/1.21.6
-2023/09/22 10:04:40 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/09/22 10:04:40 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/09/22 10:04:40 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/09/22 10:04:40 [notice] 18#18: start worker processes
-2023/09/22 10:04:40 [notice] 18#18: start worker process 19
-2023/09/22 10:04:40 [notice] 18#18: start worker process 20
-2023/09/22 10:04:40 [notice] 18#18: start worker process 21
-2023/09/22 10:04:40 [notice] 18#18: start worker process 22
-2023/09/22 10:04:40 [notice] 18#18: start worker process 23
-2023/09/22 10:04:40 [notice] 18#18: start worker process 24
-2023/09/22 10:04:40 [notice] 18#18: start worker process 25
-2023/09/22 10:04:40 [notice] 18#18: start worker process 26
-2023/09/22 10:48:17 [warn] 26#26: *40 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/1/00/0000000001 while reading upstream, client: 172.25.0.1, server: webphim.local, request: "POST /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/login"
-2023/09/22 10:54:30 [error] 22#22: *106 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/09/22 11:02:44 [error] 22#22: *108 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/09/22 11:04:22 [error] 22#22: *110 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/09/22 15:07:50 [error] 23#23: *112 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/09/22 15:09:00 [error] 23#23: *114 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/09/22 15:10:53 [error] 23#23: *118 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/09/22 15:14:13 [notice] 18#18: using the "epoll" event method
-2023/09/22 15:14:13 [notice] 18#18: nginx/1.21.6
-2023/09/22 15:14:13 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/09/22 15:14:13 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/09/22 15:14:13 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/09/22 15:14:13 [notice] 18#18: start worker processes
-2023/09/22 15:14:13 [notice] 18#18: start worker process 19
-2023/09/22 15:14:13 [notice] 18#18: start worker process 20
-2023/09/22 15:14:13 [notice] 18#18: start worker process 21
-2023/09/22 15:14:13 [notice] 18#18: start worker process 22
-2023/09/22 15:14:13 [notice] 18#18: start worker process 23
-2023/09/22 15:14:13 [notice] 18#18: start worker process 24
-2023/09/22 15:14:13 [notice] 18#18: start worker process 25
-2023/09/22 15:14:13 [notice] 18#18: start worker process 26
-2023/09/22 15:16:04 [warn] 20#20: *65 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000001, client: 172.25.0.1, server: webphim.local, request: "POST /info/1 HTTP/1.1", host: "webphim.local", referrer: "https://webphim.local/info/create"
-2023/09/22 15:17:41 [warn] 25#25: *85 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000002, client: 172.25.0.1, server: webphim.local, request: "POST /info/1 HTTP/1.1", host: "webphim.local", referrer: "https://webphim.local/info/create"
-2023/09/22 15:18:07 [warn] 25#25: *87 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000003, client: 172.25.0.1, server: webphim.local, request: "POST /info/1 HTTP/1.1", host: "webphim.local", referrer: "https://webphim.local/info/create"
-2023/09/22 15:20:48 [warn] 25#25: *96 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000004, client: 172.25.0.1, server: webphim.local, request: "POST /info/1 HTTP/1.1", host: "webphim.local", referrer: "https://webphim.local/info/create"
-2023/09/22 15:21:18 [warn] 25#25: *100 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000005, client: 172.25.0.1, server: webphim.local, request: "POST /info/1 HTTP/1.1", host: "webphim.local", referrer: "https://webphim.local/info/create"
-2023/09/22 15:22:46 [warn] 24#24: *113 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000006, client: 172.25.0.1, server: webphim.local, request: "POST /info/1 HTTP/1.1", host: "webphim.local", referrer: "https://webphim.local/info/create"
-2023/09/22 15:24:19 [warn] 24#24: *123 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000007, client: 172.25.0.1, server: webphim.local, request: "POST /info/1 HTTP/1.1", host: "webphim.local", referrer: "https://webphim.local/info/create"
-2023/09/22 15:28:34 [warn] 19#19: *305 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000008, client: 172.25.0.1, server: webphim.local, request: "POST /info/1 HTTP/1.1", host: "webphim.local", referrer: "https://webphim.local/info/create"
-2023/09/22 15:29:54 [warn] 20#20: *311 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000009, client: 172.25.0.1, server: webphim.local, request: "POST /info/1 HTTP/1.1", host: "webphim.local", referrer: "https://webphim.local/info/create"
-2023/09/22 15:37:16 [warn] 20#20: *366 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/0/01/0000000010 while reading upstream, client: 172.25.0.1, server: webphim.local, request: "GET /send-email HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/movie"
-2023/09/22 16:20:32 [error] 23#23: *629 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET /send-email HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local", referrer: "https://webphim.local/movie"
-2023/09/23 04:19:45 [notice] 18#18: using the "epoll" event method
-2023/09/23 04:19:45 [notice] 18#18: nginx/1.21.6
-2023/09/23 04:19:45 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/09/23 04:19:45 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/09/23 04:19:45 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/09/23 04:19:45 [notice] 18#18: start worker processes
-2023/09/23 04:19:45 [notice] 18#18: start worker process 19
-2023/09/23 04:19:45 [notice] 18#18: start worker process 20
-2023/09/23 04:19:45 [notice] 18#18: start worker process 21
-2023/09/23 04:19:45 [notice] 18#18: start worker process 22
-2023/09/23 04:19:45 [notice] 18#18: start worker process 23
-2023/09/23 04:19:45 [notice] 18#18: start worker process 24
-2023/09/23 04:19:45 [notice] 18#18: start worker process 25
-2023/09/23 04:19:45 [notice] 18#18: start worker process 26
-2023/09/27 03:50:26 [notice] 18#18: using the "epoll" event method
-2023/09/27 03:50:26 [notice] 18#18: nginx/1.21.6
-2023/09/27 03:50:26 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/09/27 03:50:26 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/09/27 03:50:26 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/09/27 03:50:26 [notice] 18#18: start worker processes
-2023/09/27 03:50:26 [notice] 18#18: start worker process 19
-2023/09/27 03:50:26 [notice] 18#18: start worker process 20
-2023/09/27 03:50:26 [notice] 18#18: start worker process 21
-2023/09/27 03:50:26 [notice] 18#18: start worker process 22
-2023/09/27 03:50:26 [notice] 18#18: start worker process 23
-2023/09/27 03:50:26 [notice] 18#18: start worker process 24
-2023/09/27 03:50:26 [notice] 18#18: start worker process 25
-2023/09/27 03:50:26 [notice] 18#18: start worker process 26
-2023/09/27 04:01:40 [error] 25#25: *21 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/09/27 09:20:35 [notice] 18#18: using the "epoll" event method
-2023/09/27 09:20:35 [notice] 18#18: nginx/1.21.6
-2023/09/27 09:20:35 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/09/27 09:20:35 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/09/27 09:20:35 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/09/27 09:20:35 [notice] 18#18: start worker processes
-2023/09/27 09:20:35 [notice] 18#18: start worker process 19
-2023/09/27 09:20:35 [notice] 18#18: start worker process 20
-2023/09/27 09:20:35 [notice] 18#18: start worker process 21
-2023/09/27 09:20:35 [notice] 18#18: start worker process 22
-2023/09/27 09:20:35 [notice] 18#18: start worker process 23
-2023/09/27 09:20:35 [notice] 18#18: start worker process 24
-2023/09/27 09:20:35 [notice] 18#18: start worker process 25
-2023/09/27 09:20:35 [notice] 18#18: start worker process 26
-2023/09/27 09:24:59 [error] 19#19: *20 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "127.0.0.1"
-2023/09/27 09:36:10 [warn] 19#19: *23 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/1/00/0000000001 while reading upstream, client: 172.25.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "127.0.0.1"
-2023/09/27 09:38:12 [error] 19#19: *27 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "127.0.0.1"
-2023/09/27 09:43:55 [notice] 18#18: using the "epoll" event method
-2023/09/27 09:43:55 [notice] 18#18: nginx/1.21.6
-2023/09/27 09:43:55 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/09/27 09:43:55 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/09/27 09:43:55 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/09/27 09:43:55 [notice] 18#18: start worker processes
-2023/09/27 09:43:55 [notice] 18#18: start worker process 19
-2023/09/27 09:43:55 [notice] 18#18: start worker process 20
-2023/09/27 09:43:55 [notice] 18#18: start worker process 21
-2023/09/27 09:43:55 [notice] 18#18: start worker process 22
-2023/09/27 09:43:55 [notice] 18#18: start worker process 23
-2023/09/27 09:43:55 [notice] 18#18: start worker process 24
-2023/09/27 09:43:55 [notice] 18#18: start worker process 25
-2023/09/27 09:43:55 [notice] 18#18: start worker process 26
-2023/09/27 10:02:26 [notice] 18#18: using the "epoll" event method
-2023/09/27 10:02:26 [notice] 18#18: nginx/1.21.6
-2023/09/27 10:02:26 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/09/27 10:02:26 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/09/27 10:02:26 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/09/27 10:02:26 [notice] 18#18: start worker processes
-2023/09/27 10:02:26 [notice] 18#18: start worker process 19
-2023/09/27 10:02:26 [notice] 18#18: start worker process 20
-2023/09/27 10:02:26 [notice] 18#18: start worker process 21
-2023/09/27 10:02:26 [notice] 18#18: start worker process 22
-2023/09/27 10:02:26 [notice] 18#18: start worker process 23
-2023/09/27 10:02:26 [notice] 18#18: start worker process 24
-2023/09/27 10:02:26 [notice] 18#18: start worker process 25
-2023/09/27 10:02:26 [notice] 18#18: start worker process 26
-2023/09/27 11:00:31 [notice] 18#18: using the "epoll" event method
-2023/09/27 11:00:31 [notice] 18#18: nginx/1.21.6
-2023/09/27 11:00:31 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/09/27 11:00:31 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/09/27 11:00:31 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/09/27 11:00:31 [notice] 18#18: start worker processes
-2023/09/27 11:00:31 [notice] 18#18: start worker process 19
-2023/09/27 11:00:31 [notice] 18#18: start worker process 20
-2023/09/27 11:00:31 [notice] 18#18: start worker process 21
-2023/09/27 11:00:31 [notice] 18#18: start worker process 22
-2023/09/27 11:00:31 [notice] 18#18: start worker process 23
-2023/09/27 11:00:31 [notice] 18#18: start worker process 24
-2023/09/27 11:00:31 [notice] 18#18: start worker process 25
-2023/09/27 11:00:31 [notice] 18#18: start worker process 26
-2023/09/27 11:22:32 [notice] 18#18: using the "epoll" event method
-2023/09/27 11:22:32 [notice] 18#18: nginx/1.21.6
-2023/09/27 11:22:32 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/09/27 11:22:32 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/09/27 11:22:32 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/09/27 11:22:32 [notice] 18#18: start worker processes
-2023/09/27 11:22:32 [notice] 18#18: start worker process 19
-2023/09/27 11:22:32 [notice] 18#18: start worker process 20
-2023/09/27 11:22:32 [notice] 18#18: start worker process 21
-2023/09/27 11:22:32 [notice] 18#18: start worker process 22
-2023/09/27 11:22:32 [notice] 18#18: start worker process 23
-2023/09/27 11:22:32 [notice] 18#18: start worker process 24
-2023/09/27 11:22:32 [notice] 18#18: start worker process 25
-2023/09/27 11:22:32 [notice] 18#18: start worker process 26
-2023/09/27 11:22:37 [error] 21#21: *1 connect() to unix:/var/run/php/php7.4-fpm.sock failed (111: Connection refused) while connecting to upstream, client: 172.25.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "127.0.0.1"
-2023/09/28 07:01:32 [warn] 19#19: *447 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/1/00/0000000001 while reading upstream, client: 172.25.0.1, server: webphim.local, request: "GET /customers/resetPassword/pwkO9r0Pbx40ImkH8mgc7xXKldOlpf9RXRY5IePtsBRRCTtARhbaAQZkkAQVx7yX HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "127.0.0.1"
-2023/09/28 08:27:43 [warn] 24#24: *512 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/2/00/0000000002 while reading upstream, client: 172.25.0.1, server: webphim.local, request: "POST /sendResetLinkEmail-customers HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "127.0.0.1", referrer: "https://127.0.0.1/customers/forgotPassword"
-2023/09/28 16:08:12 [warn] 19#19: *722 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/3/00/0000000003 while reading upstream, client: 172.25.0.1, server: webphim.local, request: "POST / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "127.0.0.1", referrer: "https://127.0.0.1/"
-2023/09/30 07:13:50 [warn] 23#23: *1159 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/4/00/0000000004 while reading upstream, client: 172.25.0.1, server: webphim.local, request: "POST / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "127.0.0.1", referrer: "https://127.0.0.1/"
-2023/09/30 08:05:22 [warn] 20#20: *1405 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/5/00/0000000005 while reading upstream, client: 172.25.0.1, server: webphim.local, request: "GET /resendCode-customers HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "127.0.0.1", referrer: "https://127.0.0.1/customers/verifyEmail/long00z@mail1s.edu.vn"
-2023/09/30 09:32:46 [error] 21#21: *1698 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:32:51 [error] 21#21: *1699 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:32:53 [error] 21#21: *1699 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:32:55 [error] 21#21: *1699 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:33:32 [error] 21#21: *1714 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:34:32 [error] 21#21: *1715 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:34:34 [error] 21#21: *1715 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:34:34 [error] 21#21: *1715 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:34:35 [error] 21#21: *1715 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:34:35 [error] 21#21: *1715 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:34:35 [error] 21#21: *1715 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:34:35 [error] 21#21: *1715 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:34:35 [error] 21#21: *1715 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:34:36 [error] 21#21: *1715 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:34:36 [error] 21#21: *1716 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:34:36 [error] 21#21: *1716 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:34:36 [error] 21#21: *1716 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:34:37 [error] 21#21: *1716 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:34:37 [error] 21#21: *1716 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:34:37 [error] 21#21: *1716 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:34:37 [error] 21#21: *1716 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:35:11 [error] 20#20: *1724 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:36:18 [error] 22#22: *1736 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:36:33 [error] 20#20: *1745 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local", referrer: "https://webphim.local/leech-detail/nghe-thuat-san-quy-va-nau-mi-phan-2"
-2023/09/30 09:38:59 [error] 20#20: *1754 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:39:00 [error] 20#20: *1754 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:39:26 [error] 22#22: *1766 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:48:23 [error] 19#19: *1796 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "127.0.0.1"
-2023/09/30 09:53:14 [error] 23#23: *1848 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:55:11 [notice] 18#18: using the "epoll" event method
-2023/09/30 09:55:11 [notice] 18#18: nginx/1.21.6
-2023/09/30 09:55:11 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/09/30 09:55:11 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/09/30 09:55:11 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/09/30 09:55:11 [notice] 18#18: start worker processes
-2023/09/30 09:55:11 [notice] 18#18: start worker process 19
-2023/09/30 09:55:11 [notice] 18#18: start worker process 20
-2023/09/30 09:55:11 [notice] 18#18: start worker process 21
-2023/09/30 09:55:11 [notice] 18#18: start worker process 22
-2023/09/30 09:55:11 [notice] 18#18: start worker process 23
-2023/09/30 09:55:11 [notice] 18#18: start worker process 24
-2023/09/30 09:55:11 [notice] 18#18: start worker process 25
-2023/09/30 09:55:11 [notice] 18#18: start worker process 26
-2023/09/30 09:56:24 [error] 21#21: *1 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 09:59:23 [error] 25#25: *13 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 10:02:20 [error] 19#19: *14 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 10:02:21 [error] 19#19: *14 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 10:02:55 [error] 22#22: *15 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 10:02:57 [error] 22#22: *15 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 10:03:08 [error] 20#20: *16 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 10:03:16 [error] 21#21: *17 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 10:03:50 [error] 21#21: *18 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 10:04:29 [error] 21#21: *30 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 10:04:30 [error] 21#21: *30 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/09/30 10:06:41 [error] 21#21: *31 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/10/02 01:41:49 [error] 21#21: *32 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/10/02 01:41:52 [error] 21#21: *33 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/10/02 01:57:34 [error] 24#24: *77 directory index of "/home/longnguyen/Workspace/php/webphim/public/login/" is forbidden, client: 172.25.0.1, server: webphim.local, request: "GET /login/ HTTP/1.1", host: "webphim.local"
-2023/10/02 02:24:06 [error] 25#25: *186 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/longnguyen/Workspace/php/webphim/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOStatement.php on line 55" while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET /synchronize-all-episodes HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/leech-movie"
-2023/10/02 02:24:06 [warn] 25#25: *186 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/1/00/0000000001 while reading upstream, client: 172.25.0.1, server: webphim.local, request: "GET /synchronize-all-episodes HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/leech-movie"
-2023/10/02 02:26:26 [error] 19#19: *209 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/longnguyen/Workspace/php/webphim/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOStatement.php on line 55" while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET /synchronize-all-episodes HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/leech-movie"
-2023/10/02 02:26:26 [warn] 19#19: *209 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/2/00/0000000002 while reading upstream, client: 172.25.0.1, server: webphim.local, request: "GET /synchronize-all-episodes HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/leech-movie"
-2023/10/02 02:28:17 [error] 19#19: *217 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/longnguyen/Workspace/php/webphim/vendor/laravel/framework/src/Illuminate/Database/Connection.php on line 682" while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET /synchronize-all-episodes HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/leech-movie"
-2023/10/02 02:28:17 [warn] 19#19: *217 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/3/00/0000000003 while reading upstream, client: 172.25.0.1, server: webphim.local, request: "GET /synchronize-all-episodes HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/leech-movie"
-2023/10/02 02:30:30 [error] 19#19: *226 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/longnguyen/Workspace/php/webphim/vendor/jaybizzle/crawler-detect/src/CrawlerDetect.php on line 175" while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET /synchronize-all-episodes HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/leech-movie"
-2023/10/02 02:30:30 [warn] 19#19: *226 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/4/00/0000000004 while reading upstream, client: 172.25.0.1, server: webphim.local, request: "GET /synchronize-all-episodes HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/leech-movie"
-2023/10/02 02:31:13 [warn] 19#19: *240 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000005, client: 172.25.0.1, server: webphim.local, request: "POST /info/1 HTTP/1.1", host: "webphim.local", referrer: "https://webphim.local/info/create"
-2023/10/02 03:32:17 [warn] 25#25: *920 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000006, client: 172.25.0.1, server: webphim.local, request: "POST /movie HTTP/1.1", host: "webphim.local", referrer: "https://webphim.local/movie/create"
-2023/10/02 03:33:03 [warn] 19#19: *929 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000007, client: 172.25.0.1, server: webphim.local, request: "POST /movie HTTP/1.1", host: "webphim.local", referrer: "https://webphim.local/movie/create"
-2023/10/02 05:03:56 [warn] 23#23: *1527 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/8/00/0000000008 while reading upstream, client: 172.25.0.1, server: webphim.local, request: "GET /home HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local"
-2023/10/02 15:00:40 [warn] 25#25: *2319 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/9/00/0000000009 while reading upstream, client: 172.25.0.1, server: webphim.local, request: "POST /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/login"
-2023/10/02 15:03:36 [warn] 22#22: *2407 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/0/01/0000000010 while reading upstream, client: 172.25.0.1, server: webphim.local, request: "POST / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/"
-2023/10/02 17:09:45 [error] 22#22: *3127 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Trait 'App\Http\Controllers\Illuminate\Http\Request' not found in /home/longnguyen/Workspace/php/webphim/app/Http/Controllers/MovieController.php on line 24" while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET /movie HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/customer"
-2023/10/02 17:10:27 [error] 22#22: *3129 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Trait 'App\Http\Controllers\Illuminate\Http\Request' not found in /home/longnguyen/Workspace/php/webphim/app/Http/Controllers/MovieController.php on line 24" while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET /movie HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/customer"
-2023/10/02 17:12:05 [error] 22#22: *3131 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Trait 'App\Http\Controllers\Illuminate\Http\Request' not found in /home/longnguyen/Workspace/php/webphim/app/Http/Controllers/MovieController.php on line 24" while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET /movie HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local"
-2023/10/02 17:12:05 [warn] 22#22: *3131 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/1/01/0000000011 while reading upstream, client: 172.25.0.1, server: webphim.local, request: "GET /movie HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local"
-2023/10/02 17:12:13 [error] 22#22: *3144 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Trait 'App\Http\Controllers\Illuminate\Http\Request' not found in /home/longnguyen/Workspace/php/webphim/app/Http/Controllers/MovieController.php on line 24" while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET /movie HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/customer"
-2023/10/03 02:14:45 [notice] 18#18: using the "epoll" event method
-2023/10/03 02:14:45 [notice] 18#18: nginx/1.21.6
-2023/10/03 02:14:45 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/10/03 02:14:45 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/10/03 02:14:45 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/10/03 02:14:45 [notice] 18#18: start worker processes
-2023/10/03 02:14:45 [notice] 18#18: start worker process 19
-2023/10/03 02:14:45 [notice] 18#18: start worker process 20
-2023/10/03 02:14:45 [notice] 18#18: start worker process 21
-2023/10/03 02:14:45 [notice] 18#18: start worker process 22
-2023/10/03 02:14:45 [notice] 18#18: start worker process 23
-2023/10/03 02:14:45 [notice] 18#18: start worker process 24
-2023/10/03 02:14:45 [notice] 18#18: start worker process 25
-2023/10/03 02:14:45 [notice] 18#18: start worker process 26
-2023/10/03 03:22:18 [error] 22#22: *133 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Cannot redeclare App\Models\Customer::$casts in /home/longnguyen/Workspace/php/webphim/app/Models/Customer.php on line 56" while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET /customer HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local"
-2023/10/04 03:34:20 [error] 19#19: *723 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET /auth/google/callback?state=569UJ1ftUDC3Mh6x0kz0iTHJX8rwNUMDGilw0pDE&code=4%2F0AfJohXmHyCr_EoCTKFDwwbGCLiWBHv60JQZkRez0S60-Ir2ep5UxnzVUFEjAYdl0uqb74g&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "127.0.0.1", referrer: "https://accounts.google.com/"
-2023/10/04 03:35:30 [error] 19#19: *725 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET /auth/google/callback?state=569UJ1ftUDC3Mh6x0kz0iTHJX8rwNUMDGilw0pDE&code=4%2F0AfJohXmY-8ztUE7naNs1N5PmSl6rcXeMBOcZi1Upwx2tOtXhF0b-EiLBVhtt84WUmWogrA&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "127.0.0.1", referrer: "https://accounts.google.com/"
-2023/10/04 03:36:39 [error] 20#20: *733 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "127.0.0.1"
-2023/10/04 03:37:48 [error] 20#20: *735 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "127.0.0.1"
-2023/10/04 03:49:35 [error] 23#23: *920 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/longnguyen/Workspace/php/webphim/vendor/laravel/framework/src/Illuminate/Collections/Arr.php on line 21" while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET /synchronize-all-episodes HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/leech-movie"
-2023/10/04 03:49:35 [warn] 23#23: *920 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/1/00/0000000001 while reading upstream, client: 172.25.0.1, server: webphim.local, request: "GET /synchronize-all-episodes HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/leech-movie"
-2023/10/04 05:34:59 [error] 25#25: *1633 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Cannot redeclare App\Models\Movie::episodes() in /home/longnguyen/Workspace/php/webphim/app/Models/Movie.php on line 41" while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET /movie HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local"
-2023/10/06 02:51:04 [warn] 19#19: *2339 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/2/00/0000000002 while reading upstream, client: 172.25.0.1, server: webphim.local, request: "GET /synchronize-all-episodes HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/leech-movie"
-2023/10/06 02:57:06 [error] 19#19: *2356 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET /synchronize-all-episodes HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local", referrer: "https://webphim.local/leech-movie"
-2023/10/06 02:59:03 [error] 19#19: *2361 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET /leech-movie HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local", referrer: "https://webphim.local/home"
-2023/10/06 02:59:05 [error] 19#19: *2363 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET /phim/thanh-pho-cua-co-ay HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/06 03:02:37 [error] 19#19: *2365 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET /phim/thanh-pho-cua-co-ay HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/06 03:12:19 [error] 19#19: *2367 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET /leech-movie HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/06 03:12:20 [error] 20#20: *2369 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.25.0.1, server: webphim.local, request: "GET /phim/thanh-pho-cua-co-ay HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/11 03:25:01 [notice] 18#18: using the "epoll" event method
-2023/10/11 03:25:01 [notice] 18#18: nginx/1.21.6
-2023/10/11 03:25:01 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/10/11 03:25:01 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/10/11 03:25:01 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/10/11 03:25:01 [notice] 18#18: start worker processes
-2023/10/11 03:25:01 [notice] 18#18: start worker process 19
-2023/10/11 03:25:01 [notice] 18#18: start worker process 20
-2023/10/11 03:25:01 [notice] 18#18: start worker process 21
-2023/10/11 03:25:01 [notice] 18#18: start worker process 22
-2023/10/11 03:25:01 [notice] 18#18: start worker process 23
-2023/10/11 03:25:01 [notice] 18#18: start worker process 24
-2023/10/11 03:25:01 [notice] 18#18: start worker process 25
-2023/10/11 03:25:01 [notice] 18#18: start worker process 26
-2023/10/11 07:48:15 [notice] 19#19: using the "epoll" event method
-2023/10/11 07:48:15 [notice] 19#19: nginx/1.21.6
-2023/10/11 07:48:15 [notice] 19#19: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/10/11 07:48:15 [notice] 19#19: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/10/11 07:48:15 [notice] 19#19: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/10/11 07:48:15 [notice] 19#19: start worker processes
-2023/10/11 07:48:15 [notice] 19#19: start worker process 20
-2023/10/11 07:48:15 [notice] 19#19: start worker process 21
-2023/10/11 07:48:15 [notice] 19#19: start worker process 22
-2023/10/11 07:48:15 [notice] 19#19: start worker process 23
-2023/10/11 07:48:15 [notice] 19#19: start worker process 24
-2023/10/11 07:48:15 [notice] 19#19: start worker process 25
-2023/10/11 07:48:15 [notice] 19#19: start worker process 26
-2023/10/11 07:48:15 [notice] 19#19: start worker process 27
-2023/10/11 09:05:38 [error] 25#25: *305 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/11 09:06:42 [error] 25#25: *307 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/11 09:09:02 [error] 25#25: *309 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/11 09:10:25 [error] 25#25: *311 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/11 09:11:53 [error] 25#25: *313 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/11 09:13:36 [error] 25#25: *315 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/11 09:15:14 [error] 25#25: *317 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/11 09:18:05 [error] 25#25: *319 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/11 09:20:14 [error] 26#26: *321 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/11 09:22:30 [error] 26#26: *323 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/11 09:27:02 [error] 26#26: *325 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/11 09:29:53 [error] 26#26: *327 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/11 09:42:04 [error] 26#26: *329 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/11 09:49:05 [notice] 18#18: using the "epoll" event method
-2023/10/11 09:49:05 [notice] 18#18: nginx/1.21.6
-2023/10/11 09:49:05 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/10/11 09:49:05 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/10/11 09:49:05 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/10/11 09:49:05 [notice] 18#18: start worker processes
-2023/10/11 09:49:05 [notice] 18#18: start worker process 19
-2023/10/11 09:49:05 [notice] 18#18: start worker process 20
-2023/10/11 09:49:05 [notice] 18#18: start worker process 21
-2023/10/11 09:49:05 [notice] 18#18: start worker process 22
-2023/10/11 09:49:05 [notice] 18#18: start worker process 23
-2023/10/11 09:49:05 [notice] 18#18: start worker process 24
-2023/10/11 09:49:05 [notice] 18#18: start worker process 25
-2023/10/11 09:49:05 [notice] 18#18: start worker process 26
-2023/10/12 06:16:55 [notice] 18#18: using the "epoll" event method
-2023/10/12 06:16:55 [notice] 18#18: nginx/1.21.6
-2023/10/12 06:16:55 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/10/12 06:16:55 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/10/12 06:16:55 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/10/12 06:16:55 [notice] 18#18: start worker processes
-2023/10/12 06:16:55 [notice] 18#18: start worker process 19
-2023/10/12 06:16:55 [notice] 18#18: start worker process 20
-2023/10/12 06:16:55 [notice] 18#18: start worker process 21
-2023/10/12 06:16:55 [notice] 18#18: start worker process 22
-2023/10/12 06:16:55 [notice] 18#18: start worker process 23
-2023/10/12 06:16:55 [notice] 18#18: start worker process 24
-2023/10/12 06:16:55 [notice] 18#18: start worker process 25
-2023/10/12 06:16:55 [notice] 18#18: start worker process 26
-2023/10/12 07:01:13 [error] 26#26: *16 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/12 08:00:14 [error] 19#19: *205 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /synchronize-all-movies?page=3 HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local", referrer: "https://webphim.local/leech-movie"
-2023/10/12 08:01:51 [error] 25#25: *221 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /synchronize-all-episodes HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local", referrer: "https://webphim.local/leech-movie"
-2023/10/12 08:04:17 [error] 25#25: *266 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /synchronize-all-episodes HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local", referrer: "https://webphim.local/leech-movie"
-2023/10/12 08:05:33 [error] 25#25: *269 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /leech-movie HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local", referrer: "https://webphim.local/movie"
-2023/10/12 08:08:10 [error] 26#26: *288 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /synchronize-all-episodes HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local", referrer: "https://webphim.local/leech-movie"
-2023/10/12 08:10:39 [error] 26#26: *309 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /synchronize-all-episodes HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local", referrer: "https://webphim.local/leech-movie"
-2023/10/12 08:13:04 [error] 24#24: *328 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /synchronize-all-episodes HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local", referrer: "https://webphim.local/leech-movie"
-2023/10/24 03:02:27 [notice] 19#19: using the "epoll" event method
-2023/10/24 03:02:27 [notice] 19#19: nginx/1.21.6
-2023/10/24 03:02:27 [notice] 19#19: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/10/24 03:02:27 [notice] 19#19: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/10/24 03:02:27 [notice] 19#19: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/10/24 03:02:27 [notice] 19#19: start worker processes
-2023/10/24 03:02:27 [notice] 19#19: start worker process 20
-2023/10/24 03:02:27 [notice] 19#19: start worker process 21
-2023/10/24 03:02:27 [notice] 19#19: start worker process 22
-2023/10/24 03:02:27 [notice] 19#19: start worker process 23
-2023/10/24 03:02:27 [notice] 19#19: start worker process 24
-2023/10/24 03:02:27 [notice] 19#19: start worker process 25
-2023/10/24 03:02:27 [notice] 19#19: start worker process 26
-2023/10/24 03:02:27 [notice] 19#19: start worker process 27
-2023/10/25 05:38:49 [notice] 18#18: using the "epoll" event method
-2023/10/25 05:38:49 [notice] 18#18: nginx/1.21.6
-2023/10/25 05:38:49 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/10/25 05:38:49 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/10/25 05:38:49 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/10/25 05:38:49 [notice] 18#18: start worker processes
-2023/10/25 05:38:49 [notice] 18#18: start worker process 19
-2023/10/25 05:38:49 [notice] 18#18: start worker process 20
-2023/10/25 05:38:49 [notice] 18#18: start worker process 21
-2023/10/25 05:38:49 [notice] 18#18: start worker process 22
-2023/10/25 05:38:49 [notice] 18#18: start worker process 23
-2023/10/25 05:38:49 [notice] 18#18: start worker process 24
-2023/10/25 05:38:49 [notice] 18#18: start worker process 25
-2023/10/25 05:38:49 [notice] 18#18: start worker process 26
-2023/10/25 05:47:38 [error] 22#22: *75 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local", referrer: "https://webphim.local/login"
-2023/10/25 06:05:05 [error] 19#19: *111 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "POST /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "127.0.0.1", referrer: "http://127.0.0.1/login"
-2023/10/25 09:10:03 [notice] 19#19: using the "epoll" event method
-2023/10/25 09:10:03 [notice] 19#19: nginx/1.21.6
-2023/10/25 09:10:03 [notice] 19#19: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/10/25 09:10:03 [notice] 19#19: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/10/25 09:10:03 [notice] 19#19: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/10/25 09:10:03 [notice] 19#19: start worker processes
-2023/10/25 09:10:03 [notice] 19#19: start worker process 20
-2023/10/25 09:10:03 [notice] 19#19: start worker process 21
-2023/10/25 09:10:03 [notice] 19#19: start worker process 22
-2023/10/25 09:10:03 [notice] 19#19: start worker process 23
-2023/10/25 09:10:03 [notice] 19#19: start worker process 24
-2023/10/25 09:10:03 [notice] 19#19: start worker process 25
-2023/10/25 09:10:03 [notice] 19#19: start worker process 26
-2023/10/25 09:10:03 [notice] 19#19: start worker process 27
-2023/10/25 09:23:33 [error] 22#22: *44 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/26 03:27:18 [error] 25#25: *110 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/26 03:28:24 [error] 25#25: *112 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/26 03:42:57 [error] 25#25: *114 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/10/26 03:44:15 [notice] 18#18: using the "epoll" event method
-2023/10/26 03:44:15 [notice] 18#18: nginx/1.21.6
-2023/10/26 03:44:15 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/10/26 03:44:15 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/10/26 03:44:15 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/10/26 03:44:15 [notice] 18#18: start worker processes
-2023/10/26 03:44:15 [notice] 18#18: start worker process 19
-2023/10/26 03:44:15 [notice] 18#18: start worker process 20
-2023/10/26 03:44:15 [notice] 18#18: start worker process 21
-2023/10/26 03:44:15 [notice] 18#18: start worker process 22
-2023/10/26 03:44:15 [notice] 18#18: start worker process 23
-2023/10/26 03:44:15 [notice] 18#18: start worker process 24
-2023/10/26 03:44:15 [notice] 18#18: start worker process 25
-2023/10/26 03:44:15 [notice] 18#18: start worker process 26
-2023/10/26 08:31:36 [warn] 25#25: *1239 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/1/00/0000000001 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "GET /profile HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local"
-2023/10/26 10:59:23 [warn] 20#20: *1839 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/2/00/0000000002 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "POST / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/"
-2023/10/26 16:47:39 [warn] 25#25: *2852 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/3/00/0000000003 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "POST / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/"
-2023/10/28 03:42:45 [notice] 19#19: using the "epoll" event method
-2023/10/28 03:42:45 [notice] 19#19: nginx/1.21.6
-2023/10/28 03:42:45 [notice] 19#19: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/10/28 03:42:45 [notice] 19#19: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/10/28 03:42:45 [notice] 19#19: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/10/28 03:42:45 [notice] 19#19: start worker processes
-2023/10/28 03:42:45 [notice] 19#19: start worker process 20
-2023/10/28 03:42:45 [notice] 19#19: start worker process 21
-2023/10/28 03:42:45 [notice] 19#19: start worker process 22
-2023/10/28 03:42:45 [notice] 19#19: start worker process 23
-2023/10/28 03:42:45 [notice] 19#19: start worker process 24
-2023/10/28 03:42:45 [notice] 19#19: start worker process 25
-2023/10/28 03:42:45 [notice] 19#19: start worker process 26
-2023/10/28 03:42:45 [notice] 19#19: start worker process 27
-2023/11/02 08:48:34 [notice] 18#18: using the "epoll" event method
-2023/11/02 08:48:34 [notice] 18#18: nginx/1.21.6
-2023/11/02 08:48:34 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/11/02 08:48:34 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/11/02 08:48:34 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/11/02 08:48:34 [notice] 18#18: start worker processes
-2023/11/02 08:48:34 [notice] 18#18: start worker process 19
-2023/11/02 08:48:34 [notice] 18#18: start worker process 20
-2023/11/02 08:48:34 [notice] 18#18: start worker process 21
-2023/11/02 08:48:34 [notice] 18#18: start worker process 22
-2023/11/02 08:48:34 [notice] 18#18: start worker process 23
-2023/11/02 08:48:34 [notice] 18#18: start worker process 24
-2023/11/02 08:48:34 [notice] 18#18: start worker process 25
-2023/11/02 08:48:34 [notice] 18#18: start worker process 26
-2023/11/06 17:22:05 [notice] 18#18: using the "epoll" event method
-2023/11/06 17:22:05 [notice] 18#18: nginx/1.21.6
-2023/11/06 17:22:05 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/11/06 17:22:05 [notice] 18#18: OS: Linux 5.15.90.1-microsoft-standard-WSL2
-2023/11/06 17:22:05 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/11/06 17:22:05 [notice] 18#18: start worker processes
-2023/11/06 17:22:05 [notice] 18#18: start worker process 19
-2023/11/06 17:22:05 [notice] 18#18: start worker process 20
-2023/11/06 17:22:05 [notice] 18#18: start worker process 21
-2023/11/06 17:22:05 [notice] 18#18: start worker process 22
-2023/11/06 17:22:05 [notice] 18#18: start worker process 23
-2023/11/06 17:22:05 [notice] 18#18: start worker process 24
-2023/11/06 17:22:05 [notice] 18#18: start worker process 25
-2023/11/06 17:22:05 [notice] 18#18: start worker process 26
-2023/11/23 01:46:13 [notice] 18#18: using the "epoll" event method
-2023/11/23 01:46:13 [notice] 18#18: nginx/1.21.6
-2023/11/23 01:46:13 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/11/23 01:46:13 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
-2023/11/23 01:46:13 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/11/23 01:46:13 [notice] 18#18: start worker processes
-2023/11/23 01:46:13 [notice] 18#18: start worker process 19
-2023/11/23 01:46:13 [notice] 18#18: start worker process 20
-2023/11/23 01:46:13 [notice] 18#18: start worker process 21
-2023/11/23 01:46:13 [notice] 18#18: start worker process 22
-2023/11/23 01:46:13 [notice] 18#18: start worker process 23
-2023/11/23 01:46:13 [notice] 18#18: start worker process 24
-2023/11/23 01:46:13 [notice] 18#18: start worker process 25
-2023/11/23 01:46:13 [notice] 18#18: start worker process 26
-2023/11/23 01:50:29 [warn] 20#20: *1 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/1/00/0000000001 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "GET /_ignition/health-check HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "http://webphim.local/"
-2023/11/23 01:53:49 [warn] 20#20: *24 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/2/00/0000000002 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "POST / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "http://webphim.local/"
-2023/11/23 02:00:12 [error] 20#20: *91 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /js/Chart.bundle.js HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local", referrer: "https://webphim.local/login"
-2023/11/23 02:07:52 [error] 20#20: *99 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/11/23 02:09:41 [error] 19#19: *102 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/11/23 02:11:32 [error] 19#19: *104 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/11/23 02:12:43 [error] 19#19: *106 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/11/23 02:14:31 [error] 19#19: *110 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/11/23 02:18:29 [error] 19#19: *112 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/11/23 02:47:22 [error] 19#19: *114 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/11/23 02:48:36 [error] 19#19: *116 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/11/23 02:53:09 [error] 19#19: *119 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.18.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local"
-2023/11/23 03:04:19 [warn] 23#23: *193 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000003, client: 172.18.0.1, server: webphim.local, request: "POST /info/1 HTTP/1.1", host: "webphim.local", referrer: "https://webphim.local/info/create"
-2023/11/23 04:44:47 [notice] 18#18: using the "epoll" event method
-2023/11/23 04:44:47 [notice] 18#18: nginx/1.21.6
-2023/11/23 04:44:47 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/11/23 04:44:47 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
-2023/11/23 04:44:47 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/11/23 04:44:47 [notice] 18#18: start worker processes
-2023/11/23 04:44:47 [notice] 18#18: start worker process 19
-2023/11/23 04:44:47 [notice] 18#18: start worker process 20
-2023/11/23 04:44:47 [notice] 18#18: start worker process 21
-2023/11/23 04:44:47 [notice] 18#18: start worker process 22
-2023/11/23 04:44:47 [notice] 18#18: start worker process 23
-2023/11/23 04:44:47 [notice] 18#18: start worker process 24
-2023/11/23 04:44:47 [notice] 18#18: start worker process 25
-2023/11/23 04:44:47 [notice] 18#18: start worker process 26
-2023/11/23 04:49:37 [warn] 23#23: *5 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/1/00/0000000001 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "GET /movie HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/country"
-2023/11/23 04:57:41 [notice] 18#18: using the "epoll" event method
-2023/11/23 04:57:41 [notice] 18#18: nginx/1.21.6
-2023/11/23 04:57:41 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/11/23 04:57:41 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
-2023/11/23 04:57:41 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/11/23 04:57:41 [notice] 18#18: start worker processes
-2023/11/23 04:57:41 [notice] 18#18: start worker process 19
-2023/11/23 04:57:41 [notice] 18#18: start worker process 20
-2023/11/23 04:57:41 [notice] 18#18: start worker process 21
-2023/11/23 04:57:41 [notice] 18#18: start worker process 22
-2023/11/23 04:57:41 [notice] 18#18: start worker process 23
-2023/11/23 04:57:41 [notice] 18#18: start worker process 24
-2023/11/23 04:57:41 [notice] 18#18: start worker process 25
-2023/11/23 04:57:41 [notice] 18#18: start worker process 26
-2023/11/23 06:20:52 [notice] 18#18: using the "epoll" event method
-2023/11/23 06:20:52 [notice] 18#18: nginx/1.21.6
-2023/11/23 06:20:52 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/11/23 06:20:52 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
-2023/11/23 06:20:52 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/11/23 06:20:52 [notice] 18#18: start worker processes
-2023/11/23 06:20:52 [notice] 18#18: start worker process 19
-2023/11/23 06:20:52 [notice] 18#18: start worker process 20
-2023/11/23 06:20:52 [notice] 18#18: start worker process 21
-2023/11/23 06:20:52 [notice] 18#18: start worker process 22
-2023/11/23 06:20:52 [notice] 18#18: start worker process 23
-2023/11/23 06:20:52 [notice] 18#18: start worker process 24
-2023/11/23 06:20:52 [notice] 18#18: start worker process 25
-2023/11/23 06:20:52 [notice] 18#18: start worker process 26
-2023/11/23 07:48:25 [notice] 18#18: using the "epoll" event method
-2023/11/23 07:48:25 [notice] 18#18: nginx/1.21.6
-2023/11/23 07:48:25 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/11/23 07:48:25 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
-2023/11/23 07:48:25 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/11/23 07:48:25 [notice] 18#18: start worker processes
-2023/11/23 07:48:25 [notice] 18#18: start worker process 19
-2023/11/23 07:48:25 [notice] 18#18: start worker process 20
-2023/11/23 07:48:25 [notice] 18#18: start worker process 21
-2023/11/23 07:48:25 [notice] 18#18: start worker process 22
-2023/11/23 07:48:25 [notice] 18#18: start worker process 23
-2023/11/23 07:48:25 [notice] 18#18: start worker process 24
-2023/11/23 07:48:25 [notice] 18#18: start worker process 25
-2023/11/23 07:48:25 [notice] 18#18: start worker process 26
-2023/11/23 08:21:04 [notice] 18#18: using the "epoll" event method
-2023/11/23 08:21:04 [notice] 18#18: nginx/1.21.6
-2023/11/23 08:21:04 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/11/23 08:21:04 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
-2023/11/23 08:21:04 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/11/23 08:21:04 [notice] 18#18: start worker processes
-2023/11/23 08:21:04 [notice] 18#18: start worker process 19
-2023/11/23 08:21:04 [notice] 18#18: start worker process 20
-2023/11/23 08:21:04 [notice] 18#18: start worker process 21
-2023/11/23 08:21:04 [notice] 18#18: start worker process 22
-2023/11/23 08:21:04 [notice] 18#18: start worker process 23
-2023/11/23 08:21:04 [notice] 18#18: start worker process 24
-2023/11/23 08:21:04 [notice] 18#18: start worker process 25
-2023/11/23 08:21:04 [notice] 18#18: start worker process 26
-2023/11/30 03:14:11 [emerg] 19#19: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/11/30 03:14:13 [emerg] 23#23: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/11/30 03:14:15 [emerg] 24#24: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/11/30 03:14:18 [emerg] 25#25: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/11/30 03:20:08 [emerg] 18#18: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/11/30 03:20:09 [emerg] 22#22: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/11/30 03:20:11 [emerg] 23#23: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/11/30 03:20:14 [emerg] 24#24: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/11/30 03:25:21 [emerg] 18#18: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/11/30 03:25:23 [emerg] 22#22: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/11/30 03:25:25 [emerg] 23#23: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/11/30 03:25:28 [emerg] 24#24: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/11/30 03:29:28 [emerg] 19#19: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/11/30 03:29:30 [emerg] 29#29: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/11/30 03:29:32 [emerg] 32#32: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/11/30 03:29:35 [emerg] 33#33: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/11/30 03:33:08 [notice] 18#18: using the "epoll" event method
-2023/11/30 03:33:08 [notice] 18#18: nginx/1.21.6
-2023/11/30 03:33:08 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/11/30 03:33:08 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
-2023/11/30 03:33:08 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/11/30 03:33:08 [notice] 18#18: start worker processes
-2023/11/30 03:33:08 [notice] 18#18: start worker process 19
-2023/11/30 03:33:08 [notice] 18#18: start worker process 20
-2023/11/30 03:33:08 [notice] 18#18: start worker process 21
-2023/11/30 03:33:08 [notice] 18#18: start worker process 22
-2023/11/30 03:33:08 [notice] 18#18: start worker process 23
-2023/11/30 03:33:08 [notice] 18#18: start worker process 24
-2023/11/30 03:33:08 [notice] 18#18: start worker process 25
-2023/11/30 03:33:08 [notice] 18#18: start worker process 26
-2023/11/30 03:41:24 [warn] 26#26: *16 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/1/00/0000000001 while reading upstream, client: 172.21.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local"
-2023/11/30 03:42:18 [notice] 18#18: using the "epoll" event method
-2023/11/30 03:42:18 [notice] 18#18: nginx/1.21.6
-2023/11/30 03:42:18 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/11/30 03:42:18 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
-2023/11/30 03:42:18 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/11/30 03:42:18 [notice] 18#18: start worker processes
-2023/11/30 03:42:18 [notice] 18#18: start worker process 19
-2023/11/30 03:42:18 [notice] 18#18: start worker process 20
-2023/11/30 03:42:18 [notice] 18#18: start worker process 21
-2023/11/30 03:42:18 [notice] 18#18: start worker process 22
-2023/11/30 03:42:18 [notice] 18#18: start worker process 23
-2023/11/30 03:42:18 [notice] 18#18: start worker process 24
-2023/11/30 03:42:18 [notice] 18#18: start worker process 25
-2023/11/30 03:42:18 [notice] 18#18: start worker process 26
-2023/11/30 03:43:00 [warn] 20#20: *3 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/1/00/0000000001 while reading upstream, client: 172.21.0.1, server: webphim.local, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local"
-2023/12/01 02:26:17 [notice] 18#18: using the "epoll" event method
-2023/12/01 02:26:17 [notice] 18#18: nginx/1.21.6
-2023/12/01 02:26:17 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/12/01 02:26:17 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
-2023/12/01 02:26:17 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/12/01 02:26:17 [notice] 18#18: start worker processes
-2023/12/01 02:26:17 [notice] 18#18: start worker process 19
-2023/12/01 02:26:17 [notice] 18#18: start worker process 20
-2023/12/01 02:26:17 [notice] 18#18: start worker process 21
-2023/12/01 02:26:17 [notice] 18#18: start worker process 22
-2023/12/01 02:26:17 [notice] 18#18: start worker process 23
-2023/12/01 02:26:17 [notice] 18#18: start worker process 24
-2023/12/01 02:26:17 [notice] 18#18: start worker process 25
-2023/12/01 02:26:17 [notice] 18#18: start worker process 26
-2023/12/01 03:18:50 [emerg] 18#18: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/12/01 03:18:51 [emerg] 22#22: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/12/01 03:18:53 [emerg] 23#23: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/12/01 03:18:56 [emerg] 24#24: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/12/01 03:20:36 [emerg] 19#19: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/12/01 03:20:37 [emerg] 23#23: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/12/01 03:20:39 [emerg] 24#24: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/12/01 03:20:42 [emerg] 25#25: cannot load certificate "/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/home/longnguyen/Workspace/php/webphim/docker/ssl/webphim.local+4.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
-2023/12/01 03:22:26 [notice] 18#18: using the "epoll" event method
-2023/12/01 03:22:26 [notice] 18#18: nginx/1.21.6
-2023/12/01 03:22:26 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/12/01 03:22:26 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
-2023/12/01 03:22:26 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/12/01 03:22:26 [notice] 18#18: start worker processes
-2023/12/01 03:22:26 [notice] 18#18: start worker process 19
-2023/12/01 03:22:26 [notice] 18#18: start worker process 20
-2023/12/01 03:22:26 [notice] 18#18: start worker process 21
-2023/12/01 03:22:26 [notice] 18#18: start worker process 22
-2023/12/01 03:22:26 [notice] 18#18: start worker process 23
-2023/12/01 03:22:26 [notice] 18#18: start worker process 24
-2023/12/01 03:22:26 [notice] 18#18: start worker process 25
-2023/12/01 03:22:26 [notice] 18#18: start worker process 26
-2023/12/01 12:22:51 [notice] 18#18: using the "epoll" event method
-2023/12/01 12:22:51 [notice] 18#18: nginx/1.21.6
-2023/12/01 12:22:51 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/12/01 12:22:51 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
-2023/12/01 12:22:51 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/12/01 12:22:51 [notice] 18#18: start worker processes
-2023/12/01 12:22:51 [notice] 18#18: start worker process 19
-2023/12/01 12:22:51 [notice] 18#18: start worker process 20
-2023/12/01 12:22:51 [notice] 18#18: start worker process 21
-2023/12/01 12:22:51 [notice] 18#18: start worker process 22
-2023/12/01 12:22:51 [notice] 18#18: start worker process 23
-2023/12/01 12:22:51 [notice] 18#18: start worker process 24
-2023/12/01 12:22:51 [notice] 18#18: start worker process 25
-2023/12/01 12:22:51 [notice] 18#18: start worker process 26
-2023/12/01 05:27:20 [notice] 18#18: using the "epoll" event method
-2023/12/01 05:27:20 [notice] 18#18: nginx/1.21.6
-2023/12/01 05:27:20 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/12/01 05:27:20 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
-2023/12/01 05:27:20 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/12/01 05:27:20 [notice] 18#18: start worker processes
-2023/12/01 05:27:20 [notice] 18#18: start worker process 19
-2023/12/01 05:27:20 [notice] 18#18: start worker process 20
-2023/12/01 05:27:20 [notice] 18#18: start worker process 21
-2023/12/01 05:27:20 [notice] 18#18: start worker process 22
-2023/12/01 05:27:20 [notice] 18#18: start worker process 23
-2023/12/01 05:27:20 [notice] 18#18: start worker process 24
-2023/12/01 05:27:20 [notice] 18#18: start worker process 25
-2023/12/01 05:27:20 [notice] 18#18: start worker process 26
-2023/12/01 05:41:56 [notice] 18#18: using the "epoll" event method
-2023/12/01 05:41:56 [notice] 18#18: nginx/1.21.6
-2023/12/01 05:41:56 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/12/01 05:41:56 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
-2023/12/01 05:41:56 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/12/01 05:41:56 [notice] 18#18: start worker processes
-2023/12/01 05:41:56 [notice] 18#18: start worker process 19
-2023/12/01 05:41:56 [notice] 18#18: start worker process 20
-2023/12/01 05:41:56 [notice] 18#18: start worker process 21
-2023/12/01 05:41:56 [notice] 18#18: start worker process 22
-2023/12/01 05:41:56 [notice] 18#18: start worker process 23
-2023/12/01 05:41:56 [notice] 18#18: start worker process 24
-2023/12/01 05:41:56 [notice] 18#18: start worker process 25
-2023/12/01 05:41:56 [notice] 18#18: start worker process 26
-2023/12/01 05:58:03 [notice] 18#18: using the "epoll" event method
-2023/12/01 05:58:03 [notice] 18#18: nginx/1.21.6
-2023/12/01 05:58:03 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/12/01 05:58:03 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
-2023/12/01 05:58:03 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/12/01 05:58:03 [notice] 18#18: start worker processes
-2023/12/01 05:58:03 [notice] 18#18: start worker process 19
-2023/12/01 05:58:03 [notice] 18#18: start worker process 20
-2023/12/01 05:58:03 [notice] 18#18: start worker process 21
-2023/12/01 05:58:03 [notice] 18#18: start worker process 22
-2023/12/01 05:58:03 [notice] 18#18: start worker process 23
-2023/12/01 05:58:03 [notice] 18#18: start worker process 24
-2023/12/01 05:58:03 [notice] 18#18: start worker process 25
-2023/12/01 05:58:03 [notice] 18#18: start worker process 26
-2023/12/02 00:40:58 [notice] 18#18: using the "epoll" event method
-2023/12/02 00:40:58 [notice] 18#18: nginx/1.21.6
-2023/12/02 00:40:58 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
-2023/12/02 00:40:58 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
-2023/12/02 00:40:58 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2023/12/02 00:40:58 [notice] 18#18: start worker processes
-2023/12/02 00:40:58 [notice] 18#18: start worker process 19
-2023/12/02 00:40:58 [notice] 18#18: start worker process 20
-2023/12/02 00:40:58 [notice] 18#18: start worker process 21
-2023/12/02 00:40:58 [notice] 18#18: start worker process 22
-2023/12/02 00:40:58 [notice] 18#18: start worker process 23
-2023/12/02 00:40:58 [notice] 18#18: start worker process 24
-2023/12/02 00:40:58 [notice] 18#18: start worker process 25
-2023/12/02 00:40:58 [notice] 18#18: start worker process 26
+2023/12/07 11:12:19 [notice] 18#18: using the "epoll" event method
+2023/12/07 11:12:19 [notice] 18#18: nginx/1.21.6
+2023/12/07 11:12:19 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2023/12/07 11:12:19 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
+2023/12/07 11:12:19 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2023/12/07 11:12:19 [notice] 18#18: start worker processes
+2023/12/07 11:12:19 [notice] 18#18: start worker process 19
+2023/12/07 11:12:19 [notice] 18#18: start worker process 20
+2023/12/07 11:12:19 [notice] 18#18: start worker process 21
+2023/12/07 11:12:19 [notice] 18#18: start worker process 22
+2023/12/07 11:12:19 [notice] 18#18: start worker process 23
+2023/12/07 11:12:19 [notice] 18#18: start worker process 24
+2023/12/07 11:12:19 [notice] 18#18: start worker process 25
+2023/12/07 11:12:19 [notice] 18#18: start worker process 26
+2023/12/09 07:27:16 [notice] 18#18: using the "epoll" event method
+2023/12/09 07:27:16 [notice] 18#18: nginx/1.21.6
+2023/12/09 07:27:16 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2023/12/09 07:27:16 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
+2023/12/09 07:27:16 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2023/12/09 07:27:16 [notice] 18#18: start worker processes
+2023/12/09 07:27:16 [notice] 18#18: start worker process 19
+2023/12/09 07:27:16 [notice] 18#18: start worker process 20
+2023/12/09 07:27:16 [notice] 18#18: start worker process 21
+2023/12/09 07:27:16 [notice] 18#18: start worker process 22
+2023/12/09 07:27:16 [notice] 18#18: start worker process 23
+2023/12/09 07:27:16 [notice] 18#18: start worker process 24
+2023/12/09 07:27:16 [notice] 18#18: start worker process 25
+2023/12/09 07:27:16 [notice] 18#18: start worker process 26
+2023/12/09 08:07:01 [warn] 19#19: *53 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/1/00/0000000001 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "GET /profile-admin HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local"
+2023/12/09 09:06:14 [warn] 23#23: *253 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/2/00/0000000002 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "GET /profile-admin HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/movie/create"
+2023/12/09 09:06:35 [warn] 23#23: *255 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/3/00/0000000003 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "GET /profile-admin HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/movie/create"
+2023/12/09 09:32:34 [warn] 24#24: *355 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/4/00/0000000004 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "GET /profile-admin HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/movie/create"
+2023/12/09 09:35:09 [warn] 21#21: *359 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/5/00/0000000005 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "GET /profile-admin HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/movie/create"
+2023/12/09 09:46:40 [warn] 21#21: *378 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/6/00/0000000006 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "GET /profile-admin HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/movie/create"
+2023/12/09 13:12:44 [warn] 26#26: *487 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/7/00/0000000007 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "POST /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/login"
+2023/12/09 13:12:50 [notice] 18#18: using the "epoll" event method
+2023/12/09 13:12:50 [notice] 18#18: nginx/1.21.6
+2023/12/09 13:12:50 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2023/12/09 13:12:50 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
+2023/12/09 13:12:50 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2023/12/09 13:12:50 [notice] 18#18: start worker processes
+2023/12/09 13:12:50 [notice] 18#18: start worker process 19
+2023/12/09 13:12:50 [notice] 18#18: start worker process 20
+2023/12/09 13:12:50 [notice] 18#18: start worker process 21
+2023/12/09 13:12:50 [notice] 18#18: start worker process 22
+2023/12/09 13:12:50 [notice] 18#18: start worker process 23
+2023/12/09 13:12:50 [notice] 18#18: start worker process 24
+2023/12/09 13:12:50 [notice] 18#18: start worker process 25
+2023/12/09 13:12:50 [notice] 18#18: start worker process 26
+2023/12/09 13:55:09 [warn] 21#21: *107 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/1/00/0000000001 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "GET /profile-admin HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/customer"
+2023/12/09 13:55:32 [warn] 21#21: *110 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/2/00/0000000002 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "GET /profile-admin HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/customer"
+2023/12/09 14:30:41 [warn] 22#22: *214 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/3/00/0000000003 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "GET /profile-admin HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/country"
+2023/12/09 14:32:40 [warn] 22#22: *219 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/4/00/0000000004 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "GET /profile-admin HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/country"
+2023/12/09 14:32:46 [warn] 22#22: *222 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/5/00/0000000005 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "GET /profile-admin HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/country"
+2023/12/09 15:06:58 [warn] 26#26: *307 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/6/00/0000000006 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "POST /delete-admin?3 HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/profile-admin"
+2023/12/09 15:07:26 [warn] 26#26: *309 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/7/00/0000000007 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "POST /delete-admin?3 HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/profile-admin"
+2023/12/09 15:14:45 [warn] 19#19: *325 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/8/00/0000000008 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "POST /delete-admin?3 HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/profile-admin"
+2023/12/11 03:08:21 [notice] 18#18: using the "epoll" event method
+2023/12/11 03:08:21 [notice] 18#18: nginx/1.21.6
+2023/12/11 03:08:21 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2023/12/11 03:08:21 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
+2023/12/11 03:08:21 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2023/12/11 03:08:21 [notice] 18#18: start worker processes
+2023/12/11 03:08:21 [notice] 18#18: start worker process 19
+2023/12/11 03:08:21 [notice] 18#18: start worker process 20
+2023/12/11 03:08:21 [notice] 18#18: start worker process 21
+2023/12/11 03:08:21 [notice] 18#18: start worker process 22
+2023/12/11 03:08:21 [notice] 18#18: start worker process 23
+2023/12/11 03:08:21 [notice] 18#18: start worker process 24
+2023/12/11 03:08:21 [notice] 18#18: start worker process 25
+2023/12/11 03:08:21 [notice] 18#18: start worker process 26
+2023/12/11 03:17:23 [warn] 22#22: *132 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/1/00/0000000001 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "GET /phim/truong-tuong-tu HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/"
+2023/12/11 03:43:41 [warn] 26#26: *257 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/2/00/0000000002 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "POST /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local", referrer: "https://webphim.local/login"
+2023/12/11 03:44:19 [warn] 26#26: *261 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/3/00/0000000003 while reading upstream, client: 172.18.0.1, server: webphim.local, request: "GET /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local"
+2023/12/11 03:44:30 [notice] 18#18: using the "epoll" event method
+2023/12/11 03:44:30 [notice] 18#18: nginx/1.21.6
+2023/12/11 03:44:30 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2023/12/11 03:44:30 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
+2023/12/11 03:44:30 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2023/12/11 03:44:30 [notice] 18#18: start worker processes
+2023/12/11 03:44:30 [notice] 18#18: start worker process 19
+2023/12/11 03:44:30 [notice] 18#18: start worker process 20
+2023/12/11 03:44:30 [notice] 18#18: start worker process 21
+2023/12/11 03:44:30 [notice] 18#18: start worker process 22
+2023/12/11 03:44:30 [notice] 18#18: start worker process 23
+2023/12/11 03:44:30 [notice] 18#18: start worker process 24
+2023/12/11 03:44:30 [notice] 18#18: start worker process 25
+2023/12/11 03:44:30 [notice] 18#18: start worker process 26
+2023/12/11 03:44:30 [error] 19#19: *1 connect() to unix:/var/run/php/php7.4-fpm.sock failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: webphim.local, request: "GET /login HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock:", host: "webphim.local"
+2023/12/11 08:13:34 [notice] 18#18: using the "epoll" event method
+2023/12/11 08:13:34 [notice] 18#18: nginx/1.21.6
+2023/12/11 08:13:34 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2023/12/11 08:13:34 [notice] 18#18: OS: Linux 5.15.133.1-microsoft-standard-WSL2
+2023/12/11 08:13:34 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2023/12/11 08:13:34 [notice] 18#18: start worker processes
+2023/12/11 08:13:34 [notice] 18#18: start worker process 19
+2023/12/11 08:13:34 [notice] 18#18: start worker process 20
+2023/12/11 08:13:34 [notice] 18#18: start worker process 21
+2023/12/11 08:13:34 [notice] 18#18: start worker process 22
+2023/12/11 08:13:34 [notice] 18#18: start worker process 23
+2023/12/11 08:13:34 [notice] 18#18: start worker process 24
+2023/12/11 08:13:34 [notice] 18#18: start worker process 25
+2023/12/11 08:13:34 [notice] 18#18: start worker process 26
