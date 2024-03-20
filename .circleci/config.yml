@@ -43,15 +43,15 @@ jobs:
   deploy:
     executor: docker/docker
     environment:
-      SSH_KEY_FINGERPRINT: "5b:f6:97:09:a5:fc:36:da:f7:2b:f0:5e:38:3c:43:8a"
+      SSH_KEY_FINGERPRINT: "SHA256:43XxjkMRwWItBurKSkxtRL6RoMu6j+YG8p5jNz+hFfQ"
       DEPLOYED_USER: "longnguyen"
-      DEPLOYED_SERVER: "34.126.111.17"
+      DEPLOYED_SERVER: "51.120.247.68"
     steps:
       - add_ssh_keys:
           fingerprints:
             - "$SSH_KEY_FINGERPRINT"
       - run:
-          name: Deploy to Google Cloud Run
+          name: Deploy to Zure Cloud Run
           command: ssh -o StrictHostKeyChecking=no $DEPLOYED_USER@$DEPLOYED_SERVER './deploy.sh'
 workflows:
   build-deploy:
