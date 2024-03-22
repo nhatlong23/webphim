@@ -10,8 +10,7 @@ FROM wyveo/nginx-php-fpm:php74
 
 WORKDIR /var/www/html/phimmoi48h
 
-COPY --from=builder /app/vendor ./vendor
-COPY . /var/www/html/phimmoi48h
+COPY . .
 
 RUN rm -f .env && cp .env.production .env \
     && chown -R www-data:www-data /var/www/html/phimmoi48h \
