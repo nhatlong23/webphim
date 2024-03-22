@@ -1,3 +1,4 @@
+# Stage 1: Composer dependencies
 FROM composer:2.2 as builder
 
 WORKDIR /app
@@ -12,7 +13,8 @@ WORKDIR /var/www/html/phimmoi48h
 
 COPY --from=builder /app/vendor ./vendor
 
-RUN git clone https://github.com/nhatlong23/webphim.git .
+RUN rm -rf * \
+    && git clone https://github.com/nhatlong23/webphim.git .
 
 RUN chown -R www-data:www-data /var/www/html/phimmoi48h \
     && rm -rf .env \
