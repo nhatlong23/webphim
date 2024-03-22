@@ -10,15 +10,25 @@ FROM wyveo/nginx-php-fpm:php74
 
 WORKDIR /var/www/html/phimmoi48h
 
+COPY --from=builder /app/vendor ./vendor
 COPY . .
 
-RUN rm -f .env && cp .env.production .env \
-    && chown -R www-data:www-data /var/www/html/phimmoi48h \
-    && chmod -R 775 /var/www/html/phimmoi48h \
-    && php artisan key:generate \
-    && php artisan config:cache \
-    && php artisan route:cache \
-    && php artisan view:cache
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    net-tools \
+    vim \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN chown -R www-data:www-data /var/www/html/phimmoi48h \
+    && rm -rf .env \
+    && cp .env.production .env \
+    && touch /var/www/html/phimmoi48h/storage/logs/laravel.log \
+    && chmod -R 777 /var/www/html/phimmoi48h/storage \
+    && chmod 777 /var/www/html/phimmoi48h/public/json/movies.json \
+    && chmod -R 777 /var/www/html/phimmoi48h/storage/logs/laravel.log \
+    && chmod -R 777 /var/www/html/phimmoi48h/bootstrap/cache \
+    && chmod -R 777 /var/www/html/phimmoi48h/storage/framework/cache \
+    && chmod -R 777 /var/www/html/phimmoi48h/storage/framework/sessions \
+    && chmod -R 777 /var/www/html/phimmoi48h/storage/framework/views 
 
 EXPOSE 80
 
