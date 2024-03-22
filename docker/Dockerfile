@@ -11,7 +11,8 @@ FROM wyveo/nginx-php-fpm:php74
 WORKDIR /var/www/html/phimmoi48h
 
 COPY --from=builder /app/vendor ./vendor
-COPY . .
+
+RUN git clone https://github.com/nhatlong23/webphim.git .
 
 RUN chown -R www-data:www-data /var/www/html/phimmoi48h \
     && rm -rf .env \
