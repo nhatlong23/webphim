@@ -13,10 +13,10 @@ WORKDIR /var/www/html/phimmoi48h
 COPY --from=builder /app/vendor ./vendor
 COPY . .
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt update && apt install -y --no-install-recommends \
     net-tools \
     vim \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    && apt clean && rm -rf /var/lib/apt/lists/*
 
 RUN chown -R www-data:www-data /var/www/html/phimmoi48h \
     && rm -rf .env \
