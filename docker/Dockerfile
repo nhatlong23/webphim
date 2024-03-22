@@ -13,11 +13,6 @@ WORKDIR /var/www/html/phimmoi48h
 COPY --from=builder /app/vendor ./vendor
 COPY . .
 
-RUN apt update && apt install -y --no-install-recommends \
-    net-tools \
-    vim \
-    && apt clean && rm -rf /var/lib/apt/lists/*
-
 RUN chown -R www-data:www-data /var/www/html/phimmoi48h \
     && rm -rf .env \
     && cp .env.production .env \
