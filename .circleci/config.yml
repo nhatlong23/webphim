@@ -51,14 +51,13 @@ jobs:
           fingerprints:
             - "$SSH_KEY_FINGERPRINT"
       - when:
-          condition: <<pipeline.git.branch>> == 'main'
+          condition: << pipeline.git.branch >> == 'main'
           steps:
             - run:
                 name: Deploy to Zure Cloud Run
                 command: |
                   ssh -o StrictHostKeyChecking=no $DEPLOYED_USER@$DEPLOYED_SERVER '
-                    cd webphim && git pull &&
-                    ./deploy.sh'
+                    cd webphim && git pull && cd .. && ./deploy.sh'
 workflows:
   build-deploy:
     jobs:
