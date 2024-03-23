@@ -96,7 +96,7 @@
                                 <div class="input-group col-xs-12">
                                     <form action="{{ route('search') }}" method="GET">
                                         <input id="timkiem" name="search" type="text" class="form-control"
-                                            placeholder="Tìm kiếm...hihaha" autocomplete="off">
+                                            placeholder="Tìm kiếm..." autocomplete="off">
                                         <button class="btn btn-primary">Tìm kiếm</button>
                                     </form>
                                 </div>

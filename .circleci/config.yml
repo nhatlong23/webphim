@@ -52,7 +52,10 @@ jobs:
             - "$SSH_KEY_FINGERPRINT"
       - run:
           name: Deploy to Zure Cloud Run
-          command: ssh -o StrictHostKeyChecking=no $DEPLOYED_USER@$DEPLOYED_SERVER 'bash -s' < webphim/deploy.sh
+        command: |
+          ssh -o StrictHostKeyChecking=no $DEPLOYED_USER@$DEPLOYED_SERVER '
+            cd webphim && git pull &&
+            ./deploy.sh'
 workflows:
   build-deploy:
     jobs:
