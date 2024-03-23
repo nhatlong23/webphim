@@ -15,6 +15,8 @@ RUN php artisan config:cache
 RUN php artisan route:cache
 RUN php artisan view:cache
 
+WORKDIR /var/www/html/phimmoi48h
+
 RUN chown -R www-data:www-data /var/www/html/phimmoi48h
 RUN chmod -R 775 /var/www/html/phimmoi48h
 
