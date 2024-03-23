@@ -1,4 +1,3 @@
-# Stage 1: Composer dependencies
 FROM composer:2.2 as builder
 
 WORKDIR /app
@@ -12,21 +11,19 @@ FROM wyveo/nginx-php-fpm:php74
 WORKDIR /var/www/html/phimmoi48h
 
 COPY --from=builder /app/vendor ./vendor
-
-RUN rm -rf * \
-    && git clone https://github.com/nhatlong23/webphim.git .
+COPY . /var/www/html/phimmoi48h
 
 RUN chown -R www-data:www-data /var/www/html/phimmoi48h \
-    && rm -rf .env \
+    && rm -f .env \
     && cp .env.production .env \
     && touch /var/www/html/phimmoi48h/storage/logs/laravel.log \
-    && chmod -R 777 /var/www/html/phimmoi48h/storage \
-    && chmod 777 /var/www/html/phimmoi48h/public/json/movies.json \
-    && chmod -R 777 /var/www/html/phimmoi48h/storage/logs/laravel.log \
-    && chmod -R 777 /var/www/html/phimmoi48h/bootstrap/cache \
-    && chmod -R 777 /var/www/html/phimmoi48h/storage/framework/cache \
-    && chmod -R 777 /var/www/html/phimmoi48h/storage/framework/sessions \
-    && chmod -R 777 /var/www/html/phimmoi48h/storage/framework/views 
+    && chmod -R 775 /var/www/html/phimmoi48h/storage \
+    && chmod 664 /var/www/html/phimmoi48h/public/json/movies.json \
+    && chmod 664 /var/www/html/phimmoi48h/storage/logs/laravel.log \
+    && chmod -R 775 /var/www/html/phimmoi48h/bootstrap/cache \
+    && chmod -R 775 /var/www/html/phimmoi48h/storage/framework/cache \
+    && chmod -R 775 /var/www/html/phimmoi48h/storage/framework/sessions \
+    && chmod -R 775 /var/www/html/phimmoi48h/storage/framework/views 
 
 EXPOSE 80
 
