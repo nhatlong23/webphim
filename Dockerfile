@@ -1,30 +1,21 @@
-FROM composer:2.2 as builder
-
-WORKDIR /app
-
-COPY composer.json composer.lock ./
-
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-scripts
-
 FROM wyveo/nginx-php-fpm:php74
 
-WORKDIR /var/www/html/phimmoi48h
+WORKDIR /usr/share/nginx/html
 
-COPY --from=builder /app/vendor ./vendor
-COPY . /var/www/html/phimmoi48h
+COPY . /usr/share/nginx/html
 
-RUN chown -R www-data:www-data /var/www/html/phimmoi48h \
-    && rm -f .env \
-    && cp .env.production .env \
-    && touch /var/www/html/phimmoi48h/storage/logs/laravel.log \
-    && chmod -R 775 /var/www/html/phimmoi48h/storage \
-    && chmod 664 /var/www/html/phimmoi48h/public/json/movies.json \
-    && chmod 664 /var/www/html/phimmoi48h/storage/logs/laravel.log \
-    && chmod -R 775 /var/www/html/phimmoi48h/bootstrap/cache \
-    && chmod -R 775 /var/www/html/phimmoi48h/storage/framework/cache \
-    && chmod -R 775 /var/www/html/phimmoi48h/storage/framework/sessions \
-    && chmod -R 775 /var/www/html/phimmoi48h/storage/framework/views 
+RUN composer install --no-dev --optimize-autoloader
 
-EXPOSE 80
+COPY ./docker/config/app.conf /etc/nginx/conf.d/default.conf
+
+COPY .env.production .env
+
+RUN php artisan key:generate
+RUN php artisan config:cache
+RUN php artisan route:cache
+RUN php artisan view:cache
+
+RUN chown -R www-data:www-data /var/www/html/phimmoi48h
+RUN chmod -R 775 /var/www/html/phimmoi48h
 
 LABEL maintainer="nhatlong2356@gmail.com"

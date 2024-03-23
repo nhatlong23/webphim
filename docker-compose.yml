@@ -1,7 +1,9 @@
 version: '3'
 services:
   webphim_server:
-    image: 2808zl/phimmoi48h:latest
+    build: 
+      context: .
+      dockerfile: Dockerfile
     container_name: webphim_server
     working_dir: /var/www/html/phimmoi48h
     ports:
