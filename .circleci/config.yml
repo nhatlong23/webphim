@@ -8,7 +8,7 @@ jobs:
     environment:
       DOCKER_IMAGE: 2808zl/phimmoi48h
       DOCKER_TAGS: latest
-      DOCKERFILE_PATH: ./docker/Dockerfile
+      DOCKERFILE_PATH: ./Dockerfile
 
     executor: docker/docker
     steps:
