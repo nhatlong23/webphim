@@ -801,7 +801,7 @@
                                         <div class="halim-post-title ">
                                             <p class="entry-title">${name}</p>
                                             <p class="original_title">${nameEn}</p>
-                                            <a style="display: contents;" id="${i}" onclick="deleteMovieToBookmarks(this.id)">Xóa khỏi Bookmarks</a>
+                                            <a style="display: contents; cursor: pointer;" id="${i}" onclick="deleteMovieToBookmarks(this.id)">Xóa khỏi Bookmarks</a>
                                         </div>
                                     </div>
                                 </a>

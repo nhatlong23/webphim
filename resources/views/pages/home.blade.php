@@ -83,7 +83,7 @@
                                                 <div class="halim-post-title ">
                                                     <p id="BookmarksName_{{ $mov->id }}" class="entry-title">{{ $mov->title }}</p>
                                                     <p id="BookmarksNameEn_{{ $mov->id }}" class="original_title">{{ $mov->name_en }}</p>
-                                                    <a style="display: contents;" id="{{ $mov->id }}"
+                                                    <a style="display: contents; cursor: pointer;" id="{{ $mov->id }}"
                                                         onclick="addMovieToBookmarks(this.id)">Thêm vào Bookmarks</a>
                                                 </div>
                                             </div>

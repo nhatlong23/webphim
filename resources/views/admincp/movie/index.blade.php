@@ -49,7 +49,7 @@
         </div>
         {{-- <td><a href="{{ route('remove-episode') }}" class="btn btn-success">Xóa các tập phim trùng</a></td> --}}
         {{-- <td><a href="{{ route('delete-movie') }}" class="btn btn-success">Xóa các phim trùng</a></td> --}}
-        {{-- <td><a href="{{ route('update-image-movie') }}" class="btn btn-success">Cập nhật hình ảnh sang o9</a></td> --}}
+        <td><a href="{{ route('update-image-movie') }}" class="btn btn-success">Cập nhật hình ảnh sang o10</a></td>
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-md-12">

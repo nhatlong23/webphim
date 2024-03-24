@@ -408,8 +408,8 @@ class LeechMovieController extends Controller
 
     public function updateImageUrls()
     {
-        $oldUrl = 'https://img.ophim8.cc';
-        $newUrl = 'https://img.ophim9.cc';
+        $oldUrl = 'https://img.ophim9.cc';
+        $newUrl = 'https://img.ophim10.cc';
 
         $batchSize = 1000; // Số lượng bản ghi cập nhật trong mỗi lần
 

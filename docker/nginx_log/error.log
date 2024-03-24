@@ -1,0 +1,20 @@
+2024/03/24 05:50:48 [warn] 18#18: conflicting server name "webphim.local" on 0.0.0.0:80, ignored
+2024/03/24 05:50:48 [warn] 18#18: conflicting server name "webphim.local" on [::]:80, ignored
+2024/03/24 05:50:48 [warn] 18#18: conflicting server name "webphim.local" on 0.0.0.0:443, ignored
+2024/03/24 05:50:48 [warn] 18#18: conflicting server name "webphim.local" on [::]:443, ignored
+2024/03/24 05:50:48 [notice] 18#18: using the "epoll" event method
+2024/03/24 05:50:48 [notice] 18#18: nginx/1.21.6
+2024/03/24 05:50:48 [notice] 18#18: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2024/03/24 05:50:48 [notice] 18#18: OS: Linux 5.15.146.1-microsoft-standard-WSL2
+2024/03/24 05:50:48 [notice] 18#18: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/03/24 05:50:48 [notice] 18#18: start worker processes
+2024/03/24 05:50:48 [notice] 18#18: start worker process 19
+2024/03/24 05:50:48 [notice] 18#18: start worker process 20
+2024/03/24 05:50:48 [notice] 18#18: start worker process 21
+2024/03/24 05:50:48 [notice] 18#18: start worker process 22
+2024/03/24 05:50:48 [notice] 18#18: start worker process 23
+2024/03/24 05:50:48 [notice] 18#18: start worker process 24
+2024/03/24 05:50:48 [notice] 18#18: start worker process 25
+2024/03/24 05:50:48 [notice] 18#18: start worker process 26
+2024/03/24 06:23:17 [error] 19#19: *269 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.20.0.1, server: webphim.local, request: "GET /update-image-movie HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local", referrer: "http://webphim.local/movie"
+2024/03/24 06:26:01 [error] 19#19: *273 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.20.0.1, server: webphim.local, request: "GET /update-image-movie HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.4-fpm.sock", host: "webphim.local", referrer: "http://webphim.local/movie"
