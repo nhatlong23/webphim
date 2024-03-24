@@ -55,8 +55,10 @@ jobs:
           steps:
             - run:
                 name: Deploy to Zure Cloud Run
-                command: |
-                  ssh -o StrictHostKeyChecking=no $DEPLOYED_USER@$DEPLOYED_SERVER './deploy.sh'
+          command: |
+                  ssh -o StrictHostKeyChecking=no $DEPLOYED_USER@$DEPLOYED_SERVER '
+                  cd /home/longnguyen/webphim && git pull &&
+                  ./deploy.sh'
 workflows:
   build-deploy:
     jobs:

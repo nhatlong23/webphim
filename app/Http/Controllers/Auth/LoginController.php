@@ -38,17 +38,17 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    protected function validateLogin(Request $request)
-    {
-        $request->validate([
-            $this->username() => 'required|string',
-            'password' => 'required|string',
-            'g-recaptcha-response' => 'required|captcha',
-        ], [
-            'g-recaptcha-response.required' => 'Vui lòng xác minh bạn không phải là robot.',
-            'g-recaptcha-response.captcha' => 'Xác minh không thành công. Vui lòng thử lại.',
-        ]);
-    }
+    // protected function validateLogin(Request $request)
+    // {
+    //     $request->validate([
+    //         $this->username() => 'required|string',
+    //         'password' => 'required|string',
+    //         'g-recaptcha-response' => 'required|captcha',
+    //     ], [
+    //         'g-recaptcha-response.required' => 'Vui lòng xác minh bạn không phải là robot.',
+    //         'g-recaptcha-response.captcha' => 'Xác minh không thành công. Vui lòng thử lại.',
+    //     ]);
+    // }
 
     public function customerLogin(Request $request)
     {
