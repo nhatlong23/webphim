@@ -12,7 +12,7 @@ services:
     volumes:
       - .:/var/www/html/phimmoi48h
       - ./docker/nginx_log:/var/log/nginx
-      - ./docker/php-fpm/php-fpm.log:/var/log/php7.4-fpm.log
+      - ./docker/php-fpm/php7-fpm.log:/var/log/php7.4-fpm.log
       - ./docker/config/app.conf:/etc/nginx/conf.d/app.conf
       - ./docker/ssl:/etc/nginx/ssl
     links:
